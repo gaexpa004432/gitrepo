@@ -36,7 +36,9 @@ public class FrontController extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		charset = config.getInitParameter("charset"); 
 		list = new HashMap<String, Controller>();
-		list.put("/test.do",new test.TestController());  // 1번째 파라미터는 경로, 2번째 파라미터는 패키지명.클래스이름 
+		list.put("/test.do", new test.TestController());  // 1번째 파라미터는 경로, 2번째 파라미터는 패키지명.클래스이름
+		list.put("/member/login.do", new member.MemberLoginController());
+		list.put("/member/logout.do", new member.MemberLogoutController());
 	}
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding(charset);
@@ -44,13 +46,14 @@ public class FrontController extends HttpServlet {
 		String contextPath = request.getContextPath(); 
 		String path = uri.substring(contextPath.length()); 
 		Controller subController = list.get(path);
-		subController.execute(request, response);
+		if(subController == null) {
+			System.out.println("NULL: " + path);
+		}
+		else {
+			subController.execute(request, response);
+		}
 		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	
 
 }
