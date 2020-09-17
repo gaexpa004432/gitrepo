@@ -39,6 +39,7 @@ public class FrontController extends HttpServlet {
 		list.put("/test.do", new test.TestController());  // 1번째 파라미터는 경로, 2번째 파라미터는 패키지명.클래스이름
 		list.put("/member/login.do", new member.MemberLoginController());
 		list.put("/member/logout.do", new member.MemberLogoutController());
+		list.put("/freeBoardWrite.do", new board.freeBoardWriteController());
 	}
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding(charset);
