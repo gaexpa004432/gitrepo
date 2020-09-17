@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<form>
+식당 명<input name=res_no>
+</form>
 </body>
 </html>
