@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
+import model.MemberDAO;
+import model.MemberVO;
 
 public class MemberLoginController implements Controller {
 

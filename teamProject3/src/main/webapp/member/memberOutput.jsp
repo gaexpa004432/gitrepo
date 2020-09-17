@@ -7,6 +7,6 @@
 <title>memberOutput.jsp</title>
 </head>
 <body>
-	${sessionScope.login.member_id}님     <a href="/web/controller/logout.do">로그아웃</a>
+	${sessionScope.login.member_id}님     <a href="logout.do">로그아웃</a>
 </body>
 </html>

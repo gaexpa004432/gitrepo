@@ -7,7 +7,7 @@
 <title>memberLogin.jsp</title>
 </head>
 <body>
-	${errormsg}
+	
 	<form method="post" action="login.do">
 		<div>
 			<label>ID </label>
@@ -19,5 +19,6 @@
 		</div>
 		<button>로그인</button>
 	</form>
+	${errormsg}
 </body>
 </html>
