@@ -9,19 +9,30 @@
 function inputCheck() {
 	//id, pw 필수입력 체크
 	if(frm.id.value == "") {
-		window.alert("id 입력하세요");
+		window.alert("아이디를 입력하세요");
 		frm.id.focus();
 		return false;
 	}
 	if(frm.pw.value == "") {
-		alert("pw 입력하세요");
+		alert("비밀번호를 입력하세요");
 		frm.pw.focus();
 		return false;
 	}
 	if(frm.pw.value != frm.pwCheck.value) {
-		alert("두 패스워드가 ")
+		alert("비밀번호가 일치하지 않습니다");
+		frm.pw.focus();
+		return false;
 	}
-	
+	if(frm.name.value != frm.name.value) {
+		alert("이름을 입력하세요");
+		frm.name.focus();
+		return false;
+	}
+	if(frm.pw.value != frm.pwCheck.value) {
+		alert("비밀번호가 일치하지 않습니다");
+		frm.pw.focus();
+		return false;
+	}
 	if(frm.job.value == "") {
 		alert("job선택");
 		frm.job.focus();
@@ -34,8 +45,28 @@ function inputCheck() {
 		return false;
 	}
 	return true;
+	
+	
 }
+
+function checkNum(e) {
+    var keyVal = event.keyCode;
+
+    if(((keyVal >= 48) && (keyVal <= 57))){
+        return true;
+    }
+    else{
+        alert("숫자만 입력가능합니다");
+        return false;
+    }
+}
+
+
+
 </script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="/teamProject3/api/addressApi.js"></script>
+
 </head>
 <body>
 <h3>회원등록</h3>
@@ -54,6 +85,24 @@ function inputCheck() {
 	<div>
 		<label>비밀번호 확인</label>
 		<input type="password" name="pwCheck">
+	</div>
+	<div>
+		<label>이름</label>
+		<input type="text" name="name">
+	</div>
+	<div>
+		<label>전화번호</label>
+		<input type="text" name="tel" onKeyPress="checkNum(event)">
+	</div>
+	
+	<div>
+		<input type="text" id="sample4_postcode" placeholder="우편번호">
+		<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+		<input type="text" id="sample4_roadAddress" placeholder="도로명주소">
+		<input type="text" id="sample4_jibunAddress" placeholder="지번주소">
+		<span id="guide" style="color:#999;display:none"></span>
+		<input type="text" id="sample4_detailAddress" placeholder="상세주소">
+		<input type="text" id="sample4_extraAddress" placeholder="참고항목">
 	</div>
 	<div>
 		<label>성별</label>
