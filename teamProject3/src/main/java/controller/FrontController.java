@@ -39,7 +39,7 @@ public class FrontController extends HttpServlet {
 		//박호일
 		list.put("/member/login.do", new member.MemberLoginController());
 		list.put("/member/logout.do", new member.MemberLogoutController());
-
+		list.put("/member/Insert.do", new member.MemberInsertController()); 
 		
 
 		
