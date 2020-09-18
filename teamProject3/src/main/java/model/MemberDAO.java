@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.List;
 
 import common.ConnectionManager;
 
@@ -132,7 +131,12 @@ public class MemberDAO {
 			ConnectionManager.close(conn);
 		}
 		
+
 		return r;
 	}
+
+	}
+
+
 	
-}
+

@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PipedInputStream;
 import java.util.HashMap;
 
 import javax.servlet.ServletConfig;
@@ -38,6 +39,9 @@ public class FrontController extends HttpServlet {
 		//박호일
 		list.put("/member/login.do", new member.MemberLoginController());
 		list.put("/member/logout.do", new member.MemberLogoutController());
+
+		
+
 		
 			
 		
@@ -55,10 +59,16 @@ public class FrontController extends HttpServlet {
 		
 		
 		//서송미
-		
-		
+		list.put("/freeBoardWrite.do", new board.freeBoardWriteController());
+		list.put("/freeBoardList.do", new board.FreeBoardListController());
 	
+		
+		
+		
+		
+		
 		//백승엽
+
 	}
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding(charset);
