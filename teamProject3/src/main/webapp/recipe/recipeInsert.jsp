@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>jsp게시판 웹사이트</title>
+<title>Insert title here</title>
 </head>
 <body>
-도착
+
 </body>
 </html>
