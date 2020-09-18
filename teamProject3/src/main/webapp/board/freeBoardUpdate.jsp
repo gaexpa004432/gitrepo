@@ -7,24 +7,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/Update.do">
-		<!-- 글번호를 input타입말고 다른방법으로  -->
-		<table>
-			<tr>
-				<th>이름</th>
-				<td><input type="text" name="member_name"></td>
-			</tr>
-			
-			<tr>
-				<th>제목</th>
-				<td><input type="text" name="board_sub"></td>
-			</tr>
-			
-			<tr>
-				<th>내용</th>
-				<td><textarea cols="70" rows="15" name="board_content"></textarea></td>
-			</tr>
-		</table>
+<form action="freeBoardUpdate.do" method="post"
+		enctype="multipart/form-data">
+		<div>
+			<label>제목</label> 
+			<input type="text" name="sub" value="${freeboard.board_sub}" />
+		</div>
+		<div>
+			<label>아이디</label> 
+			<input type="text" name="id" value="${freeboard.board_id}"/>
+		</div>
+		
+		<div>
+			<label>내용</label>
+			<textarea name="contents" >${freeboard.board_contents}</textarea>
+		</div>
 		<div>
 			<button>등록</button>
 		</div>
