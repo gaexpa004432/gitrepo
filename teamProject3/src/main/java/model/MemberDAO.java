@@ -134,11 +134,5 @@ public class MemberDAO {
 		
 		return r;
 	}
-
-	public int productInsert(ProductVO product) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 	
 }

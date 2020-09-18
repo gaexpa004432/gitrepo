@@ -8,11 +8,11 @@
 <script>
 
 	function input() {
-		if(frm.product_number.value == "") {
+	/* 	if(frm.product_number.value == "") {
 			window.alert("상품번호 입력하세요");
 			frm.product_number.focus();
 			return false;
-		}
+		} */
 		
 		if(frm.product_name.value == "") {
 			window.alert("상품이름 입력하세요");
@@ -32,11 +32,11 @@
 			return false;
 		}
 		
-		if(frm.product_status.value == "") {
+		/* if(frm.product_status.value == "") {
 			window.alert("상품주문상태 입력하세요");
 			frm.product_status.focus();
 			return false;
-		}
+		} */
 		
 		if(frm.seller_code.value == "") {
 			window.alert("소상공인번호 입력하세요");
@@ -54,10 +54,10 @@
 	<h1>재료 등록</h1>
 
 	<form method="post" action="/teamProject3/save_product.do">
-		<div>
+<!-- 		<div>
 			<label for="product_number">상품번호</label> 
 			<input type="text" name="product_number" id="product_number">
-		</div>
+		</div> -->
 	
 		<div>
 			<label for="product_name">상품이름</label> 
@@ -74,10 +74,10 @@
 			<input type="text" name="product_unit" id="product_unit">
 		</div>
 		
-		<div>
+	<!-- 	<div>
 			<label for="product_status">상품주문상태</label> 
 			<input type="text" name="product_status" id="product_status">
-		</div>
+		</div> -->
 		
 		<div>
 			<label for="seller_code">소상공인번호</label> 
