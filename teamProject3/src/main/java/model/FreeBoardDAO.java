@@ -7,12 +7,12 @@ import java.util.ArrayList;
 
 import common.ConnectionManager;
 
-public class freeBoardDAO {
+public class FreeBoardDAO {
 	private Connection conn;
 	private PreparedStatement pstmt;
 	
 	//등록 
-	   public int insert(freeBoardVO freeboardVO) {
+	   public int insert(FreeBoardVO freeboardVO) {
 	       int r = 0;
 		   try {
 	         conn = ConnectionManager.getConnnect();
@@ -24,8 +24,6 @@ public class freeBoardDAO {
 	         pstmt.setString(1, freeboardVO.getMember_name());
 	         pstmt.setString(2, freeboardVO.getBoard_sub());
 	         pstmt.setString(3, freeboardVO.getBoard_content());
-	         pstmt.setString(4, freeboardVO.getBoard_file());
-	         pstmt.setString(5, freeboardVO.getBoard_groupcode());
 	         r = pstmt.executeUpdate();
 	         System.out.println(r + "건이 입력됨");
 
@@ -38,10 +36,10 @@ public class freeBoardDAO {
 	   }
 	   
 	   //전체조회 (페이징처리가 되는)
-		public ArrayList<freeBoardVO> selectAll() {
-			 freeBoardVO resultVO = null;
+		public ArrayList<FreeBoardVO> selectAll() {
+			 FreeBoardVO resultVO = null;
 			 ResultSet rs = null;
-			 ArrayList<freeBoardVO> list = new ArrayList<freeBoardVO>();
+			 ArrayList<FreeBoardVO> list = new ArrayList<FreeBoardVO>();
 			 try {
 				 conn = ConnectionManager.getConnnect();
 				 String sql = "select * from board";
@@ -49,7 +47,7 @@ public class freeBoardDAO {
 	
 				rs = pstmt.executeQuery();
 				while(rs.next()) {
-					resultVO = new freeBoardVO();
+					resultVO = new FreeBoardVO();
 					resultVO.setMember_name(rs.getString("member_name"));
 					resultVO.setBoard_sub(rs.getString("board_sub"));
 					resultVO.setBoard_content(rs.getString("board_content"));
@@ -65,7 +63,7 @@ public class freeBoardDAO {
 		}
 	   
 		//삭제
-				public int delete(freeBoardVO freeboardVO) {
+				public int delete(FreeBoardVO freeboardVO) {
 				       int r = 0;
 					   try {
 				         conn = ConnectionManager.getConnnect();
@@ -85,7 +83,7 @@ public class freeBoardDAO {
 				   }
 				
 				//수정
-				public int update(freeBoardVO freeboardVO) {
+				public int update(FreeBoardVO freeboardVO) {
 				       int r = 0;
 					   try {
 				         conn = ConnectionManager.getConnnect();
