@@ -10,11 +10,11 @@ public class ProductDAO {
 	PreparedStatement pstmt;
 
 	// 싱글톤
-	static MemberDAO instance;
+	static ProductDAO instance;
 
-	public static MemberDAO getInstance() {
+	public static ProductDAO getInstance() {
 		if (instance == null)
-			instance = new MemberDAO();
+			instance = new ProductDAO();
 		return instance;
 	}
 
