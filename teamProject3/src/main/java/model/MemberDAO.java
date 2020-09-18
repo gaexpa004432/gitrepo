@@ -130,6 +130,7 @@ public class MemberDAO {
 		} finally {
 			ConnectionManager.close(conn);
 		}
+		return r;
 		
 
 		return r;
