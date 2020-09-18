@@ -19,7 +19,7 @@ public class save_productController implements Controller {
 		String product_unit = request.getParameter("product_unit");
 		String product_status = request.getParameter("product_status");
 		String seller_code = request.getParameter("seller_code");
-
+		System.out.println(product_number + product_name + product_price + product_unit + product_status + seller_code);
 		
 		ProductVO product = new ProductVO();
 		product.setProduct_number(Integer.parseInt(product_number));
@@ -35,7 +35,6 @@ public class save_productController implements Controller {
 		
 		//결과 저장
 		request.setAttribute("cnt", r);
-
 	}
 
 }
