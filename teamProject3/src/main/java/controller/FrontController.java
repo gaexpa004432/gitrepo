@@ -37,6 +37,7 @@ public class FrontController extends HttpServlet {
 		charset = config.getInitParameter("charset"); 
 		list = new HashMap<String, Controller>();
 		list.put("/test.do", new test.TestController());  // 1번째 파라미터는 경로, 2번째 파라미터는 패키지명.클래스이름
+
 		list.put("/member/login.do", new member.MemberLoginController());
 		list.put("/member/logout.do", new member.MemberLogoutController());
 	}
