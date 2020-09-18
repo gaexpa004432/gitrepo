@@ -10,7 +10,7 @@ import controller.Controller;
 import model.ProductDAO;
 import model.ProductVO;
 
-public class save_productController implements Controller {
+public class ProductInsertController implements Controller {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		String product_number = request.getParameter("product_number");

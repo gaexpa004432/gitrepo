@@ -48,7 +48,7 @@ public class FrontController extends HttpServlet {
 
 		
 		//김성남
-		list.put("/save_product.do", new recipe.save_productController());
+		list.put("/save_product.do", new recipe.ProductInsertController());
 		
 		
 		
