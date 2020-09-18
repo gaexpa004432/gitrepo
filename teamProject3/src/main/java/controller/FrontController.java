@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PipedInputStream;
 import java.util.HashMap;
 
 import javax.servlet.ServletConfig;
@@ -26,10 +27,7 @@ public class FrontController extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-    
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+  
 	String charset = null;
 	HashMap<String,Controller> list = null;
 	@Override
@@ -37,9 +35,40 @@ public class FrontController extends HttpServlet {
 		charset = config.getInitParameter("charset"); 
 		list = new HashMap<String, Controller>();
 		list.put("/test.do", new test.TestController());  // 1번째 파라미터는 경로, 2번째 파라미터는 패키지명.클래스이름
+		
+		//박호일
 		list.put("/member/login.do", new member.MemberLoginController());
 		list.put("/member/logout.do", new member.MemberLogoutController());
+
+		
+
+		
+			
+		
+
+		
+		//김성남
+		list.put("/save_product.do", new recipe.save_productController());
+		
+		
+		
+		
+		
+		//진인석
+		
+		
+		
+		//서송미
 		list.put("/freeBoardWrite.do", new board.freeBoardWriteController());
+		list.put("/freeBoardList.do", new board.FreeBoardListController());
+	
+		
+		
+		
+		
+		
+		//백승엽
+
 	}
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding(charset);
