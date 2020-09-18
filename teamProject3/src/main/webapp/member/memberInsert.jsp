@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"  isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,7 +81,7 @@ function onlyNumber(event){
 <script type="text/javascript" src="/teamProject3/api/addressApi.js"></script>
 
 </head>
-<body>
+<body>${ooooo }====
 <h3>회원등록</h3>
 <div class="regist">
 	<form method="post" name="frm" id="frm" 
