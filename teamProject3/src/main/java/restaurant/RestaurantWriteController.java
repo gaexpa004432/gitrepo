@@ -38,27 +38,32 @@ public class RestaurantWriteController implements Controller {
 				
 				String filename = getFileName(part); 
 				String path = request.getServletContext().getRealPath("/images");
-//				System.out.println(path); 
+				System.out.println(path); 
 				//중복체크
 				File renamefile = FileRenamePolicy.rename(new File(path,filename));
-				if(renamefile.getName().equals("images1")) { //파일이없을경우 저장 방지
+				if(!renamefile.getName().equals("images1")) { //파일이없을경우 저장 방지
+					part.write(path + "/" + renamefile.getName());
 					
-				}else {
-				part.write(path + "/" + renamefile.getName());
 				}
+				
 				renameArray.add(renamefile.getName());
 			}
 			
 			
 			}
-		restaurant.setRes_picture(renameArray);
-		
-		RestaurantDAO.getInstance().insert(restaurant);
 		
 		
-		for(String file : restaurant.getRes_picture()) {
-			
-			System.out.println(file);
+		
+		
+		int res_no = RestaurantDAO.getInstance().insert(restaurant); //글등록과 동시에 글번호 리턴
+		for(String file : renameArray) {
+			if(!file.equals("images1")) { //파일이 없을경우 실행 안함
+				
+				restaurant = new RestaurantVO();
+				restaurant.setRes_no(res_no);
+				restaurant.setRes_name(file);
+				RestaurantDAO.getInstance().insert_pic(restaurant);
+			}
 		}
 		
 		
@@ -78,3 +83,4 @@ public class RestaurantWriteController implements Controller {
 		return null;
 	}
 }
+

@@ -20,7 +20,7 @@ public class RestaurantDAO {
 			instance = new RestaurantDAO();
 			return instance;
 	}
-	public void insert(RestaurantVO restaurant) {
+	public int insert(RestaurantVO restaurant) {
 		int r=0;
 		try {
 			// 1. DB 연결
@@ -36,6 +36,42 @@ public class RestaurantDAO {
 			psmt.setString(3, restaurant.getRes_tel());
 			psmt.setString(4, restaurant.getRes_si());
 			psmt.setString(5, restaurant.getRes_gu());
+			psmt.executeUpdate();
+			
+			sql = "select res_seq.currval from dual"; //방금 쓰인 시퀀스 번호 들고옴
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+			r = rs.getInt(1);
+			}
+			// 3. 결과 처리
+			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			// 4. 연결 해제
+			ConnectionManager.close(conn);
+		}
+		return r;
+	}
+	
+
+	
+	public void insert_pic(RestaurantVO restaurant) {
+		int r=0;
+		try {
+			// 1. DB 연결
+			Connection conn = ConnectionManager.getConnnect(); // ConnectionManager클래스의 getConnnect실행
+
+			// 2. sql 구문 실행
+			String sql = "insert into res_pic values(res_pic_seq.nextval,?,?)";
+					 
+			PreparedStatement psmt = conn.prepareStatement(sql);
+			
+			psmt.setString(1, restaurant.getRes_name());
+			psmt.setInt(2, restaurant.getRes_no());
 			r = psmt.executeUpdate();
 			
 			// 3. 결과 처리
@@ -51,34 +87,59 @@ public class RestaurantDAO {
 
 	}
 	
-	public List<RestaurantVO> selectAll() { // 조회가 여러건이면 DeptVO를 list에 담음
-		List<RestaurantVO> list = new ArrayList<RestaurantVO>(); // 결과값을 저장할 list 변수 객체 선언
+	public ArrayList<RestaurantVO> selectAll(RestaurantVO restaurantVo) { //게시판 목록 이미지 뿌려주기
+		ArrayList<RestaurantVO> list = new ArrayList<RestaurantVO>(); 
 
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "select no , name ,limit , picture , startprice , id ,(select max(b.price) from bidding b where a.no = b.no) " + 
-			"from auction a where systimestamp < limit"; // 컨+쉬+x 대문자, 컨+쉬+y 소문자 변환가능. 쿼리 엔터해서 쓸거면 앞에 공백 붙이기
-			pstmt = conn.prepareStatement(sql); // 미리 sql 구문이 준비가 되어야한다
-			rs = pstmt.executeQuery(); // select 시에는 executeQuery() 쓰기
+			
+			String sql = "select a.*  from ( select rownum rn, b.*  from ( " + 
+					"select * from res_pic where res_pic_no in (select min(res_pic_no) from res_pic group by res_no)" + 
+					"	ORDER BY res_no" + 
+					"	) b ) a where rn BETWEEN ? and ?"; // 첫번째 이미지만 들고옴
+			pstmt = conn.prepareStatement(sql); 
+			int pos = 1;
+			
+			pstmt.setInt(pos++, restaurantVo.getFirst());
+			pstmt.setInt(pos++, restaurantVo.getLast());
+			rs = pstmt.executeQuery(); 
 
-			while (rs.next()) { // 여러건 조회라서 while를 사용. next()로 한건 한건마다 true 인지 false인지 확인하고 이동함
-//				AuctionVO auction = new AuctionVO(); // 레코드 한건을 resultVO에 담음
-//				auction.setNo(rs.getInt(1)); 
-//				auction.setName(rs.getString(2)); 
-//				auction.setLimit_date(rs.getString(3));
-//				auction.setPicture(rs.getString(4));
-//				auction.setStartprice(rs.getInt(5)); 
-//				auction.setId(rs.getString(6));
-//				auction.setLimit(rs.getInt(7));
-//				list.add(auction); // resultVo를 list에 담음
+			
+			
+			
+			while (rs.next()) { 
+				RestaurantVO restaurant = new RestaurantVO();
+				restaurant.setRes_no(rs.getInt("res_no"));
+				restaurant.setRes_name(rs.getString("res_pic_name"));
+
+				list.add(restaurant);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
-		return list; // 값을 리턴해줌
+		return list; 
 	}
 	
-	
+	public int count(RestaurantVO restaurant) {
+		int cnt = 0;
+		try {
+			conn = ConnectionManager.getConnnect();
+			
+			
+			String sql = "select count(*) from res ";
+			pstmt = conn.prepareStatement(sql);
+			int pos = 1;
+			
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+			cnt = rs.getInt(1);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			ConnectionManager.close(conn);
+		}
+		return cnt;
+	}
 }
