@@ -99,7 +99,7 @@ function submitAction() {
 </script>
 </head>
 <body>
-<form name="form" id="form" method="post" align="center" enctype='multipart/form-data'>
+<form name="form" id="form" method="post" align="center" enctype='multipart/form-data' action="/teamProject3/restaurantWrite.do">
 
 <div><input name="res_name" style="width:300px" placeholder="식당명 입력"></div><br>
 
@@ -108,16 +108,16 @@ function submitAction() {
 	<div>
 		<input type="text" id="sample4_postcode" placeholder="우편번호" style="width:200px">
 		<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-		<input type="text" id="sample4_roadAddress" placeholder="도로명주소" style="width:150px">
-		<input type="text" id="sample4_jibunAddress" placeholder="지번주소" style="width:150px">
+		<input type="text" id="sample4_roadAddress" name="res_si" placeholder="도로명주소" style="width:150px">
+		<input type="text" id="sample4_jibunAddress" name="res_gu" placeholder="지번주소" style="width:150px">
 		<span id="guide" style="color:#999;display:none"></span>
-		<input type="text" id="sample4_detailAddress" placeholder="상세주소" hidden>
+		<input type="text" id="sample4_detailAddress"  placeholder="상세주소" hidden>
 		<input type="text" id="sample4_extraAddress" placeholder="참고항목" hidden>
 		
 	</div>
 	
 	<div>
-		<input type="file" id="input_imgs" multiple/>
+		<input type="file" id="input_imgs" name="res_picture" multiple/>
 	</div>
 	<div>
 		<div class="imgs_wrap">
@@ -126,7 +126,11 @@ function submitAction() {
 	</div>
 	<div>
 	<br>
-	<textarea cols="100" rows="150" name="res_content"></textarea>
+	<textarea cols="100" rows="50" name="res_content"></textarea>
+	</div>
+	
+	<div>
+		<button>등록</button>
 	</div>
 	
 </form>
