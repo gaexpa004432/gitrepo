@@ -21,7 +21,7 @@ $(document).ready(function() {
 function fileUploadAction() {
     console.log("fileUploadAction");
     $("#input_imgs").trigger('click');
-}
+} 
 
 function handleImgFileSelect(e) {
 
