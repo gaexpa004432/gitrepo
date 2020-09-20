@@ -72,6 +72,7 @@ public class FrontController extends HttpServlet {
 		//백승엽
 		list.put("/restaurantWrite.do", new restaurant.RestaurantWriteController());
 		list.put("/restaurantBoard.do", new restaurant.RestaurantBoardController());
+		list.put("/restaurantView.do", new restaurant.RestaurantViewController());
 	}
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding(charset);
