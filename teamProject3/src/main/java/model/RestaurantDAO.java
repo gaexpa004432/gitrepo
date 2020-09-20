@@ -142,4 +142,40 @@ public class RestaurantDAO {
 		}
 		return cnt;
 	}
+	
+	public RestaurantVO selectOne(RestaurantVO restaurantVo) { //게시판 목록 이미지 뿌려주기
+		RestaurantVO restaurant = new RestaurantVO(); 
+		ArrayList<String> list = new ArrayList<String>(); 
+		try {
+			conn = ConnectionManager.getConnnect();
+			
+			String sql = "select * from res where res_no= ?"; // 첫번째 이미지만 들고옴
+			pstmt = conn.prepareStatement(sql); 
+			pstmt.setInt(1, restaurantVo.getRes_no());
+			rs = pstmt.executeQuery();
+			rs.next();
+			restaurant.setRes_no(rs.getInt("res_no"));
+			restaurant.setRes_name(rs.getString("res_name"));
+			restaurant.setRes_content(rs.getString("res_content"));
+			restaurant.setRes_date(rs.getString("res_date"));
+			restaurant.setRes_tel(rs.getString("res_tel"));
+			restaurant.setRes_si(rs.getString("res_si"));
+			restaurant.setRes_gu(rs.getString("res_gu"));
+			
+			sql = "select * from res_pic where res_no= ?";
+			pstmt = conn.prepareStatement(sql); 
+			pstmt.setInt(1, restaurantVo.getRes_no());
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) { 
+				list.add(rs.getString("res_pic_name"));
+			}
+			restaurant.setRes_picture(list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return restaurant; 
+	}
 }

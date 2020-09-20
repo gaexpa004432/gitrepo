@@ -8,13 +8,6 @@
     
 </head>
 <body>
-<p style="margin-top:-12px">
-    <em class="link">
-        <a href="javascript:void(0);" onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
-            혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요.
-        </a>
-    </em>
-</p>
 <div id="map" style="width:350px;height:350px;"></div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5459989244bc763dbd4ad7a7edf03cc0&libraries=services"></script>
