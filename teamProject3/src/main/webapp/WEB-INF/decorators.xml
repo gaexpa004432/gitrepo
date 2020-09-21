@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="euc-kr" ?>
+
+<decorators defaultdir="/decorator">
+	
+	<decorator name="admin" page="adminlayout.jsp">
+		<pattern>/admin/*</pattern>
+	</decorator>
+	
+	<decorator name="main" page="topMenu.jsp">
+		<pattern>/*</pattern>
+	</decorator>
+	
+</decorators>
