@@ -11,12 +11,12 @@
 	rel='stylesheet' type='text/css'>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="js/skel.min.js"></script>
-<script src="js/skel-panels.min.js"></script>
-<script src="js/init.js"></script>
-<link rel="stylesheet" href="css/skel-noscript.css" />
-<link rel="stylesheet" href="css/style.css" />
-<link rel="stylesheet" href="css/style-desktop.css" />
+<script src="/teamProject3/js/skel.min.js"></script>
+<script src="/teamProject3/js/skel-panels.min.js"></script>
+<script src="/teamProject3/js/init.js"></script>
+<link rel="stylesheet" href="/teamProject3/css/skel-noscript.css" />
+<link rel="stylesheet" href="/teamProject3/css/style.css" />
+<link rel="stylesheet" href="/teamProject3/css/style-desktop.css" />
 <meta charset="UTF-8">
 </head>
 <body class="homepage">
@@ -33,7 +33,7 @@
 			<hr>
 
 			<!-- ul -->
-			<div id="join">
+			<div id="join" style="position:absolute;">
 				<ul>
 					<li id=""><a href="#">로그인</a></li>
 					<li> | </li>
@@ -42,7 +42,7 @@
 			</div>
 
 			<!-- Nav -->
-			<nav id="nav">
+			<nav id="nav" style="width:60%">
 				<ul>
 					<li class="active"><a href="">채식가이드</a></li>
 					<li><a href="">비건 레시피</a></li>

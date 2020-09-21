@@ -14,7 +14,7 @@ import model.FreeBoardVO;
 public class FreeBoardListController implements Controller {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 String url = "FreeBoardList.jsp";
+		 String url = "/board/freeBoardList.jsp";
 		 FreeBoardDAO DAO = new FreeBoardDAO();//dao객체 만들어서 모든 데이터 다 들고오기
 		 DAO.selectAll(); //db에서 실행한 모든 데이터를 가짐
 		 ArrayList<FreeBoardVO> list = DAO.selectAll(); 

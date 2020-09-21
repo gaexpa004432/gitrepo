@@ -5,5 +5,12 @@
               url="jdbc:oracle:thin:@192.168.0.85:1521:xe"
               username="vegan" password="vegan" maxTotal="20" maxIdle="10"
               maxWaitMillis="-1"/>
+              
+<Resource name="jdbc/home" auth="Container"
+              type="javax.sql.DataSource" driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@127.0.0.1:1521:xe"
+              username="hr" password="hr" maxTotal="20" maxIdle="10"
+              maxWaitMillis="-1"/>
         
-</Context>            
+</Context>        
+           
