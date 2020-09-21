@@ -34,7 +34,7 @@
 			<tr>
 				<td colspan="5"><a href="freeBoardWrite.do">글작성</a></td>
 			</tr>	
-	</table>
+	</table> 
 <%-- <div id="msg">
 <<form id="frm" action="${pageContext.request.contextPath}/freeBoardUpdate.do" align="center">
 </form>
