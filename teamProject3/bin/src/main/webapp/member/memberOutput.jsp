@@ -4,15 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<script type="text/javascript">
-
-	location.href="restaurantBoard.do"; 
-
-</script>
+<title>memberOutput.jsp</title>
 </head>
 <body>
-
-dsgsgsdgs
+	${sessionScope.login.member_id}님     <a href="logout.do">로그아웃</a>
 </body>
-</html> 
+</html>
