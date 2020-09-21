@@ -5,9 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-	location.href="freeBoardSelectAll.do";
-</script>
 </head>
 <body>
 
