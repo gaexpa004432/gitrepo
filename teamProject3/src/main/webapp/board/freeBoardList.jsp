@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +25,7 @@
 			<tr>
 				<td>${board.board_no }<td><a href="#">${board.board_no}</a></td>
 				<td>${board.member_name}</td>
-			<a href="freeboardView.do"><td>${board.board_sub}</td></a>
+			<td>${board.board_sub}</td>
 			<td>${board.board_date}</td>
 			<td><a href="freeBoardDelete.do?board_no=${board.board_no}">삭제</a></td>
 			<!-- ?뒤가 파라미터 -->
@@ -41,4 +40,5 @@
 </form>
 </div>--%>
 </body>
+
 </html>
