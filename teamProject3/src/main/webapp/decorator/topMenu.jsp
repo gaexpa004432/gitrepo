@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8 " isELIgnored="false"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
 	prefix="decorator"%>
@@ -28,6 +28,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/slick.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/nice-select.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
+<decorator:head></decorator:head>
 </head>
 <body>
 	  <!-- ? Preloader Start -->

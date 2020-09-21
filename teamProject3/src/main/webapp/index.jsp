@@ -6,10 +6,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	location.href="test.do"; 
+	location.href="restaurantBoard.do"; 
 </script>
 </head>
 <body>
 
+dsgsgsdgs
 </body>
 </html> 
