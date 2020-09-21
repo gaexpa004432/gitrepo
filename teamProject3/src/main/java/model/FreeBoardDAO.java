@@ -106,5 +106,32 @@ public class FreeBoardDAO {
 				   return r;
 				   }
 				
+				//view 
+				public FreeBoardVO selectOne(FreeBoardVO freeboardVO) {
+					 FreeBoardVO resultVO = null;
+					 ResultSet rs = null;
+					
+					 try {
+						 conn = ConnectionManager.getConnnect();
+						 String sql = "select * from board " + 
+						 		"where BOARD_NO = ?";
+						 pstmt = conn.prepareStatement(sql);
+					     pstmt.setInt(1, freeboardVO.getBoard_no());
+					      
+						rs = pstmt.executeQuery();
+						if (rs.next()) {
+						resultVO = new FreeBoardVO();	
+						resultVO.setMember_id(rs.getString("member_id"));
+						resultVO.setBoard_no(rs.getInt("board_no"));
+						resultVO.setBoard_sub(rs.getString("board_sub"));
+						resultVO.setBoard_content(rs.getString("board_content"));
+						}
+					 }catch(Exception e) {
+						 e.printStackTrace();		 
+					 } finally {
+						 ConnectionManager.close(rs, pstmt, conn);
+					 }
+					return resultVO;
+				}
 	   
 }

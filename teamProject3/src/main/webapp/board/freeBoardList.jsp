@@ -26,7 +26,7 @@
 			<tr>
 				<td>${board.board_no }<td><a href="#">${board.board_no}</a></td>
 				<td>${board.member_name}</td>
-			<td>${board.board_sub}</td>
+			<a href="freeboardView.do"><td>${board.board_sub}</td></a>
 			<td>${board.board_date}</td>
 			<td><a href="freeBoardDelete.do?board_no=${board.board_no}">삭제</a></td>
 			<!-- ?뒤가 파라미터 -->
