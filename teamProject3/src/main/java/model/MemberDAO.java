@@ -105,7 +105,8 @@ public class MemberDAO {
 	//수정(해야됨)
 	
 	//등록
-	public void insert(MemberVO memberVO) { 
+	public int insert(MemberVO memberVO) { 
+		int r = 0;
 		try {
 			
 			conn = ConnectionManager.getConnnect();
@@ -122,15 +123,20 @@ public class MemberDAO {
 			pstmt.setString(6, memberVO.getMember_gender());
 			pstmt.setString(7, memberVO.getMember_birth());
 			pstmt.setString(8, memberVO.getMember_type());
-			int r = pstmt.executeUpdate();
+			r = pstmt.executeUpdate();
 			System.out.println(r + " 건이 처리됨");
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
 			ConnectionManager.close(conn);
 		}
+		return r;
 		
+
 	}
 
+	}
+
+
 	
-}
+
