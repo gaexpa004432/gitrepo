@@ -21,6 +21,6 @@ public class FreeBoardListController implements Controller {
 		 //dao가 갖고있는 메소드중에 selectAll이라는 메소드를 수행.DB에서 조회한 모든데이터를 리스트에 담아둠
 		 request.setAttribute("list", list); //데이터를 담아둔 리스트를 리퀘스트라는 변수안에 저장
 		 request.getRequestDispatcher(url).forward(request, response);
-	}
+	} 
 
 }
