@@ -22,18 +22,21 @@ public class MemberLoginController implements Controller {
 		//2. 서비스처리
 		MemberVO resultVO = MemberDAO.getInstance().selectOne(memberVO);
 		
+		//request.setAttribute("resultVO", resultVO);
+		
 		//3. 결과저장
 		String page = "";
 		if(resultVO == null) {//일치하는 아이디가 없으면 에러메시지를 띄우면서 login페이지에 머무르기
-			request.setAttribute("errormsg", "해당아이디가 없습니다");
+			request.setAttribute("errormsg", "아이디를 다시 입력해 주세요");
 			page = "memberLogin.jsp";	
 		} else {
 			if(memberVO.getMember_pass().equals(resultVO.getMember_pass())) { //로그인 성공
 				request.getSession().setAttribute("login", resultVO);//세션에 로그인 정보 저장
 				request.getSession().setAttribute("id", memberVO.getMember_id());//사용자의 id를 준다
-				page = "memberOutput.jsp";
+				page = "memberLoginOutput.jsp";
 			} else { //패스워드 불일치
-				request.setAttribute("errormsg", "패스워드 불일치"); //패스워드 맞지 않으면 에러 메시지
+				request.setAttribute("resultVO", resultVO);
+				request.setAttribute("errormsg", "패스워드가 맞지 않습니다"); //패스워드 맞지 않으면 에러 메시지
 				page = "memberLogin.jsp";
 			}
 		}

@@ -5,6 +5,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>memberInsert.jsp</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 function inputCheck() {
 	//필수체크 입력
@@ -71,7 +72,7 @@ function onlyNumber(event){
     
 //전화번호에서 한글 못받게 하기 (코드만들기)
 
-}
+
 
 </script>
 
@@ -80,12 +81,15 @@ function onlyNumber(event){
 
 <script type="text/javascript" src="/teamProject3/api/addressApi.js"></script>
 
+	
+</script>
+
 </head>
-<body>${ooooo }====
+<body>
 <h3>회원등록</h3>
 <div class="regist">
 	<form method="post" name="frm" id="frm" 
-		  action="Insert.do" 
+		  action="insert.do" 
 		  onsubmit="return inputCheck()">
 	<div>
 		<label>아이디</label>
@@ -137,14 +141,15 @@ function onlyNumber(event){
 			<option value="pesco">페스코(Pesco)</option>
 			<option value="Pollo">폴로(Pollo)</option>
 			<option value="flexitarian">플렉시테리언(Flexitarian)</option>
+			<option value="etc">기타</option>
 		</select>	
 	</div>
 	<div>
 		<button type="reset" name="reset">초기화</button>
 		<button>등록</button>
-		<!-- <button type="button" name="submit" onclick="inputCheck()">등록</button> -->
 	</div>
 	</form>
 </div>
+
 </body>
 </html>
