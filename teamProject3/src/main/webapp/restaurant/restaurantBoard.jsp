@@ -11,7 +11,7 @@
 <meta charset="UTF-8">
 <title>식당 추천</title>
 <style>
-	img {
+	img.inimg {
 		max-width: 237px;
 		min-width: 237px;
 		max-height:250px;
@@ -39,7 +39,7 @@
 <body>
 <c:set var="i" value="0" />
  <c:set var="j" value="3" />
- <table align="center" >
+ <table  align="center" style="border-spacing:50px;">
   <c:choose>
    <c:when test="${list != null && fn:length(list) > 0 }"> 
 
@@ -47,7 +47,7 @@
      <c:if test="${i%j == 0}">
       <tr>
      </c:if>
-     <td><a href="/teamProject3/restaurantView.do?res_no=${restaurantlist.res_no}"><img src="/teamProject3/images/${restaurantlist.res_name}"></a></td>
+     <td><a href="/teamProject3/restaurantView.do?res_no=${restaurantlist.res_no}"><img class="inimg" src="/teamProject3/images/${restaurantlist.res_name}"></a></td>
     <c:if test="${i%j == j-1}">
      </tr>
     </c:if> 

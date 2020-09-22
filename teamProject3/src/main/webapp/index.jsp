@@ -7,12 +7,11 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 
-	location.href="freeBoardList.do"; 
+	location.href="restaurantBoard.do"; 
 
 </script>
 </head>
 <body>
 
-dsgsgsdgs
 </body>
 </html> 

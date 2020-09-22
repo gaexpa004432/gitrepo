@@ -191,7 +191,17 @@ p {
 	clear: both
 }
 
+a, .button {
+	-webkit-transition: .3s;
+	-moz-transition: .3s;
+	-o-transition: .3s;
+	transition: .3s
+}
 
+a:focus, .button:focus {
+	text-decoration: none;
+	outline: none
+}
 
 a {
 	color: #635c5c
@@ -205,9 +215,14 @@ a:focus, a:hover, .portfolio-cat a:hover, .footer -menu li a:hover {
 	text-decoration: none
 }
 
+a, button {
+	color: #fff;
+	outline: medium none
+}
 
-
-
+button:focus, input:focus, input:focus, textarea, textarea:focus {
+	outline: 0
+}
 
 .uppercase {
 	text-transform: uppercase

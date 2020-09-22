@@ -13,7 +13,6 @@ public class MemberLogoutController implements Controller {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().invalidate();
 		response.sendRedirect("memberLogin.jsp");
-
 	}
 
 }

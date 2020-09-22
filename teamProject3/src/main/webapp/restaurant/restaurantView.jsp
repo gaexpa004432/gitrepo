@@ -6,9 +6,36 @@
 <!DOCTYPE html>
 <html>
 <head>
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5459989244bc763dbd4ad7a7edf03cc0&libraries=services"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css">
 <meta charset="UTF-8">
+<style>
+ul.inline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+li.inline {
+  width: 237px;
+  background-color: #f8f8f8;
+  height: 250px;
+  color: #444;
+  line-height: 100px;
+  text-align: center;
+  font-size: 30px;
+  text-transform: uppercase;
+}
+img.inimg {
+		max-width: 237px;
+		min-width: 237px;
+		max-height:250px;
+		min-height:250px;
+	}
+
+</style>
 <title>Insert title here</title>
 <script type="text/javascript">
 $(function(){
@@ -49,18 +76,79 @@ geocoder.addressSearch("${res.res_si }", function(result, status) {
         map.setCenter(coords);
     } 
 });    
-	
+function itemActive($el) {
+	  $el.siblings().removeClass('active');
+	  
+	}
+	var settings = {
+	  slideWidth: 235,
+	  slideMargin: 10,
+	  minSlides: 1,
+	  maxSlides: 5,
+	  infiniteLoop: true,
+	  responsive: true,
+	  controls: true,
+	  pager: false,
+	  moveSlides: 1,
+	  hideControlOnEnd: true,
+	  onSlideNext: function($slideElement, oldIndex, newIndex) {
+	    itemActive($slideElement);
+	  },
+	  onSlidePrev: function($slideElement, oldIndex, newIndex) {
+	    itemActive($slideElement);
+	  }
+	}
+
+	var bxSlider = $('.bxslider').bxSlider(settings);
+
+	$('.bxslider li.inline').click(function(){
+	  $(this).siblings('li').removeClass('active');
+	  $(this).addClass('active');
+	  bxSlider.goToSlide($(this).index());
+	  
+	})
 });
 </script>
 </head>
 <body>
+<<<<<<< HEAD
 <div align="center" style="min-width:600px;">
+=======
+<<<<<<< HEAD
+<div class="container" align="center">
+<ul class="bxslider">
+<c:forEach items="${res.res_picture}" var="res_pic">
+<li class="inline"><img class="inimg" src="/teamProject3/images/${res_pic }"></li>
+</c:forEach>
+</ul>
+
+<div class="row">
+<div class="col-sm-6" align="left">
+<h1>${res.res_name }</h1>
+
+</div>
+<div class="col-sm-6" align="center">
+<img src="/teamProject3/images/즐겨찾기.jpg" style="width:100px;height:100px;">
+
+</div>
+</div>
+<hr>
+
+<div class="row">
+<div class="col-sm-8" align="left">
+
+</div>
+<div class="col-sm-4" align="right">
+=======
+>>>>>>> branch 'master' of https://github.com/gaexpa004432/gitrepo.git
 <p style="margin-top:-12px">
     
 </p>
 <div align="right">
+>>>>>>> branch 'master' of https://github.com/gaexpa004432/gitrepo.git
 <div id="map" style="width:350px;height:350px;"></div>
 </div>
+
 
 
 ${res.res_no }<br>
@@ -71,9 +159,16 @@ ${res.res_gu }<br>
 ${res.res_date }<br>
 
 
+<<<<<<< HEAD
+</div>
+=======
 <c:forEach items="${res.res_picture}" var="res_pic">
 그림 이름 : ${res_pic } <br>
 </c:forEach>
+<<<<<<< HEAD
 </div>
+=======
+>>>>>>> branch 'master' of https://github.com/gaexpa004432/gitrepo.git
+>>>>>>> branch 'master' of https://github.com/gaexpa004432/gitrepo.git
 </body>
 </html>
