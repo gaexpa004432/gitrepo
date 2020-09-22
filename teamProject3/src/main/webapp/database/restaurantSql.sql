@@ -14,7 +14,7 @@ start with 1;
 
 create table res_pic(
 res_pic_no number primary key,
-res_pic_name varchar2(50),
+res_pic_name varchar2(300),
 res_no number
 );
 
