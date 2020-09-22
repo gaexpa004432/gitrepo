@@ -7,7 +7,7 @@
 	</decorator>
 	
 	<decorator name="main" page="topMenu.jsp">
-		<pattern>/*</pattern>
+		<pattern>/asd</pattern>
 	</decorator>
 	
 </decorators>

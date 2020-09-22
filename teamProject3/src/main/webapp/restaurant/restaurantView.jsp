@@ -54,6 +54,7 @@ geocoder.addressSearch("${res.res_si }", function(result, status) {
 </script>
 </head>
 <body>
+<div align="center" style="min-width:600px;">
 <p style="margin-top:-12px">
     
 </p>
@@ -73,5 +74,6 @@ ${res.res_date }<br>
 <c:forEach items="${res.res_picture}" var="res_pic">
 그림 이름 : ${res_pic } <br>
 </c:forEach>
+</div>
 </body>
 </html>
