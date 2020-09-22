@@ -1,18 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
+        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+ <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>주소로 장소 표시하기</title>
-    
-</head>
-<body>
-<div id="map" style="width:350px;height:350px;"></div>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5459989244bc763dbd4ad7a7edf03cc0&libraries=services"></script>
-<script>
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+$(function(){
+
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
         center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
@@ -25,7 +26,7 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 var geocoder = new kakao.maps.services.Geocoder();
 
 // 주소로 좌표를 검색합니다
-geocoder.addressSearch('서울 강동구 상암로 2', function(result, status) {
+geocoder.addressSearch("${res.res_si }", function(result, status) {
 
     // 정상적으로 검색이 완료됐으면 
      if (status === kakao.maps.services.Status.OK) {
@@ -40,7 +41,7 @@ geocoder.addressSearch('서울 강동구 상암로 2', function(result, status) 
 
         // 인포윈도우로 장소에 대한 설명을 표시합니다
         var infowindow = new kakao.maps.InfoWindow({
-             content: '<div style="width:150px;text-align:center;padding:6px 0;">식당이름</div>' 
+             content: '<div style="width:150px;text-align:center;padding:6px 0;">${res.res_name}</div>' 
         });
         infowindow.open(map, marker);
 
@@ -48,6 +49,29 @@ geocoder.addressSearch('서울 강동구 상암로 2', function(result, status) 
         map.setCenter(coords);
     } 
 });    
+	
+});
 </script>
+</head>
+<body>
+<p style="margin-top:-12px">
+    
+</p>
+<div align="right">
+<div id="map" style="width:350px;height:350px;"></div>
+</div>
+
+
+${res.res_no }<br>
+${res.res_name }<br>
+${res.res_content }<br>
+${res.res_si }<br>
+${res.res_gu }<br>
+${res.res_date }<br>
+
+
+<c:forEach items="${res.res_picture}" var="res_pic">
+그림 이름 : ${res_pic } <br>
+</c:forEach>
 </body>
 </html>
