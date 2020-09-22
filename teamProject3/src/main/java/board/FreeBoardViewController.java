@@ -14,7 +14,9 @@ public class FreeBoardViewController implements Controller {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url= "/board/freeBoardView.jsp";
+		String num = request.getParameter("num");
 		
+	//	FreeBoardDAO.getInstance().updateReadCount(num);
 		FreeBoardDAO DAO = new FreeBoardDAO();//dao객체 만들어서 모든 데이터 다 들고오기
 		FreeBoardVO VO = new FreeBoardVO();
 		VO.setBoard_no(Integer.parseInt(request.getParameter("board_no")));

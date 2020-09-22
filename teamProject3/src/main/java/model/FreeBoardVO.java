@@ -4,12 +4,28 @@ public class FreeBoardVO {
 	private int board_no;
 	private String board_sub;
 	private String board_content;
-	private int board_date;
+	private String board_date;
 	private String board_file;
 	private String board_groupcode;
 	private String board_passyn;
 	private String member_id;
 	private String member_name;
+	private Integer first;
+	private Integer last;
+	
+	
+	public Integer getFirst() {
+		return first;
+	}
+	public void setFirst(Integer first) {
+		this.first = first;
+	}
+	public Integer getLast() {
+		return last;
+	}
+	public void setLast(Integer last) {
+		this.last = last;
+	}
 	public int getBoard_no() {
 		return board_no;
 	}
@@ -28,10 +44,10 @@ public class FreeBoardVO {
 	public void setBoard_content(String board_content) {
 		this.board_content = board_content;
 	}
-	public int getBoard_date() {
+	public String getBoard_date() {
 		return board_date;
 	}
-	public void setBoard_date(int board_date) {
+	public void setBoard_date(String board_date) {
 		this.board_date = board_date;
 	}
 	public String getBoard_file() {

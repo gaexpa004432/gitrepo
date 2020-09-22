@@ -20,7 +20,7 @@ public class FreeBoardWriteController implements Controller {
 		freeboard.setBoard_sub(request.getParameter("board_sub"));
 		freeboard.setBoard_content(request.getParameter("board_content"));
 		freeboard.setBoard_file(request.getParameter("board_file"));
-		freeboard.setBoard_groupcode(request.getParameter("board_group_code"));
+		freeboard.setBoard_groupcode("pf");
 		
 		FreeBoardDAO DAO = new FreeBoardDAO();
 		DAO.insert(freeboard);

@@ -64,7 +64,7 @@ public class FrontController extends HttpServlet {
 		list.put("/freeBoardWrite.do", new board.FreeBoardWriteController());
 		list.put("/freeBoardList.do", new board.FreeBoardListController());
 		list.put("/freeBoardView.do",new board.FreeBoardViewController());
-		
+	
 		
 		
 		
