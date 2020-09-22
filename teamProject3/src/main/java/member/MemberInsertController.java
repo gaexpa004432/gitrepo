@@ -40,7 +40,10 @@ public class MemberInsertController implements Controller {
 		int r = MemberDAO.getInstance().insert(memberVO);
 		System.out.println(r+"건이 실행됨");
 		
+		MemberVO memberOne = MemberDAO.getInstance().selectOne(memberVO);
+		
 		request.setAttribute("cnt", r);
+		request.setAttribute("memberOne", memberOne);
 		
 		request.getRequestDispatcher("/member/memberInsertOutput.jsp").forward(request, response);
 

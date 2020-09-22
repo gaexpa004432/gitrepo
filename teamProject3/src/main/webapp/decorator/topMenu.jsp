@@ -107,9 +107,8 @@
                 </div>
             </div>
         </div>
-        <div class="container">
          <decorator:body></decorator:body>
-       </div>
+       
   <!-- JS here -->
     <script src="${pageContext.request.contextPath}/assets/js/vendor/modernizr-3.5.0.min.js"></script>
     <!-- Jquery, Popper, Bootstrap -->

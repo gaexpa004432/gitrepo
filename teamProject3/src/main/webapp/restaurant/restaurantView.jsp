@@ -111,6 +111,7 @@ function itemActive($el) {
 </script>
 </head>
 <body>
+<<<<<<< HEAD
 <div class="container" align="center">
 <ul class="bxslider">
 <c:forEach items="${res.res_picture}" var="res_pic">
@@ -135,6 +136,12 @@ function itemActive($el) {
 
 </div>
 <div class="col-sm-4" align="right">
+=======
+<p style="margin-top:-12px">
+    
+</p>
+<div align="right">
+>>>>>>> branch 'master' of https://github.com/gaexpa004432/gitrepo.git
 <div id="map" style="width:350px;height:350px;"></div>
 </div>
 
@@ -148,6 +155,12 @@ ${res.res_gu }<br>
 ${res.res_date }<br>
 
 
+<<<<<<< HEAD
 </div>
+=======
+<c:forEach items="${res.res_picture}" var="res_pic">
+그림 이름 : ${res_pic } <br>
+</c:forEach>
+>>>>>>> branch 'master' of https://github.com/gaexpa004432/gitrepo.git
 </body>
 </html>

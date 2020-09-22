@@ -14,11 +14,10 @@ import model.FreeBoardVO;
 public class FreeBoardListController implements Controller {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 String url = "/board/freeBoardList.jsp";
-		 FreeBoardDAO DAO = new FreeBoardDAO();//dao객체 만들어서 모든 데이터 다 들고오기
+		 String url = "FreeBoardList.jsp";
+		 FreeBoardDAO DAO = new FreeBoardDAO();//모든 데이터 다 들고오기
 		 DAO.selectAll(); //db에서 실행한 모든 데이터를 가짐
-		 ArrayList<FreeBoardVO> list = DAO.selectAll(); 
-		 //dao가 갖고있는 메소드중에 selectAll이라는 메소드를 수행.DB에서 조회한 모든데이터를 리스트에 담아둠
+		 ArrayList<FreeBoardVO> list = DAO.selectAll(); //DB에서 조회한 모든데이터를 리스트에 담아둠
 		 request.setAttribute("list", list); //데이터를 담아둔 리스트를 리퀘스트라는 변수안에 저장
 		 request.getRequestDispatcher(url).forward(request, response);
 	}

@@ -10,7 +10,7 @@ res_gu varchar2(100)
 
 create sequence res_seq
 increment by 1
-start with 1;  
+start with 1;
 
 create table res_pic(
 res_pic_no number primary key,

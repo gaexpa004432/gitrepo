@@ -24,7 +24,6 @@ public class FreeBoardDAO {
 	         pstmt.setString(1, freeboardVO.getMember_name());
 	         pstmt.setString(2, freeboardVO.getBoard_sub());
 	         pstmt.setString(3, freeboardVO.getBoard_content());
-	         //board file, board_groupcode는?? 위에 물음표가 다섯개니까 다섯개 넣어야되는거 아님?
 	         r = pstmt.executeUpdate();
 	         System.out.println(r + "건이 입력됨");
 

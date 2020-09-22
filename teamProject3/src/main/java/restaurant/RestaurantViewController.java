@@ -12,6 +12,7 @@ import model.RestaurantVO;
 
 public class RestaurantViewController implements Controller {
 
+	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RestaurantVO restaurant =new RestaurantVO();
 		
