@@ -10,11 +10,12 @@
 $(function(){
 	if("${errormsg}" != "") {
 		alert("${errormsg}");
-	};
-
-/* 	if("${errormsg}" != "") {
-			alert("${errormsg}");
-	};  */
+	}; 
+	/* if("${errormsg}" != "") {
+  		$("#btnLogin").on("click", function() {
+  			alert("${errormsg}");
+  		});
+	}; */
 }); 
 </script>
 </head>
