@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="${pageContext.request.contextPath}/Write.do">
+	<form action="${pageContext.request.contextPath}/freeBoardWrite.do">
 		<!-- 글번호를 input타입말고 다른방법으로  -->
 		<table>
 			<tr>
@@ -23,6 +23,11 @@
 			<tr>
 				<th>내용</th>
 				<td><textarea cols="70" rows="15" name="board_content"></textarea></td>
+			</tr>
+			<tr>
+			<td>
+			<input type = "file" name="board_file">
+			</td>
 			</tr>
 		</table>
 		<div>

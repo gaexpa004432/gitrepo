@@ -10,7 +10,7 @@ import common.ConnectionManager;
 public class FreeBoardDAO {
 	private Connection conn;
 	private PreparedStatement pstmt;
-	
+	ResultSet rs = null;
 	//등록 
 	   public int insert(FreeBoardVO freeboardVO) {
 	       int r = 0;
@@ -24,6 +24,9 @@ public class FreeBoardDAO {
 	         pstmt.setString(1, freeboardVO.getMember_name());
 	         pstmt.setString(2, freeboardVO.getBoard_sub());
 	         pstmt.setString(3, freeboardVO.getBoard_content());
+	         pstmt.setString(4, freeboardVO.getBoard_file());
+	         pstmt.setString(5, freeboardVO.getBoard_groupcode());
+	         //board file, board_groupcode는?? 위에 물음표가 다섯개니까 다섯개 넣어야되는거 아님?
 	         r = pstmt.executeUpdate();
 	         System.out.println(r + "건이 입력됨");
 
@@ -36,14 +39,25 @@ public class FreeBoardDAO {
 	   }
 	   
 	   //전체조회 (페이징처리가 되는)
-		public ArrayList<FreeBoardVO> selectAll() {
-			 FreeBoardVO resultVO = null;
-			 ResultSet rs = null;
-			 ArrayList<FreeBoardVO> list = new ArrayList<FreeBoardVO>();
-			 try {
-				 conn = ConnectionManager.getConnnect();
-				 String sql = "select * from board";
-				 pstmt = conn.prepareStatement(sql);
+		public ArrayList<FreeBoardVO> selectAll(FreeBoardVO freeboardVO) {
+			conn = ConnectionManager.getConnnect();
+			FreeBoardVO resultVO = new FreeBoardVO();
+			ArrayList<FreeBoardVO> list = new ArrayList();
+			try { 
+	         String where = " where 1=1 ";
+	         if(freeboardVO.getBoard_sub() != null) {
+	            where += " and department_name like '%' || ? || '%'";
+	         }
+				 String sql = "select a.* from (select rownum rn,b.* from ( " + 
+				 		"              SELECT * from board order by board_no" + 
+				 		"           ) b) a where rn between ? and ?";
+				 pstmt = conn.prepareStatement(sql); // 미리 sql 구문이 준비가 되어야한다
+		         int pos = 1;   // 물음표값 동적으로 하려고 변수선언
+		         if(freeboardVO.getBoard_sub() != null) {
+		            pstmt.setString(pos++, freeboardVO.getBoard_sub()); // 물음표부분이 pos++로 인해 동적으로 늘어남
+		         }
+		         pstmt.setInt(pos++, freeboardVO.getFirst());      // 물음표부분이 pos++로 인해 동적으로 늘어남
+		         pstmt.setInt(pos++, freeboardVO.getLast());
 	
 				rs = pstmt.executeQuery();
 				while(rs.next()) {
@@ -51,6 +65,10 @@ public class FreeBoardDAO {
 					resultVO.setMember_name(rs.getString("member_name"));
 					resultVO.setBoard_sub(rs.getString("board_sub"));
 					resultVO.setBoard_content(rs.getString("board_content"));
+					resultVO.setBoard_file(rs.getString("board_file"));
+					resultVO.setBoard_groupcode(rs.getString("board_groupcode"));
+					resultVO.setBoard_no(rs.getInt("board_no"));
+					resultVO.setBoard_date(rs.getString("board_date"));
 					list.add(resultVO);
 					System.out.println(resultVO.getBoard_sub());
 				} 
@@ -105,5 +123,56 @@ public class FreeBoardDAO {
 				   return r;
 				   }
 				
-	   
-}
+				//view 
+				public FreeBoardVO selectOne(FreeBoardVO freeboardVO) {
+					 FreeBoardVO resultVO = null;
+					 
+					
+					 try {
+						 conn = ConnectionManager.getConnnect();
+						 String sql = "select * from board " + 
+						 		"where BOARD_NO = ?";
+						 pstmt = conn.prepareStatement(sql);
+					     pstmt.setInt(1, freeboardVO.getBoard_no());
+					      
+						rs = pstmt.executeQuery();
+						if (rs.next()) {
+						resultVO = new FreeBoardVO();	
+						resultVO.setMember_id(rs.getString("member_id"));
+						resultVO.setBoard_no(rs.getInt("board_no"));
+						resultVO.setBoard_sub(rs.getString("board_sub"));
+						resultVO.setBoard_content(rs.getString("board_content"));
+						}
+					 }catch(Exception e) {
+						 e.printStackTrace();		 
+					 } finally {
+						 ConnectionManager.close(rs, pstmt, conn);
+					 }
+					return resultVO;
+				}
+				public int count(FreeBoardVO freeboard) {
+					int cnt = 0;
+				      try {
+				         conn = ConnectionManager.getConnnect();
+				         String where = " where 1=1 ";
+				         if(freeboard.getBoard_sub() != null) {
+				            where += " and Board_sub like '%' || ? || '%'";
+				         }
+				         String sql = "select count(*) from board" + where;
+				         pstmt = conn.prepareStatement(sql);
+				         int pos = 1;
+				         if(freeboard.getBoard_sub() !=null) {
+				            pstmt.setString(pos++,freeboard.getBoard_sub());
+				         }
+				         rs = pstmt.executeQuery();
+				         rs.next();
+				         cnt = rs.getInt(1);
+				      } catch (Exception e) {
+				         e.printStackTrace();
+				      } finally {
+				         ConnectionManager.close(conn);
+				      }
+				      return cnt;
+				}
+			}
+
