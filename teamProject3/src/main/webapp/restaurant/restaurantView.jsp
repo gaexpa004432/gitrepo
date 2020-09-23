@@ -132,36 +132,45 @@ img.inimg {
 			</c:forEach>
 		</ul>
 
-		<div class="row">
-			<div class="col-sm-6" align="left">
-				<h1>${res.res_name }</h1>
 
-			</div>
-			<div class="col-sm-6" align="right">
-				<img src="/teamProject3/images/즐겨찾기.jpg"
-					style="width: 100px; height: 100px;">
+		
 
+			<div class="row">
+				<div class="col-sm-6" align="left">
+					<h1>${res.res_name }</h1>
+
+				</div>
+				<div class="col-sm-6" align="right">
+					<img src="/teamProject3/images/즐겨찾기.jpg"
+						style="width: 100px; height: 100px;">
+
+				</div>
 			</div>
+			<hr>
+
+
+			<div class="row">
+				<div class="col-sm-8" align="left">
+				주소 : ${res.res_si } <br> 전화번호 : ${ res.res_tel}
+				</div>
+				<div class="col-sm-4" align="right">
+					<div id="map" style="width: 350px; height: 350px;"></div>
+				</div>
+			</div>
+
+
+
+
+
+
+
+			${res.res_no }<br> ${res.res_name }<br> ${res.res_content }<br>
+			${res.res_si }<br> ${res.res_gu }<br> ${res.res_date }<br>
+
+
+
+
 		</div>
-		<hr>
-
-		<div class="row">
-			<div class="col-sm-8" align="left"></div>
-				주소 : ${res.res_si } <br>
-				전화번호 : ${ res.res_tel}
-			<div class="col-sm-4" align="right">
-			<div id="map" style="width: 350px; height: 350px;"></div>
-			</div>
-		</div>
-
-
-
-
-		${res.res_no }<br> ${res.res_name }<br> ${res.res_content }<br>
-		${res.res_si }<br> ${res.res_gu }<br> ${res.res_date }<br>
-
-
-
-	</div>
+	
 </body>
 </html>
