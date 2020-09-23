@@ -10,4 +10,5 @@ public class ProductVO {
 	private String product_unit;
 	private String product_status;
 	private int seller_code;
+	private String product_img;
 }
