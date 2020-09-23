@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>memberOutput.jsp</title>
+<title>memberUpdateOutput.jsp</title>
 </head>
 <body>
-	${sessionScope.login.member_id}님     <a href="logout.do">로그아웃</a>
-	<a href="myPage.jsp">마이페이지</a>
+	${cnt}이 수정됨
 </body>
 </html>
