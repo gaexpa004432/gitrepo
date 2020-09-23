@@ -9,5 +9,5 @@
 	<decorator name="main" page="topMenu.jsp">
 		<pattern>/sad</pattern>
 	</decorator>
-
+	
 </decorators>
