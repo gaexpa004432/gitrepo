@@ -14,7 +14,6 @@
 	String product_unit = request.getParameter("product_unit");
 	String product_status = request.getParameter("product_status");
 	String seller_code = request.getParameter("seller_code");
-	
 	%>
 </body>
 </html>
