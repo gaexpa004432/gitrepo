@@ -120,6 +120,23 @@ img.inimg {
 			bxSlider.goToSlide($(this).index());
 
 		})
+		
+		$("#review").on("click",function(){
+			console.log("gg")
+			 var x = document.getElementById("input_imgs");
+			if(x.style.display === "none"){
+			$(".selProductFile").show();
+			$("#res_reivew_content").show();
+			$("#input_imgs").show();
+			$("#insert").show();
+			}else{
+				$(".selProductFile").hide();
+				$("#res_reivew_content").hide();
+				$("#input_imgs").hide();
+				$("#insert").hide();
+			}
+			
+		})
 	});
 
 	function fileUploadAction() {
@@ -244,9 +261,19 @@ img.inimg {
 				<div id="map" style="width: 350px; height: 350px;"></div>
 			</div>
 		</div>
-
+	
+		
 		<p>
 		<hr>
+		<p style="height:100px"> </p>
+		<div class="row">
+			<div class="col" align="left">
+				${res.res_content }
+			</div>
+		</div>
+		<p style="height:100px"> </p>
+		<hr>
+		
 		<div class="row">
 			<div class="col" align="center">
 				<button id="review">리뷰 등록</button>
@@ -257,7 +284,7 @@ img.inimg {
 				<form action="" method="post">
 					<div class="col-sm-8" align="center">
 						<div align="left">
-							<input type="file" id="input_imgs" multiple>
+							<input type="file" id="input_imgs" style="display:none;"  multiple>
 						</div>
 					</div>
 						
@@ -267,16 +294,16 @@ img.inimg {
 						</div>
 					</div>
 					<br>
-					<textarea cols="100" rows="10"></textarea>
+					<textarea cols="100" rows="10" id="res_reivew_content" style="display:none;"></textarea>
+					<button id="insert" style="vertical-align: top;display:none;"> 리뷰 쓰기 </button>
 				</form>
 			</div>
 		</div>
 
 
 
-
-		${res.res_no }<br> ${res.res_name }<br> ${res.res_content }<br>
-		${res.res_si }<br> ${res.res_gu }<br> ${res.res_date }<br>
+ 
+		
 
 
 

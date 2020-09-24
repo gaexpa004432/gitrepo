@@ -17,9 +17,9 @@
 
 	$(function(){
 		
-		$("#files").on("change",function(){
-			
-			console.log($("input=[name='name']")[0].files());
+		$("#files").on("click",function(){
+			$("#gg").show();
+			$("#ff").hide();
 		})
 		
 	})
@@ -27,6 +27,8 @@
 </script>
 </head>
 <body>
-	<input type="file" id="files" name="name" multiple>
+	<input type="button" id="files" name="name" >
+	<input id="gg" placeholder="gg" hidden="hidden">
+	<input id="ff" >
 </body>
 </html>
