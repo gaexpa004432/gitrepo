@@ -15,6 +15,7 @@
 <title>myPage.jsp</title>
 </head>
 <body>
+<form>
 <h1 align="center">마이페이지</h1> 
 <div class="container">
 	<div class="row">
@@ -36,11 +37,14 @@
 	<a href="#"><li>나의관심글</a>
 	<a href="#"><li>1:1문의</a>
 	<div>
-		<a href="select.do"><li>내정보 조회 및 수정</a>
-		<input type="hidden" name="updateId" value="${sessionScope.login.member_id}"></input>
+		
+		<a href="select.do">
+		<li>내정보 조회 및 수정</a>
+		${sessionScope.login.member_id}
 	</div>
 	<a href="#"><li>마일리지 조회</a>
 	<a href="#"><li>탈퇴</a>
 </ul>
+</form>
 </body>
 </html>

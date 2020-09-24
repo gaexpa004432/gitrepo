@@ -109,7 +109,7 @@ public class MemberDAO {
 			conn = ConnectionManager.getConnnect();
 			String sql = "update member set member_name=?, member_tel=?, member_address=?, member_pass=?, "
 					+ "member_gender=?, member_birth=?, member_type=? "
-					+ "where id = ?";
+					+ "where member_id = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberVO.getMember_name());
 			pstmt.setString(2, memberVO.getMember_tel());

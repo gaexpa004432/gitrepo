@@ -13,7 +13,7 @@ import model.MemberVO;
 public class MemberSelectController implements Controller {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("updateId");
+		String id = (String)request.getSession().getAttribute("id");
 		
 		MemberVO member = new MemberVO();
 		member.setMember_id(id);
