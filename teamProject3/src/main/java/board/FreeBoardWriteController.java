@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import model.FreeBoardDAO;
@@ -22,6 +23,11 @@ public class FreeBoardWriteController implements Controller {
 		freeboard.setBoard_file(request.getParameter("board_file"));
 		freeboard.setBoard_groupcode("pf");
 		
+		HttpSession session = ((HttpServletRequest)request).getSession();
+	      freeboard.setMember_id((String)session.getAttribute("id"));//로그인된 아이디를 들고옴
+	      
+	      
+	      
 		FreeBoardDAO DAO = new FreeBoardDAO();
 		DAO.insert(freeboard);
 		

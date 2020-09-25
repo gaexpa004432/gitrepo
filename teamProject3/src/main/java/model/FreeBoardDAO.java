@@ -17,15 +17,16 @@ public class FreeBoardDAO {
 		   try {
 	         conn = ConnectionManager.getConnnect();
 	         String sql = "INSERT INTO BOARD (BOARD_NO, MEMBER_NAME, BOARD_SUB, BOARD_CONTENT,"
-	         		+ "BOARD_DATE, BOARD_FILE, BOARD_GROUPCODE"
+	         		+ "BOARD_DATE, BOARD_FILE, BOARD_GROUPCODE, MEMBER_ID"
 	         		+ ")"
-	               + "VALUES (BOARD_SEQ.NEXTVAL,?,?,?,SYSDATE,?,?)"; //시퀀스
+	               + "VALUES (BOARD_SEQ.NEXTVAL,?,?,?,SYSDATE,?,?,?)"; //시퀀스
 	         pstmt = conn.prepareStatement(sql);
 	         pstmt.setString(1, freeboardVO.getMember_name());
 	         pstmt.setString(2, freeboardVO.getBoard_sub());
 	         pstmt.setString(3, freeboardVO.getBoard_content());
 	         pstmt.setString(4, freeboardVO.getBoard_file());
 	         pstmt.setString(5, freeboardVO.getBoard_groupcode());
+	         pstmt.setString(6, freeboardVO.getMember_id());
 	         //board file, board_groupcode는?? 위에 물음표가 다섯개니까 다섯개 넣어야되는거 아님?
 	         r = pstmt.executeUpdate();
 	         System.out.println(r + "건이 입력됨");
@@ -49,7 +50,7 @@ public class FreeBoardDAO {
 	            where += " and department_name like '%' || ? || '%'";
 	         }
 				 String sql = "select a.* from (select rownum rn,b.* from ( " + 
-				 		"              SELECT * from board order by board_no" + 
+				 		"              SELECT * from board order by board_no desc" + 
 				 		"           ) b) a where rn between ? and ?";
 				 pstmt = conn.prepareStatement(sql); // 미리 sql 구문이 준비가 되어야한다
 		         int pos = 1;   // 물음표값 동적으로 하려고 변수선언
@@ -142,6 +143,7 @@ public class FreeBoardDAO {
 						resultVO.setBoard_no(rs.getInt("board_no"));
 						resultVO.setBoard_sub(rs.getString("board_sub"));
 						resultVO.setBoard_content(rs.getString("board_content"));
+						resultVO.setMember_name(rs.getString("member_name"));
 						}
 					 }catch(Exception e) {
 						 e.printStackTrace();		 
@@ -173,6 +175,22 @@ public class FreeBoardDAO {
 				         ConnectionManager.close(conn);
 				      }
 				      return cnt;
+				} 
+				static FreeBoardDAO instance;
+				public static FreeBoardDAO getInstance() {
+					if(instance == null)
+						instance = new FreeBoardDAO();
+						return instance;
+				}
+
+				public void updateReadCount(String num) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				public FreeBoardVO selectOneBoardByNum(String num) {
+					// TODO Auto-generated method stub
+					return null;
 				}
 			}
 
