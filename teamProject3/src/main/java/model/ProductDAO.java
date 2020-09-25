@@ -25,15 +25,12 @@ public class ProductDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "insert into product(product_number, product_name, product_price,"
-					+ "product_unit, product_status, seller_code, product_img) values (?,?,?,?,?,?)";
+					+ "product_unit, product_status, seller_code) values (prod_no.NEXTVAL,?,?,?,'N',?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, productVO.getProduct_number());
-			pstmt.setString(2, productVO.getProduct_name());
-			pstmt.setInt(3, productVO.getProduct_price());
-			pstmt.setString(4, productVO.getProduct_unit());
-			pstmt.setString(5, productVO.getProduct_status());
-			pstmt.setInt(6, productVO.getSeller_code());
-			pstmt.setString(7, productVO.getProduct_img());
+			pstmt.setString(1, productVO.getProduct_name());
+			pstmt.setInt(2, productVO.getProduct_price());
+			pstmt.setString(3, productVO.getProduct_unit());
+			pstmt.setInt(4, productVO.getSeller_code());
 
 			r = pstmt.executeUpdate();
 			System.out.println(r + " 건이 처리됨");
@@ -51,7 +48,7 @@ public class ProductDAO {
 		ArrayList<ProductVO> list = new ArrayList<ProductVO>();
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT * FROM product";
+			String sql = "SELECT DISTINCT product_name FROM product";
 			pstmt=conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {

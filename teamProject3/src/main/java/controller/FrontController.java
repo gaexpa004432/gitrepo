@@ -45,13 +45,13 @@ public class FrontController extends HttpServlet {
 		list.put("/member/addInsert.do", new member.MemberAddInsertController());
 		
 		
-			
 		
-
+		
 		
 		//김성남
 		list.put("/save_product.do", new recipe.ProductInsertController());
-		
+		list.put("/productList.do", new recipe.ProductListController());
+		list.put("/recipeInsert.do", new recipe.RecipeInsertController());
 		
 		
 		
@@ -65,12 +65,7 @@ public class FrontController extends HttpServlet {
 		list.put("/freeBoardList.do", new board.FreeBoardListController());
 		list.put("/freeBoardView.do",new board.FreeBoardViewController());
 	
-
-		
-		
-		
-		
-		
+	
 		
 		//백승엽
 		list.put("/restaurantWrite.do", new restaurant.RestaurantWriteController());
