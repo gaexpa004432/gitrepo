@@ -43,6 +43,17 @@ public class FrontController extends HttpServlet {
 		list.put("/member/logout.do", new member.MemberLogoutController());
 		list.put("/member/insert.do", new member.MemberInsertController()); 
 		list.put("/member/addInsert.do", new member.MemberAddInsertController());
+		list.put("/member/select.do", new member.MemberSelectController());
+		list.put("/member/update.do", new member.MemberUpdateController());
+		
+		
+
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -56,7 +67,47 @@ public class FrontController extends HttpServlet {
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		//진인석
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -64,13 +115,39 @@ public class FrontController extends HttpServlet {
 		list.put("/freeBoardWrite.do", new board.FreeBoardWriteController());
 		list.put("/freeBoardList.do", new board.FreeBoardListController());
 		list.put("/freeBoardView.do",new board.FreeBoardViewController());
-	
-	
+		list.put("/freeBoardUpdate.do",new board.FreeBoardUpdateController());
+		list.put("/freeBoardUpdate2.do",new board.FreeBoardUpdate2Controller());
+		
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		//백승엽
 		list.put("/restaurantWrite.do", new restaurant.RestaurantWriteController());
 		list.put("/restaurantBoard.do", new restaurant.RestaurantBoardController());
 		list.put("/restaurantView.do", new restaurant.RestaurantViewController());
+		list.put("/reviewInsert.do", new restaurant.reviewInsertController());
 	}
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding(charset);
