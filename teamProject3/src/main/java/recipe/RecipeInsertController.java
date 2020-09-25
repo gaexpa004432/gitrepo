@@ -29,6 +29,9 @@ public class RecipeInsertController implements Controller {
 		
 		//결과 저장
 		request.setAttribute("cnt", r);
+		
+		//페이지 이동
+		request.getRequestDispatcher("/recipe/recipeInsert.jsp").forward(request, response);
 	}
 
 }

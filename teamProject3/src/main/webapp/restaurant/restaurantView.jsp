@@ -44,9 +44,8 @@ img.inimg {
 </style>
 <title>Insert title here</title>
 <script type="text/javascript">
-	var sel_files = [];
 	$(function() {
-		$("#input_imgs").on("change", handleImgFileSelect);
+
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
 			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -120,107 +119,7 @@ img.inimg {
 			bxSlider.goToSlide($(this).index());
 
 		})
-		
-		$("#review").on("click",function(){
-			console.log("gg")
-			 var x = document.getElementById("input_imgs");
-			if(x.style.display === "none"){
-			$(".selProductFile").show();
-			$("#res_reivew_content").show();
-			$("#input_imgs").show();
-			$("#insert").show();
-			}else{
-				$(".selProductFile").hide();
-				$("#res_reivew_content").hide();
-				$("#input_imgs").hide();
-				$("#insert").hide();
-			}
-			
-		})
 	});
-
-	function fileUploadAction() {
-		console.log("fileUploadAction");
-		$("#input_imgs").trigger('click');
-	}
-
-	function handleImgFileSelect(e) {
-
-		// 이미지 정보들을 초기화
-		sel_files = [];
-		$(".imgs_wrap").empty();
-
-		var files = e.target.files;
-		var filesArr = Array.prototype.slice.call(files);
-
-		var index = 0;
-		filesArr
-				.forEach(function(f) {
-					if (!f.type.match("image.*")) {
-						alert("확장자는 이미지 확장자만 가능합니다.");
-						return;
-					}
-
-					sel_files.push(f);
-
-					var reader = new FileReader();
-					reader.onload = function(e) {
-						var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("
-								+ index
-								+ ")\" id=\"img_id_"
-								+ index
-								+ "\"><img src=\"" + e.target.result + "\" data-file='"+f.name+"' class='selProductFile' title='Click to remove' style='width:100px; height:100px;'></a>";
-						$(".imgs_wrap").append(html);
-						index++;
-
-					}
-					reader.readAsDataURL(f);
-
-				});
-	}
-
-	function deleteImageAction(index) {
-		console.log("index : " + index);
-		console.log("sel length : " + sel_files.length);
-		var a = $("#input_imgs");
-		console.log(a);
-		sel_files.splice(index, 1);
-
-		var img_id = "#img_id_" + index;
-		$(img_id).remove();
-	}
-
-	function fileUploadAction() {
-		console.log("fileUploadAction");
-		$("#input_imgs").trigger('click');
-	}
-
-	function submitAction() {
-		console.log("업로드 파일 갯수 : " + sel_files.length);
-		var data = new FormData();
-
-		for (var i = 0, len = sel_files.length; i < len; i++) {
-			var name = "image_" + i;
-			data.append(name, sel_files[i]);
-		}
-		data.append("image_count", sel_files.length);
-
-		if (sel_files.length < 1) {
-			alert("한개이상의 파일을 선택해주세요.");
-			return;
-		}
-
-		var xhr = new XMLHttpRequest();
-		xhr.open("POST", "./study01_af.php");
-		xhr.onload = function(e) {
-			if (this.status == 200) {
-				console.log("Result : " + e.currentTarget.responseText);
-			}
-		}
-
-		xhr.send(data);
-
-	}
 </script>
 </head>
 <body>
@@ -234,81 +133,44 @@ img.inimg {
 		</ul>
 
 
+		
 
+			<div class="row">
+				<div class="col-sm-6" align="left">
+					<h1>${res.res_name }</h1>
 
-		<div class="row">
-			<div class="col-sm-6" align="left">
-				<h1>${res.res_name }</h1>
+				</div>
+				<div class="col-sm-6" align="right">
+					<img src="/teamProject3/images/즐겨찾기.jpg"
+						style="width: 100px; height: 100px;">
 
+				</div>
 			</div>
-			<div class="col-sm-6" align="right">
-				<Small style="vertical-align: bottom;"> 마지막 업데이트 ${ res.res_date }
-				</Small> <img src="/teamProject3/images/즐겨찾기.jpg"
-					style="width: 100px; height: 100px; margin-left: 30px;">
-
-			</div>
-		</div>
-		<hr>
+			<hr>
 
 
-		<div class="row">
-			<div class="col-sm-8" align="left">
-				<br> 주소 : ${res.res_si } <br> <br> 전화번호 : ${ res.res_tel}
-				<br> <br> 영업 시간 : ${ res.res_time } <br> <br> 추가
-				사항 : ${ res.res_extra }
+			<div class="row">
+				<div class="col-sm-8" align="left">
+				주소 : ${res.res_si } <br> 전화번호 : ${ res.res_tel}
+				</div>
+				<div class="col-sm-4" align="right">
+					<div id="map" style="width: 350px; height: 350px;"></div>
+				</div>
 			</div>
-			<div class="col-sm-4" align="right">
-				<div id="map" style="width: 350px; height: 350px;"></div>
-			</div>
+
+
+
+
+
+
+
+			${res.res_no }<br> ${res.res_name }<br> ${res.res_content }<br>
+			${res.res_si }<br> ${res.res_gu }<br> ${res.res_date }<br>
+
+
+
+
 		</div>
 	
-		
-		<p>
-		<hr>
-		<p style="height:100px"> </p>
-		<div class="row">
-			<div class="col" align="left">
-				${res.res_content }
-			</div>
-		</div>
-		<p style="height:100px"> </p>
-		<hr>
-		
-		<div class="row">
-			<div class="col" align="center">
-				<button id="review">리뷰 등록</button>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col" align="center">
-				<form action="" method="post">
-					<div class="col-sm-8" align="center">
-						<div align="left">
-							<input type="file" id="input_imgs" style="display:none;"  multiple>
-						</div>
-					</div>
-						
-					<div class="col-sm-8" align="center">
-						<div class="imgs_wrap">
-							<img id="img" />
-						</div>
-					</div>
-					<br>
-					<textarea cols="100" rows="10" id="res_reivew_content" style="display:none;"></textarea>
-					<button id="insert" style="vertical-align: top;display:none;"> 리뷰 쓰기 </button>
-				</form>
-			</div>
-		</div>
-
-
-
- 
-		
-
-
-
-
-	</div>
-
 </body>
 </html>

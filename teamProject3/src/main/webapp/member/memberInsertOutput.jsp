@@ -8,7 +8,7 @@
 </head>
 <body>
 	
-<form action="${pageContext.request.contextPath}/member/memberLogin.jsp">
+<form action="${pageContext.request.contextPath}/member/login.do">
 	${memberOne.member_name}님 회원 가입을 축하합니다!!<br>
 	로그인페이지로 이동 <button>로그인이동</button>
 </form>

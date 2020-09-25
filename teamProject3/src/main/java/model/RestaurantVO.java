@@ -14,21 +14,7 @@ public class RestaurantVO {
 	private List<String> res_picture;
 	private Integer first;
 	private Integer last;
-	private String res_time;
-	private String res_extra;
 	
-	public String getRes_time() {
-		return res_time;
-	}
-	public void setRes_time(String res_time) {
-		this.res_time = res_time;
-	}
-	public String getRes_extra() {
-		return res_extra;
-	}
-	public void setRes_extra(String res_extra) {
-		this.res_extra = res_extra;
-	}
 	public Integer getFirst() {
 		return first;
 	}

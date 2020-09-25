@@ -8,6 +8,5 @@
 </head>
 <body>
 	${sessionScope.login.member_id}님     <a href="logout.do">로그아웃</a>
-	<a href="myPage.jsp">마이페이지</a> 
 </body>
 </html>

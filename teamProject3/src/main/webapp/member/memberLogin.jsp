@@ -20,7 +20,7 @@ $(function(){
 </script>
 </head>
 <body>
-<input type="hidden" value="${errormsg}">
+	
 	<form method="post" action="login.do">
 		<div>
 			<label>ID </label>

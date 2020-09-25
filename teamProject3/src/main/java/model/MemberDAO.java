@@ -102,34 +102,7 @@ public class MemberDAO {
 		}
 	}
 	
-	//수정
-	public int update(MemberVO memberVO) {
-		int r = 0;
-		try {
-			conn = ConnectionManager.getConnnect();
-			String sql = "update member set member_name=?, member_tel=?, member_address=?, member_pass=?, "
-					+ "member_gender=?, member_birth=?, member_type=? "
-					+ "where member_id = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, memberVO.getMember_name());
-			pstmt.setString(2, memberVO.getMember_tel());
-			pstmt.setString(3, memberVO.getMember_address());
-			pstmt.setString(4, memberVO.getMember_pass());
-			pstmt.setString(5, memberVO.getMember_gender());
-			pstmt.setString(6, memberVO.getMember_birth());
-			pstmt.setString(7, memberVO.getMember_type());
-			pstmt.setString(8, memberVO.getMember_id());
-			r = pstmt.executeUpdate();
-			System.out.println(r + " 건이 수정됨");
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			ConnectionManager.close(null, pstmt, conn);
-		}
-		return r;
-	}
-		
-	
+	//수정(해야됨)
 	
 	//등록
 	public int insert(MemberVO memberVO) { 

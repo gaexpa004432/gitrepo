@@ -45,8 +45,8 @@ public class MemberInsertController implements Controller {
 		request.setAttribute("cnt", r);
 		request.setAttribute("memberOne", memberOne);
 		
-		
 		request.getRequestDispatcher("/member/memberInsertOutput.jsp").forward(request, response);
+
 	}
 
 }

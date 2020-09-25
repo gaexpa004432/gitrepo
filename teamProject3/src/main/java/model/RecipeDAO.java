@@ -24,13 +24,13 @@ public class RecipeDAO {
 			int r = 0;
 			try {
 				conn = ConnectionManager.getConnnect();
-				String sql = "INSERT INTO recipe" +
-						" VALUES (recipe_no.NEXTVAL, ?, sysdate, ?, ?)"; 
+				String sql = "INSERT INTO recipe (recipe_number, recipe_name, recipe_date,"
+						+ " recipe_content, member_id)" 
+						+ " VALUES (recipe_no.NEXTVAL, ?, sysdate, ?, ?)"; 
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, recipeVO.getRecipe_name());
-				pstmt.setString(2, recipeVO.getRecipe_date());
-				pstmt.setString(3, recipeVO.getRecipe_content());
-				pstmt.setString(4, recipeVO.getMember_id());
+				pstmt.setString(2, recipeVO.getRecipe_content());
+				pstmt.setString(3, recipeVO.getMember_id());
 
 				r = pstmt.executeUpdate();
 				System.out.println(r + " 건이 처리됨");

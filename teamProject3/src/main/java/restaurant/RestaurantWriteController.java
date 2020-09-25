@@ -23,24 +23,9 @@ public class RestaurantWriteController implements Controller {
 		RestaurantVO restaurant = new RestaurantVO();
 		restaurant.setRes_name(request.getParameter("res_name"));
 		restaurant.setRes_content(request.getParameter("res_content"));
-		String tel = request.getParameter("res_tel");
-		System.out.println(tel);
-		String transTel = tel.substring(0, 3)+"-"+tel.substring(3, tel.length()-4)+"-"+tel.substring(tel.length()-4, tel.length());
-		restaurant.setRes_tel(transTel);
+		restaurant.setRes_tel(request.getParameter("res_tel"));
 		restaurant.setRes_si(request.getParameter("res_si"));
 		restaurant.setRes_gu(request.getParameter("res_gu"));
-		String startM = request.getParameter("startM");
-		String endM = request.getParameter("endM");
-		if(startM.length()== 1) {
-			startM = "0" + startM;
-		}
-		if(endM.length()== 1) {
-			endM = "0"+ endM;
-		}
-		String res_time = request.getParameter("startH")+" : "+ startM +" ~ "+request.getParameter("endH")+" : "+endM;
-		restaurant.setRes_time(res_time);
-		restaurant.setRes_extra(request.getParameter("extra"));
-		
 		
 		
 		
@@ -80,8 +65,6 @@ public class RestaurantWriteController implements Controller {
 				RestaurantDAO.getInstance().insert_pic(restaurant);
 			}
 		}
-		
-		response.sendRedirect("restaurantBoard.do");
 		
 		
 		

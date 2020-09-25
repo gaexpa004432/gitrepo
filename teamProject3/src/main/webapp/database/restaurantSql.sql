@@ -5,9 +5,7 @@ res_content varchar2(1000),
 res_date date,
 res_tel varchar2(30),
 res_si varchar2(100),
-res_gu varchar2(100),
-res_time varchar2(200),
-res_extra varchar2(800)
+res_gu varchar2(100)
 );
 
 create sequence res_seq
