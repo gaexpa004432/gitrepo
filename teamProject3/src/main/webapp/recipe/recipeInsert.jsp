@@ -76,15 +76,15 @@ div {
 
 
 <body>
-
+<form name="frm1" action ="recipeInsert.do">
 	<h1>레시피 등록</h1>
-	<form name="frm" action ="recipeInsert.do">
+
 	<label>메뉴 이름</label>
 	<input  type="text" name="recipe_name" id="recipe_name">
 	
 	<label>회원 ID</label>
 	<input  type="text" name="member_id" id="member_id">
-	</form>
+	
 	<hr>
 	<br>
 	<h2>레시피</h2>
@@ -124,10 +124,10 @@ div {
 			<option value="${productlist.product_name}" selected="selected">${productlist.product_name}</option>
 		</c:forEach>
 	</select>
-	<form name="frm2" action ="recipeInsert.do">
-	<div id="div1" name = "recipe_content"></div>
+	
+	<input id="input" name = "recipe_content"></input>
 	<br>
-	</form>
+
 
  	<script>            //다중선택 한 값 출력
 		$( "select" ).change(function () {
@@ -135,7 +135,7 @@ div {
  		 $( "select option:selected" ).each(function() {
       		str += $( this ).text() + " ";
   		  });
-  	  $( "#div1" ).text( str );
+  	  $( "#input" ).text( str );
  		 })
  	 .change();
 
@@ -144,8 +144,7 @@ div {
 	<p class="p1">
 	<hr>
 	</p>
-	<form name="frm1" action ="recipeInsert.do">
-
+	
 		<input type="button" value="새로운 재료 추가" name = "recipe_content"
 			onclick="input_append(this.form)">
 		<div id="append"></div>

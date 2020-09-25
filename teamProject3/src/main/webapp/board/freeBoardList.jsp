@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <link rel="stylesheet" href="/teamProject3/board/css/bootstrap.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="jquery-ui.js"></script>
@@ -41,7 +42,8 @@
 		<c:forEach items="${list}" var="board">
 		<tr>
 			<td>${board.board_no }</td>
-			<td>${board.board_sub }</td>
+			<td><a href="freeBoardView.do?board_no=${board.board_no }">${board.board_sub }</a></td>
+			<!-- 제목 누르면 view페이지로 넘어감 -->
 			<td>${board.member_name }</td>
 			<td>${board.board_date }</td>
 		</tr>
