@@ -5,29 +5,35 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- 주소api -->
 <!-- <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="/teamProject3/api/addressApi.js"></script> -->
 
 <title>memberUpdate.jsp</title>
 <script>
+$(function() {
+	if("${errormsg}" != "") {
+		alert("${errormsg}");
+	};
+});
 function inputCheck() {
 	
-	if(frm.member_pass.value == "") {
+	/* if (frm.member_pass.value == "") {
 		frm.member_newPass.value = ${member.member_pass}
-	} else if (frm.member_pass.value != ${member.member_pass}) {
+	}
+	
+	if (frm.member_pass.value != ${member.member_pass}) {
 		alert("현재 비밀번호가 일치 하지 않습니다");
 		frm.member_pass.focus();
 		return false; // 이 값이 없으면 바로 다음페이지로 넘어감
-		}
-	}
+	} */
 	
 /* 	if(frm.member_pass.value == ${member.member_pass}){
 		frm.member_newPass.value = ${member.member_pass}
 	} */
 	
-	if(frm.member_pass.value == ${member.member_pass} && frm.member_newPass.value == "") {
+/* 	if(frm.member_pass.value == ${member.member_pass} && frm.member_newPass.value == "") {
 		alert("새 비밀번호를 입력하세요");
 		frm.member_newPass.focus();
 		return false;
@@ -37,7 +43,7 @@ function inputCheck() {
 			frm.member_newPass.focus();
 			return false;
 		}
-	}
+	} */
 	
 	
 	
@@ -60,7 +66,7 @@ function inputCheck() {
 		  onsubmit="return inputCheck()">
 	<div>
 		<label>아이디</label>
-		<input type="text" name="member_id" value="${member.member_id}" readonly="readonly">
+		<input type="text" name="member_id" value="${sessionScope.login.member_id}" readonly="readonly">
 		${sessionScope.login.member_id}
 	</div>
 	<div>
@@ -77,14 +83,14 @@ function inputCheck() {
 	</div>
 	<div>
 		<label>이름</label>
-		<input type="text" name="member_name" value="${member.member_name}">
+		<input type="text" name="member_name" value="${sessionScope.login.member_name}">
 	</div>
 	<div>
 		<label>성별</label>
 			<input type="radio" name="member_gender" value="male" 
-				<c:if test="${member.member_gender == 'male'}">checked="checked"</c:if>>남
+				<c:if test="${sessionScope.login.member_gender == 'male'}">checked="checked"</c:if>>남
 			<input type="radio" name="member_gender" value="female"
-				<c:if test="${member.member_gender == 'female'}">checked="checked" </c:if>>여
+				<c:if test="${sessionScope.login.member_gender == 'female'}">checked="checked" </c:if>>여
 	</div>
 	<div>
 		<label>생년월일</label>
@@ -92,7 +98,7 @@ function inputCheck() {
 	</div>
 	<div>
 		<label>전화번호</label>
-		<input type="text" name="member_tel" onkeydown='return onlyNumber(event)' value="${member.member_tel}">
+		<input type="text" name="member_tel" onkeydown='return onlyNumber(event)' value="${sessionScope.login.member_tel}">
 	</div>
 	<div>
 		<label>주소</label><br>
@@ -109,21 +115,21 @@ function inputCheck() {
 		<select name="member_type" id="member_type" length="4">
 				<option value="">선택</option>
 				<option value="vegan" 
-					<c:if test="${member.member_type == 'vegan' }">selected='selected'</c:if>>비건(Vegan)</option>
+					<c:if test="${sessionScope.login.member_type == 'vegan' }">selected='selected'</c:if>>비건(Vegan)</option>
 				<option value="lacto"
-					<c:if test="${member.member_type == 'lacto' }">selected='selected'</c:if>>락토(Lacto)</option>
+					<c:if test="${sessionScope.login.member_type == 'lacto' }">selected='selected'</c:if>>락토(Lacto)</option>
 				<option value="ovo"
-					<c:if test="${member.member_type == 'ovo' }">selected='selected'</c:if>>오보(Ovo)</option>
+					<c:if test="${sessionScope.login.member_type == 'ovo' }">selected='selected'</c:if>>오보(Ovo)</option>
 				<option value="lacto_ovo"
-					<c:if test="${member.member_type == 'lacto_ovo' }">selected='selected'</c:if>>락토오보(Lacto-Ovo)</option>
+					<c:if test="${sessionScope.login.member_type == 'lacto_ovo' }">selected='selected'</c:if>>락토오보(Lacto-Ovo)</option>
 				<option value="pesco"
-					<c:if test="${member.member_type == 'pesco' }">selected='selected'</c:if>>페스코(Pesco)</option>
+					<c:if test="${sessionScope.login.member_type == 'pesco' }">selected='selected'</c:if>>페스코(Pesco)</option>
 				<option value="pollo"
-					<c:if test="${member.member_type == 'pollo' }">selected='selected'</c:if>>폴로(Pollo)</option>
+					<c:if test="${sessionScope.login.member_type == 'pollo' }">selected='selected'</c:if>>폴로(Pollo)</option>
 				<option value="flexitarian"
-					<c:if test="${member.member_type == 'flexitarian' }">selected='selected'</c:if>>플렉시테리언(Flexitarian)</option>
+					<c:if test="${sessionScope.login.member_type == 'flexitarian' }">selected='selected'</c:if>>플렉시테리언(Flexitarian)</option>
 				<option value="etc"
-					<c:if test="${member.member_type == 'etc' }">selected='selected'</c:if>>기타</option>
+					<c:if test="${sessionScope.login.member_type == 'etc' }">selected='selected'</c:if>>기타</option>
 		</select>	
 	</div>
 	<div>

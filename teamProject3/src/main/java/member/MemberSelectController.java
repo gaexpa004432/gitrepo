@@ -21,6 +21,7 @@ public class MemberSelectController implements Controller {
 		MemberVO resultVO = MemberDAO.getInstance().selectOne(member);
 		
 		request.setAttribute("member", resultVO);
+		request.getSession().setAttribute("login", resultVO);
 		
 		request.getRequestDispatcher("memberUpdate.jsp").forward(request, response);
 	}
