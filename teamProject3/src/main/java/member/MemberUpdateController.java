@@ -87,6 +87,7 @@ public class MemberUpdateController implements Controller {
 		//System.out.println("수정 전 : " + request.getSession().getAttribute("login")); 
 		//System.out.println("수정후 : " + request.getSession().getAttribute("updatedMember"));
 		request.getRequestDispatcher(page).forward(request, response);
+
 	}
 
 }
