@@ -155,7 +155,7 @@ public class RestaurantDAO {
 			pstmt = conn.prepareStatement(sql); 
 			pstmt.setInt(1, restaurantVo.getRes_no());
 			rs = pstmt.executeQuery();
-			rs.next();
+			if(rs.next()) {
 			restaurant.setRes_no(rs.getInt("res_no"));
 			restaurant.setRes_name(rs.getString("res_name"));
 			restaurant.setRes_content(rs.getString("res_content"));
@@ -165,7 +165,7 @@ public class RestaurantDAO {
 			restaurant.setRes_gu(rs.getString("res_gu"));
 			restaurant.setRes_time(rs.getString("res_time"));
 			restaurant.setRes_extra(rs.getString("res_extra"));
-			
+			}
 			sql = "select * from res_pic where res_no= ?";
 			pstmt = conn.prepareStatement(sql); 
 			pstmt.setInt(1, restaurantVo.getRes_no());

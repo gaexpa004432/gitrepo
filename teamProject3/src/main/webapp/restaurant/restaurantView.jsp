@@ -281,10 +281,10 @@ img.inimg {
 		</div>
 		<div class="row">
 			<div class="col" align="center">
-				<form action="" method="post">
+				<form action="reviewInsert.do" method="post" enctype='multipart/form-data'>
 					<div class="col-sm-8" align="center">
 						<div align="left">
-							<input type="file" id="input_imgs" style="display:none;"  multiple>
+							<input type="file" id="input_imgs" name="pic_img" style="display:none;"  multiple>
 						</div>
 					</div>
 						
@@ -294,13 +294,26 @@ img.inimg {
 						</div>
 					</div>
 					<br>
-					<textarea cols="100" rows="10" id="res_reivew_content" style="display:none;"></textarea>
+					<input value="${ res.res_no }" name="res_no" hidden="hidden">
+					<textarea cols="100" rows="10" id="res_reivew_content" name="res_review_content" style="display:none;"></textarea>
 					<button id="insert" style="vertical-align: top;display:none;"> 리뷰 쓰기 </button>
 				</form>
 			</div>
 		</div>
-
-
+		<!-- 리뷰 공간  -->
+	<div class="row">
+	<c:forEach items="${ review }" var="list" >
+	${ list.res_review_no }<br>
+	${ list.res_review_content }<br>
+	${ list.member_id }<br>
+	${ list.res_no }<br>
+	${ list.res_review_date }<br>
+	
+	<c:forEach items="${list.res_review_picture }" var="reviewImg">
+		${reviewImg }<br>
+		</c:forEach>
+</c:forEach>
+	</div>
 
  
 		

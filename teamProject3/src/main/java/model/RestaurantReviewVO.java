@@ -1,10 +1,30 @@
 package model;
 
+import java.util.List;
+
 public class RestaurantReviewVO {
 	private int res_review_no;
 	private String res_review_content;
 	private String member_id;
 	private int res_no;
+	private String res_review_date;
+	private List<String> res_review_picture;
+	
+	public String getRes_review_date() {
+		return res_review_date;
+	}
+	public void setRes_review_date(String res_review_date) {
+		this.res_review_date = res_review_date;
+	}
+	public RestaurantReviewVO() {
+		super();
+	}
+	public List<String> getRes_review_picture() {
+		return res_review_picture;
+	}
+	public void setRes_review_picture(List<String> res_review_picture) {
+		this.res_review_picture = res_review_picture;
+	}
 	public int getRes_review_no() {
 		return res_review_no;
 	}
