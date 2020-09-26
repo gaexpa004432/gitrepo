@@ -8,12 +8,13 @@
 </head>
 <body>
 <form action="freeBoardUpdate2.do" method="post"
-		enctype="multipart/form-data">
-		<input type="hidden" name="no" value="${content.board_no}"/>
+		>
+		<input name="no" value="${content.board_no}" hidden="hidden"/>
 		<div>
 			<label>제목</label> 
 			<input type="text" name="sub" value="${content.board_sub}"/>
 		</div>
+		
 		<%-- <div>
 			<label>아이디</label> 
 			<input type="text" name="id" value="${freeboard.board_id}"/>
