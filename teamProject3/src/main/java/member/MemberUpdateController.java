@@ -27,24 +27,35 @@ public class MemberUpdateController implements Controller {
 		String page = "";
 		
 		if(passVal=="") {
-			memberVO.setMember_id(request.getParameter("member_id"));
+			//수정페이지에서 담긴 value들을 VO에 담기
+//			memberVO.setMember_id(request.getParameter("member_id"));
+//			memberVO.setMember_pass((String)request.getSession().getAttribute("pass"));
+//			memberVO.setMember_name(request.getParameter("member_name"));
+//			memberVO.setMember_tel(request.getParameter("member_tel"));
+//			memberVO.setMember_birth(request.getParameter("member_birth"));
+//			memberVO.setMember_gender(request.getParameter("member_gender"));
+//			memberVO.setMember_address(request.getParameter("member_roadAddress"));
+//			memberVO.setMember_type(request.getParameter("member_type"));
+				
+			try {//컬럼이 몇개가 됐던 파라미터를 읽어서 vo에 담아 준다.
+				BeanUtils.copyProperties(memberVO, request.getParameterMap());
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 			memberVO.setMember_pass((String)request.getSession().getAttribute("pass"));
-			memberVO.setMember_name(request.getParameter("member_name"));
-			memberVO.setMember_tel(request.getParameter("member_tel"));
-			memberVO.setMember_birth(request.getParameter("member_birth"));
-			memberVO.setMember_gender(request.getParameter("member_gender"));
 			memberVO.setMember_address(request.getParameter("member_roadAddress"));
-			memberVO.setMember_type(request.getParameter("member_type"));
-			
-			//resultVO = MemberDAO.getInstance().selectOne(memberVO);
-			System.out.println("memberVO 1 : " + memberVO);
-			
+				
+			//새로운 VO를 가지고 update문 실행
 			int cnt = MemberDAO.getInstance().update(memberVO);
 			request.setAttribute("cnt", cnt);
 			
+			//세션에 수정된 정보를 담는다
 			request.getSession().setAttribute("login", memberVO);
 			request.getSession().setAttribute("pass", memberVO.getMember_pass());
+			
+			//작업을 완수하고 이동할 페이지 지정
 			page = "memberUpdateOutput.jsp";
+			
 		} else if (passVal!="") {
 			if (!passVal.equals(request.getSession().getAttribute("pass"))) {
 				request.setAttribute("errormsg", "현재 비밀번호가 일치 하지 않습니다");

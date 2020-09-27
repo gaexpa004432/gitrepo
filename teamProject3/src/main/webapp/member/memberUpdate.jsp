@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<<<<<<< HEAD
+<!-- Jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- 주소api -->
-<!-- <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" src="/teamProject3/api/addressApi.js"></script> -->
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="/teamProject3/api/addressApi.js"></script>
 
 <title>memberUpdate.jsp</title>
 <script>
@@ -18,43 +19,15 @@ $(function() {
 		alert("${errormsg}");
 	};
 });
+</script>
+<script>
 function inputCheck() {
 	
-	/* if (frm.member_pass.value == "") {
-		frm.member_newPass.value = ${member.member_pass}
-	}
-	
-	if (frm.member_pass.value != ${member.member_pass}) {
-		alert("현재 비밀번호가 일치 하지 않습니다");
-		frm.member_pass.focus();
-		return false; // 이 값이 없으면 바로 다음페이지로 넘어감
-	} */
-	
-/* 	if(frm.member_pass.value == ${member.member_pass}){
-		frm.member_newPass.value = ${member.member_pass}
-	} */
-	
-/* 	if(frm.member_pass.value == ${member.member_pass} && frm.member_newPass.value == "") {
-		alert("새 비밀번호를 입력하세요");
+	if(frm.member_newPass.value != frm.member_newPassCk.value) {
+		alert("새 비밀번호가 일치하지 않습니다");
 		frm.member_newPass.focus();
 		return false;
-	} else if (frm.member_pass.value == ${member.member_pass} && frm.member_newPass.value != "") {
-		if(frm.member_newPass.value != frm.member_newPassCk.value) {
-			alert("새 비밀번호가 일치하지 않습니다");
-			frm.member_newPass.focus();
-			return false;
-		}
-	} */
-	
-	
-	
-	/* if(frm.member_birth.value == "") {
-		frm.member_birth.value = ${member.member_birth}
 	}
-	
-	if(frm.member_roadAddress.value == "") {
-		frm.member_roadAddress.value = ${member.member_address}
-	} */
 	
 }
 </script>
@@ -95,7 +68,7 @@ function inputCheck() {
 	</div>
 	<div>
 		<label>생년월일</label>
-		<input type="date" name="member_birth">
+		<input type="date" name="member_birth" id="member_birth" value="${sessionScope.login.member_birth}">
 	</div>
 	<div>
 		<label>전화번호</label>
@@ -103,13 +76,14 @@ function inputCheck() {
 	</div>
 	<div>
 		<label>주소</label><br>
-		<input type="text" name="member_postcode" id="sample4_postcode" placeholder="우편번호">
+		<input type="text" name="member_postcode" id="sample4_postcode" placeholder="우편번호" readonly>
 		<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-		<input type="text" name="member_roadAddress" id="sample4_roadAddress" placeholder="도로명주소">
-		<input type="hidden" name="member_jibunAddress" id="sample4_jibunAddress" placeholder="지번주소">
+		<input type="text" name="member_roadAddress" id="sample4_roadAddress" placeholder="도로명주소" 
+					       value="${sessionScope.login.member_address}"readonly>
+		<input type="hidden" name="member_jibunAddress" id="sample4_jibunAddress" placeholder="지번주소" readonly>
 		<span id="guide" style="color:#999;display:none"></span>
-		<input type="text" name="member_detailAddress" id="sample4_detailAddress" placeholder="상세주소">
-		<input type="text" name="member_extraAddress" id="sample4_extraAddress" placeholder="참고항목">
+		<input type="text" name="member_detailAddress" id="sample4_detailAddress" placeholder="상세주소" >
+		<input type="text" name="member_extraAddress" id="sample4_extraAddress" placeholder="참고항목" readonly>
 	</div>
 	<div>
 		<label>채식타입</label>
