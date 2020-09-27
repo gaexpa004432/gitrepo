@@ -147,6 +147,8 @@ public class FrontController extends HttpServlet {
 		list.put("/restaurantBoard.do", new restaurant.RestaurantBoardController());
 		list.put("/restaurantView.do", new restaurant.RestaurantViewController());
 		list.put("/reviewInsert.do", new restaurant.reviewInsertController());
+		list.put("/resBookMark.do", new restaurant.ResBookMarkController());
+		
 	}
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding(charset);
