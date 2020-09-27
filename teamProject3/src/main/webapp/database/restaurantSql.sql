@@ -24,7 +24,7 @@ create sequence res_pic_seq
 increment by 1
 start with 1;
 
-create res_review(
+create table res_review(
 res_review_no number primary key,
 res_review_content varchar2(500),
 member_id varchar2(100),
@@ -32,7 +32,7 @@ res_no number,
 res_review_date date
 );
 
-create res_review_img(
+create table res_review_img(
 res_review_img_no number primary key,
 res_review_no varchar2(500),
 res_review_image varchar2(300)
@@ -47,6 +47,3 @@ increment by 1
 start with 1;
 
 
-create table board (board_no number(15) primary key, member_id varchar2(20),
-member_name varchar2(20), board_sub varchar2(100), board_content varchar2(100),
-board_date date default sysdate, board_file varchar2(200), board_groupcode varchar2(50));
