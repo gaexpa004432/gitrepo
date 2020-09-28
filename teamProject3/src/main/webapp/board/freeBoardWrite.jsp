@@ -8,9 +8,13 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/board.css">
     <style>
-        td {
-            text-align: left !important;
+        td {text-align: left !important;
         }
+    
+        h2 {
+        	text-align: center;
+        } 
+
     </style>
 </head>
 <body>
@@ -42,7 +46,7 @@
 			</td>
 			</tr>
             </table>
-            <input class="btn" type="submit" value="등록">
+            <input class="btn" type="submit" value="등록" align="center";>
             <input class="btn" type="reset" value="다시작성하기">
             <input class="btn" type="button" value="취소" onclick="javascript:history.back()">
         </form>
