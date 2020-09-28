@@ -3,11 +3,13 @@
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
 	prefix="decorator"%>
   <head>
+  
     <title>Vegan - For Vegan , For Free!</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900&display=swap" rel="stylesheet">
+
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/animate.css">
@@ -101,6 +103,43 @@ h6, .h6 {
 	padding-top : 3%;
 }
     </style>
+    <link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+      <script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		var settings = {
+				slideWidth : 235,
+				slideMargin : 10,
+				minSlides : 1,
+				maxSlides : 5,
+				infiniteLoop : true,
+				responsive : true,
+				controls : true,
+				pager : false,
+				moveSlides : 1,
+				hideControlOnEnd : true,
+				onSlideNext : function($slideElement, oldIndex, newIndex) {
+					itemActive($slideElement);
+				},
+				onSlidePrev : function($slideElement, oldIndex, newIndex) {
+					itemActive($slideElement);
+				}
+			}
+
+			var bxSlider = $('.bxslider').bxSlider(settings);
+
+			$('.bxslider li.inline').click(function() {
+				$(this).siblings('li').removeClass('active');
+				$(this).addClass('active');
+				bxSlider.goToSlide($(this).index());
+
+			})
+	})
+	</script>
     <decorator:head></decorator:head>
   </head>
   <body>
@@ -159,7 +198,7 @@ h6, .h6 {
             
             
             </decorator:body>
-  <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+
   <script src="${pageContext.request.contextPath}/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
@@ -173,8 +212,6 @@ h6, .h6 {
   <script src="${pageContext.request.contextPath}/js/bootstrap-datepicker.js"></script>
   <script src="${pageContext.request.contextPath}/js/jquery.timepicker.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/scrollax.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="${pageContext.request.contextPath}/js/google-map.js"></script>
   <script src="${pageContext.request.contextPath}/js/main.js"></script>
   </body>
 </html>
