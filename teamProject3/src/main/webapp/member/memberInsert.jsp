@@ -4,6 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style>
+    .image_wrap {
+        width: 100px;
+        margin-top: 50px;
+    }
+    .image_wrap #image_preview {
+        max-width: 100%;
+    }
+</style>
 <title>memberInsert.jsp</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
@@ -72,9 +81,40 @@ function onlyNumber(event){
     
 //전화번호에서 한글 못받게 하기 (코드만들기)
 
+</script>
 
+
+<script type="text/javascript">
+        
+var sel_file;
+
+$(function() {
+    $("#member_image").on("change", handleImgFileSelect);
+}); 
+
+function handleImgFileSelect(e) {
+    var files = e.target.files;
+    var filesArr = Array.prototype.slice.call(files);
+
+    filesArr.forEach(function(f) {
+        if(!f.type.match("image.*")) {
+            alert("확장자는 이미지 확장자만 가능합니다.");
+            return;
+        }
+
+        sel_file = f;
+
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $("#image_preview").attr("src", e.target.result);
+        }
+        reader.readAsDataURL(f);
+    });
+}
 
 </script>
+
+
 
 <!-- 주소api -->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -88,7 +128,8 @@ function onlyNumber(event){
 <h3>회원등록</h3>
 <div class="regist">
 	<form method="post" name="frm" id="frm" 
-		  action="insert.do" 
+		  action="insert.do"
+		  enctype="multipart/form-data" 
 		  onsubmit="return inputCheck()">
 	<div>
 		<label>아이디</label>
@@ -120,14 +161,18 @@ function onlyNumber(event){
 		<input type="text" name="member_tel" onkeydown='return onlyNumber(event)'>
 	</div>
 	<div>
+		<label>이메일</label>
+		<input type="text" name="member_email" id="member_email">
+	</div>
+	<div>
 		<label>주소</label><br>
-		<input type="text" name="member_postcode" id="sample4_postcode" placeholder="우편번호">
+		<input type="text" name="member_postcode" id="sample4_postcode" placeholder="우편번호" readonly>
 		<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-		<input type="text" name="member_roadAddress" id="sample4_roadAddress" placeholder="도로명주소">
-		<input type="text" name="member_jibunAddress" id="sample4_jibunAddress" placeholder="지번주소">
+		<input type="text" name="member_roadAddress" id="sample4_roadAddress" placeholder="도로명주소" readonly>
+		<input type="hidden" name="member_jibunAddress" id="sample4_jibunAddress" placeholder="지번주소" readonly>
 		<span id="guide" style="color:#999;display:none"></span>
 		<input type="text" name="member_detailAddress" id="sample4_detailAddress" placeholder="상세주소">
-		<input type="text" name="member_extraAddress" id="sample4_extraAddress" placeholder="참고항목">
+		<input type="text" name="member_extraAddress" id="sample4_extraAddress" placeholder="참고항목" readonly>
 	</div>
 	<div>
 		<label>채식타입</label>
@@ -142,6 +187,15 @@ function onlyNumber(event){
 			<option value="flexitarian">플렉시테리언(Flexitarian)</option>
 			<option value="etc">기타</option>
 		</select>	
+	</div>
+	<div>
+		<label>사진 등록</label>
+		<input type="file" name="member_image" id="member_image">
+	</div>
+	<div>
+		<div class="image_wrap">
+			<img name="image_preview" id="image_preview">
+		</div>
 	</div>
 	<div>
 		<button type="reset" name="reset">초기화</button>

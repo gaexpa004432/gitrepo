@@ -16,6 +16,7 @@ public class FreeBoardUpdate2Controller implements Controller {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
+
 				FreeBoardVO freeboard = new FreeBoardVO();
 
 				freeboard.setBoard_sub(request.getParameter("board_sub"));//board_sub는 freeboardupdate.jsp의 form태그안의 name과 동일
@@ -31,6 +32,8 @@ public class FreeBoardUpdate2Controller implements Controller {
 				DAO.update(freeboard);
 				
 				response.sendRedirect("freeBoardList.do");
+				
+
 	}
 
 }

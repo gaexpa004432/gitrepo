@@ -31,17 +31,21 @@ public class MemberDAO {
 			pstmt=conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				resultVO = new MemberVO();
 				resultVO.setMember_id(rs.getString("member_id"));
 				resultVO.setMember_name(rs.getString("member_name"));
 				resultVO.setMember_tel(rs.getString("member_tel"));
-				resultVO.setMember_address(rs.getString("member_address"));
+				resultVO.setMember_roadAddress(rs.getString("member_roadAddress"));
 				resultVO.setMember_pass(rs.getString("member_pass"));
 				resultVO.setMember_gender(rs.getString("member_gender"));
 				resultVO.setMember_birth(rs.getString("member_birth"));
 				resultVO.setMember_type(rs.getString("member_type"));
 				resultVO.setMember_mileage(rs.getInt("member_mileage"));
-				resultVO.setSeller_code(rs.getString("seller_code"));
+				resultVO.setSeller_code(rs.getInt("seller_code"));
+				resultVO.setMember_postcode(rs.getString("member_postcode"));
+				resultVO.setMember_detailAddress(rs.getString("member_detailAddress"));
+				resultVO.setMember_extraAddress(rs.getString("member_extraAddress"));
+				resultVO.setMember_email(rs.getString("member_email"));
+				resultVO.setMember_image(rs.getString("member_image"));
 				list.add(resultVO);
 			}
 		} catch (Exception e) {
@@ -68,13 +72,18 @@ public class MemberDAO {
 				resultVO.setMember_id(rs.getString("member_id"));
 				resultVO.setMember_name(rs.getString("member_name"));
 				resultVO.setMember_tel(rs.getString("member_tel"));
-				resultVO.setMember_address(rs.getString("member_address"));
+				resultVO.setMember_roadAddress(rs.getString("member_roadAddress"));
 				resultVO.setMember_pass(rs.getString("member_pass"));
 				resultVO.setMember_gender(rs.getString("member_gender"));
 				resultVO.setMember_birth(rs.getString("member_birth"));
 				resultVO.setMember_type(rs.getString("member_type"));
 				resultVO.setMember_mileage(rs.getInt("member_mileage"));
-				resultVO.setSeller_code(rs.getString("seller_code"));
+				resultVO.setSeller_code(rs.getInt("seller_code"));
+				resultVO.setMember_postcode(rs.getString("member_postcode"));
+				resultVO.setMember_detailAddress(rs.getString("member_detailAddress"));
+				resultVO.setMember_extraAddress(rs.getString("member_extraAddress"));
+				resultVO.setMember_email(rs.getString("member_email"));
+				resultVO.setMember_image(rs.getString("member_image"));
 			} else {
 				System.out.println("no data");
 			}
@@ -102,23 +111,72 @@ public class MemberDAO {
 		}
 	}
 	
+	//seller_code만 수정
+	public int updateSellerCode(MemberVO memberVO) {
+		int r = 0;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "update member set seller_code =? "
+					+ "where member_id = ?";
+			//member_mileage=?, seller_code=? 추가하기
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberVO.getSeller_code());
+			pstmt.setString(2, memberVO.getMember_id());
+			r = pstmt.executeUpdate();
+			System.out.println(r + " 건이 수정됨");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(null, pstmt, conn);
+		}
+		return r;
+	}
+	
+	//member_email만 수정
+	public int updateMemberEmail(MemberVO memberVO) {
+		int r = 0;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "update member set member_email =? "
+					+ "where member_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberVO.getMember_email());
+			pstmt.setString(2, memberVO.getMember_id());
+			r = pstmt.executeUpdate();
+			System.out.println(r + " 건이 수정됨");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(null, pstmt, conn);
+		}
+		return r;
+	}
+	
+	
 	//수정
 	public int update(MemberVO memberVO) {
 		int r = 0;
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "update member set member_name=?, member_tel=?, member_address=?, member_pass=?, "
-					+ "member_gender=?, member_birth=?, member_type=? "
+			String sql = "update member set member_name=?, member_tel=?, member_postcode=?, member_roadAddress=?, "
+					+ "member_detailAddress=?, member_extraAddress=?, "
+					+ "member_gender=?, member_pass=?, "
+					+ "member_birth=?, member_type=?, member_image=? "
 					+ "where member_id = ?";
+			//member_mileage=?, seller_code=? 추가하기
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberVO.getMember_name());
 			pstmt.setString(2, memberVO.getMember_tel());
-			pstmt.setString(3, memberVO.getMember_address());
-			pstmt.setString(4, memberVO.getMember_pass());
-			pstmt.setString(5, memberVO.getMember_gender());
-			pstmt.setString(6, memberVO.getMember_birth());
-			pstmt.setString(7, memberVO.getMember_type());
-			pstmt.setString(8, memberVO.getMember_id());
+			pstmt.setString(3, memberVO.getMember_postcode());
+			pstmt.setString(4, memberVO.getMember_roadAddress());
+			pstmt.setString(5, memberVO.getMember_detailAddress());
+			pstmt.setString(6, memberVO.getMember_extraAddress());
+			pstmt.setString(7, memberVO.getMember_gender());
+			pstmt.setString(8, memberVO.getMember_pass());
+			pstmt.setString(9, memberVO.getMember_birth());
+			pstmt.setString(10, memberVO.getMember_type());
+			pstmt.setString(11, memberVO.getMember_image());
+			pstmt.setString(12, memberVO.getMember_id());
 			r = pstmt.executeUpdate();
 			System.out.println(r + " 건이 수정됨");
 		} catch (Exception e) {
@@ -130,7 +188,6 @@ public class MemberDAO {
 	}
 		
 	
-	
 	//등록
 	public int insert(MemberVO memberVO) { 
 		int r = 0;
@@ -138,18 +195,24 @@ public class MemberDAO {
 			
 			conn = ConnectionManager.getConnnect();
 			
-			String sql="insert into member (member_id, member_name, member_tel, member_address, member_pass, "
+			String sql="insert into member (member_id, member_name, member_tel, member_roadAddress, member_pass, "
+					+ "member_postcode, member_detailAddress, member_extraAddress, member_email, member_image, "
 					+ "member_gender, member_birth, member_type) "
-					+ "values (?,?,?,?,?,?,?,?)";
+					+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberVO.getMember_id());
 			pstmt.setString(2, memberVO.getMember_name());
 			pstmt.setString(3, memberVO.getMember_tel());
-			pstmt.setString(4, memberVO.getMember_address());
+			pstmt.setString(4, memberVO.getMember_roadAddress());
 			pstmt.setString(5, memberVO.getMember_pass());
-			pstmt.setString(6, memberVO.getMember_gender());
-			pstmt.setString(7, memberVO.getMember_birth());
-			pstmt.setString(8, memberVO.getMember_type());
+			pstmt.setString(6, memberVO.getMember_postcode());
+			pstmt.setString(7, memberVO.getMember_detailAddress());
+			pstmt.setString(8, memberVO.getMember_extraAddress());
+			pstmt.setString(9, memberVO.getMember_email());
+			pstmt.setString(10, memberVO.getMember_image());
+			pstmt.setString(11, memberVO.getMember_gender());
+			pstmt.setString(12, memberVO.getMember_birth());
+			pstmt.setString(13, memberVO.getMember_type());
 			r = pstmt.executeUpdate();
 			System.out.println(r + " 건이 처리됨");
 		} catch(Exception e) {
@@ -162,7 +225,7 @@ public class MemberDAO {
 
 	}
 
-	}
+}
 
 
 	

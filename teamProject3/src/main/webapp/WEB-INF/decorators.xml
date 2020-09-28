@@ -6,9 +6,9 @@
 		<pattern>/admin/*</pattern>
 	</decorator>
 	
-	<decorator name="main" page="topMenu.jsp">
+	<decorator name="main" page="index.jsp">
 
-		<pattern>/sad</pattern>
+		<pattern>/*</pattern>
 	</decorator>
 	
 </decorators>

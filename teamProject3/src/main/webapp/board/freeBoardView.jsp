@@ -20,6 +20,19 @@ table {
 }
 
 h1,table {font-family: 'Noto Sans KR', sans-serif;}
+
+	th {
+		min-width: 50px
+	}
+	
+	
+	div {
+        margin-top: 1px;
+        margin-right: 1px;
+        margin-bottom: 1px;
+        margin-left: 50px;
+      }
+      
 </style>
 
 
@@ -48,8 +61,8 @@ $(function(){
 <body>
 	<div align="center">
 		<br><br>
-		<h1 style="background-color:#dcdcdc; width:400px; font-size:15px;"><strong>글보기</strong></h1>
-		<table style="width:400px">
+		<h1 style="background-color:#dcdcdc; width:800px; font-size:20px;"><strong>글보기</strong></h1>
+		<table style="width:800px">
 		<tr>
 		 <th>제목</th>
 		  <td>${board.board_sub}</td>
@@ -67,12 +80,18 @@ $(function(){
 		  <td>${board.board_content}</td>
 		  </tr>			  
 		 </table>
-		 <br><br>
+		 <br>
 		 <button type="button" class="btn" onclick="location.href='/teamProject3/freeBoardList.do'">목록</button>
 		 <!-- 게시물 목록이 안나옴 ?? -->
 		 <button type="button" class="btn" style="display:none" onclick="location.href='/teamProject3/freeBoardUpdate.do?board_no=${board.board_no}'">수정</button>
 		 <button type="button" class="btn" style="display:none" id="delbtn">삭제</button>
 		 <a id="gg"></a>
+		 <br>
+		 <form action="" method="post">
+		 <textarea cols="100" rows="3" name=""></textarea>
+		 <button type="button" style="width:100px; height:65px; vertical-align: top;">등록</button>
+		 </form>
 	</div>
+</div>
 </body>
 </html>

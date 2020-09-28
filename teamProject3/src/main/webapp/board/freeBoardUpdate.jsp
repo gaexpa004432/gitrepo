@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 </head>
 <body>
 <form action="freeBoardUpdate2.do" method="post"
@@ -14,6 +15,7 @@
 			<label>제목</label> 
 			<input type="text" name="board_sub" value="${content.board_sub}"/>
 		</div>
+		
 		<%-- <div>
 			<label>아이디</label> 
 			<input type="text" name="id" value="${freeboard.board_id}"/>

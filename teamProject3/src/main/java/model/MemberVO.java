@@ -7,13 +7,18 @@ public class MemberVO {
 	private String member_id;
 	private	String member_name;
 	private String member_tel;
-	private String member_address;
+	private String member_roadAddress;
 	private String member_pass;
 	private String member_gender;
 	private String member_birth;
 	private String member_type;
 	private int member_mileage;
-	private String seller_code;
+	private int seller_code;
+	private String member_postcode;
+	private String member_detailAddress;
+	private String member_extraAddress;
+	private String member_email;
+	private String member_image;
 	
 	public String getMember_id() {
 		return member_id;
@@ -32,12 +37,6 @@ public class MemberVO {
 	}
 	public void setMember_tel(String member_tel) {
 		this.member_tel = member_tel;
-	}
-	public String getMember_address() {
-		return member_address;
-	}
-	public void setMember_address(String member_address) {
-		this.member_address = member_address;
 	}
 	public String getMember_pass() {
 		return member_pass;
@@ -69,10 +68,10 @@ public class MemberVO {
 	public void setMember_mileage(int member_mileage) {
 		this.member_mileage = member_mileage;
 	}
-	public String getSeller_code() {
+	public int getSeller_code() {
 		return seller_code;
 	}
-	public void setSeller_code(String seller_code) {
+	public void setSeller_code(int seller_code) {
 		this.seller_code = seller_code;
 	}
 	
