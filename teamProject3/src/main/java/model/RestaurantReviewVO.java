@@ -9,7 +9,21 @@ public class RestaurantReviewVO {
 	private int res_no;
 	private String res_review_date;
 	private List<String> res_review_picture;
+	private Integer first;
+	private Integer last;
 	
+	public Integer getFirst() {
+		return first;
+	}
+	public void setFirst(Integer first) {
+		this.first = first;
+	}
+	public Integer getLast() {
+		return last;
+	}
+	public void setLast(Integer last) {
+		this.last = last;
+	}
 	public String getRes_review_date() {
 		return res_review_date;
 	}

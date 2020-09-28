@@ -12,7 +12,7 @@ public class RestaurantReviewDAO {
 	Connection conn;
 	PreparedStatement pstmt; // PreparedStatement는 Statement와 같은 기능을 수행하지만 가독성이 좋고 더 빠르다. ?기호 사용가능
 	ResultSet rs = null; // ResultSet은 결과의 집합이라 select할때 사용하기. 초기값 필요하다
-	
+	ResultSet rs1 = null;
 	// 싱글톤
 	static RestaurantReviewDAO instance;
 	public static RestaurantReviewDAO getInstance() {
@@ -86,41 +86,71 @@ public class RestaurantReviewDAO {
 	}
 	
 	public List<RestaurantReviewVO> selectAllReview(RestaurantReviewVO restaurantVo) { //게시판 목록 이미지 뿌려주기
-		RestaurantReviewVO restaurant = new RestaurantReviewVO(); 
-		ArrayList<String> list = new ArrayList<String>(); 
+		RestaurantReviewVO restaurant = null;
+		ArrayList<String> list = null; 
 		List<RestaurantReviewVO> restaurantList = new ArrayList<RestaurantReviewVO>();
 		
 		try {
 			conn = ConnectionManager.getConnnect();
 			
-			String sql = "select * from res_review where res_no= ?"; // 첫번째 이미지만 들고옴
-			pstmt = conn.prepareStatement(sql); 
+			
+			String sql = "select a.*  from ( select rownum rn, b.*  from (" + 
+					"select * from res_review where res_no= ?" + 
+					"	ORDER BY res_review_no desc" + 
+					"	) b ) a where rn BETWEEN ? and ? ";
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, restaurantVo.getRes_no());
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-			restaurant.setRes_no(rs.getInt("res_no"));
-			restaurant.setRes_review_content(rs.getString("res_review_content"));
-			restaurant.setMember_id(rs.getString("member_id"));
-			restaurant.setRes_review_date(rs.getString("res_review_date"));
-			restaurant.setRes_review_no(rs.getInt("res_review_no"));
+			pstmt.setInt(2, restaurantVo.getFirst());
+			pstmt.setInt(3, restaurantVo.getLast());
+			rs1 = pstmt.executeQuery();
+			while(rs1.next()) {
+			restaurant = new RestaurantReviewVO();
+			restaurant.setRes_no(rs1.getInt("res_no"));
+			restaurant.setRes_review_content(rs1.getString("res_review_content"));
+			restaurant.setMember_id(rs1.getString("member_id"));
+			restaurant.setRes_review_date(rs1.getString("res_review_date"));
+			restaurant.setRes_review_no(rs1.getInt("res_review_no"));
 			
 			sql = "select * from res_review_img where res_review_no= ?";
 			pstmt = conn.prepareStatement(sql); 
-			pstmt.setInt(1, restaurantVo.getRes_no());
+			pstmt.setInt(1, restaurant.getRes_review_no());
 			rs = pstmt.executeQuery();
-			
+			list = new ArrayList<String>(); 
 			while (rs.next()) { 
+				
 				list.add(rs.getString("res_review_image"));
 			}
 			restaurant.setRes_review_picture(list);
 			restaurantList.add(restaurant);
+			
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			ConnectionManager.close(rs, pstmt, conn);
+			ConnectionManager.close(rs1, null, null);
 		}
 		return restaurantList; 
+	}
+	public int count(RestaurantVO restaurant) {
+		int cnt = 0;
+		try {
+			conn = ConnectionManager.getConnnect();
+			
+			
+			String sql = "select count(*) from res_review ";
+			pstmt = conn.prepareStatement(sql);
+			int pos = 1;
+			
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+			cnt = rs.getInt(1);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			ConnectionManager.close(conn);
+		}
+		return cnt;
 	}
 }
