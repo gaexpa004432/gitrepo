@@ -110,35 +110,7 @@ h6, .h6 {
     <script
 	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 	<script type="text/javascript">
-	$(function(){
-		var settings = {
-				slideWidth : 235,
-				slideMargin : 10,
-				minSlides : 1,
-				maxSlides : 5,
-				infiniteLoop : true,
-				responsive : true,
-				controls : true,
-				pager : false,
-				moveSlides : 1,
-				hideControlOnEnd : true,
-				onSlideNext : function($slideElement, oldIndex, newIndex) {
-					itemActive($slideElement);
-				},
-				onSlidePrev : function($slideElement, oldIndex, newIndex) {
-					itemActive($slideElement);
-				}
-			}
-
-			var bxSlider = $('.bxslider').bxSlider(settings);
-
-			$('.bxslider li.inline').click(function() {
-				$(this).siblings('li').removeClass('active');
-				$(this).addClass('active');
-				bxSlider.goToSlide($(this).index());
-
-			})
-	})
+	
 	</script>
     <decorator:head></decorator:head>
   </head>
