@@ -13,7 +13,7 @@ public class MemberVO {
 	private String member_birth;
 	private String member_type;
 	private int member_mileage;
-	private String seller_code;
+	private int seller_code;
 	
 	public String getMember_id() {
 		return member_id;
@@ -69,10 +69,10 @@ public class MemberVO {
 	public void setMember_mileage(int member_mileage) {
 		this.member_mileage = member_mileage;
 	}
-	public String getSeller_code() {
+	public int getSeller_code() {
 		return seller_code;
 	}
-	public void setSeller_code(String seller_code) {
+	public void setSeller_code(int seller_code) {
 		this.seller_code = seller_code;
 	}
 	

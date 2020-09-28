@@ -41,7 +41,7 @@ public class MemberDAO {
 				resultVO.setMember_birth(rs.getString("member_birth"));
 				resultVO.setMember_type(rs.getString("member_type"));
 				resultVO.setMember_mileage(rs.getInt("member_mileage"));
-				resultVO.setSeller_code(rs.getString("seller_code"));
+				resultVO.setSeller_code(rs.getInt("seller_code"));
 				list.add(resultVO);
 			}
 		} catch (Exception e) {
@@ -74,7 +74,7 @@ public class MemberDAO {
 				resultVO.setMember_birth(rs.getString("member_birth"));
 				resultVO.setMember_type(rs.getString("member_type"));
 				resultVO.setMember_mileage(rs.getInt("member_mileage"));
-				resultVO.setSeller_code(rs.getString("seller_code"));
+				resultVO.setSeller_code(rs.getInt("seller_code"));
 			} else {
 				System.out.println("no data");
 			}
@@ -102,6 +102,27 @@ public class MemberDAO {
 		}
 	}
 	
+	//seller_code만 수정 되게끔
+	public int updateSellerCode(MemberVO memberVO) {
+		int r = 0;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "update member set seller_code =? "
+					+ "where member_id = ?";
+			//member_mileage=?, seller_code=? 추가하기
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberVO.getSeller_code());
+			pstmt.setString(2, memberVO.getMember_id());
+			r = pstmt.executeUpdate();
+			System.out.println(r + " 건이 수정됨");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(null, pstmt, conn);
+		}
+		return r;
+	}
+	
 	//수정
 	public int update(MemberVO memberVO) {
 		int r = 0;
@@ -110,6 +131,7 @@ public class MemberDAO {
 			String sql = "update member set member_name=?, member_tel=?, member_address=?, member_pass=?, "
 					+ "member_gender=?, member_birth=?, member_type=? "
 					+ "where member_id = ?";
+			//member_mileage=?, seller_code=? 추가하기
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberVO.getMember_name());
 			pstmt.setString(2, memberVO.getMember_tel());
@@ -118,6 +140,8 @@ public class MemberDAO {
 			pstmt.setString(5, memberVO.getMember_gender());
 			pstmt.setString(6, memberVO.getMember_birth());
 			pstmt.setString(7, memberVO.getMember_type());
+//			pstmt.setInt(8, memberVO.getMember_mileage());
+//			pstmt.setInt(9, memberVO.getSeller_code());
 			pstmt.setString(8, memberVO.getMember_id());
 			r = pstmt.executeUpdate();
 			System.out.println(r + " 건이 수정됨");
@@ -129,7 +153,6 @@ public class MemberDAO {
 		return r;
 	}
 		
-	
 	
 	//등록
 	public int insert(MemberVO memberVO) { 
@@ -162,7 +185,7 @@ public class MemberDAO {
 
 	}
 
-	}
+}
 
 
 	

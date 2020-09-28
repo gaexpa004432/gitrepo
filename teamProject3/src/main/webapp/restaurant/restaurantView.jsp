@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+ <%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +19,23 @@
 	href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css">
 <meta charset="UTF-8">
 <style>
+	#divPaging {
+          clear:both; 
+        margin:0 auto; 
+        width:220px; 
+        height:50px;
+}
+
+    #divPaging > div {
+        float:left;
+        width: 30px;
+        margin:0 auto;
+        text-align:center;
+}
+#over:hover{
+	background-color: #f2f2f2;
+}
+
 ul.inline {
 	margin: 0;
 	padding: 0;
@@ -120,22 +138,22 @@ img.inimg {
 			bxSlider.goToSlide($(this).index());
 
 		})
-		
-		$("#review").on("click",function(){
+
+		$("#review").on("click", function() {
 			console.log("gg")
-			 var x = document.getElementById("input_imgs");
-			if(x.style.display === "none"){
-			$(".selProductFile").show();
-			$("#res_reivew_content").show();
-			$("#input_imgs").show();
-			$("#insert").show();
-			}else{
+			var x = document.getElementById("input_imgs");
+			if (x.style.display === "none") {
+				$(".selProductFile").show();
+				$("#res_reivew_content").show();
+				$("#input_imgs").show();
+				$("#insert").show();
+			} else {
 				$(".selProductFile").hide();
 				$("#res_reivew_content").hide();
 				$("#input_imgs").hide();
 				$("#insert").hide();
 			}
-			
+
 		})
 	});
 
@@ -243,8 +261,9 @@ img.inimg {
 			</div>
 			<div class="col-sm-6" align="right">
 				<Small style="vertical-align: bottom;"> 마지막 업데이트 ${ res.res_date }
-				</Small> <img src="/teamProject3/images/즐겨찾기.jpg"
+				</Small> <a href="resBookMark.do?res_no=${res.res_no}"><img src="/teamProject3/images/즐겨찾기.jpg"
 					style="width: 100px; height: 100px; margin-left: 30px;">
+					</a>
 
 			</div>
 		</div>
@@ -261,19 +280,17 @@ img.inimg {
 				<div id="map" style="width: 350px; height: 350px;"></div>
 			</div>
 		</div>
-	
-		
+
+
 		<p>
 		<hr>
-		<p style="height:100px"> </p>
+		<p style="height: 100px"></p>
 		<div class="row">
-			<div class="col" align="left">
-				${res.res_content }
-			</div>
+			<div class="col" align="left">${res.res_content }</div>
 		</div>
-		<p style="height:100px"> </p>
+		<p style="height: 100px"></p>
 		<hr>
-		
+
 		<div class="row">
 			<div class="col" align="center">
 				<button id="review">리뷰 등록</button>
@@ -281,42 +298,74 @@ img.inimg {
 		</div>
 		<div class="row">
 			<div class="col" align="center">
-				<form action="reviewInsert.do" method="post" enctype='multipart/form-data'>
+				<form action="reviewInsert.do" method="post"
+					enctype='multipart/form-data'>
 					<div class="col-sm-8" align="center">
 						<div align="left">
-							<input type="file" id="input_imgs" name="pic_img" style="display:none;"  multiple>
+							<input type="file" id="input_imgs" name="pic_img"
+								style="display: none;" multiple>
 						</div>
 					</div>
-						
+
 					<div class="col-sm-8" align="center">
 						<div class="imgs_wrap">
 							<img id="img" />
 						</div>
 					</div>
-					<br>
-					<input value="${ res.res_no }" name="res_no" hidden="hidden">
-					<textarea cols="100" rows="10" id="res_reivew_content" name="res_review_content" style="display:none;"></textarea>
-					<button id="insert" style="vertical-align: top;display:none;"> 리뷰 쓰기 </button>
+					<br> <input value="${ res.res_no }" name="res_no"
+						hidden="hidden">
+					<textarea cols="100" rows="10" id="res_reivew_content"
+						name="res_review_content" style="display: none;"></textarea>
+					<button id="insert" style="vertical-align: top; display: none;">
+						리뷰 쓰기</button>
 				</form>
+				<br>
+				<br>
+				<br>
 			</div>
 		</div>
 		<!-- 리뷰 공간  -->
-	<div class="row">
-	<c:forEach items="${ review }" var="list" >
-	${ list.res_review_no }<br>
-	${ list.res_review_content }<br>
-	${ list.member_id }<br>
-	${ list.res_no }<br>
-	${ list.res_review_date }<br>
-	
-	<c:forEach items="${list.res_review_picture }" var="reviewImg">
-		${reviewImg }<br>
-		</c:forEach>
-</c:forEach>
-	</div>
 
- 
+
+
+			<c:forEach items="${ review }" var="list">
+		<div class="row" id="over" style="border-top-width:1px;border-top-style:solid;padding:20px; border-top-color : #f0f0f5;">
+
+				<div class="col-sm-1" >
+					작성자 위치 ${ list.member_id }<br>
+				</div>
+				<div class="col-sm-11" align="left">
+					<small>${ list.res_review_date }</small><br> ${ list.res_review_content }<br>
+					<br> <br>
+					<c:forEach items="${list.res_review_picture }" var="reviewImg">
+						<img style="width: 100px; height: 100px;"
+							src="/teamProject3/images/${reviewImg }">
+
+					</c:forEach>
+					
+				</div>
+
+		</div>
+			</c:forEach>
+
+<div align="center">
+ <my:paging paging="${paging}" jsfunc="gopage" />
+ </div>
+   <form name="searchFrm">		
+	<input type="hidden" name="p" value="1">
+	<input type="hidden" name="res_no" value="${ res.res_no }">
+	
+</form>
+<script>
+	function gopage(p) {			// 검색 function
+		searchFrm.p.value = p;		// 페이지번호 받아와서 submit에 넘김
+		searchFrm.submit();
 		
+		// location.href="deptSelectAll?p=" + p;	// 이동되는 주소가 달라서 여러사람이 쓰기위해서는 매개값 p로 해줌
+	}
+</script> 
+
+
 
 
 
