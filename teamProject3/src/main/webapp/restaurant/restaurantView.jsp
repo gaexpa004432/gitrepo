@@ -309,7 +309,7 @@ img.inimg {
 	${ list.res_no }<br>
 	${ list.res_review_date }<br>
 	
-	<c:forEach items="${list.res_review_picture }" var="reviewImg">
+	<c:forEach items="${list.res_review_picture }" var="reviewImg"> 
 		${reviewImg }<br>
 		</c:forEach>
 </c:forEach>
