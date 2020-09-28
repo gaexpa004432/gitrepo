@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class FrontController
  */
 //@WebServlet(name = "front",urlPatterns = "*.do",initParams = {@WebInitParam(name="charset",value="UTF-8")})
-@MultipartConfig(location = "c:/upload", maxRequestSize = 1024 * 1024 * 10)
+@MultipartConfig(location = "c:/upload")
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -21,9 +21,9 @@ public class BookMarkController implements Controller {
 		System.out.println(res_no + favorite_code);
 		HttpSession session = ((HttpServletRequest) request).getSession();
 		favorite.setMember_id((String) session.getAttribute("id"));
-		favorite.setFavorite_no(res_no);
+		favorite.setFavorite_no(Integer.parseInt(res_no));
 		favorite.setFavorite_code(favorite_code);
-		//FavoriteDAO.getInstance().insert(favorite);
+		FavoriteDAO.getInstance().insert(favorite);
 		
 	}
 

@@ -62,6 +62,12 @@ img.inimg {
 <script type="text/javascript">
 	var sel_files = [];
 	$(function() {
+		var favorite = "${favorite}";
+		if(favorite == "true"){
+			console.log("true");
+		} else{
+			console.log("false");
+		}
 		$("#input_imgs").on("change", handleImgFileSelect);
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {

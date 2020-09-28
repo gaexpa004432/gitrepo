@@ -119,7 +119,7 @@
 		<br>
 
 		<div>
-			<input name="res_tel" style="width: 300px" placeholder="전화번호 등록">
+			<input name="res_tel" style="width: 300px" placeholder="전화번호 등록" required>
 		</div>
 		<br>
 
