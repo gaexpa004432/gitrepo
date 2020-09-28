@@ -52,14 +52,13 @@ div {
 <script LANGUAGE="JavaScript">   //새로운 재료 기입란
 	cnt=0;
 	
-	function input_append(ff){
+	function input_append(ff){       // 기입란 추가
  		 cnt++;
  		 app = document.getElementById("append");
-  		  app.innerHTML += cnt + " : <input type=text name=txt><br>"; 
+  		  app.innerHTML += cnt + " : <input type='text' name='new_prod '><br>"; 
   		
 		}
-
-	function input_result(ff){
+	function input_result(ff){             //기입된 재료 확인
   		var str = "";
   		if(cnt == 1){
    			 str = ff.txt.value;
@@ -118,14 +117,14 @@ div {
 	<hr>
 
 	<h2>재료</h2>
-	<select id="drow" multiple="multiple">  <!-- multiple="multiple" selected="selected"-->
+	<select id="drow" name="product_insert_content" multiple="multiple">
 		<option value="" >재료 선택</option>
 		<c:forEach items="${list}" var="productlist">
 			<option value="${productlist.product_name}" selected="selected">${productlist.product_name}</option>
 		</c:forEach>
 	</select>
 	
-	<input id="input" name = "recipe_content"></input>
+	<div id="mult" name = "recipe_content" value=""></div>
 	<br>
 
 
@@ -135,16 +134,14 @@ div {
  		 $( "select option:selected" ).each(function() {
       		str += $( this ).text() + " ";
   		  });
-  	  $( "#input" ).text( str );
+  	  $( "#mult" ).text( str );
  		 })
  	 .change();
 
 	</script> 
-
 	<p class="p1">
 	<hr>
 	</p>
-	
 		<input type="button" value="새로운 재료 추가" name = "recipe_content"
 			onclick="input_append(this.form)">
 		<div id="append"></div>
