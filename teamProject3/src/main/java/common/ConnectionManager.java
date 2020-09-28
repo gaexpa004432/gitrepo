@@ -15,14 +15,16 @@ public class ConnectionManager {
 		Connection conn = null;
 		try {
 			//driverManager 이용하여 연결
-//			String jdbc_url = "jdbc:oracle:thin:@localhost:1521:xe";
-//			conn = DriverManager.getConnection(jdbc_url, "hr", "hr");
+			//String jdbc_url = "jdbc:oracle:thin:@localhost:1521:xe";
+			//conn = DriverManager.getConnection(jdbc_url, "hr", "hr");
 
 			//datasource를 이용하여 connection 획득
-			Context initContext = new InitialContext();
-			DataSource ds = (DataSource)initContext.lookup("java:/comp/env/jdbc/oracle"); // 호일이형 자리의 db는 연결이 안되기 때문에 일시적으로 본인 db의 HR로 연결되게 만들어놨습니다. 09/19
-			conn = ds.getConnection();   //conn 을 할당받음
-			System.out.println("dbcp에서 conn할당");
+			
+			  Context initContext = new InitialContext(); DataSource ds =
+			  (DataSource)initContext.lookup("java:/comp/env/jdbc/oracle"); 
+			  conn = ds.getConnection();
+			  //conn 을 할당받음 System.out.println("dbcp에서 conn할당");
+			 
 			
 		}catch(Exception e) {
 			e.printStackTrace();
