@@ -9,14 +9,12 @@
 <head>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
+    <script
 	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+   
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5459989244bc763dbd4ad7a7edf03cc0&libraries=services"></script>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css">
+
 <meta charset="UTF-8">
 <style>
 	#divPaging {
@@ -107,37 +105,34 @@ img.inimg {
 								map.setCenter(coords);
 							}
 						});
-		function itemActive($el) {
-			$el.siblings().removeClass('active');
-
-		}
+		
 		var settings = {
-			slideWidth : 235,
-			slideMargin : 10,
-			minSlides : 1,
-			maxSlides : 5,
-			infiniteLoop : true,
-			responsive : true,
-			controls : true,
-			pager : false,
-			moveSlides : 1,
-			hideControlOnEnd : true,
-			onSlideNext : function($slideElement, oldIndex, newIndex) {
-				itemActive($slideElement);
-			},
-			onSlidePrev : function($slideElement, oldIndex, newIndex) {
-				itemActive($slideElement);
+				slideWidth : 235,
+				slideMargin : 10,
+				minSlides : 1,
+				maxSlides : 5,
+				infiniteLoop : true,
+				responsive : true,
+				controls : true,
+				pager : false,
+				moveSlides : 1,
+				hideControlOnEnd : true,
+				onSlideNext : function($slideElement, oldIndex, newIndex) {
+					itemActive($slideElement);
+				},
+				onSlidePrev : function($slideElement, oldIndex, newIndex) {
+					itemActive($slideElement);
+				}
 			}
-		}
 
-		var bxSlider = $('.bxslider').bxSlider(settings);
+			var bxSlider = $('.bxslider').bxSlider(settings);
 
-		$('.bxslider li.inline').click(function() {
-			$(this).siblings('li').removeClass('active');
-			$(this).addClass('active');
-			bxSlider.goToSlide($(this).index());
+			$('.bxslider li.inline').click(function() {
+				$(this).siblings('li').removeClass('active');
+				$(this).addClass('active');
+				bxSlider.goToSlide($(this).index());
 
-		})
+			})
 
 		$("#review").on("click", function() {
 			console.log("gg")
@@ -155,7 +150,22 @@ img.inimg {
 			}
 
 		})
-	});
+		
+		$("#bookmark").on("click",function(){
+			var no = "${res.res_no}";
+			var code = "fs";
+			$.ajax("bookMark.do", {
+				method : "get",
+				dataType : "json",					// 서버에서 넘겨주는 데이터타입. text, html, json 등 타입을 적어줌
+				data : {no:no,code:code},						// 보낼 파라미터. 아작스함수가 값을 쿼리 문자형태(no=)로 바꿔서 넘겨줌
+				success : function(data) {
+					
+				}
+			});
+		})
+		
+		
+	}); // end of onload
 
 	function fileUploadAction() {
 		console.log("fileUploadAction");
@@ -235,8 +245,12 @@ img.inimg {
 				console.log("Result : " + e.currentTarget.responseText);
 			}
 		}
-
+		
 		xhr.send(data);
+
+	}
+	function itemActive($el) {
+		$el.siblings().removeClass('active');
 
 	}
 </script>
@@ -261,7 +275,7 @@ img.inimg {
 			</div>
 			<div class="col-sm-6" align="right">
 				<Small style="vertical-align: bottom;"> 마지막 업데이트 ${ res.res_date }
-				</Small> <a href="resBookMark.do?res_no=${res.res_no}"><img src="/teamProject3/images/즐겨찾기.jpg"
+				</Small> <a href="#" id="bookmark"><img src="/teamProject3/images/즐겨찾기.jpg"
 					style="width: 100px; height: 100px; margin-left: 30px;">
 					</a>
 
