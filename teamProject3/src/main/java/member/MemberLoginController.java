@@ -35,7 +35,7 @@ public class MemberLoginController implements Controller {
 				request.getSession().setAttribute("login", resultVO);//세션에 로그인 정보 저장
 				request.getSession().setAttribute("id", memberVO.getMember_id());//사용자의 id를 준다
 				request.getSession().setAttribute("pass", memberVO.getMember_pass());
-				request.getSession().setAttribute("birth", resultVO.getMember_birth());
+				request.getSession().setAttribute("birth", resultVO.getMember_birth().substring(0, 10));
 				System.out.println("비번 담기 : " + memberVO.getMember_pass());
 				System.out.println("생년월일 : " + resultVO.getMember_birth());
 				

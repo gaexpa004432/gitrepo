@@ -12,3 +12,16 @@ create table member (
 
 alter table member add constraint seller_code_fk
 foreign key (seller_code) references seller(seller_code);
+
+
+alter table member rename column member_address to member_roadAddress;
+
+alter table member add (member_email varchar2(50));
+
+alter table member add (member_image varchar2(100));
+
+alter table member add (member_postcode varchar2(100));
+
+alter table member add (member_detailAddress varchar2(100));
+
+alter table member add (member_extraAddress varchar2(100));
