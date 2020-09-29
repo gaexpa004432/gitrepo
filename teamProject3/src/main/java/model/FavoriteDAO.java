@@ -61,4 +61,20 @@ public class FavoriteDAO {
 		}
 		return list; 
 	}
+
+	public void delete(FavoriteVO favorite) {
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "delete favorites where favorite_code = ? and favorite_no = ? and member_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, favorite.getFavorite_code());
+			pstmt.setInt(2, favorite.getFavorite_no());
+			pstmt.setString(3, favorite.getMember_id());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(null, pstmt, conn);
+		}
+	}
 }

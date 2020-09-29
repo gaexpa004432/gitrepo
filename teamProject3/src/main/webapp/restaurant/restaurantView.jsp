@@ -62,6 +62,13 @@ img.inimg {
 <script type="text/javascript">
 	var sel_files = [];
 	$(function() {
+		var favorite = "${favorite}";
+		if(favorite == "true"){
+			$("#bookmark").html("<img src='/teamProject3/images/즐겨찾기취소.jpg' style='width: 100px; height: 100px; margin-left: 30px;'>");
+			
+		} else{
+			$("#bookmark").html("<img src='/teamProject3/images/즐겨찾기.jpg'style='width: 100px; height: 100px; margin-left: 30px;'>");
+		}
 		$("#input_imgs").on("change", handleImgFileSelect);
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
@@ -154,14 +161,27 @@ img.inimg {
 		$("#bookmark").on("click",function(){
 			var no = "${res.res_no}";
 			var code = "fs";
+			if(favorite === "false"){
+					$("#bookmark").html("<img src='/teamProject3/images/즐겨찾기취소.jpg' style='width: 100px; height: 100px; margin-left: 30px;'>");
+					favorite = "true";
 			$.ajax("bookMark.do", {
 				method : "get",
 				dataType : "json",					// 서버에서 넘겨주는 데이터타입. text, html, json 등 타입을 적어줌
-				data : {no:no,code:code},						// 보낼 파라미터. 아작스함수가 값을 쿼리 문자형태(no=)로 바꿔서 넘겨줌
+				data : {no:no,code:code,bookmark:"insert"},						// 보낼 파라미터. 아작스함수가 값을 쿼리 문자형태(no=)로 바꿔서 넘겨줌
 				success : function(data) {
-					
 				}
 			});
+			}else{
+						$("#bookmark").html("<img src='/teamProject3/images/즐겨찾기.jpg' style='width: 100px; height: 100px; margin-left: 30px;'>");
+						favorite = "false";
+				$.ajax("bookMark.do", {
+					method : "get",
+					dataType : "json",					// 서버에서 넘겨주는 데이터타입. text, html, json 등 타입을 적어줌
+					data : {no:no,code:code,bookmark:"delete"},						// 보낼 파라미터. 아작스함수가 값을 쿼리 문자형태(no=)로 바꿔서 넘겨줌
+					success : function(data) {
+					}
+				});
+			}
 		})
 		
 		
@@ -275,7 +295,7 @@ img.inimg {
 			</div>
 			<div class="col-sm-6" align="right">
 				<Small style="vertical-align: bottom;"> 마지막 업데이트 ${ res.res_date }
-				</Small> <a href="#" id="bookmark"><img src="/teamProject3/images/즐겨찾기.jpg"
+				</Small> <a href="" id="bookmark"><img src="/teamProject3/images/"
 					style="width: 100px; height: 100px; margin-left: 30px;">
 					</a>
 
