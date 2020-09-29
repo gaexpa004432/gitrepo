@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,21 +15,36 @@
 
 
 <script>
-
-	$(function(){
+$(function(){
+var a = "a";
+	if(a=="a"){
+		$("#img").text("a")
 		
-		$("#files").on("click",function(){
-			$("#gg").show();
-			$("#ff").hide();
+	}else{
+		$("#img").text("b")
+		a = "b";
+	}
+	
+		
+		$("#on").on("click",function(){
+			if(a == "a"){
+				console.log("ajax");
+				$("#img").text("b")
+				a="b";
+			}else{
+				console.log("delete ajax");
+				$("#img").text("a")
+				a="a";
+			}
+			
 		})
 		
-	})
-
+	
+})
 </script>
 </head>
 <body>
-	<input type="button" id="files" name="name" >
-	<input id="gg" placeholder="gg" hidden="hidden">
-	<input id="ff" >
+	<button id="on">버튼</button>
+	<h1 id="img"></h1>
 </body>
 </html>

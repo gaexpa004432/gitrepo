@@ -17,14 +17,14 @@ public class FreeBoardViewController implements Controller {
 		String url= "/board/freeBoardView.jsp";
 
 	//	FreeBoardDAO.getInstance().updateReadCount(num);
-		FreeBoardDAO DAO = new FreeBoardDAO();//dao객체 만들어서 모든 데이터 다 들고오기
-		FreeBoardVO VO = new FreeBoardVO();
-		VO.setBoard_no(Integer.parseInt(request.getParameter("board_no")));
-		VO = DAO.selectOne(VO);//dao에도 selectOne 만들어줘야함 
-		HttpSession session = ((HttpServletRequest)request).getSession();
-	    String id = (String)session.getAttribute("id");//로그인된 아이디를 들고옴
-	    request.setAttribute("id", (String)session.getAttribute("id"));
-		request.setAttribute("board", VO);
+		FreeBoardDAO dao = new FreeBoardDAO();//dao객체 만들어서 모든 데이터 다 들고오기
+		FreeBoardVO vo = new FreeBoardVO();
+		vo.setBoard_no(Integer.parseInt(request.getParameter("board_no")));
+		vo = dao.selectOne(vo);//dao에도 selectOne 만들어줘야함 
+	
+		String content= vo.getBoard_content().replaceAll("\r\n", "<br>");
+		vo.setBoard_content(content); //글 입력할때 엔터치면 적용되도록 br태그로 변환해야함(글의 엔터값을 br태그로 변환)
+		request.setAttribute("board", vo);
 		request.getRequestDispatcher(url).forward(request,response);
 		
 	}
