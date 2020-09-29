@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class FrontController
  */
 //@WebServlet(name = "front",urlPatterns = "*.do",initParams = {@WebInitParam(name="charset",value="UTF-8")})
-@MultipartConfig(location = "c:/upload", maxRequestSize = 1024 * 1024 * 10)
+@MultipartConfig(location = "c:/upload")
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -45,7 +45,7 @@ public class FrontController extends HttpServlet {
 		list.put("/member/addInsert.do", new member.MemberAddInsertController());
 		list.put("/member/select.do", new member.MemberSelectController());
 		list.put("/member/update.do", new member.MemberUpdateController());
-		
+		list.put("/member/addUpdate.do", new member.MemberAddUpdateController());
 
 		
 		

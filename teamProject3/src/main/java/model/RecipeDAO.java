@@ -25,16 +25,15 @@ public class RecipeDAO {
 			try {
 				conn = ConnectionManager.getConnnect();
 				String sql = "INSERT INTO recipe (recipe_number, recipe_name, recipe_date,"
-						+ " recipe_content, member_id, product_insert_content, new_prod)" 
-						+ " VALUES (recipe_no.NEXTVAL, ?, sysdate, ?, ?, ?, ?)"; 
+						+ " recipe_content, member_id)" 
+						+ " VALUES (recipe_no.NEXTVAL, ?, sysdate, ?, ?)"; 
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, recipeVO.getRecipe_name());
 				pstmt.setString(2, recipeVO.getRecipe_content());
 				pstmt.setString(3, recipeVO.getMember_id());
-				pstmt.setString(4, recipeVO.getProduct_insert_content());
-				pstmt.setString(5, recipeVO.getNew_prod());
+
 				r = pstmt.executeUpdate();
-				System.out.println(r + " 건이 처리됨");
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
