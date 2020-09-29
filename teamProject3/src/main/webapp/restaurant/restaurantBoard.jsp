@@ -18,8 +18,8 @@
 		min-height:250px;
 	}
 	
-	table{
-	border-spacing:50px;
+	td {
+	padding:50px;
 	}
 	#divPaging {
           clear:both; 
@@ -47,7 +47,7 @@
      <c:if test="${i%j == 0}">
       <tr>
      </c:if>
-     <td>${restaurantlist.res_no}<a href="/teamProject3/restaurantView.do?res_no=${restaurantlist.res_no}"><img class="inimg" src="/teamProject3/images/${restaurantlist.res_name}"></a></td>
+     <td><a href="/teamProject3/restaurantView.do?res_no=${restaurantlist.res_no}"><img class="inimg" src="/teamProject3/images/${restaurantlist.res_name}"></a></td>
     <c:if test="${i%j == j-1}">
      </tr>
     </c:if> 
