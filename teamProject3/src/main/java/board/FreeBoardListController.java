@@ -18,7 +18,8 @@ public class FreeBoardListController implements Controller {
 		 String url = "/board/freeBoardList.jsp";
 		 FreeBoardDAO DAO = new FreeBoardDAO();//dao객체 만들어서 모든 데이터 다 들고오기
 		 String p = request.getParameter("p");
-			String search = request.getParameter("search");
+			String search = request.getParameter("board_search");
+			
 			//유효성 체크
 			int page = 1;
 			if(p != null) {

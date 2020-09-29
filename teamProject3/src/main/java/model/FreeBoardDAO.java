@@ -47,15 +47,16 @@ public class FreeBoardDAO {
 			try { 
 	         String where = " where 1=1 ";
 	         if(freeboardVO.getBoard_sub() != null) {
-	            where += " and department_name like '%' || ? || '%'";
+	            where += " and Board_sub like '%' || ? || '%'  or Board_content like '%' || ? || '%'";
 	         }
 				 String sql = "select a.* from (select rownum rn,b.* from ( " + 
-				 		"              SELECT * from board order by board_no desc" + 
+				 		"              SELECT * from board "+where+" order by board_no desc" + 
 				 		"           ) b) a where rn between ? and ?";
 				 pstmt = conn.prepareStatement(sql); // 미리 sql 구문이 준비가 되어야한다
 		         int pos = 1;   // 물음표값 동적으로 하려고 변수선언
 		         if(freeboardVO.getBoard_sub() != null) {
-		            pstmt.setString(pos++, freeboardVO.getBoard_sub()); // 물음표부분이 pos++로 인해 동적으로 늘어남
+		            pstmt.setString(pos++, freeboardVO.getBoard_sub());
+		            pstmt.setString(pos++, freeboardVO.getBoard_sub());// 물음표부분이 pos++로 인해 동적으로 늘어남
 		         }
 		         pstmt.setInt(pos++, freeboardVO.getFirst());      // 물음표부분이 pos++로 인해 동적으로 늘어남
 		         pstmt.setInt(pos++, freeboardVO.getLast());
@@ -124,7 +125,7 @@ public class FreeBoardDAO {
 				   return r;
 				   }
 				
-				//view 
+				//단건조회(게시물view) 
 				public FreeBoardVO selectOne(FreeBoardVO freeboardVO) {
 					 FreeBoardVO resultVO = null;
 					 
@@ -144,6 +145,7 @@ public class FreeBoardDAO {
 						resultVO.setBoard_sub(rs.getString("board_sub"));
 						resultVO.setBoard_content(rs.getString("board_content"));
 						resultVO.setMember_name(rs.getString("member_name"));
+						resultVO.setBoard_date(rs.getString("board_date"));
 						}
 					 }catch(Exception e) {
 						 e.printStackTrace();		 
@@ -158,12 +160,13 @@ public class FreeBoardDAO {
 				         conn = ConnectionManager.getConnnect();
 				         String where = " where 1=1 ";
 				         if(freeboard.getBoard_sub() != null) {
-				            where += " and Board_sub like '%' || ? || '%'";
+				            where += " and Board_sub like '%' || ? || '%' or Board_content like '%' || ? || '%'";
 				         }
 				         String sql = "select count(*) from board" + where;
 				         pstmt = conn.prepareStatement(sql);
 				         int pos = 1;
 				         if(freeboard.getBoard_sub() !=null) {
+				            pstmt.setString(pos++,freeboard.getBoard_sub());
 				            pstmt.setString(pos++,freeboard.getBoard_sub());
 				         }
 				         rs = pstmt.executeQuery();
