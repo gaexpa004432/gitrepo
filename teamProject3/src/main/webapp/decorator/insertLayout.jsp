@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
 	prefix="decorator"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
   <head>
   
     <title>Vegan - For Vegan , For Free!</title>
@@ -113,10 +112,10 @@ h6, .h6 {
 	<script type="text/javascript">
 	
 	</script>
-    <decorator:head></decorator:head>
+    <decorator:head/>
   </head>
+  
   <body>
-    
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="index.html">Vegan</a>
@@ -132,52 +131,50 @@ h6, .h6 {
 	          <li class="nav-item"><a href="" class="nav-link">Board</a></li>
 	          <li class="nav-item"><a href="" class="nav-link">Recommands</a></li>
 	          <li class="nav-item"><a href="" class="nav-link">Event</a></li>
-	          <c:choose>
-		          <c:when test="${empty sessionScope.login.member_id}">
-			          <li class="nav-item"><a href="memberInsert.jsp" class="nav-link">Join</a></li>
-			          <li class="nav-item"><a href="memberLogin.jsp" class="nav-link">Login</a></li>
-		          </c:when>
-		          <c:when test="${not empty sessionScope.login.member_id}">
-			          <li class="nav-item"><a href="myPage.jsp" class="nav-link">MyPage</a></li>
-			          <li class="nav-item"><a href="logout.do" class="nav-link">Logout</a></li> 
-		          	  <li class="nav-item">${sessionScope.login.member_id}님</li> 
-		          </c:when>
-	          </c:choose>
+	          <li class="nav-item"><a href="memberInsert.jsp" class="nav-link">sign up</a></li>
+	          <li class="nav-item"><a href="memberLogin.jsp" class="nav-link">sign in</a></li>
 	        </ul>
 	      </div>
 	    </div>
 	  </nav>
     <!-- END nav -->
     
+    
     <div class="hero-wrap ftco-degree-bg" style="background-image: 
     url('${pageContext.request.contextPath}/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
-      <div class="overlay"></div>
+     <div class="overlay">
+      
+      
+      </div> 
       <div class="container">
-        <div class="row no-gutters slider-text justify-content-center align-items-center">
-          <div class="col-lg-8 col-md-6 ftco-animate d-flex align-items-end">
-          	<div class="text text-center">
-	            <h1 class="mb-4">Vegan <br>For free, Enjoy it NOW!</h1>
-	            <p style="font-size: 18px;">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts</p>
-	            <form action="#" class="search-location mt-md-5">
+        <div class="row no-gutters slider-text justify-content-center"><!--   align-items-center -->
+          <div class="col-lg-5 col-md-6 ftco-animate d-flex align-items-end"><!--  -->
+          <decorator:body/>
+          	<!-- <div >
+          	
+	          <h1 class="mb-4"> <br></h1>
+	            <p style="font-size: 18px;"></p>
+	            <br><br><br><br><br>
+		        
+	            <form action="#" class="search-location mt-md-6">
 		        		<div class="row justify-content-center">
 		        			<div class="col-lg-10 align-items-end">
 		        				<div class="form-group">
 		          				<div class="form-field">
-				                <input type="text" class="form-control" placeholder="Search Reciepe">
-				                <button><span class="ion-ios-search"></span></button>
 				              </div>
 			              </div>
 		        			</div>
-		        		</div>
+		        		</div> -->
 		        	</form>
             </div>
           </div>
         </div>
+      </div> 
       </div>
       <div class="padding_test">
       
       </div>
-            <decorator:body/>
+            
             
   <script src="${pageContext.request.contextPath}/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/popper.min.js"></script>

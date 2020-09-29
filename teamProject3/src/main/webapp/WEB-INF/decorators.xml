@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="euc-kr" ?>
 
 <decorators defaultdir="/decorator">
-	
-	<decorator name="admin" page="adminlayout.jsp">
-		<pattern>/admin/*</pattern>
-	</decorator>
-	
-	<decorator name="main" page="index.jsp">
 
+	<decorator name="main" page="index.jsp">
 		<pattern>/*</pattern>
 	</decorator>
+	
+	<!-- <decorator name="main" page="insertLayout.jsp">
+		<pattern>/member/memberInsert.jsp</pattern>
+		<pattern>/member/memberLogin.jsp</pattern>
+	</decorator> -->
+	
+	<excludes>
+		<!-- <pattern>/member/memberInsert.jsp</pattern>
+		<pattern>/member/memberLogin.jsp</pattern> -->
+		<pattern>/member/myPage.jsp</pattern>
+	</excludes> 
 	
 </decorators>
