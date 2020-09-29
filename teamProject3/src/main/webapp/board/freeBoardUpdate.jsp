@@ -32,7 +32,6 @@
 		<div>
 			<button>수정</button>
 		</div>
-		<br>
 		<div>
 			<button>취소</button>	
 		</div>

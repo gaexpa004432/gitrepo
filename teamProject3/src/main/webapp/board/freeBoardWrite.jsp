@@ -12,11 +12,12 @@
         }
     
         h2 {
-        	text-align: center;
+        	text-align: center; font-size: 30px;
         } 
 		th {
 			width: 50px;
 		}
+
     </style>
 </head>
 <body>
@@ -30,6 +31,7 @@
                     <th>제목 *</th>
                     <td><input type="text" name="board_sub"></td>
                 </tr>
+
                 <tr>
                     <th>이름 *</th>
                     <td><input type="text" name="member_name"></td>
@@ -41,16 +43,16 @@
                 </tr>
                 <tr>
                     <th>내용</th>
-                    <td><textarea cols="100" rows="30" name="board_content"></textarea></td>
+                    <td><textarea cols="100" rows="20" name="board_content"></textarea></td>
                 </tr>
 			
             </table>
+			<br>
 			
-			
-            <input class="btn1" type="submit" value="등록" align="center";>
-            <input class="btn1" type="reset" value="다시작성하기">
-            <input class="btn1" type="button" value="취소" onclick="javascript:history.back()">
+            <input class="btn1" type="submit" value="등록" align="center";>   
+            <input class="btn1" type="button" value="목록으로" onclick="javascript:history.back()">
         </form>
+        <br><br>
     </div>
 </body>
 </html>
