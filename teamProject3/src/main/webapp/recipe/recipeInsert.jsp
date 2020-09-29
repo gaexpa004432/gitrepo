@@ -10,11 +10,59 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-<style>
 
-div {
-    color: red;
+<style>
+.btn{  /* 새로운재료 추가 버튼 css */
+      text-decoration: none;
+      font-size:2rem;
+      color:white;
+      padding:10px 20px 10px 20px;
+      margin:20px;
+      display:inline-block;
+      border-radius: 10px;
+      transition:all 0.1s;
+      text-shadow: 0px -2px rgba(0, 0, 0, 0.44);
+      font-family: 'Lobster', cursive; <!-- google font -->
+    }
+    .btn:active{
+      transform: translateY(3px);
+    }
+    .btn.blue{
+      background-color: #1f75d9;
+      border-bottom:5px solid #165195;
+    }
+    .btn.blue:active{
+      border-bottom:2px solid #165195;
+    }
+    .btn.red{
+      background-color: #ff521e;
+      border-bottom:5px solid #c1370e;
+    }
+    .btn.red:active{
+      border-bottom:2px solid #c1370e;
+    }
+     .btn.green{
+      background-color: #298A08;
+      border-bottom:5px solid #165195;
+    }
+    .btn.green:active{
+      border-bottom:2px solid #165195;
+    }
+	.btn.pink{
+      background-color: #FE2E64;
+      border-bottom:5px solid #165195;
+    }
+    .btn.pink:active{
+      border-bottom:2px solid #165195;
+    }
+    
+.impo {
+    color: black;
   }
+  
+ div {
+    color: red;
+  } 
   
 #drow {
 	background-color: white;
@@ -49,27 +97,7 @@ div {
 		}
 </script>
 
-<script LANGUAGE="JavaScript">   //새로운 재료 기입란
-	cnt=0;
-	
-	function input_append(ff){       // 기입란 추가
- 		 cnt++;
- 		 app = document.getElementById("append");
-  		  app.innerHTML += cnt + " : <input type='text' name='new_prod '><br>"; 
-  		
-		}
-	function input_result(ff){             //기입된 재료 확인
-  		var str = "";
-  		if(cnt == 1){
-   			 str = ff.txt.value;
- 		 } else {
-   		 for (i = 0; i < cnt; i++){
-     		 str += ff.txt[i].value + " | ";
-    	}
-  	}
-  		alert(str);
-}
-</script>
+
 
 </head>
 
@@ -80,9 +108,6 @@ div {
 
 	<label>메뉴 이름</label>
 	<input  type="text" name="recipe_name" id="recipe_name">
-	
-	<label>회원 ID</label>
-	<input  type="text" name="member_id" id="member_id">
 	
 	<hr>
 	<br>
@@ -115,21 +140,23 @@ div {
 	<br>
 
 	<hr>
-
 	<h2>재료</h2>
 	<select id="drow" name="product_insert_content" multiple="multiple">
 		<option value="" >재료 선택</option>
 		<c:forEach items="${list}" var="productlist">
-			<option value="${productlist.product_name}" selected="selected">${productlist.product_name}</option>
+			<option value="${productlist.product_name}">${productlist.product_name}</option>
 		</c:forEach>
 	</select>
 	
-	<div id="mult" name = "recipe_content" value=""></div>
 	<br>
-
+	<div id="mult" name = "recipe_content" value=""></div>
+	
+	<span class = "unit">중량</span>
+	<input>
 
  	<script>            //다중선택 한 값 출력
 		$( "select" ).change(function () {
+			
    	 var str = "";
  		 $( "select option:selected" ).each(function() {
       		str += $( this ).text() + " ";
@@ -139,17 +166,12 @@ div {
  	 .change();
 
 	</script> 
-	<p class="p1">
 	<hr>
-	</p>
-		<input type="button" value="새로운 재료 추가" name = "recipe_content"
-			onclick="input_append(this.form)">
-		<div id="append"></div>
-		<input type="button" value="재료 확인" onclick="input_result(this.form)">
-		<br>
-		
+
+	<a class = "btn green" href="/teamProject3/recipe/productInsert.jsp">새로운재료추가</a>
+
 	<hr>
-	<button>등록</button>
+	<button class = "btn pink">등록</button>
 	
 	</form>
 </body>

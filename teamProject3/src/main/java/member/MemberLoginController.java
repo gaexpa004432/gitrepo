@@ -38,6 +38,8 @@ public class MemberLoginController implements Controller {
 				request.getSession().setAttribute("birth", resultVO.getMember_birth().substring(0, 10));
 				System.out.println("비번 담기 : " + memberVO.getMember_pass());
 				System.out.println("생년월일 : " + resultVO.getMember_birth());
+				System.out.println("판매자 코드: " + resultVO.getSeller_code());
+				
 				
 				page = "memberLoginOutput.jsp";
 			} else { //패스워드 불일치
