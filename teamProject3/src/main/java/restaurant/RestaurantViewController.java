@@ -45,12 +45,13 @@ public class RestaurantViewController implements Controller {
 		paging.setPageSize(10); // 페이지 번호 수 설정
 		paging.setPage(page); // paging 반영되게 해주기
 		
-		paging.setTotalRecord(RestaurantReviewDAO.getInstance().count(null)); // dao.count() 쓰면 first,last paging에서 알아서 계산다해주고
+		paging.setTotalRecord(RestaurantReviewDAO.getInstance().count(restaurantReview)); // dao.count() 쓰면 first,last paging에서 알아서 계산다해주고
 		// 카운트에도 넘김
 		restaurantReview.setFirst(paging.getFirst());
 		restaurantReview.setLast(paging.getLast());
+	// 임시
+		request.getSession().setAttribute("id", "qqq");	
 	//
-		
 		restaurant = RestaurantDAO.getInstance().selectOne(restaurant);
 		HttpSession session = ((HttpServletRequest) request).getSession();
 		favorite.setMember_id((String) session.getAttribute("id"));

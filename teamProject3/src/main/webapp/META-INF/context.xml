@@ -12,7 +12,11 @@
               username="hr" password="hr" maxTotal="20" maxIdle="10"
               maxWaitMillis="-1"/>
               
-              
+<Resource name="jdbc/server" auth="Container"
+              type="javax.sql.DataSource" driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@39.116.34.40:1521:orcl"
+              username="vegan" password="vegan" maxTotal="20" maxIdle="10"
+              maxWaitMillis="-1"/>      
               
               
               

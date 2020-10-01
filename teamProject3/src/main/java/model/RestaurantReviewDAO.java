@@ -133,16 +133,15 @@ public class RestaurantReviewDAO {
 		}
 		return restaurantList; 
 	}
-	public int count(RestaurantVO restaurant) {
+	public int count(RestaurantReviewVO restaurant) {
 		int cnt = 0;
 		try {
 			conn = ConnectionManager.getConnnect();
 			
 			
-			String sql = "select count(*) from res_review ";
+			String sql = "select count(*) from res_review where res_no = ?";
 			pstmt = conn.prepareStatement(sql);
-			int pos = 1;
-			
+			pstmt.setInt(1,restaurant.getRes_no());
 			ResultSet rs = pstmt.executeQuery();
 			rs.next();
 			cnt = rs.getInt(1);
@@ -152,5 +151,31 @@ public class RestaurantReviewDAO {
 			ConnectionManager.close(conn);
 		}
 		return cnt;
+	}
+	
+	public int delete(RestaurantReviewVO restaurant) {
+		int r=0;
+		try {
+			// 1. DB 연결
+			Connection conn = ConnectionManager.getConnnect(); // ConnectionManager클래스의 getConnnect실행
+
+			// 2. sql 구문 실행
+			String sql = "delete res_review where res_review_no = ?";
+					 
+			PreparedStatement psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, restaurant.getRes_review_no());
+			psmt.executeUpdate();
+			
+			// 3. 결과 처리
+			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			// 4. 연결 해제
+			ConnectionManager.close(conn);
+		}
+		return r;
 	}
 }
