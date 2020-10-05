@@ -24,7 +24,7 @@ public class ProductDAO {
 		ResultSet rs = null;
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "select * from product where product_name = ?";
+			String sql = "SELECT * FROM product where product_name = ?";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, productVO.getProduct_name());
 			rs = pstmt.executeQuery();
@@ -45,8 +45,9 @@ public class ProductDAO {
 		int r = 0;
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "insert into product(product_number, product_name, product_price,"
-					+ "product_unit, product_status, seller_code,recipe_number) values (prod_no.NEXTVAL,?,?,?,?,?,?)";
+			String sql = " INSERT INTO product(product_number, product_name, product_price,"
+					+ " product_unit, product_status, seller_code,recipe_number) "
+					+ " VALUES (prod_no.NEXTVAL,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, productVO.getProduct_name());
 			pstmt.setInt(2, productVO.getProduct_price());
