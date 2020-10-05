@@ -16,7 +16,7 @@ public class MemberUpdateController implements Controller {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MemberVO memberVO = new MemberVO();
-		MemberVO resultVO = new MemberVO();
+//		MemberVO resultVO = new MemberVO();
 		
 //		try {//컬럼이 몇개가 됐던 파라미터를 읽어서 vo에 담아 준다.
 //			BeanUtils.copyProperties(memberVO, request.getParameterMap());
