@@ -95,6 +95,7 @@ public class MemberDAO {
 		return resultVO;
 	}
 	
+	//소상공인 한건조회
 	public MemberVO selectOneAdd(MemberVO memberVO) {
 		MemberVO resultVO = null;
 		ResultSet rs = null;

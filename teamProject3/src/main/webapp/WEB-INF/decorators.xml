@@ -14,7 +14,6 @@
 	<excludes>
 		<!-- <pattern>/member/memberInsert.jsp</pattern>
 		<pattern>/member/memberLogin.jsp</pattern> -->
-		<pattern>/member/myPage.jsp</pattern>
 	</excludes> 
 	
 </decorators>
