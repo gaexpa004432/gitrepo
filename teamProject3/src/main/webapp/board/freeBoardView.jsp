@@ -183,7 +183,7 @@ $(function(){
 
 </head>
 <body>
-	<div align="center">
+	<div align="center" class="container">
 		<br><br>
 		<h1 style="background-color:#dcdcdc; width:820px; font-size:20px;"><strong>글보기</strong></h1>
 		<table style="width:820px">
@@ -201,7 +201,12 @@ $(function(){
 		  </tr>
 		  <tr>
 		  <th>내용</th>
-		  <td>${board.board_content}</td>
+		  <td>${board.board_content}<br>
+		  	<C:if test="${ !empty board.board_file}">
+		  	<img src="/teamProject3/images/${ board.board_file }" style="max-width:500px">
+		  	</C:if>
+		  
+		  </td>
 		  </tr>			  
 		 </table>
 		 <br>
