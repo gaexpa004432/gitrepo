@@ -35,6 +35,7 @@
 		<thead>
 		<tr>
 			<th>번호</th>
+			<th></th>
 			<th>제목</td>
 			<th>이름</th>
 			<th>작성일</th>
@@ -44,6 +45,12 @@
 		<c:forEach items="${list}" var="board">
 		<tr>
 			<td>${board.board_no }</td>
+				<c:if test="${!empty board.board_file }">
+			<td><img src="/teamProject3/images/${ board.board_file }" style="width: 50px; height: 50px;"></td>
+				</c:if>
+				<c:if test="${empty board.board_file }">
+					<td></td>
+				</c:if>
 			<td><a href="freeBoardView.do?board_no=${board.board_no }">${board.board_sub }</a></td>
 			<!-- 제목 누르면 view페이지로 넘어감 -->
 			<td>${board.member_name }</td>
