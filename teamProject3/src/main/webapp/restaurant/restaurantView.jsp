@@ -9,14 +9,12 @@
 <head>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
+    <script
 	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+   
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5459989244bc763dbd4ad7a7edf03cc0&libraries=services"></script>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css">
+
 <meta charset="UTF-8">
 <style>
 	#divPaging {
@@ -64,6 +62,13 @@ img.inimg {
 <script type="text/javascript">
 	var sel_files = [];
 	$(function() {
+		var favorite = "${favorite}";
+		if(favorite == "true"){
+			$("#bookmark").html("<img src='/teamProject3/images/즐겨찾기취소.jpg' style='width: 100px; height: 100px; margin-left: 30px;'>");
+			
+		} else{
+			$("#bookmark").html("<img src='/teamProject3/images/즐겨찾기.jpg'style='width: 100px; height: 100px; margin-left: 30px;'>");
+		}
 		$("#input_imgs").on("change", handleImgFileSelect);
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
@@ -107,37 +112,34 @@ img.inimg {
 								map.setCenter(coords);
 							}
 						});
-		function itemActive($el) {
-			$el.siblings().removeClass('active');
-
-		}
+		
 		var settings = {
-			slideWidth : 235,
-			slideMargin : 10,
-			minSlides : 1,
-			maxSlides : 5,
-			infiniteLoop : true,
-			responsive : true,
-			controls : true,
-			pager : false,
-			moveSlides : 1,
-			hideControlOnEnd : true,
-			onSlideNext : function($slideElement, oldIndex, newIndex) {
-				itemActive($slideElement);
-			},
-			onSlidePrev : function($slideElement, oldIndex, newIndex) {
-				itemActive($slideElement);
+				slideWidth : 235,
+				slideMargin : 10,
+				minSlides : 1,
+				maxSlides : 5,
+				infiniteLoop : true,
+				responsive : true,
+				controls : true,
+				pager : false,
+				moveSlides : 1,
+				hideControlOnEnd : true,
+				onSlideNext : function($slideElement, oldIndex, newIndex) {
+					itemActive($slideElement);
+				},
+				onSlidePrev : function($slideElement, oldIndex, newIndex) {
+					itemActive($slideElement);
+				}
 			}
-		}
 
-		var bxSlider = $('.bxslider').bxSlider(settings);
+			var bxSlider = $('.bxslider').bxSlider(settings);
 
-		$('.bxslider li.inline').click(function() {
-			$(this).siblings('li').removeClass('active');
-			$(this).addClass('active');
-			bxSlider.goToSlide($(this).index());
+			$('.bxslider li.inline').click(function() {
+				$(this).siblings('li').removeClass('active');
+				$(this).addClass('active');
+				bxSlider.goToSlide($(this).index());
 
-		})
+			})
 
 		$("#review").on("click", function() {
 			console.log("gg")
@@ -155,7 +157,42 @@ img.inimg {
 			}
 
 		})
-	});
+		
+		$("#bookmark").on("click",function(){
+			var no = "${res.res_no}";
+			var code = "fs";
+			if(favorite === "false"){
+					$("#bookmark").html("<img src='/teamProject3/images/즐겨찾기취소.jpg' style='width: 100px; height: 100px; margin-left: 30px;'>");
+					favorite = "true";
+			$.ajax("bookMark.do", {
+				method : "get",
+				dataType : "json",					// 서버에서 넘겨주는 데이터타입. text, html, json 등 타입을 적어줌
+				data : {no:no,code:code,bookmark:"insert"},						// 보낼 파라미터. 아작스함수가 값을 쿼리 문자형태(no=)로 바꿔서 넘겨줌
+				success : function(data) {
+				}
+			});
+			}else{
+						$("#bookmark").html("<img src='/teamProject3/images/즐겨찾기.jpg' style='width: 100px; height: 100px; margin-left: 30px;'>");
+						favorite = "false";
+				$.ajax("bookMark.do", {
+					method : "get",
+					dataType : "json",					// 서버에서 넘겨주는 데이터타입. text, html, json 등 타입을 적어줌
+					data : {no:no,code:code,bookmark:"delete"},						// 보낼 파라미터. 아작스함수가 값을 쿼리 문자형태(no=)로 바꿔서 넘겨줌
+					success : function(data) {
+					}
+				});
+			}
+		})
+		
+		$(".reviewDel").on("click",function(){
+			var result = confirm("정말 삭제 하시겠습니까?");
+			if(result){
+				var reviewNo = $(this).data("no");
+				 location.href="/teamProject3/reviewDelete.do?res_review_no="+reviewNo+"&res_no=${ res.res_no }";
+			}
+		})
+		
+	}); // end of onload
 
 	function fileUploadAction() {
 		console.log("fileUploadAction");
@@ -235,8 +272,12 @@ img.inimg {
 				console.log("Result : " + e.currentTarget.responseText);
 			}
 		}
-
+		
 		xhr.send(data);
+
+	}
+	function itemActive($el) {
+		$el.siblings().removeClass('active');
 
 	}
 </script>
@@ -261,7 +302,7 @@ img.inimg {
 			</div>
 			<div class="col-sm-6" align="right">
 				<Small style="vertical-align: bottom;"> 마지막 업데이트 ${ res.res_date }
-				</Small> <a href="resBookMark.do?res_no=${res.res_no}"><img src="/teamProject3/images/즐겨찾기.jpg"
+				</Small> <a href="javascript:void(0);" id="bookmark"><img src="/teamProject3/images/"
 					style="width: 100px; height: 100px; margin-left: 30px;">
 					</a>
 
@@ -327,31 +368,36 @@ img.inimg {
 		<!-- 리뷰 공간  -->
 
 
-
+		<c:if test="${ empty review }">
+			<div class="row"> <div class="col-sm-12" align="center">아직 리뷰가 없어요! </div></div>
+			<hr>
+		</c:if>
 			<c:forEach items="${ review }" var="list">
 		<div class="row" id="over" style="border-top-width:1px;border-top-style:solid;padding:20px; border-top-color : #f0f0f5;">
 
 				<div class="col-sm-1" >
 					작성자 위치 ${ list.member_id }<br>
 				</div>
-				<div class="col-sm-11" align="left">
-					<small>${ list.res_review_date }</small><br> ${ list.res_review_content }<br>
-					<br> <br>
+				<div class="col-sm-10" align="left">
+				<small>${ list.res_review_date }</small><br> ${ list.res_review_content }<br>
+					<br><br>
 					<c:forEach items="${list.res_review_picture }" var="reviewImg">
 						<img style="width: 100px; height: 100px;"
 							src="/teamProject3/images/${reviewImg }">
-
 					</c:forEach>
-					
+				</div>
+				<div class="col-sm-1" align="right">
+				 	<c:if test="${ list.member_id == sessionScope.id }"> 
+						<a class="reviewDel" href="javascript:void(0);" data-no="${ list.res_review_no }"><img src="/teamProject3/images/delBtn.png" style="width: 25px; height: 25px;"></a>
+					</c:if>
 				</div>
 
 		</div>
 			</c:forEach>
-
 <div align="center">
  <my:paging paging="${paging}" jsfunc="gopage" />
- </div>
-   <form name="searchFrm">		
+</div>
+   <form name="searchFrm" action="/teamProject3/restaurantView.do">		
 	<input type="hidden" name="p" value="1">
 	<input type="hidden" name="res_no" value="${ res.res_no }">
 	

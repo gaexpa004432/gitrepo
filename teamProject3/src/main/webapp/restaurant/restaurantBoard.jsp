@@ -9,17 +9,17 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta charset="UTF-8">
-<title>식당 추천</title>
+<title>비건 식당 추천</title>
 <style>
 	img.inimg {
-		max-width: 237px;
-		min-width: 237px;
+		max-width: 300px;
+		min-width: 300px;
 		max-height:250px;
 		min-height:250px;
 	}
 	
-	table{
-	border-spacing:50px;
+	td {
+	padding:50px;
 	}
 	#divPaging {
           clear:both; 
@@ -36,10 +36,15 @@
 }
 </style>
 </head>
-<body>
+<body >
+<div>
+<h1>Vegan 식당 추천</h1>
+</div>
+<hr>
 <c:set var="i" value="0" />
  <c:set var="j" value="3" />
- <table  align="center" style="border-spacing:50px;">
+ <div class="row" align="center">
+ <table  style="border-spacing:50px;">
   <c:choose>
    <c:when test="${list != null && fn:length(list) > 0 }"> 
 
@@ -47,7 +52,7 @@
      <c:if test="${i%j == 0}">
       <tr>
      </c:if>
-     <td>${restaurantlist.res_no}<a href="/teamProject3/restaurantView.do?res_no=${restaurantlist.res_no}"><img class="inimg" src="/teamProject3/images/${restaurantlist.res_name}"></a></td>
+     <td><div class="imgin"><a href="/teamProject3/restaurantView.do?res_no=${restaurantlist.res_no}"><img class="inimg" src="/teamProject3/images/${restaurantlist.res_name}"></a></div></td>
     <c:if test="${i%j == j-1}">
      </tr>
     </c:if> 
@@ -63,6 +68,8 @@
   
   
  </table>
+ </div>
+ <hr>
   <form name="searchFrm">		
 	<input type="hidden" name="p" value="1">
 	<input type="hidden" name="" value="">

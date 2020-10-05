@@ -10,7 +10,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- 주소api -->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
 <script type="text/javascript" src="/teamProject3/api/addressApi.js"></script>
 
 </head>
@@ -43,11 +42,11 @@
 	</div>
 </form>
 
-<button type="button" id="btnBack">뒤로가기</button>
+<button type="button" id="btnMypage">마이페이지</button>
 <script>
-	btnBack.addEventListener("click", goBack);
-	function goBack() {
-		location.assign("memberInsert.jsp");
+	btnMypage.addEventListener("click", goMypage);
+	function goMypage() {
+		location.assign("myPage.jsp");
 	}
 </script>
 </body>

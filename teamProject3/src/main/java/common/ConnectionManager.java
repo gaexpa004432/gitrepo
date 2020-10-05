@@ -15,15 +15,15 @@ public class ConnectionManager {
 		Connection conn = null;
 		try {
 			//driverManager 이용하여 연결
-			//String jdbc_url = "jdbc:oracle:thin:@localhost:1521:xe";
-			//conn = DriverManager.getConnection(jdbc_url, "hr", "hr");
+//			String jdbc_url = "jdbc:oracle:thin:@localhost:1521:xe";
+//			conn = DriverManager.getConnection(jdbc_url, "hr", "hr");
 
 			//datasource를 이용하여 connection 획득
 			
-			  Context initContext = new InitialContext(); DataSource ds =
-			  (DataSource)initContext.lookup("java:/comp/env/jdbc/oracle"); 
+			  Context initContext = new InitialContext(); 
+			  DataSource ds = (DataSource)initContext.lookup("java:/comp/env/jdbc/server"); 
 			  conn = ds.getConnection();
-			  //conn 을 할당받음 System.out.println("dbcp에서 conn할당");
+			//  conn 을 할당받음 System.out.println("dbcp에서 conn할당");
 			 
 			
 		}catch(Exception e) {

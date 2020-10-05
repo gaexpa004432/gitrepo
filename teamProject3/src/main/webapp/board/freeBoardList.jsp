@@ -25,6 +25,8 @@
         margin:0 auto;
         text-align:center;
 }
+
+
 </style>
 </head>
 <body>
@@ -52,7 +54,7 @@
 	</table>
 	<form name="searchFrm">      <%-- 검색 폼 생성 --%>
    <input type="hidden" name="p" value="1">
-
+   <input name="board_search">
    <button>검색</button>
 </form>
 	<hr/>

@@ -68,22 +68,29 @@ function inputCheck() {
 	</div>
 	<div>
 		<label>생년월일</label>
-		<input type="date" name="member_birth" id="member_birth" value="${sessionScope.login.member_birth}">
+		<input type="date" name="member_birth" id="member_birth" value="${sessionScope.birth}">
 	</div>
 	<div>
 		<label>전화번호</label>
 		<input type="text" name="member_tel" onkeydown='return onlyNumber(event)' value="${sessionScope.login.member_tel}">
 	</div>
 	<div>
+		<label>이메일</label>
+		<input type="text" name="member_email" id="member_email" value="${sessionScope.login.member_email}">
+	</div>
+	<div>
 		<label>주소</label><br>
-		<input type="text" name="member_postcode" id="sample4_postcode" placeholder="우편번호" readonly>
+		<input type="text" name="member_postcode" id="sample4_postcode" placeholder="우편번호" 
+						   value="${sessionScope.login.member_postcode}" readonly>
 		<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
 		<input type="text" name="member_roadAddress" id="sample4_roadAddress" placeholder="도로명주소" 
-					       value="${sessionScope.login.member_address}"readonly>
+					       value="${sessionScope.login.member_roadAddress}" readonly>
 		<input type="hidden" name="member_jibunAddress" id="sample4_jibunAddress" placeholder="지번주소" readonly>
 		<span id="guide" style="color:#999;display:none"></span>
-		<input type="text" name="member_detailAddress" id="sample4_detailAddress" placeholder="상세주소" >
-		<input type="text" name="member_extraAddress" id="sample4_extraAddress" placeholder="참고항목" readonly>
+		<input type="text" name="member_detailAddress" id="sample4_detailAddress" placeholder="상세주소" 
+						   value="${sessionScope.login.member_detailAddress}">
+		<input type="text" name="member_extraAddress" id="sample4_extraAddress" placeholder="참고항목" 
+						   value="${sessionScope.login.member_extraAddress}"readonly>
 	</div>
 	<div>
 		<label>채식타입</label>

@@ -114,20 +114,20 @@
 		action="/teamProject3/restaurantWrite.do">
 
 		<div>
-			<input name="res_name" style="width: 300px" placeholder="식당명 입력">
+			<input name="res_name" style="width: 300px" placeholder="식당명 입력" required>
 		</div>
 		<br>
 
 		<div>
-			<input name="res_tel" style="width: 300px" placeholder="전화번호 등록">
+			<input name="res_tel" style="width: 300px" placeholder=" '-' 없이 전화번호 등록" minlength="10" maxlength="11" >
 		</div>
 		<br>
 
 		<div>
-			<input type="text" id="sample4_postcode" placeholder="우편번호"
+			<input type="text" id="sample4_postcode" placeholder="우편번호" required
 				style="width: 200px"> <input type="button"
-				onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-			<input type="text" id="sample4_roadAddress" name="res_si"
+				onclick="sample4_execDaumPostcode()" value="우편번호 찾기" required><br>
+			<input type="text" id="sample4_roadAddress" name="res_si" required
 				placeholder="도로명주소" style="width: 150px"> <input type="text"
 				id="sample4_jibunAddress" name="res_gu" placeholder="지번주소"
 				style="width: 150px"> <span id="guide"
@@ -158,7 +158,7 @@
 		</div>
 		<br>
 		<div>
-			<textarea cols="50" rows="10" name="extra" placeholder="추가 사항"></textarea>
+			<textarea cols="50" rows="5" name="extra" placeholder="추가 사항"></textarea>
 		</div>
 
 		<div>
@@ -173,7 +173,7 @@
 		<br>
 		<div>
 			<br>
-			<textarea cols="100" rows="50" name="res_content"></textarea>
+			<textarea cols="100" rows="20" name="res_content" required></textarea>
 		</div>
 
 		<div>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,7 @@
 <body>
 <form>
 <h1 align="center">마이페이지</h1> 
-<div class="container">
+<!-- <div class="container">
 	<div class="row">
 		<div class="col-md-4">first
 			<div class="row">
@@ -30,20 +31,26 @@
 		<div class="col-md-4">second</div>
 		<div class="col-md-4">third</div>
 	</div>
-</div>
+</div> -->
 <ul>
-	<a href="#"><li>주문 내역 조회</a>
-	<a href="#"><li>나의활동</a>
-	<a href="#"><li>나의관심글</a>
-	<a href="#"><li>1:1문의</a>
+	<li><a href="#">주문 내역 조회</a>
+	<li><a href="#">나의활동</a>
+	<li><a href="#">나의관심글</a>
+	<li><a href="#">1:1문의</a>
 	<div>
-		
-		<a href="select.do">
-		<li>내정보 조회 및 수정</a>
-		${sessionScope.login.member_id}
+		<li><a href="select.do">내정보 조회 및 수정</a>
 	</div>
-	<a href="#"><li>마일리지 조회</a>
-	<a href="#"><li>탈퇴</a>
+	<li><a href="#">마일리지 조회</a>
+	<c:choose>
+		<c:when test="${sessionScope.login.seller_code != 0}">
+			<li><a href="#">판매내역</a>
+			<li><a href="memberAddUpdate.jsp">소상공인 정보 수정 및 조회</a>
+		</c:when>
+		<c:otherwise>
+			<li><a href="memberAddInsert.jsp">소상공인 추가정보 등록</a>
+		</c:otherwise> 
+	</c:choose>
+	<li><a href="#">탈퇴</a>
 </ul>
 </form>
 </body>
