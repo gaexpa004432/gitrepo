@@ -9,11 +9,11 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta charset="UTF-8">
-<title>비건 식당 추천</title>
+<title>레시피 추천</title>
 <style>
 	img.inimg {
-		max-width: 300px;
-		min-width: 300px;
+		max-width: 200px;
+		min-width: 200px;
 		max-height:250px;
 		min-height:250px;
 	}
@@ -38,11 +38,11 @@
 </head>
 <body >
 <div>
-<h1>Vegan 식당 추천</h1>
+<h1>레시피 추천</h1>
 </div>
 <hr>
 <c:set var="i" value="0" />
- <c:set var="j" value="3" />
+ <c:set var="j" value="4" />
  <div class="row" align="center">
  <table  style="border-spacing:50px;">
   <c:choose>
@@ -52,7 +52,10 @@
      <c:if test="${i%j == 0}">
       <tr>
      </c:if>
-     <td><div class="imgin"><a href="/teamProject3/restaurantView.do?res_no=${restaurantlist.res_no}"><img class="inimg" src="/teamProject3/images/${restaurantlist.res_name}"></a></div></td>
+     <td align="center"><div class="imgin"><a href="/teamProject3/restaurantView.do?res_no=${restaurantlist.res_no}"><img class="inimg" src="/teamProject3/images/${restaurantlist.res_name}">
+     <br>
+     레시피이름<br>
+     작성자위치</a></div></td>
     <c:if test="${i%j == j-1}">
      </tr>
     </c:if> 
