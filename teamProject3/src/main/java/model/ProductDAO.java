@@ -19,21 +19,43 @@ public class ProductDAO {
 			instance = new ProductDAO();
 		return instance;
 	}
-
+	//select * from product where product_name = ;
+	public boolean productStatus(ProductVO productVO) {
+		ResultSet rs = null;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "select * from product where product_name = ?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, productVO.getProduct_name());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return true;
+			}
+			return false;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return false;
+	}
+	
+	
 	public int productInsert(ProductVO productVO) {
 		int r = 0;
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "insert into product(product_number, product_name, product_price,"
-					+ "product_unit, product_status, seller_code) values (prod_no.NEXTVAL,?,?,?,'N',?)";
+					+ "product_unit, product_status, seller_code,recipe_number) values (prod_no.NEXTVAL,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, productVO.getProduct_name());
 			pstmt.setInt(2, productVO.getProduct_price());
 			pstmt.setString(3, productVO.getProduct_unit());
-			pstmt.setInt(4, productVO.getSeller_code());
-
+			pstmt.setString(4, productVO.getProduct_status());
+			pstmt.setInt(5, productVO.getSeller_code());
+			pstmt.setInt(6, productVO.getRecipe_number());
 			r = pstmt.executeUpdate();
-			System.out.println(r + " 건이 처리됨");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
