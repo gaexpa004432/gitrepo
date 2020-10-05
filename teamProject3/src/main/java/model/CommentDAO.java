@@ -3,6 +3,7 @@ package model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import common.ConnectionManager;
 
@@ -57,33 +58,33 @@ public class CommentDAO {
 		   }
 		
 		//단건조회(댓글view) 
-		public CommentVO selectOne(CommentVO commentVO) {
+		public ArrayList<CommentVO> selectOne(CommentVO commentVO) {
 			 CommentVO resultVO = null;
-			 
+			 ArrayList<CommentVO> list = new ArrayList();
 			
 			 try {
 				 conn = ConnectionManager.getConnnect();
-				 String sql = "select * from boardcomment " + 
-				 		"where COMMENT_NO = ?";
+				 String sql = "select * from boardcomment where post_no =?";
 				 pstmt = conn.prepareStatement(sql);
-			     pstmt.setInt(1, commentVO.getComment_no());
+			     pstmt.setInt(1, commentVO.getPost_no());
 			      
 				rs = pstmt.executeQuery();
-				if (rs.next()) {
+				while (rs.next()) {
 				resultVO = new CommentVO();	
 				resultVO.setMember_id(rs.getString("member_id"));
 				resultVO.setComment_no(rs.getInt("comment_no"));
 				resultVO.setComment_content(rs.getString("comment_content"));
 				resultVO.setComment_date(rs.getString("comment_date"));
-				resultVO.setComment_date(rs.getString("post_no"));
-				
+				resultVO.setPost_no(rs.getInt("post_no"));
+				list.add(resultVO);
 				}
 			 }catch(Exception e) {
 				 e.printStackTrace();		 
 			 } finally {
 				 ConnectionManager.close(rs, pstmt, conn);
 			 }
-			return resultVO;
+			return list;
+		
 		}
 		
 		//삭제

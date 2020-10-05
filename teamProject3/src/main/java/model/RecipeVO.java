@@ -11,11 +11,13 @@ public class RecipeVO {
 	private String member_id;
 	private String cooking_time;
 	private String cooking_level;
+	private String main_img;
 
 	public RecipeVO() {
 
 	}
 
+	
 	public int getRecipe_number() {
 		return recipe_number;
 	}
@@ -71,16 +73,24 @@ public class RecipeVO {
 	public void setCooking_level(String cooking_level) {
 		this.cooking_level = cooking_level;
 	}
+	
+	public String getMain_img() {
+		return main_img;
+	}
+
+	public void setMain_img(String main_img) {
+		this.main_img = main_img;
+	}
 
 	@Override
 	public String toString() {
 		return "RecipeVO [recipe_number=" + recipe_number + ", recipe_name=" + recipe_name + ", recipe_date="
 				+ recipe_date + ", recipe_content=" + recipe_content + ", member_id=" + member_id + ", cooking_time="
-				+ cooking_time + ", cooking_level=" + cooking_level + "]";
+				+ cooking_time + ", cooking_level=" + cooking_level + ", main_img=" + main_img + "]";
 	}
 
 	public RecipeVO(int recipe_number, String recipe_name, String recipe_date, String recipe_content, String member_id,
-			String cooking_time, String cooking_level) {
+			String cooking_time, String cooking_level, String main_img) {
 		super();
 		this.recipe_number = recipe_number;
 		this.recipe_name = recipe_name;
@@ -89,6 +99,7 @@ public class RecipeVO {
 		this.member_id = member_id;
 		this.cooking_time = cooking_time;
 		this.cooking_level = cooking_level;
+		this.main_img = main_img;
 	}
 
 }

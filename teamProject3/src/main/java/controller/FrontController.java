@@ -119,8 +119,7 @@ public class FrontController extends HttpServlet {
 		list.put("/commentInsert.do",new board.CommentInsertController());
 		list.put("/qaBoardWrite.do",new board.QaBoardWriteController());
 		list.put("/qaBoardList.do", new board.QaBoardListController());
-		
-		
+		list.put("/commentList.do", new board.CommentListController());
 		
 		
 		
@@ -149,6 +148,7 @@ public class FrontController extends HttpServlet {
 		list.put("/reviewInsert.do", new restaurant.reviewInsertController());
 		list.put("/bookMark.do", new common.BookMarkController());
 		list.put("/reviewDelete.do",new restaurant.ReviewDeleteController());
+		list.put("/recipeBoard.do",new recipe.RecipeBoardController());
 		
 	}
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
