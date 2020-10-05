@@ -17,6 +17,7 @@ public class MemberUpdateController implements Controller {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MemberVO memberVO = new MemberVO();
 		memberVO = (MemberVO) request.getSession().getAttribute("login");
+		System.out.println(memberVO.toString());
 //		MemberVO resultVO = new MemberVO();
 		
 //		try {//컬럼이 몇개가 됐던 파라미터를 읽어서 vo에 담아 준다.
@@ -70,7 +71,8 @@ public class MemberUpdateController implements Controller {
 				}
 				memberVO = (MemberVO) request.getSession().getAttribute("login");
 				
-				memberVO.setMember_pass((String)request.getSession().getAttribute("pass"));
+				//memberVO.setMember_pass((String)request.getSession().getAttribute("pass"));
+				memberVO.setMember_pass(request.getParameter("member_newPass"));
 				memberVO.setMember_roadAddress(request.getParameter("member_roadAddress"));
 				memberVO.setMember_birth(request.getParameter("member_birth").substring(0,10));
 				

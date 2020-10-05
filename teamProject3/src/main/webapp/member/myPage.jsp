@@ -36,13 +36,18 @@
 	<li><a href="#">주문 내역 조회</a>
 	<li><a href="#">나의활동</a>
 	<li><a href="#">나의관심글</a>
-	<li><a href="#">1:1문의</a>
-	
-		<li><a href="select.do">내정보 조회 및 수정</a>
-	
+	<c:choose>
+		<c:when test="${sessionScope.login.seller_code != 0}">
+			<li><a href="">1:1문의</a>
+		</c:when>
+		<c:when test="${sessionScope.login.seller_code == 0}">
+			<li><a href="inqList.jsp">1:1문의</a>
+		</c:when>
+	</c:choose>
+	<li><a href="select.do">내정보 조회 및 수정</a>
 	<li><a href="#">마일리지 조회</a>
 	<c:choose>
-		<c:when test="${sessionScope.login.seller_code != 0}"><!-- sessionScope.login.seller_code != 0 ||  -->
+		<c:when test="${sessionScope.login.seller_code != 0}">
 			<li><a href="#">판매내역</a>
 			<li><a href="memberAddUpdate.jsp">소상공인 정보 수정 및 조회</a>
 		</c:when>
