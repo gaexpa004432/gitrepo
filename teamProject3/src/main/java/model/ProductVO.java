@@ -11,7 +11,16 @@ public class ProductVO {
 	private String product_status;
 	private int seller_code;
 	private String product_img;
+	private int recipe_number;
 	
+	public int getRecipe_number() {
+		return recipe_number;
+	}
+
+	public void setRecipe_number(int recipe_number) {
+		this.recipe_number = recipe_number;
+	}
+
 	public ProductVO() {
 		
 	}
