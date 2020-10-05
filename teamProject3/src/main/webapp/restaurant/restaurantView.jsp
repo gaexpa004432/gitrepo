@@ -184,6 +184,13 @@ img.inimg {
 			}
 		})
 		
+		$(".reviewDel").on("click",function(){
+			var result = confirm("정말 삭제 하시겠습니까?");
+			if(result){
+				var reviewNo = $(this).data("no");
+				 location.href="/teamProject3/reviewDelete.do?res_review_no="+reviewNo+"&res_no=${ res.res_no }";
+			}
+		})
 		
 	}); // end of onload
 
@@ -295,7 +302,7 @@ img.inimg {
 			</div>
 			<div class="col-sm-6" align="right">
 				<Small style="vertical-align: bottom;"> 마지막 업데이트 ${ res.res_date }
-				</Small> <a href="" id="bookmark"><img src="/teamProject3/images/"
+				</Small> <a href="javascript:void(0);" id="bookmark"><img src="/teamProject3/images/"
 					style="width: 100px; height: 100px; margin-left: 30px;">
 					</a>
 
@@ -361,31 +368,36 @@ img.inimg {
 		<!-- 리뷰 공간  -->
 
 
-
+		<c:if test="${ empty review }">
+			<div class="row"> <div class="col-sm-12" align="center">아직 리뷰가 없어요! </div></div>
+			<hr>
+		</c:if>
 			<c:forEach items="${ review }" var="list">
 		<div class="row" id="over" style="border-top-width:1px;border-top-style:solid;padding:20px; border-top-color : #f0f0f5;">
 
 				<div class="col-sm-1" >
 					작성자 위치 ${ list.member_id }<br>
 				</div>
-				<div class="col-sm-11" align="left">
-					<small>${ list.res_review_date }</small><br> ${ list.res_review_content }<br>
-					<br> <br>
+				<div class="col-sm-10" align="left">
+				<small>${ list.res_review_date }</small><br> ${ list.res_review_content }<br>
+					<br><br>
 					<c:forEach items="${list.res_review_picture }" var="reviewImg">
 						<img style="width: 100px; height: 100px;"
 							src="/teamProject3/images/${reviewImg }">
-
 					</c:forEach>
-					
+				</div>
+				<div class="col-sm-1" align="right">
+				 	<c:if test="${ list.member_id == sessionScope.id }"> 
+						<a class="reviewDel" href="javascript:void(0);" data-no="${ list.res_review_no }"><img src="/teamProject3/images/delBtn.png" style="width: 25px; height: 25px;"></a>
+					</c:if>
 				</div>
 
 		</div>
 			</c:forEach>
-
 <div align="center">
  <my:paging paging="${paging}" jsfunc="gopage" />
- </div>
-   <form name="searchFrm">		
+</div>
+   <form name="searchFrm" action="/teamProject3/restaurantView.do">		
 	<input type="hidden" name="p" value="1">
 	<input type="hidden" name="res_no" value="${ res.res_no }">
 	

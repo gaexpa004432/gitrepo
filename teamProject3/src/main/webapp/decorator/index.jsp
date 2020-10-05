@@ -130,7 +130,7 @@ h6, .h6 {
 	          <li class="nav-item"><a href="" class="nav-link">Guide</a></li>
 	          <li class="nav-item"><a href="" class="nav-link">Reiciepe</a></li>
 	          <li class="nav-item"><a href="" class="nav-link">Board</a></li>
-	          <li class="nav-item"><a href="" class="nav-link">Recommands</a></li>
+	          <li class="nav-item"><a href="/teamProject3/restaurantBoard.do" class="nav-link">Recommands</a></li>
 	          <li class="nav-item"><a href="" class="nav-link">Event</a></li>
 	          <c:choose>
 		          <c:when test="${empty sessionScope.login.member_id}">
@@ -175,10 +175,13 @@ h6, .h6 {
         </div>
       </div>
       <div class="padding_test">
-      
+      <br>
+      <br>
+      <br>
       </div>
+      <div class="container">
             <decorator:body/>
-            
+      </div>
   <script src="${pageContext.request.contextPath}/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>

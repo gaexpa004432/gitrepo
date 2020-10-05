@@ -1,23 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>memberAddList.jsp</title>
+<meta charset="UTF-8">
+<title>memberAddUpdate.jsp</title>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <!-- 주소api -->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="/teamProject3/api/addressApi.js"></script>
 
 </head>
 <body>
-<form method="post" action="addInsert.do">
+<form method="post" action="addUpdate.do">
 	<div>
 		<label>사업자등록번호</label>
-		<input type="text" name="seller_code">
+		<input type="text" name="seller_code" value="">
 	</div>
 	<div>
 		<label>주소</label><br>
@@ -38,7 +38,7 @@
 		<input type="text" name="seller_tel">
 	</div>
 	<div>
-		<button>등록</button>	
+		<button>수정</button>	
 	</div>
 </form>
 
