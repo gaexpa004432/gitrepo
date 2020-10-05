@@ -7,6 +7,15 @@
 <title>memberAddInsertOutput</title>
 </head>
 <body>
-	${cnt}
+	${cnt}건 등록
+	${sellerStore}의 판매업체가 등록되었습니다.<br>
+	<input type="button" id="btnMypage" value="마이페이지로 가기">
+
+	<script>
+	btnMypage.addEventListener("click", goMypage);
+	function goMypage() {
+		location.assign("myPage.jsp");
+	}
+</script>
 </body>
 </html>

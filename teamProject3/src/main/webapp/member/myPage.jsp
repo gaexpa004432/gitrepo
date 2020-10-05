@@ -44,10 +44,10 @@
 	<c:choose>
 		<c:when test="${sessionScope.login.seller_code != 0}">
 			<li><a href="#">판매내역</a>
-			<li><a href="#">소상공인 정보 수정 및 조회</a>
+			<li><a href="memberAddUpdate.jsp">소상공인 정보 수정 및 조회</a>
 		</c:when>
 		<c:otherwise>
-			<li><a href="#">소상공인 추가정보 등록</a>
+			<li><a href="memberAddInsert.jsp">소상공인 추가정보 등록</a>
 		</c:otherwise> 
 	</c:choose>
 	<li><a href="#">탈퇴</a>
