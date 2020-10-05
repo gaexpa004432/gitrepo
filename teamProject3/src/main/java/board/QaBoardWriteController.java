@@ -1,11 +1,13 @@
 package board;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import controller.Controller;
 import model.FreeBoardDAO;
@@ -34,6 +36,17 @@ public class QaBoardWriteController implements Controller {
 	    FreeBoardDAO freeboarddao = new FreeBoardDAO();
 	    freeboarddao.insert(freeboard);
 		
+	    response.sendRedirect("qaBoardList.do");
 	}
+	
+	// 파일의 이름을 가져오는 메서드
+		private String getFileName(Part part) throws UnsupportedEncodingException {
+			for (String cd : part.getHeader("Content-Disposition").split(";")) {
+				if (cd.trim().startsWith("filename")) {		// filename으로 시작되는거 찾아서 
+					return cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
+				}
+			}
+			return null;
 
+		}
 }
