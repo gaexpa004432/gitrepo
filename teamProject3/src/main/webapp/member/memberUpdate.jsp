@@ -41,7 +41,6 @@ function inputCheck() {
 	<div>
 		<label>아이디</label>
 		<input type="text" name="member_id" value="${sessionScope.login.member_id}" readonly="readonly">
-		${sessionScope.login.member_id}
 	</div>
 	<div>
 		<label>현재 비밀번호</label>

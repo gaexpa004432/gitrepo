@@ -19,6 +19,7 @@ import model.MemberVO;
 import model.ProductDAO;
 import model.ProductVO;
 import model.RecipeDAO;
+import model.RecipePhotoDAO;
 import model.RecipePhotoVO;
 import model.RecipeVO;
 
@@ -78,32 +79,32 @@ public class RecipeInsertController implements Controller {
 
 		// 레시피 과정
 		String[] cooking_step = request.getParameterValues("cooking_step");
-		for (String str : cooking_step) {
-			System.out.println(str);
-		}
-		int recipe_number = r;
+
 		int cnt = 0;
+		int ignore = 0;
 		Collection<Part> fileList = request.getParts(); // 모든 파라미터를 파트타입으로 불러옴
 
 		List<RecipePhotoVO> renameArray = new ArrayList<RecipePhotoVO>();
-		System.out.println("what the");
+
 		for (Part part : fileList) { // 파트수만큼 반복
-			System.out.println(getFileName(part) + "what the");
 
 			if (getFileName(part) != null) { // 파일타입으로 받아온 파라미터만 값을 가지고 있음
-
+				if (ignore == 0) {
+					ignore++;
+					continue;
+				}
 				String filename = getFileName(part);
 				path = request.getServletContext().getRealPath("/images");
-				System.out.println(path);
+				System.out.println(filename);
 				File renamefile = FileRenamePolicy.rename(new File(path, filename));
 				if (!renamefile.getName().equals("images1")) { // 파일이없을경우 저장 방지
 					part.write(path + "/" + renameFile.getName());
 
-					System.out.println(cnt);
 				}
-				photo.setCooking_content(cooking_step[cnt++]);
 				photo.setCooking_photo_name(renamefile.getName());
-				renameArray.add(photo);
+				photo.setCooking_content(cooking_step[cnt++]);
+				photo.setRecipe_number(r);
+				RecipePhotoDAO.getInstance().recipe_photoInsert(photo);
 			}
 
 		}
