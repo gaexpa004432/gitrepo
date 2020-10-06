@@ -31,6 +31,7 @@ public class MemberDAO {
 			pstmt=conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
+				resultVO = new MemberVO();
 				resultVO.setMember_id(rs.getString("member_id"));
 				resultVO.setMember_name(rs.getString("member_name"));
 				resultVO.setMember_tel(rs.getString("member_tel"));

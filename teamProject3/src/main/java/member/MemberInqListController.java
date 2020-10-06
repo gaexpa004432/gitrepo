@@ -1,6 +1,5 @@
 package member;
 
-import java.awt.List;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -11,8 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
 import model.InqDAO;
 import model.InqVO;
-import model.MemberDAO;
-import model.MemberVO;
 
 public class MemberInqListController implements Controller {
 
