@@ -24,7 +24,7 @@ public class ProductDAO {
 		ResultSet rs = null;
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT * FROM product where product_name = ?";
+			String sql = "select * from product where product_name=? and product_status = 'Y'";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, productVO.getProduct_name());
 			rs = pstmt.executeQuery();
@@ -77,6 +77,33 @@ public class ProductDAO {
 			while(rs.next()) {
 				resultVO = new ProductVO();
 				resultVO.setProduct_name(rs.getString("product_name"));
+				list.add(resultVO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
+	public ArrayList<ProductVO> productSelectOne(RecipeVO recipeVO) {
+		ProductVO resultVO = null;
+		ResultSet rs = null;
+		ArrayList<ProductVO> list = new ArrayList<ProductVO>();
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT * from product where recipe_number = ?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, recipeVO.getRecipe_number());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				resultVO = new ProductVO();
+				resultVO.setProduct_name(rs.getString("product_name"));
+				resultVO.setProduct_number(rs.getInt("product_number"));
+				resultVO.setProduct_price(rs.getInt("product_price"));
+				resultVO.setProduct_unit(rs.getString("product_unit"));
+				resultVO.setSeller_code(rs.getInt("seller_code"));
 				list.add(resultVO);
 			}
 		} catch (Exception e) {

@@ -15,36 +15,14 @@
 
 
 <script>
-$(function(){
-var a = "a";
-	if(a=="a"){
-		$("#img").text("a")
-		
-	}else{
-		$("#img").text("b")
-		a = "b";
-	}
-	
-		
-		$("#on").on("click",function(){
-			if(a == "a"){
-				console.log("ajax");
-				$("#img").text("b")
-				a="b";
-			}else{
-				console.log("delete ajax");
-				$("#img").text("a")
-				a="a";
-			}
-			
-		})
-		
-	
-})
+
 </script>
 </head>
 <body>
-	<button id="on">버튼</button>
-	<h1 id="img"></h1>
+	<form>
+	<input name="name">
+	<input name="name">
+	<button>ff</button>
+	</form>
 </body>
 </html>

@@ -48,14 +48,14 @@
   <c:choose>
    <c:when test="${list != null && fn:length(list) > 0 }"> 
 
-    <c:forEach items="${list}" var="restaurantlist">
+    <c:forEach items="${list}" var="recipelist">
      <c:if test="${i%j == 0}">
       <tr>
      </c:if>
-     <td align="center"><div class="imgin"><a href="/teamProject3/restaurantView.do?res_no=${restaurantlist.res_no}"><img class="inimg" src="/teamProject3/images/${restaurantlist.res_name}">
+     <td align="center"><div class="imgin"><a href="/teamProject3/recipeView.do?recipe_number=${recipelist.recipe_number}"><img class="inimg" src="/teamProject3/images/${recipelist.main_img}">
      <br>
-     레시피이름<br>
-     작성자위치</a></div></td>
+     ${recipelist.recipe_name}<br>
+     ${recipelist.member_id}</a></div></td>
     <c:if test="${i%j == j-1}">
      </tr>
     </c:if> 
@@ -84,7 +84,7 @@
 <br>
 <br>
 <br>
-<%-- <div align="center">
+<div align="center">
  <my:paging paging="${paging}" jsfunc="gopage" />
  </div>
 <script>
@@ -95,7 +95,7 @@
 		// location.href="deptSelectAll?p=" + p;	// 이동되는 주소가 달라서 여러사람이 쓰기위해서는 매개값 p로 해줌
 	}
 </script> 
- --%>
+
 </body>
 
 </html>
