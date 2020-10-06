@@ -11,4 +11,7 @@ public class InqVO {
 	private String inq_content;
 	private String inq_regdate;
 	private String inq_answer;
+	
+	//판매자 ID
+	private String seller_id;
 }

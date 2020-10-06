@@ -47,6 +47,11 @@ public class FrontController extends HttpServlet {
 		list.put("/member/update.do", new member.MemberUpdateController());
 		list.put("/member/addUpdate.do", new member.MemberAddUpdateController());
 		list.put("/member/inqInsert.do", new member.MemberInqInsertController());
+		list.put("/member/inqList.do", new member.MemberInqListController());
+		list.put("/member/inqSelect.do", new member.MemberInqSelectController());
+		list.put("/member/inqSellerId.do", new member.MemberInqSellerIdController());
+		list.put("/member/ansList.do", new member.MemberAnsListController());
+		list.put("/member/ansSelect.do", new member.MemberAnsSelectController());
 		
 		
 		

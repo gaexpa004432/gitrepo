@@ -267,9 +267,45 @@ public class MemberDAO {
 			ConnectionManager.close(conn);
 		}
 		return r;
-		
-
 	}
+	
+	//판매자 아이디 가져오기
+		public MemberVO selectSellerId(MemberVO memberVO) {
+			MemberVO resultVO = null;
+			ResultSet rs = null;
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "select * from member where seller_code=?";
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1, memberVO.getSeller_code());
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					resultVO = new MemberVO();
+					resultVO.setMember_id(rs.getString("member_id"));
+					resultVO.setMember_name(rs.getString("member_name"));
+					resultVO.setMember_tel(rs.getString("member_tel"));
+					resultVO.setMember_roadAddress(rs.getString("member_roadAddress"));
+					resultVO.setMember_pass(rs.getString("member_pass"));
+					resultVO.setMember_gender(rs.getString("member_gender"));
+					resultVO.setMember_birth(rs.getString("member_birth"));
+					resultVO.setMember_type(rs.getString("member_type"));
+					resultVO.setMember_mileage(rs.getInt("member_mileage"));
+					resultVO.setSeller_code(rs.getInt("seller_code"));
+					resultVO.setMember_postcode(rs.getString("member_postcode"));
+					resultVO.setMember_detailAddress(rs.getString("member_detailAddress"));
+					resultVO.setMember_extraAddress(rs.getString("member_extraAddress"));
+					resultVO.setMember_email(rs.getString("member_email"));
+					resultVO.setMember_image(rs.getString("member_image"));
+				} else {
+					System.out.println("no data");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);//rs를 try안에서 선언하면 지역 변수 이기 때문에 try안에서만 사용 됨 , 그러니까 변수를 try밖으로 빼주고 초기값 null을 주면 에러없이 사용 가능
+			}
+			return resultVO;
+		}
 
 }
 

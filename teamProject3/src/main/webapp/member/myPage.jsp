@@ -38,10 +38,10 @@
 	<li><a href="#">나의관심글</a>
 	<c:choose>
 		<c:when test="${sessionScope.login.seller_code != 0}">
-			<li><a href="">1:1문의</a>
+			<li><a href="ansList.do">1:1문의</a>
 		</c:when>
 		<c:when test="${sessionScope.login.seller_code == 0}">
-			<li><a href="inqList.jsp">1:1문의</a>
+			<li><a href="inqList.do">1:1문의</a>
 		</c:when>
 	</c:choose>
 	<li><a href="select.do">내정보 조회 및 수정</a>

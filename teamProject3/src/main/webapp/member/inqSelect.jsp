@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>inqInsert.jsp</title>
+<title>inqSelect.jsp</title>
 <style>
 .container {
 	display : block;
@@ -21,47 +21,52 @@
 	/* background-color : red; */
 	
 }
-
-
 </style>
 </head>
+
+
 <body>
 	<div class="container">
 	
-		
 		<form method="post" action="inqInsert.do" >
-		<h1>1:1 문의</h1>
+		<h1 >1:1 문의</h1>
 		<hr>
 		<div>
 			<label>판매자</label>
 			<input type="text" id="seller_id" name="seller_id" value="${sellerInfo.member_id}"readonly>
 			<input type="hidden" name="seller_code" value="${sellerInfo.seller_code}">
-		</div>		
+		</div>
 		<hr>
 		<div id="text-title">
 			<label>제목</label>
-			<input type="text" id="inq_title" name="inq_title" size="73">
+			<input type="text" id="inq_title" name="inq_title" size="73" 
+			 value="${inqOne.inq_title}"readonly>
+		</div>		
+		<hr>
+		<div>
+			<label>문의하신 내용</label>
+		</div>
+		<div>
+			<textarea rows="18" cols="80" id="inq_content" name="inq_content" 
+			 readonly placeholder="문의내용">${inqOne.inq_content}</textarea>
 		</div>
 		<hr>
 		<div>
-			<label>문의하실 내용</label>
+			<label>답변</label>
 		</div>
 		<div>
-			<textarea rows="18" cols="80" id="inq_content" name="inq_content"></textarea>
-		</div>
-		<hr>
-		<div>
-			<button>문의 등록</button>
+			<textarea rows="10" cols="80" id="inq_content" name="inq_content" 
+			 readonly placeholder="답변이 없습니다"></textarea>
 		</div>
 		</form>
-		<button type="button" id="btnMypage">마이페이지</button>
+		<button type="button" id="btnBack">뒤로가기</button>
 		
 	</div>
 	
 <script>
-	btnMypage.addEventListener("click", goMypage);
-	function goMypage() {
-		location.assign("myPage.jsp");
+	btnBack.addEventListener("click", goBack);
+	function goBack() {
+		location.assign("inqList.do");
 	}
 </script>
 </body>

@@ -133,4 +133,31 @@ public class SellerDAO {
 			}
 			return resultVO;
 		}
+		
+		//seller_id가져오기 //필요 없을듯?
+//		public MemberVO selectOneSeller(SellerVO sellerVO) {
+//			MemberVO resultVO = null;
+//			ResultSet rs = null;
+//			try {
+//				conn = ConnectionManager.getConnnect();
+//				String sql = "select m.member_id "
+//						+ "from member m join seller " 
+//						+ "on m.seller_code = s.seller_code " 
+//						+ "where m.seller_code = ?";
+//				pstmt=conn.prepareStatement(sql);
+//				pstmt.setInt(1, sellerVO.getSeller_code());
+//				rs = pstmt.executeQuery();
+//				if(rs.next()) {
+//					resultVO = new MemberVO();
+//					resultVO.setMember_id(rs.getString("member_id"));
+//				} else {
+//					System.out.println("no data");
+//				}
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			} finally {
+//				ConnectionManager.close(rs, pstmt, conn);
+//			}
+//			return resultVO;
+//		}
 }
