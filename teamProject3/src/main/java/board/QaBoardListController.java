@@ -21,6 +21,7 @@ public class QaBoardListController implements Controller {
 		ArrayList<FreeBoardVO> list = freeboard.selectAll(freeboardvo);//
 		
 		
+		
 	}
 
 }
