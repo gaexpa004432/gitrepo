@@ -76,6 +76,7 @@ public class FreeBoardDAO {
 					list.add(resultVO);
 					System.out.println(resultVO.getBoard_sub());
 				} 
+				return list;
 			 }catch(Exception e) {
 				 e.printStackTrace();		 
 			 } finally {
@@ -161,13 +162,14 @@ public class FreeBoardDAO {
 					int cnt = 0;
 				      try {
 				         conn = ConnectionManager.getConnnect();
-				         String where = " where 1=1 ";
+				         String where = " where 1=1 and board_groupcode = ?";
 				         if(freeboard.getBoard_sub() != null) {
 				            where += " and Board_sub like '%' || ? || '%' or Board_content like '%' || ? || '%'";
 				         }
 				         String sql = "select count(*) from board" + where;
 				         pstmt = conn.prepareStatement(sql);
 				         int pos = 1;
+				         pstmt.setString(pos++, freeboard.getBoard_groupcode());
 				         if(freeboard.getBoard_sub() !=null) {
 				            pstmt.setString(pos++,freeboard.getBoard_sub());
 				            pstmt.setString(pos++,freeboard.getBoard_sub());
