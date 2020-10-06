@@ -62,7 +62,7 @@ public class FreeBoardDAO {
 		         pstmt.setInt(pos++, freeboardVO.getFirst());      // 물음표부분이 pos++로 인해 동적으로 늘어남
 		         pstmt.setInt(pos++, freeboardVO.getLast());
 	
-				rs = pstmt.executeQuery();
+				rs = pstmt.executeQuery();   
 				while(rs.next()) {
 					resultVO = new FreeBoardVO();
 					resultVO.setMember_name(rs.getString("member_name"));

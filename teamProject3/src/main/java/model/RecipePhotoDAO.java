@@ -3,6 +3,8 @@ package model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import common.ConnectionManager;
 
@@ -47,6 +49,34 @@ public class RecipePhotoDAO {
 			ConnectionManager.close(conn);
 		}
 		return r;
+	}
+	public List<RecipePhotoVO> selectOne(RecipeVO Recipe) {
+		List<RecipePhotoVO> list = new ArrayList();
+		conn = ConnectionManager.getConnnect();
+		RecipePhotoVO resultVO = new RecipePhotoVO();
+		try { 
+         
+			 String sql = "select * from recipe_photo where recipe_number=? order by photo_number";
+			 pstmt = conn.prepareStatement(sql); 
+
+	         pstmt.setInt(1, Recipe.getRecipe_number());
+			rs = pstmt.executeQuery();
+
+			while(rs.next()) {
+				resultVO = new RecipePhotoVO();
+				resultVO.setCooking_content(rs.getString("cooking_content"));
+				resultVO.setCooking_photo_name(rs.getString("photo_name"));
+				resultVO.setPhoto_number(rs.getInt("photo_number"));
+				resultVO.setRecipe_number(rs.getInt("recipe_number"));
+				list.add(resultVO);
+				
+			} 
+		 }catch(Exception e) {
+			 e.printStackTrace();		 
+		 } finally {
+			 ConnectionManager.close(rs, pstmt, conn);
+		 }
+		return list;
 	}
 
 }

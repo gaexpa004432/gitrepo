@@ -42,14 +42,15 @@ public class RecipeInsertController implements Controller {
 
 		// 첨부파일 처리
 		Part part1 = request.getPart("main_img");
-		String fileName = getFileName(part1);// Long.toString(System.currentTimeMillis());
-		String path = request.getServletContext().getRealPath("/images"); // "c:/upload";
-		System.out.println(path);
-		// if(fileName != null && !fileName.isEmpty()) {
+		String fileName1 =getFileName(part1);// Long.toString(System.currentTimeMillis());
+		String path1 = request.getServletContext().getRealPath("/images"); // "c:/upload";
+		System.out.println(fileName1); 
+		 if(fileName1 != null && !fileName1.isEmpty()) {
 		// 파일명 중복체크
-		File renameFile = common.FileRenamePolicy.rename(new File(path, fileName));
-		part1.write(renameFile.getName());
-		recipe.setMain_img(renameFile.getName());
+		File renameFile1=common.FileRenamePolicy.rename(new File(path1, fileName1));
+		part1.write(path1 + "/" + renameFile1.getName());
+		recipe.setMain_img(renameFile1.getName());
+		 }
 
 		String[] product_name = request.getParameterValues("product_name");
 		String[] product_price = request.getParameterValues("product_price");
@@ -94,13 +95,12 @@ public class RecipeInsertController implements Controller {
 					continue;
 				}
 				String filename = getFileName(part);
-				path = request.getServletContext().getRealPath("/images");
-				System.out.println(filename);
+				String path = request.getServletContext().getRealPath("/images");
+				System.out.println(path);
 				File renamefile = FileRenamePolicy.rename(new File(path, filename));
-				if (!renamefile.getName().equals("images1")) { // 파일이없을경우 저장 방지
-					part.write(path + "/" + renameFile.getName());
-
-				}
+				
+				part.write(path + "/" + renamefile.getName());
+				
 				photo.setCooking_photo_name(renamefile.getName());
 				photo.setCooking_content(cooking_step[cnt++]);
 				photo.setRecipe_number(r);
@@ -110,10 +110,10 @@ public class RecipeInsertController implements Controller {
 		}
 
 		// 결과 저장
-		request.setAttribute("cnt", r);
+		
 
 		// 페이지 이동
-		request.getRequestDispatcher("/recipe/recipeInsert.jsp").forward(request, response);
+		response.sendRedirect("recipeBoard.do"); 
 	}
 
 	private String getFileName(Part part) throws UnsupportedEncodingException {

@@ -118,4 +118,35 @@ public class RecipeDAO {
 		      }
 		      return cnt;
 		}
+		
+		public RecipeVO selectOne(RecipeVO Recipe) {
+			conn = ConnectionManager.getConnnect();
+			RecipeVO resultVO = new RecipeVO();
+			try { 
+	         
+				 String sql = "select * from recipe where recipe_number=?";
+				 pstmt = conn.prepareStatement(sql); 
+
+		         pstmt.setInt(1, Recipe.getRecipe_number());
+				rs = pstmt.executeQuery();
+
+				if(rs.next()) {
+					resultVO = new RecipeVO();
+					resultVO.setMain_img(rs.getString("main_img"));
+					resultVO.setRecipe_name(rs.getString("recipe_name"));
+					resultVO.setMember_id(rs.getString("member_id"));
+					resultVO.setRecipe_number(rs.getInt("recipe_number"));
+					resultVO.setCooking_level(rs.getString("cooking_level"));
+					resultVO.setCooking_time(rs.getString("cooking_time"));
+					resultVO.setRecipe_content(rs.getString("recipe_content"));
+					resultVO.setRecipe_date(rs.getString("recipe_date"));
+					
+				} 
+			 }catch(Exception e) {
+				 e.printStackTrace();		 
+			 } finally {
+				 ConnectionManager.close(rs, pstmt, conn);
+			 }
+			return resultVO;
+		}
 }
