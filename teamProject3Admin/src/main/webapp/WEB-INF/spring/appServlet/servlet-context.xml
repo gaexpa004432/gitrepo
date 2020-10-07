@@ -30,7 +30,7 @@
 	</beans:bean>
 
 	<context:component-scan
-		base-package="com.dbal.app" />
+		base-package="teamProject3" />
 
 	<!-- Tiles -->
 	<beans:bean id="tilesConfigurer"
