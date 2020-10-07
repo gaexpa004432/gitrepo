@@ -17,6 +17,8 @@ public class CommentInsertController implements Controller {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//파라미터를 VO에 담기
+				response.setContentType("text/html; charset=UTF-8");
+				
 				String comment_content = request.getParameter("content");
 				Integer post_no = Integer.parseInt(request.getParameter("post_no")); 
 				
@@ -36,6 +38,7 @@ public class CommentInsertController implements Controller {
 				
 				//등록된 정보를 응답
 				String str = JSONObject.fromObject(commentVO).toString();
+				System.out.println(str);
 				response.getWriter().print(str); //이부분만 수정 
 				
 				
