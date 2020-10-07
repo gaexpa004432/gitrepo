@@ -27,6 +27,8 @@ public class CartController implements Controller {
 		}
 		request.getSession().setAttribute("product",list); // 컬렉션안에 배열이 저장된형태
 		
+		
+		
 	}
 
 }
