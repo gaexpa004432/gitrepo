@@ -308,6 +308,81 @@ public class MemberDAO {
 			return resultVO;
 		}
 
+		
+		//멤버 식당 즐찾
+		public ArrayList<MemberFavoriteVO> selectFavoriteResAll(MemberFavoriteVO mfVO) {
+			MemberFavoriteVO resultVO = null;
+			ResultSet rs = null;
+			ArrayList<MemberFavoriteVO> list = new ArrayList<MemberFavoriteVO>();
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "select s.res_no, s.res_name, s.res_content, f.favorite_code, p.RES_PIC_NAME, p.res_pic_no " + 
+						"from res s, favorites f, res_pic p " + 
+						"where s.res_no = f.favorite_no " + 
+						"and f.favorite_no = p.res_no "
+						+ "and f.favorite_code='fs' " + 
+						"and member_id = ? " + 
+						"and p.res_pic_no in ( " + 
+						"select min(p.res_pic_no) " + 
+						"from res s, favorites f, res_pic p " + 
+						"where s.res_no = f.favorite_no " + 
+						"and f.favorite_no = p.res_no " + 
+						"and member_id = ? " + 
+						"group by s.res_no, s.res_name, s.res_content)";
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, mfVO.getMember_id());
+				pstmt.setString(2, mfVO.getMember_id());
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					resultVO = new MemberFavoriteVO();
+					resultVO.setRes_no(rs.getInt(1));
+					resultVO.setRes_name(rs.getString(2));
+					resultVO.setRes_content(rs.getString(3));
+					resultVO.setFavorite_code(rs.getString(4));
+					resultVO.setRes_pic_name(rs.getString(5));
+					resultVO.setRes_pic_no(rs.getInt(6));
+					list.add(resultVO);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);
+			}
+			return list;
+		}
+		
+		//멤버 식당 즐찾
+		public ArrayList<MemberFavoriteVO> selectFavoriteRecipeAll(MemberFavoriteVO mfVO) {
+			MemberFavoriteVO resultVO = null;
+			ResultSet rs = null;
+			ArrayList<MemberFavoriteVO> list = new ArrayList<MemberFavoriteVO>();
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "select r.recipe_number, r.recipe_name, r.recipe_content, r.main_img, f.favorite_code " +
+						"from recipe r, favorites f " + 
+						"where r.recipe_number = f.favorite_no " + 
+						"and f.member_id = ? " + 
+						"and f.favorite_code='fr'";
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, mfVO.getMember_id());
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					resultVO = new MemberFavoriteVO();
+					resultVO.setRecipe_number(rs.getInt(1));
+					resultVO.setRecipe_name(rs.getString(2));
+					resultVO.setRecipe_content(rs.getString(3));
+					resultVO.setMain_img(rs.getString(4));
+					resultVO.setFavorite_code(rs.getString(5));
+					list.add(resultVO);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);
+			}
+			return list;
+		}
+		
 }
 
 

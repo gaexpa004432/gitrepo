@@ -28,7 +28,7 @@
 <body>
 	<div class="container">
 	
-		<form method="post" action="inqInsert.do" >
+		<form method="post">
 		<h1 >1:1 문의</h1>
 		<hr>
 		<div>
@@ -56,7 +56,7 @@
 		</div>
 		<div>
 			<textarea rows="10" cols="80" id="inq_content" name="inq_content" 
-			 readonly placeholder="답변이 없습니다"></textarea>
+			 readonly placeholder="답변이 없습니다">${inqOne.inq_answer}</textarea>
 		</div>
 		</form>
 		<button type="button" id="btnBack">뒤로가기</button>
