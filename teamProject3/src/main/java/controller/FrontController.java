@@ -91,9 +91,9 @@ public class FrontController extends HttpServlet {
 		//진인석
 		
 		
-		
-		
-		
+		list.put("/cartController.do", new buy.CartSelectContoller());
+		list.put("/recipeInsert.do", new recipe.RecipeInsertController());
+		list.put("/recipeInsert.do", new recipe.RecipeInsertController());
 		
 		
 		
