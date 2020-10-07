@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,8 +41,19 @@ h2 {
 	text-align: center;
 }
 </style>
+
+<script>
+$(function(){
+	console.log("${error}")
+	if ("${error}" == "아이디와 비밀번호를 다시 확인해주세요") {
+		alert("아이디와 비밀번호를 다시 확인해주세요")
+	}
+})
+</script>
 </head>
 <body>
+<form action="/teamProject3/member/memberDelete.do" method="post"
+		enctype="multipart/form-data"> <!-- jsp에서 데이터보내기 -->
 	<div class="container" align="center">
 	
 	<h2>회원탈퇴</h2>
@@ -62,5 +74,7 @@ h2 {
      <input class="btn1" type="button" value="취소" onclick="javascript:history.back()">
 	</div>
 	<br><br><br><br>
+	
+	
 </body>
 </html>

@@ -123,10 +123,10 @@ public class FrontController extends HttpServlet {
 		list.put("/freeBoardUpdate.do",new board.FreeBoardUpdateController());
 		list.put("/freeBoardUpdate2.do",new board.FreeBoardUpdate2Controller());
 		list.put("/freeBoardDelete.do",new board.FreeBoardDeleteController());
-		list.put("/commentInsert.do",new board.CommentInsertController());
+		list.put("/ajaxcommentInsert.do",new board.CommentInsertController());
 		list.put("/qaBoardWrite.do",new board.QaBoardWriteController());
 		list.put("/qaBoardList.do", new board.QaBoardListController());
-		list.put("/commentList.do", new board.CommentListController());
+		list.put("/ajaxcommentList.do", new board.CommentListController());
 		list.put("/qaBoardView.do", new board.qaBoardViewController());
 		list.put("/member/memberDelete.do", new member.MemberDeleteController());
 		
