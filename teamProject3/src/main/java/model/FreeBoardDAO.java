@@ -62,7 +62,7 @@ public class FreeBoardDAO {
 		         pstmt.setInt(pos++, freeboardVO.getFirst());      // 물음표부분이 pos++로 인해 동적으로 늘어남
 		         pstmt.setInt(pos++, freeboardVO.getLast());
 	
-				rs = pstmt.executeQuery();
+				rs = pstmt.executeQuery();   
 				while(rs.next()) {
 					resultVO = new FreeBoardVO();
 					resultVO.setMember_name(rs.getString("member_name"));
@@ -76,6 +76,7 @@ public class FreeBoardDAO {
 					list.add(resultVO);
 					System.out.println(resultVO.getBoard_sub());
 				} 
+				return list;
 			 }catch(Exception e) {
 				 e.printStackTrace();		 
 			 } finally {
@@ -161,13 +162,14 @@ public class FreeBoardDAO {
 					int cnt = 0;
 				      try {
 				         conn = ConnectionManager.getConnnect();
-				         String where = " where 1=1 ";
+				         String where = " where 1=1 and board_groupcode = ?";
 				         if(freeboard.getBoard_sub() != null) {
 				            where += " and Board_sub like '%' || ? || '%' or Board_content like '%' || ? || '%'";
 				         }
 				         String sql = "select count(*) from board" + where;
 				         pstmt = conn.prepareStatement(sql);
 				         int pos = 1;
+				         pstmt.setString(pos++, freeboard.getBoard_groupcode());
 				         if(freeboard.getBoard_sub() !=null) {
 				            pstmt.setString(pos++,freeboard.getBoard_sub());
 				            pstmt.setString(pos++,freeboard.getBoard_sub());

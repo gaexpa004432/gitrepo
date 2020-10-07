@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 
-	location.href="productList.do"; 
+	location.href="qaBoardList.do"; 
 
 </script>
 </head>

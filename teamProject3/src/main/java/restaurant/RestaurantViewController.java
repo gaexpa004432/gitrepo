@@ -13,6 +13,7 @@ import common.Paging;
 import controller.Controller;
 import model.FavoriteDAO;
 import model.FavoriteVO;
+import model.MemberVO;
 import model.RestaurantDAO;
 import model.RestaurantReviewDAO;
 import model.RestaurantReviewVO;
@@ -49,12 +50,12 @@ public class RestaurantViewController implements Controller {
 		// 카운트에도 넘김
 		restaurantReview.setFirst(paging.getFirst());
 		restaurantReview.setLast(paging.getLast());
-	// 임시
-		request.getSession().setAttribute("id", "qqq");	
-	//
+	
 		restaurant = RestaurantDAO.getInstance().selectOne(restaurant);
 		HttpSession session = ((HttpServletRequest) request).getSession();
 		favorite.setMember_id((String) session.getAttribute("id"));
+		
+		
 		list = FavoriteDAO.getInstance().selectAll(favorite);
 		for(FavoriteVO fav : list) {
 			if(fav.getFavorite_code().equals("fs") && fav.getFavorite_no() == (restaurant.getRes_no())) {

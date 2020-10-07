@@ -46,6 +46,13 @@ public class FrontController extends HttpServlet {
 		list.put("/member/select.do", new member.MemberSelectController());
 		list.put("/member/update.do", new member.MemberUpdateController());
 		list.put("/member/addUpdate.do", new member.MemberAddUpdateController());
+		list.put("/member/inqInsert.do", new member.MemberInqInsertController());
+		list.put("/member/inqList.do", new member.MemberInqListController());
+		list.put("/member/inqSelect.do", new member.MemberInqSelectController());
+		list.put("/member/inqSellerId.do", new member.MemberInqSellerIdController());
+		list.put("/member/ansList.do", new member.MemberAnsListController());
+		list.put("/member/ansSelect.do", new member.MemberAnsSelectController());
+		
 		
 		
 		
@@ -85,9 +92,9 @@ public class FrontController extends HttpServlet {
 		//진인석
 		
 		
-		
-		
-		
+		list.put("/cartController.do", new buy.CartSelectContoller());
+		list.put("/recipeInsert.do", new recipe.RecipeInsertController());
+		list.put("/recipeInsert.do", new recipe.RecipeInsertController());
 		
 		
 		
@@ -117,12 +124,12 @@ public class FrontController extends HttpServlet {
 		list.put("/freeBoardUpdate.do",new board.FreeBoardUpdateController());
 		list.put("/freeBoardUpdate2.do",new board.FreeBoardUpdate2Controller());
 		list.put("/freeBoardDelete.do",new board.FreeBoardDeleteController());
-		list.put("/commentInsert.do",new board.CommentInsertController());
+		list.put("/ajaxcommentInsert.do",new board.CommentInsertController());
 		list.put("/qaBoardWrite.do",new board.QaBoardWriteController());
 		list.put("/qaBoardList.do", new board.QaBoardListController());
-		
-		
-		
+		list.put("/ajaxcommentList.do", new board.CommentListController());
+		list.put("/qaBoardView.do", new board.qaBoardViewController());
+		list.put("/member/memberDelete.do", new member.MemberDeleteController());
 		
 		
 		
@@ -150,6 +157,9 @@ public class FrontController extends HttpServlet {
 		list.put("/reviewInsert.do", new restaurant.reviewInsertController());
 		list.put("/bookMark.do", new common.BookMarkController());
 		list.put("/reviewDelete.do",new restaurant.ReviewDeleteController());
+		list.put("/recipeBoard.do",new recipe.RecipeBoardController());
+		list.put("/recipeView.do",new recipe.RecipeViewController());
+		list.put("/cart.do",new buy.CartController());
 		
 	}
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -147,7 +147,7 @@
 	
 	<hr>
 	<br>
-	<h2>간단한 소개글</h2>
+	<h2>간단한 소개글1</h2>
 
 	<br>
 	<textarea name="recipe_content" style="width: 100% rows=" 10" id="recipe_content"
@@ -188,6 +188,10 @@
 	<input name="product_price" placeholder="예) 10000원"><br> 
 	</div>
 	<button type="button" class="matAdd" id = "btn aqua">추가</button>
+	
+	<hr>
+	<h2>그외 재료</h2>
+	
 	
 	<hr>
 	<h2>요리 순서</h2>

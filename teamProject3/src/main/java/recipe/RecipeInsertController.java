@@ -19,6 +19,7 @@ import model.MemberVO;
 import model.ProductDAO;
 import model.ProductVO;
 import model.RecipeDAO;
+import model.RecipePhotoDAO;
 import model.RecipePhotoVO;
 import model.RecipeVO;
 
@@ -29,7 +30,6 @@ public class RecipeInsertController implements Controller {
 		String recipe_content = request.getParameter("recipe_content");
 		String cooking_time = request.getParameter("cooking_time");
 		String cooking_level = request.getParameter("cooking_level");
-		String main_img = request.getParameter("main_img");
 
 		RecipePhotoVO photo = new RecipePhotoVO();
 		RecipeVO recipe = new RecipeVO();
@@ -39,25 +39,25 @@ public class RecipeInsertController implements Controller {
 		recipe.setRecipe_content(recipe_content);
 		recipe.setCooking_time(cooking_time);
 		recipe.setCooking_level(cooking_level);
-		recipe.setMain_img(main_img);
 
 		// 첨부파일 처리
 		Part part1 = request.getPart("main_img");
-		String fileName = getFileName(part1);// Long.toString(System.currentTimeMillis());
-		String path = request.getServletContext().getRealPath("/images"); // "c:/upload";
-		System.out.println(path);
-		// if(fileName != null && !fileName.isEmpty()) {
+		String fileName1 =getFileName(part1);// Long.toString(System.currentTimeMillis());
+		String path1 = request.getServletContext().getRealPath("/images"); // "c:/upload";
+		System.out.println(fileName1); 
+		 if(fileName1 != null && !fileName1.isEmpty()) {
 		// 파일명 중복체크
-		File renameFile = common.FileRenamePolicy.rename(new File(path, fileName));
-		part1.write(renameFile.getName());
-		recipe.setMain_img(renameFile.getName());
+		File renameFile1=common.FileRenamePolicy.rename(new File(path1, fileName1));
+		part1.write(path1 + "/" + renameFile1.getName());
+		recipe.setMain_img(renameFile1.getName());
+		 }
 
 		String[] product_name = request.getParameterValues("product_name");
 		String[] product_price = request.getParameterValues("product_price");
 		String[] product_unit = request.getParameterValues("product_unit");
-		System.out.println(main_img);
 
 		// 서비스 처리 db처리
+		System.out.println(recipe.toString());
 		int r = RecipeDAO.getInstance().recipeInsert(recipe); // 글번호가 반환
 		MemberVO membervo = (MemberVO) request.getSession().getAttribute("login");
 		// int sellerCode = membervo.getSeller_code();
@@ -80,35 +80,40 @@ public class RecipeInsertController implements Controller {
 
 		// 레시피 과정
 		String[] cooking_step = request.getParameterValues("cooking_step");
-		int recipe_number = r;
+
 		int cnt = 0;
+		int ignore = 0;
 		Collection<Part> fileList = request.getParts(); // 모든 파라미터를 파트타입으로 불러옴
 
 		List<RecipePhotoVO> renameArray = new ArrayList<RecipePhotoVO>();
+
 		for (Part part : fileList) { // 파트수만큼 반복
+
 			if (getFileName(part) != null) { // 파일타입으로 받아온 파라미터만 값을 가지고 있음
-
-				String filename = getFileName(part);
-				path = request.getServletContext().getRealPath("/images");
-				System.out.println(path);
-				// 중복체크
-				File renamefile = FileRenamePolicy.rename(new File(path, filename));
-				if (!renamefile.getName().equals("images1")) { // 파일이없을경우 저장 방지
-					part.write(path + "/" + renamefile.getName());
-
-					System.out.println(cnt);
+				if (ignore == 0) {
+					ignore++;
+					continue;
 				}
-				photo.setCooking_content(cooking_step[cnt++]);
+				String filename = getFileName(part);
+				String path = request.getServletContext().getRealPath("/images");
+				System.out.println(path);
+				File renamefile = FileRenamePolicy.rename(new File(path, filename));
+				
+				part.write(path + "/" + renamefile.getName());
+				
 				photo.setCooking_photo_name(renamefile.getName());
-				renameArray.add(photo);
+				photo.setCooking_content(cooking_step[cnt++]);
+				photo.setRecipe_number(r);
+				RecipePhotoDAO.getInstance().recipe_photoInsert(photo);
 			}
+
 		}
 
 		// 결과 저장
-		request.setAttribute("cnt", r);
+		
 
 		// 페이지 이동
-		request.getRequestDispatcher("/recipe/recipeInsert.jsp").forward(request, response);
+		response.sendRedirect("recipeBoard.do"); 
 	}
 
 	private String getFileName(Part part) throws UnsupportedEncodingException {
