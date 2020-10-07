@@ -52,10 +52,10 @@ article {
 			<h2>Spring project(ver 1.0)</h2>
 		</header>
 		<nav>
-			<tiles:insertAttribute name="header" />
+		<%-- 	<tiles:insertAttribute name="header" /> --%>
 		</nav>
 		<article>
-			<tiles:insertAttribute name="content"/>
+			<%-- <tiles:insertAttribute name="content"/> --%>
 		</article>
 		<footer>
 			copyright
