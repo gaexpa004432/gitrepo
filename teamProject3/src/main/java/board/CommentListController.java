@@ -16,13 +16,20 @@ public class CommentListController implements Controller {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println(request.getParameter("post_no"));//jsp페이지의 post_no 가져오기
+		response.setContentType("text/html; charset=UTF-8");
 		CommentVO comment = new CommentVO();
 		comment.setPost_no(Integer.parseInt(request.getParameter("post_no")));
 		ArrayList<CommentVO>  list = CommentDAO.getInstance().selectOne(comment);
-		String result = JSONArray.fromObject(list).toString();
-		System.out.println(result);
-	      response.getWriter().print(result);
 		
+		  String result = JSONArray.fromObject(list).toString();
+		  System.out.println(result); 
+		  response.getWriter().print(result);
+		
+		
+		/*
+		 * request.setAttribute("list",list);
+		 * request.getRequestDispatcher("/board/comment.jsp").forward(request,response);
+		 */
 	}
 
 }
