@@ -33,6 +33,10 @@ h1,table {font-family: 'Noto Sans KR', sans-serif;}
         margin-left: 1px;
       }
       
+    #review:hover{
+    	background-color: #f2f2f2;
+    }
+      
 </style>
 
 
@@ -57,7 +61,7 @@ $(function(){
 //댓글 script부분(userClient.jsp참고)
 	$(function(){
 		
-	
+		commentList()
 		commentInsert()
 	//삭제 버튼  이벤트
 	function commentDelete() {
@@ -149,13 +153,23 @@ $(function(){
 	//사용자 목록 조회 요청
 	function commentList() {
 		$.ajax({
-			url:'ajax/CommentList.do',
-			type:'GET',
+			url:'/teamProject3/commentList.do',
+			type:'post',
 			dataType:'json',
+			data : { post_no:"${board.board_no}"},
 			error:function(xhr,status,msg){
 				alert("상태값 :" + status + " Http에러메시지 :"+msg);
 			},
-			success:userListResult
+			success:function(datas) {
+				for (i=0; i<datas.length; i++) {
+					$(".re").append($("<div>").attr("class","row").attr("id","review").css("border-top-width","1px").css("border-top-style","solid")
+							.css("padding","20px").css("border-top-color","#f0f0f5").append($("<div>").attr("class","col-sm-1").text("작성자아이디")).append($("<div>").attr("class","col-sm-10").attr("align","left")
+									.html("<small style='vertical-align:top'>"+datas[i].comment_date +"</small>"+"<br>"+datas[i].comment_content)));
+					
+
+							  
+				}
+			}
 		});
 	}//commentList
 	
@@ -183,7 +197,7 @@ $(function(){
 
 </head>
 <body>
-	<div align="center">
+	<div align="center" class="container">
 		<br><br>
 		<h1 style="background-color:#dcdcdc; width:820px; font-size:20px;"><strong>글보기</strong></h1>
 		<table style="width:820px">
@@ -201,7 +215,12 @@ $(function(){
 		  </tr>
 		  <tr>
 		  <th>내용</th>
-		  <td>${board.board_content}</td>
+		  <td>${board.board_content}<br>
+		  	<C:if test="${ !empty board.board_file}">
+		  	<img src="/teamProject3/images/${ board.board_file }" style="max-width:500px">
+		  	</C:if>
+		  
+		  </td>
 		  </tr>			  
 		 </table>
 		 <br>
@@ -211,20 +230,15 @@ $(function(){
 		 <button type="button" class="btn" style="display:none" id="delbtn">삭제</button>
 		 <a id="gg"></a>
 		 <br><br>
-		 
-		 
+		 <br>
+		  <!-- 댓글 리스트 -->
+		 <div class="re"></div>
+		 <br>
 		 <textarea cols="100" rows="3" id="commentcontent"></textarea>
-		 <button type="button" id="btnInsert" style="width:100px; height:65px; vertical-align: top;" >등록</button>
+		 <button type="button" id="btnInsert" style="width:60px; height:65px; vertical-align: top;" >등록</button>
 		 <br><br><br><br><br>
 		 
-		 <!-- 댓글 리스트 -->
-		 <div> 
-			<table>
-			<tbody id="freeboardReview">
-				
-			</tbody>
-			</table> 
-		</div>
+		
 		
 	</div>
 </html>

@@ -18,7 +18,8 @@ public class MemberSelectController implements Controller {
 		MemberVO member = new MemberVO();
 		member.setMember_id(id);
 		
-		MemberVO resultVO = MemberDAO.getInstance().selectOne(member);
+		//MemberVO resultVO = MemberDAO.getInstance().selectOne(member);
+		MemberVO resultVO = (MemberVO) request.getSession().getAttribute("login");
 		
 		request.setAttribute("member", resultVO);
 

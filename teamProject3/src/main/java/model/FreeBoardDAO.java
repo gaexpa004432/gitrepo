@@ -17,9 +17,9 @@ public class FreeBoardDAO {
 		   try {
 	         conn = ConnectionManager.getConnnect();
 	         String sql = "INSERT INTO BOARD (BOARD_NO, MEMBER_NAME, BOARD_SUB, BOARD_CONTENT,"
-	         		+ "BOARD_DATE, BOARD_FILE, BOARD_GROUPCODE, MEMBER_ID"
+	         		+ "BOARD_DATE, BOARD_FILE, BOARD_GROUPCODE, MEMBER_ID, Board_passyn"
 	         		+ ")"
-	               + "VALUES (BOARD_SEQ.NEXTVAL,?,?,?,SYSDATE,?,?,?)"; //시퀀스
+	               + "VALUES (BOARD_SEQ.NEXTVAL,?,?,?,SYSDATE,?,?,?,?)"; //시퀀스
 	         pstmt = conn.prepareStatement(sql);
 	         pstmt.setString(1, freeboardVO.getMember_name());
 	         pstmt.setString(2, freeboardVO.getBoard_sub());
@@ -27,7 +27,7 @@ public class FreeBoardDAO {
 	         pstmt.setString(4, freeboardVO.getBoard_file());
 	         pstmt.setString(5, freeboardVO.getBoard_groupcode());
 	         pstmt.setString(6, freeboardVO.getMember_id());
-	         //board file, board_groupcode는?? 위에 물음표가 다섯개니까 다섯개 넣어야되는거 아님?
+	         pstmt.setString(7, freeboardVO.getBoard_passyn());
 	         r = pstmt.executeUpdate();
 	         System.out.println(r + "건이 입력됨");
 
@@ -45,7 +45,7 @@ public class FreeBoardDAO {
 			FreeBoardVO resultVO = new FreeBoardVO();
 			ArrayList<FreeBoardVO> list = new ArrayList();
 			try { 
-	         String where = " where 1=1 ";
+	         String where = " where 1=1 and board_groupcode = ?";
 	         if(freeboardVO.getBoard_sub() != null) {
 	            where += " and Board_sub like '%' || ? || '%'  or Board_content like '%' || ? || '%'";
 	         }
@@ -54,14 +54,15 @@ public class FreeBoardDAO {
 				 		"           ) b) a where rn between ? and ?";
 				 pstmt = conn.prepareStatement(sql); // 미리 sql 구문이 준비가 되어야한다
 		         int pos = 1;   // 물음표값 동적으로 하려고 변수선언
+		            pstmt.setString(pos++, freeboardVO.getBoard_groupcode());
 		         if(freeboardVO.getBoard_sub() != null) {
 		            pstmt.setString(pos++, freeboardVO.getBoard_sub());
-		            pstmt.setString(pos++, freeboardVO.getBoard_sub());// 물음표부분이 pos++로 인해 동적으로 늘어남
+		            pstmt.setString(pos++, freeboardVO.getBoard_sub());// 물음표 부분이 pos++로 인해 동적으로 늘어남
 		         }
 		         pstmt.setInt(pos++, freeboardVO.getFirst());      // 물음표부분이 pos++로 인해 동적으로 늘어남
 		         pstmt.setInt(pos++, freeboardVO.getLast());
 	
-				rs = pstmt.executeQuery();
+				rs = pstmt.executeQuery();   
 				while(rs.next()) {
 					resultVO = new FreeBoardVO();
 					resultVO.setMember_name(rs.getString("member_name"));
@@ -71,9 +72,11 @@ public class FreeBoardDAO {
 					resultVO.setBoard_groupcode(rs.getString("board_groupcode"));
 					resultVO.setBoard_no(rs.getInt("board_no"));
 					resultVO.setBoard_date(rs.getString("board_date"));
+					resultVO.setBoard_passyn(rs.getString("board_passyn"));
 					list.add(resultVO);
 					System.out.println(resultVO.getBoard_sub());
 				} 
+				return list;
 			 }catch(Exception e) {
 				 e.printStackTrace();		 
 			 } finally {
@@ -146,6 +149,7 @@ public class FreeBoardDAO {
 						resultVO.setBoard_content(rs.getString("board_content"));
 						resultVO.setMember_name(rs.getString("member_name"));
 						resultVO.setBoard_date(rs.getString("board_date"));
+						resultVO.setBoard_file(rs.getString("board_file"));
 						}
 					 }catch(Exception e) {
 						 e.printStackTrace();		 
@@ -158,13 +162,14 @@ public class FreeBoardDAO {
 					int cnt = 0;
 				      try {
 				         conn = ConnectionManager.getConnnect();
-				         String where = " where 1=1 ";
+				         String where = " where 1=1 and board_groupcode = ?";
 				         if(freeboard.getBoard_sub() != null) {
 				            where += " and Board_sub like '%' || ? || '%' or Board_content like '%' || ? || '%'";
 				         }
 				         String sql = "select count(*) from board" + where;
 				         pstmt = conn.prepareStatement(sql);
 				         int pos = 1;
+				         pstmt.setString(pos++, freeboard.getBoard_groupcode());
 				         if(freeboard.getBoard_sub() !=null) {
 				            pstmt.setString(pos++,freeboard.getBoard_sub());
 				            pstmt.setString(pos++,freeboard.getBoard_sub());
@@ -195,5 +200,7 @@ public class FreeBoardDAO {
 					// TODO Auto-generated method stub
 					return null;
 				}
+				
+				
 			}
 

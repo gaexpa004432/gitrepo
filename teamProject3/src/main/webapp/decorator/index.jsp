@@ -103,6 +103,12 @@ h6, .h6 {
 .padding_test {
 	padding-top : 3%;
 }
+
+
+
+
+
+
     </style>
     <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">

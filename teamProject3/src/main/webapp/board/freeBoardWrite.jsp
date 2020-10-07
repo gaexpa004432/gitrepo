@@ -23,7 +23,7 @@
 <body>
     <div class="container" align="center">
 <form action="${pageContext.request.contextPath}/freeBoardWrite.do" 
-        method="post" action="BoardServlet">
+        method="post" action="BoardServlet" enctype='multipart/form-data'>
         <h2>게시글 작성</h2>
         	<input type="hidden" value="board_write" name="command">
             <table>
@@ -35,8 +35,7 @@
                 <tr>
                     <th>이름 *</th>
                     <td><input type="text" name="member_name"></td>
-                </tr>
-                
+                </tr>                
           	  <tr>
                     <td></td>
                     <td><input type = "file" name="board_file"></td>

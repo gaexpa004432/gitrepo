@@ -55,71 +55,82 @@
     .btn.pink:active{
       border-bottom:2px solid #165195;
     }
-    
-.impo {
-    color: black;
-  }
-  
- div {
-    color: red;
-  } 
-  
-#drow {
-	background-color: white;
-	border: 1px solid purple;
-	border-radius: 10px;
-	display: inline-block;
-	font: inherit;
-	line-height: 1.5em;
-	padding: 0.5em 3.5em 0.5em 1em;
-	margin: 0;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	background-image: linear-gradient(45deg, transparent 50%, gray 50%),
-		linear-gradient(135deg, gray 50%, transparent 50%),
-		radial-gradient(#ddd 70%, transparent 72%);
-	background-position: calc(100% - 20px) calc(1em + 2px),
-		calc(100% - 15px) calc(1em + 2px), calc(100% - .5em) .5em;
-	background-size: 5px 5px, 5px 5px, 1.5em 1.5em;
-	background-repeat: no-repeat;
-}
+
 </style>
 
 <script>
+
+
+	$(function(){           //조리 순서 추가
+	
+	$(".stepAdd").on("click",function(){
+		$(".cooking_order").append($("<div>")
+				.append($("<input>").attr("name","cooking_step"))
+				.append($("<input>").attr("type","file").attr("name","step_img"))
+				
+				
+				
+				
+				
+				.append($("<button>").attr("type","button").text("삭제").on("click",function(){
+					$(this).parent().remove();
+				}))
+				.append($("<br>")));		
+	})
+})
+
+
+
+	$(function(){           //상품이름 단위 가격 적는 곳 추가~!!!
+		
+		$(".matAdd").on("click",function(){
+			$(".matList").append($("<div>").append($("<input>").attr("name","product_name"))
+					.append($("<input>").attr("name","product_unit"))
+					.append($("<input>").attr("name","product_price"))
+					.append($("<button>").attr("type","button").text("삭제").on("click",function(){
+						$(this).parent().remove();
+					}))
+					.append($("<br>")));
+			
+			
+			
+		})
+		
+		
+	})
 	function textarea() { 
 		
 		if(frm.recipe_content.value == "") {
-			window.alert("레시피 입력하세요");
 			frm.recipe_content.focus();
 			return false;
 		}
+	}
 </script>
-
-
 
 </head>
 
 
 <body>
-<form name="frm1" action ="recipeInsert.do">
+<form name="frm1" action ="/teamProject3/recipeInsert.do" enctype='multipart/form-data' method = "post">
 	<h1>레시피 등록</h1>
 
 	<label>메뉴 이름</label>
 	<input  type="text" name="recipe_name" id="recipe_name">
-	
-	<hr>
 	<br>
-	<h2>레시피</h2>
-	<img id="preview" src="" width="700" alt="">
-	<input type="file" id="getfile" accept="image/*">
+	
+	
+	<img id="main_img" src="" width="300" alt="">
+	<input type="file" id="getfile" name = "main_img" accept="image/*">
 
-	<script>  // 사진보이기
+
+<script>  // 사진보이기
 	var file = document.querySelector('#getfile');
 
 	file.onchange = function () { 
-    var fileList = file.files ;
+		
+    var fileList = "" ;
+    fileList = file.files;
+    console.log(fileList);
     
     // 읽기
     var reader = new FileReader();
@@ -127,51 +138,90 @@
 
     //로드 한 후
     reader.onload = function () {
-        document.querySelector('#preview').src = reader.result ;
+        document.querySelector('#main_img').src = reader.result ;
     }; 
 }; 
 
- </script>
+</script>
+	
+	
+	<hr>
+	<br>
+	<h2>간단한 소개글1</h2>
 
 	<br>
 	<textarea name="recipe_content" style="width: 100% rows=" 10" id="recipe_content"
-		text-align:center onclick="this.value=''">레시피를 입력하세요
+			placeholder = "간단한 소개글을 적어주세요">
 	</textarea>
 	<br>
-
+	<hr>
+	<h2>요리 정보</h2>
+	<div>
+	<span class = "time">시간</span>
+		<select name = "cooking_time" text = "조리시간">
+			<option value>시간</option>
+			<option value="5분이내">5분이내</option>
+			<option value="10분이내">10분이내</option>
+			<option value="30분이내">30분이내</option>
+			<option value="1시간이내">1시간이내</option>
+			<option value="1시간30분이내">1시간30분이내</option>
+			<option value="2시간이내">2시간이내</option>
+			<option value="4시간이내">4시간이내</option>
+		</select>	
+		<span class = "level">난이도</span>
+		<select name = "cooking_level" text = "난이도">
+			<option value>난이도</option>
+			<option value="누구나">누구나</option>
+			<option value="하">하</option>
+			<option value="중">중</option>
+			<option value="상">상</option>
+			<option value="상상">상상</option>
+		</select>
+	</div>
+	
 	<hr>
 	<h2>재료</h2>
-	<select id="drow" name="product_insert_content" multiple="multiple">
-		<option value="" >재료 선택</option>
-		<c:forEach items="${list}" var="productlist">
-			<option value="${productlist.product_name}">${productlist.product_name}</option>
-		</c:forEach>
-	</select>
-	
-	<br>
-	<div id="mult" name = "recipe_content" value=""></div>
-	
-	<span class = "unit">중량</span>
-	<input>
 
- 	<script>            //다중선택 한 값 출력
-		$( "select" ).change(function () {
-			
-   	 var str = "";
- 		 $( "select option:selected" ).each(function() {
-      		str += $( this ).text() + " ";
-  		  });
-  	  $( "#mult" ).text( str );
- 		 })
- 	 .change();
-
-	</script> 
+	<div class="matList">
+	<input name="product_name" placeholder="예) 돼지고기">
+	<input name="product_unit" placeholder="예) 1KG">
+	<input name="product_price" placeholder="예) 10000원"><br> 
+	</div>
+	<button type="button" class="matAdd" id = "btn aqua">추가</button>
+	
 	<hr>
+	<h2>그외 재료</h2>
+	
+	
+	<hr>
+	<h2>요리 순서</h2>
+	<div class = "cooking_order">
+	<input name = "cooking_step">
+	
+	<img id="step_img" src="" width="100" alt="">
+	<input type="file" id="step_img1" name = "step_img" accept="image/*">
+	<script>  // 사진보이기
+	var file1 = document.querySelector('#step_img1');
 
-	<a class = "btn green" href="/teamProject3/recipe/productInsert.jsp">새로운재료추가</a>
+	file1.onchange = function () { 
+    var fileList1 = file1.files ;
+    
+    // 읽기
+    var reader1 = new FileReader();
+    reader1.readAsDataURL(fileList1 [0]);
 
+    //로드 한 후
+    reader1.onload = function () {
+        document.querySelector('#step_img').src = reader1.result ;
+    	}; 
+	}; 
+	</script>
+	</div>
+	<button type="button" class="stepAdd" >순서 추가</button>
+	
 	<hr>
 	<button class = "btn pink">등록</button>
+	<a class = "btn green" href="/teamProject3/recipe/productInsert.jsp">새로운재료추가</a>
 	
 	</form>
 </body>

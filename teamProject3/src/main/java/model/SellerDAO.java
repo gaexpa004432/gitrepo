@@ -72,34 +72,26 @@ public class SellerDAO {
 		return r;
 	}
 	
-	//한건조회
-	public MemberVO selectOne(MemberVO memberVO) {
-		MemberVO resultVO = null;
+	//한건조회(변수는 SellerVO타입으로)
+	public SellerVO selectOne(SellerVO sellerVO) {
+		SellerVO resultVO = null;
 		ResultSet rs = null;
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT * FROM MEMBER"
-					+ " WHERE MEMBER_ID=?";
+			String sql = "SELECT * FROM SELLER"
+					+ " WHERE SELLER_CODE=?";
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, memberVO.getMember_id());
+			pstmt.setInt(1, sellerVO.getSeller_code());
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				resultVO = new MemberVO();
-				resultVO.setMember_id(rs.getString("member_id"));
-				resultVO.setMember_name(rs.getString("member_name"));
-				resultVO.setMember_tel(rs.getString("member_tel"));
-				resultVO.setMember_roadAddress(rs.getString("member_roadAddress"));
-				resultVO.setMember_pass(rs.getString("member_pass"));
-				resultVO.setMember_gender(rs.getString("member_gender"));
-				resultVO.setMember_birth(rs.getString("member_birth"));
-				resultVO.setMember_type(rs.getString("member_type"));
-				resultVO.setMember_mileage(rs.getInt("member_mileage"));
+				resultVO = new SellerVO();
 				resultVO.setSeller_code(rs.getInt("seller_code"));
-				resultVO.setMember_postcode(rs.getString("member_postcode"));
-				resultVO.setMember_detailAddress(rs.getString("member_detailAddress"));
-				resultVO.setMember_extraAddress(rs.getString("member_extraAddress"));
-				resultVO.setMember_email(rs.getString("member_email"));
-				resultVO.setMember_image(rs.getString("member_image"));
+				resultVO.setSeller_roadAddress(rs.getString("seller_roadAddress"));
+				resultVO.setSeller_store(rs.getString("seller_store"));
+				resultVO.setSeller_tel(rs.getString("seller_tel"));
+				resultVO.setSeller_postcode(rs.getString("seller_postcode"));
+				resultVO.setSeller_detailAddress(rs.getString("seller_detailAddress"));
+				resultVO.setSeller_extraAddress(rs.getString("seller_extraAddress"));
 			} else {
 				System.out.println("no data");
 			}
@@ -110,4 +102,62 @@ public class SellerDAO {
 		}
 		return resultVO;
 	}
+	
+	//한건조회(변수는 SellerVO타입으로)
+		public SellerVO selectOne2(MemberVO memberVO) {
+			SellerVO resultVO = null;
+			ResultSet rs = null;
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "SELECT * FROM SELLER"
+						+ " WHERE SELLER_CODE=?";
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1, memberVO.getSeller_code());
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					resultVO = new SellerVO();
+					resultVO.setSeller_code(rs.getInt("seller_code"));
+					resultVO.setSeller_roadAddress(rs.getString("seller_roadAddress"));
+					resultVO.setSeller_store(rs.getString("seller_store"));
+					resultVO.setSeller_tel(rs.getString("seller_tel"));
+					resultVO.setSeller_postcode(rs.getString("seller_postcode"));
+					resultVO.setSeller_detailAddress(rs.getString("seller_detailAddress"));
+					resultVO.setSeller_extraAddress(rs.getString("seller_extraAddress"));
+				} else {
+					System.out.println("no data");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);//rs를 try안에서 선언하면 지역 변수 이기 때문에 try안에서만 사용 됨 , 그러니까 변수를 try밖으로 빼주고 초기값 null을 주면 에러없이 사용 가능
+			}
+			return resultVO;
+		}
+		
+		//seller_id가져오기 //필요 없을듯?
+//		public MemberVO selectOneSeller(SellerVO sellerVO) {
+//			MemberVO resultVO = null;
+//			ResultSet rs = null;
+//			try {
+//				conn = ConnectionManager.getConnnect();
+//				String sql = "select m.member_id "
+//						+ "from member m join seller " 
+//						+ "on m.seller_code = s.seller_code " 
+//						+ "where m.seller_code = ?";
+//				pstmt=conn.prepareStatement(sql);
+//				pstmt.setInt(1, sellerVO.getSeller_code());
+//				rs = pstmt.executeQuery();
+//				if(rs.next()) {
+//					resultVO = new MemberVO();
+//					resultVO.setMember_id(rs.getString("member_id"));
+//				} else {
+//					System.out.println("no data");
+//				}
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			} finally {
+//				ConnectionManager.close(rs, pstmt, conn);
+//			}
+//			return resultVO;
+//		}
 }
