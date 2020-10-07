@@ -62,9 +62,10 @@ public class FrontController extends HttpServlet {
 		list.put("/productList.do", new recipe.ProductListController());
 		list.put("/recipeInsert.do", new recipe.RecipeInsertController());
 		
-		
-		
-		
+		list.put("/eventInsert.do", new event.EventInsertController());
+		list.put("/eventBoardList.do", new event.EventListController());
+		list.put("/eventView.do", new event.EventViewController());
+		list.put("/eventBoardUpdate.do", new event.EventUpdateController());
 		
 		
 		
