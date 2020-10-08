@@ -21,7 +21,7 @@
 		<tbody>
 		<c:forEach items="${list}" var="inq"> 
 			<tr>
-				<td><a href="ansSelect.do?inq_no=${inq.inq_no}">${inq.inq_title}</a></td>
+				<td><a href="${pageContext.request.contextPath}/ansSelect.do?inq_no=${inq.inq_no}">${inq.inq_title}</a></td>
 				<td>
 					<fmt:parseDate value="${inq.inq_regdate}" pattern="yyyy-MM-dd HH:mm:ss" var="parseDate"/>
 					<fmt:formatDate value="${parseDate}" pattern="yyyy-MM-dd HH:mm"/>
@@ -33,7 +33,7 @@
 						답변완료
 					</c:when>
 					<c:when test="${empty inq.inq_answer}">
-						<a href="ansSelect.do?inq_no=${inq.inq_no}">답변대기</a>
+						<a href="${pageContext.request.contextPath}/ansSelect.do?inq_no=${inq.inq_no}">답변대기</a>
 					</c:when>
 				</c:choose>
 				</td>

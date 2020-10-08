@@ -39,21 +39,21 @@ public class FrontController extends HttpServlet {
 
 		//박호일
 
-		list.put("/member/login.do", new member.MemberLoginController());
-		list.put("/member/logout.do", new member.MemberLogoutController());
-		list.put("/member/insert.do", new member.MemberInsertController()); 
-		list.put("/member/addInsert.do", new member.MemberAddInsertController());
-		list.put("/member/select.do", new member.MemberSelectController());
-		list.put("/member/update.do", new member.MemberUpdateController());
-		list.put("/member/addUpdate.do", new member.MemberAddUpdateController());
-		list.put("/member/inqInsert.do", new member.MemberInqInsertController());
-		list.put("/member/inqList.do", new member.MemberInqListController());
-		list.put("/member/inqSelect.do", new member.MemberInqSelectController());
-		list.put("/member/inqSellerId.do", new member.MemberInqSellerIdController());
-		list.put("/member/ansList.do", new member.MemberAnsListController());
-		list.put("/member/ansSelect.do", new member.MemberAnsSelectController());
-		list.put("/member/ansUpdate.do", new member.MemberAnsUpdateController());
-		list.put("/member/favList.do", new member.MemberFavListController());
+		list.put("/login.do", new member.MemberLoginController());
+		list.put("/logout.do", new member.MemberLogoutController());
+		list.put("/insert.do", new member.MemberInsertController()); 
+		list.put("/addInsert.do", new member.MemberAddInsertController());
+		list.put("/select.do", new member.MemberSelectController());
+		list.put("/update.do", new member.MemberUpdateController());
+		list.put("/addUpdate.do", new member.MemberAddUpdateController());
+		list.put("/inqInsert.do", new member.MemberInqInsertController());
+		list.put("/inqList.do", new member.MemberInqListController());
+		list.put("/inqSelect.do", new member.MemberInqSelectController());
+		list.put("/inqSellerId.do", new member.MemberInqSellerIdController());
+		list.put("/ansList.do", new member.MemberAnsListController());
+		list.put("/ansSelect.do", new member.MemberAnsSelectController());
+		list.put("/ansUpdate.do", new member.MemberAnsUpdateController());
+		list.put("/favList.do", new member.MemberFavListController());
 		
 		
 		

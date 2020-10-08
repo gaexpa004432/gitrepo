@@ -19,7 +19,7 @@
 <body>
 	<h1>1:1문의 목록</h1>
 	<hr> <!-- 기능 다 구현 할때까지 문의하기 버튼 일단 살려두기 -->
-	<form action="inqSellerId.do" method="post">
+	<form action="/teamProject3/inqSellerId.do" method="post">
 		<button id="btnInq">1:1문의하기</button>
 		<input type="text" name="member_id" value="user5"><!-- 테스트용으로 이 아이디로 보내기  -->
 	</form>
@@ -37,7 +37,7 @@
 		<tbody>
 		<c:forEach items="${list}" var="inq"> 
 			<tr>
-				<td><a href="inqSelect.do?inq_no=${inq.inq_no}">${inq.inq_title}</a></td>
+				<td><a href="${pageContext.request.contextPath}/inqSelect.do?inq_no=${inq.inq_no}">${inq.inq_title}</a></td>
 				<td>
 					<fmt:parseDate value="${inq.inq_regdate}" pattern="yyyy-MM-dd HH:mm:ss" var="parseDate"/>
 					<fmt:formatDate value="${parseDate}" pattern="yyyy-MM-dd HH:mm"/>
@@ -51,7 +51,7 @@
 				<td>
 				<c:choose>
 					<c:when test="${not empty inq.inq_answer}">
-						<a href="inqSelect.do?inq_no=${inq.inq_no}">답변완료</a>
+						<a href="${pageContext.request.contextPath}/inqSelect.do?inq_no=${inq.inq_no}">답변완료</a>
 					</c:when>
 					<c:when test="${empty inq.inq_answer}">
 						처리중

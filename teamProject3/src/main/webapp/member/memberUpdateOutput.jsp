@@ -8,6 +8,6 @@
 </head>
 <body>
 	${cnt}이 수정됨
-	<a href="myPage.jsp">마이페이지</a>
+	<a href="${pageContext.request.contextPath}/member/myPage.jsp">마이페이지</a>
 </body>
 </html>

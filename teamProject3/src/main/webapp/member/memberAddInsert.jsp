@@ -14,7 +14,7 @@
 
 </head>
 <body>
-<form method="post" action="addInsert.do">
+<form method="post" action="/teamProject3/addInsert.do">
 	<h3>사업자정보 추가등록</h3>
 		<fieldset>
 			<label>사업자등록번호</label>

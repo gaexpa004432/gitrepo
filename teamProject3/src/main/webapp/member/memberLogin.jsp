@@ -140,13 +140,13 @@ label.light {
 </head>
 <body>
 <input type="hidden" value="${errormsg}">
-	<form method="post" action="login.do">
+	<form method="post" action="/teamProject3/login.do">
 		<div>
-			<label for="member_id">ID </label>
+			<label for="member_id">ID</label>
 			<input type="text" id="member_id" name="member_id">
 		</div>
 		<div>
-			<label for="member_pass">PW </label>
+			<label for="member_pass">PW</label>
 			<input type="password" name="member_pass" id="member_pass">
 		</div>
 		<button id="btnLogin">로그인</button>

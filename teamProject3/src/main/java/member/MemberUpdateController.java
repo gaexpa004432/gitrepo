@@ -17,7 +17,7 @@ public class MemberUpdateController implements Controller {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MemberVO memberVO = new MemberVO();
 		memberVO = (MemberVO) request.getSession().getAttribute("login");
-		System.out.println(memberVO.toString());
+//		System.out.println(memberVO.toString());
 //		MemberVO resultVO = new MemberVO();
 		
 //		try {//컬럼이 몇개가 됐던 파라미터를 읽어서 vo에 담아 준다.
@@ -52,16 +52,16 @@ public class MemberUpdateController implements Controller {
 			//System.out.println(request.getParameter("member_birth").substring(0,10));
 			System.out.println(memberVO.toString());
 			//작업을 완수하고 이동할 페이지 지정
-			page = "memberUpdateOutput.jsp";
+			page = "/member/memberUpdateOutput.jsp";
 			
 		} else if (passVal!="") {
 			if (!passVal.equals(request.getSession().getAttribute("pass"))) {
 				request.setAttribute("errormsg", "현재 비밀번호가 일치 하지 않습니다");
-				page = "memberUpdate.jsp";
+				page = "/member/memberUpdate.jsp";
 			} else {
 				if (request.getParameter("member_newPass")=="") {
 					request.setAttribute("errormsg", "새 비밀번호를 입력하세요");
-					page = "memberUpdate.jsp";
+					page = "/member/memberUpdate.jsp";
 				} else {
 					
 				try {//컬럼이 몇개가 됐던 파라미터를 읽어서 vo에 담아 준다.
@@ -86,7 +86,7 @@ public class MemberUpdateController implements Controller {
 				request.getSession().setAttribute("pass", memberVO.getMember_pass());
 				request.getSession().setAttribute("birth", memberVO.getMember_birth().substring(0,10));
 				
-				page = "memberUpdateOutput.jsp";
+				page = "/member/memberUpdateOutput.jsp";
 				}
 			}
 		}

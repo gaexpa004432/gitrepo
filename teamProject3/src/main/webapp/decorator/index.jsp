@@ -140,12 +140,12 @@ h6, .h6 {
 	          <li class="nav-item"><a href="/teamProject3/eventBoardList.do" class="nav-link">Event</a></li>
 	          <c:choose>
 		          <c:when test="${empty sessionScope.login.member_id}">
-			          <li class="nav-item"><a href="memberInsert.jsp" class="nav-link">Join</a></li>
-			          <li class="nav-item"><a href="memberLogin.jsp" class="nav-link">Login</a></li>
+			          <li class="nav-item"><a href="${pageContext.request.contextPath}/member/memberInsert.jsp" class="nav-link">Join</a></li>
+			          <li class="nav-item"><a href="${pageContext.request.contextPath}/member/memberLogin.jsp" class="nav-link">Login</a></li>
 		          </c:when>
 		          <c:when test="${not empty sessionScope.login.member_id}">
-			          <li class="nav-item"><a href="myPage.jsp" class="nav-link">MyPage</a></li>
-			          <li class="nav-item"><a href="logout.do" class="nav-link">Logout</a></li> 
+			          <li class="nav-item"><a href="${pageContext.request.contextPath}/member/myPage.jsp" class="nav-link">MyPage</a></li>
+			          <li class="nav-item"><a href="${pageContext.request.contextPath}/logout.do" class="nav-link">Logout</a></li> 
 		          	  <li class="nav-item">${sessionScope.login.member_id}님</li> 
 		          </c:when>
 	          </c:choose>

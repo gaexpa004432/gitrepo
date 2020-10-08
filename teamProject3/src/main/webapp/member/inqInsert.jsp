@@ -29,7 +29,7 @@
 	<div class="container">
 	
 		
-		<form method="post" action="inqInsert.do" >
+		<form method="post" action="/teamProject3/inqInsert.do" >
 		<h1>1:1 문의</h1>
 		<hr>
 		<div>
@@ -61,7 +61,7 @@
 <script>
 	btnMypage.addEventListener("click", goMypage);
 	function goMypage() {
-		location.assign("myPage.jsp");
+		location.assign("/teamProject3/myPage.jsp");
 	}
 </script>
 </body>

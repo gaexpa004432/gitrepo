@@ -38,7 +38,7 @@ public class MemberAddUpdateController implements Controller {
 		request.setAttribute("cnt", cnt);
 		request.getSession().setAttribute("login", resultVO);
 		
-		request.getRequestDispatcher("memberAddUpdateOutput.jsp").forward(request, response);
+		request.getRequestDispatcher("/member/memberAddUpdateOutput.jsp").forward(request, response);
 	}
 
 }

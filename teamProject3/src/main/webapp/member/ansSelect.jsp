@@ -29,7 +29,7 @@
 <body>
 	<div class="container">
 	
-		<form method="post" action="ansUpdate.do" >
+		<form method="post" action="/teamProject3/ansUpdate.do" >
 		<h1 >1:1 문의</h1>
 		<hr>
 		<input type="hidden" name="inq_no" value="${inqOne.inq_no}">
@@ -69,7 +69,7 @@
 <script>
 	btnBack.addEventListener("click", goBack);
 	function goBack() {
-		location.assign("ansList.do");
+		location.assign("/teamProject3/ansList.do");
 	}
 </script>
 </body>

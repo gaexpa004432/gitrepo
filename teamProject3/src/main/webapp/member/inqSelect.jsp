@@ -66,7 +66,7 @@
 <script>
 	btnBack.addEventListener("click", goBack);
 	function goBack() {
-		location.assign("inqList.do");
+		location.assign("/teamProject3/inqList.do");
 	}
 </script>
 </body>

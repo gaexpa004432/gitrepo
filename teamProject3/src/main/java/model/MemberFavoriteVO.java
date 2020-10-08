@@ -20,4 +20,8 @@ public class MemberFavoriteVO {
 	private String recipe_content;
 	private String main_img;
 	
+	//paging 처리
+	private Integer first;
+	private Integer last;
+	
 }

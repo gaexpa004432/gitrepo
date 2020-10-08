@@ -23,7 +23,7 @@
 
 
 <body>
-<input type="hidden" name="fav" value="fs">
+<input type="hidden" name="fav" value="fr">
 	<div class="dropdown">
     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
      	즐겨찾기 선택
@@ -39,21 +39,21 @@
 
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-4 mb-3">내가 즐겨찾는
-      <big>식당</big>
+      <big>레시피</big>
     </h1>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item active">RESTAURANT</li>
+      <li class="breadcrumb-item active">RECIPE</li>
     </ol>
     <div class="row">
-    <c:forEach items="${fs}" var="fs">
+    <c:forEach items="${fr}" var="fr">
       <div class="col-lg-6 portfolio-item">
         <div class="card h-100">
-          <a href="${pageContext.request.contextPath}/restaurantView.do?res_no=${fs.res_no}"><img class="card-img-top a" src="images/${fs.res_pic_name}" alt="" ></a>
+          <a href="#"><img class="card-img-top a" src="images/${fr.main_img}" alt=""></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="${pageContext.request.contextPath}/restaurantView.do?res_no=${fs.res_no}">${fs.res_name}</a>
+              <a href="#">${fr.recipe_name}</a>
             </h4>
-            <p class="card-text">${fs.res_content}</p>
+            <p class="card-text">${fr.recipe_content}</p>
           </div>
         </div>
       </div>
@@ -65,7 +65,7 @@
     <!-- Pagination -->
 <form name = "pageFrm">
 	<input type="hidden" name="p" value="1">
-	<input type="hidden" name="fav" value="fs">
+	<input type="hidden" name="fav" value="fr">
 	<my:favTag paging="${paging}" jsfunc="gopage"/>
 </form>
   <!-- /.container -->

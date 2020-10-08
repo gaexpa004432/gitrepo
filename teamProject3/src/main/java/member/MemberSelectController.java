@@ -26,7 +26,7 @@ public class MemberSelectController implements Controller {
 		request.getSession().setAttribute("login", resultVO);
 
 		
-		request.getRequestDispatcher("memberUpdate.jsp").forward(request, response);
+		request.getRequestDispatcher("/member/memberUpdate.jsp").forward(request, response);
 	}
 
 }
