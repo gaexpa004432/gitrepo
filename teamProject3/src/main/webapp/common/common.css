@@ -1,12 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
- html {
+    <style>
+html {
   font: 300 100%/1.5 Ubuntu, sans-serif;
   color: #333;
   overflow-x: hidden;
@@ -14,8 +7,9 @@
 h2 {
   margin: 0;
   color: #8495a5;
-  font-size: 2.5em;
+  font-size: 25px;
   font-weight: 300;
+  font-family: 'Noto Sans KR';
 }
 #contact-form {
   max-width: 1208px;
@@ -34,12 +28,13 @@ label {
 label > span {
   display: none;
 }
-input, textarea, button {
+input, textarea, button{
   width: 100%;
-  padding: 0.5em;
+  padding: 0.4em;
   border: none;
   font: 300 100%/1.2 Ubuntu, sans-serif;
-}
+  }
+
 input[type="text"], input[type="email"], textarea {
   margin: 0 0 1em;
   border: 1px solid #ccc;
@@ -58,6 +53,16 @@ input[type="submit"], button {
 input[type="submit"]:hover, button:hover {
   background: #91b36f;
 }
+
+
+input[type="button"], button {
+  background: #a7cd80;
+  color: #333;
+}
+input[type="button"]:hover, button:hover {
+  background: #91b36f;
+}
+
 @media screen and (min-width: 30em) {
   #contact-form h2 {
     margin-left: 26.3736%;
@@ -67,21 +72,29 @@ input[type="submit"]:hover, button:hover {
   label > span {
     vertical-align: top;
     display: inline-block;
-    width: 26.3736%;
+    width: 9.3736%;
     padding: 0.5em;
     border: 1px solid transparent;
     text-align: right;
+    font-family: 'Noto Sans KR';
   }
   input, textarea, button {
-    width: 73.6263%;
+    width: 60.6263%;
     line-height: 1.5;
+    font-family: 'Noto Sans KR';
   }
   textarea {
-    height: 10em;
+    height: 20em;
   }
   input[type="submit"], button {
-    margin-left: 26.3736%;
+    margin-left: 8.3736%;
+    width: 7%;
   }
+  input[type="button"], button {
+    margin-left: 1.3736%;
+    width: 7%;
+  }
+  
 }
 @media screen and (min-width: 48em) {
   #contact-form {
@@ -107,21 +120,4 @@ input[type="submit"]:hover, button:hover {
     width: 30.9353%;
   }
 }
-</style>
-</head>
-<body>
-<section id="contact-form">
-  <h2>Contact</h2>
-  <form id="contact" name="contact" accept-charset="utf-8">
-    <label><span>Name</span><input name="name" type="text" placeholder="Name"/></label>
-    <label><span>Email</span><input name="email" type="email" placeholder="Email"/></label>
-    <label><span>Message</span><textarea name="message" placeholder="Message"></textarea></label>
-    <input name="submit" type="submit" value="Send"/>
-  </form>
-  <aside>
-    <p>Just hit Send on an empty form to see the invalid input animation</p>
-    <p>Fill in the form fields to see the success animation (no real validation, any random input will do)</p>
-  </aside>
-</section>
-</body>
-</html>
+    </style>
