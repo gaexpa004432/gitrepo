@@ -35,7 +35,7 @@
 <ul>
 	<li><a href="#">주문 내역 조회</a>
 	<li><a href="#">나의활동</a>
-	<li><a href="#">나의관심글</a>
+	<li><a href="favList.do">나의 즐겨찾기</a>
 	<c:choose>
 		<c:when test="${sessionScope.login.seller_code != 0}">
 			<li><a href="ansList.do">1:1문의</a>

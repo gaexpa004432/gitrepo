@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,9 +29,10 @@
 <body>
 	<div class="container">
 	
-		<form method="post" action="inqInsert.do" >
+		<form method="post" action="ansUpdate.do" >
 		<h1 >1:1 문의</h1>
 		<hr>
+		<input type="hidden" name="inq_no" value="${inqOne.inq_no}">
 		<div>
 			<label>문의회원</label>
 			<input type="text" id="member_id" name="member_id" value="${inqOne.member_id}"readonly>
@@ -55,9 +57,10 @@
 			<label>답변</label>
 		</div>
 		<div>
-			<textarea rows="10" cols="80" id="inq_content" name="inq_content" 
-			 readonly placeholder="답변이 없습니다"></textarea>
+			<textarea rows="10" cols="80" id="inq_answer" name="inq_answer" 
+			 <c:if test="${not empty inqOne.inq_answer}"> readonly </c:if> placeholder="답변이 없습니다" >${inqOne.inq_answer}</textarea>
 		</div>
+		<button>답변등록</button>
 		</form>
 		<button type="button" id="btnBack">뒤로가기</button>
 		
@@ -66,7 +69,7 @@
 <script>
 	btnBack.addEventListener("click", goBack);
 	function goBack() {
-		location.assign("inqList.do");
+		location.assign("ansList.do");
 	}
 </script>
 </body>
