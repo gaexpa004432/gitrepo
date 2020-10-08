@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import common.ConnectionManager;
-import model.orderVO;
 
 public class mileageDAO {
 

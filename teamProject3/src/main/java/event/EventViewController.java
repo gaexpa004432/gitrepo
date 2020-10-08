@@ -21,6 +21,7 @@ public class EventViewController implements Controller {
 		vo.setBoard_no(Integer.parseInt(request.getParameter("board_no")));
 		vo = dao.eventSelectOne(vo);//dao에도 selectOne 만들어줘야함 
 	
+		
 		String content= vo.getBoard_content().replaceAll("\r\n", "<br>");
 		vo.setBoard_content(content); //글 입력할때 엔터치면 적용되도록 br태그로 변환해야함(글의 엔터값을 br태그로 변환)
 		request.setAttribute("board", vo);

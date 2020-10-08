@@ -1,3 +1,7 @@
+<%@page import="java.util.List"%>
+<%@page import="model.ProductVO"%>
+<%@page import="recipe.ProductListController"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -105,6 +109,13 @@ h2 {
 			tr.find('.mileage-price').html(mileage);
 			m_sum();
 		})
+		$('.cart-delete').on("click", function(){
+
+				$(this).closest('tr').remove();
+				sum();
+		});
+		
+		
 	});
 	
 	//상품들의 총 가격 계산 function
@@ -125,7 +136,6 @@ h2 {
 		for (var i=0; i<mileage.length; i++) {
 			var tr = $(mileage).closest('tr')
 			var milSum = parseInt(tr.find('.mileage-price').eq(i).text());
-			console.log(milSum);
 			m_all = m_all + milSum;
 			
 		}
@@ -157,34 +167,33 @@ h2 {
 
 				<th scope="col" class="th-product-box" colspan="2">상품정보</th>
 				<th scope="col" class="th-price-box">단가</th>
-				<th scope="col" class="th-amount-box">수량</th>
+				<th scope="col" class="th-amount-box">재료</th>
 				<th scope="col" class="th-product-total-box">상품금액</th>
 				<th scope="col" class="th-mileage-box">예상 적립금</th>
 			</tr>
 		</thead>
 		
-	<tbody class="cartTable-body">
+	<tbody class="cartTable-body">		
 	<c:set var="gum" value="0" />
 	<c:forEach items="${list}" var="cart">
 		<tr class="cart-deal-items">
 			<td class="select-event">
 				<input type="checkbox" class="cart-check" checked> 
 			</td>
-			<td><!-- img --></td>
-			<td>${cart.product_name}</td>
+			<td>${cart.main_img}</td>
+			<td>${cart.recipe_name}</td>
 			<td class="cart_price" >${cart.product_price}</td>
 			<td>
 			<select class="quantity-select">
-			<option <c:if test="${cart.order_detail_no == 1}">selected </c:if>>1</option>
-			<option <c:if test="${cart.order_detail_no == 2}">selected </c:if>>2</option>
-			<option <c:if test="${cart.order_detail_no == 3}">selected </c:if>>3</option>
-			<option <c:if test="${cart.order_detail_no == 4}">selected </c:if>>4</option>
+			<option <c:if test="${cart.product_name == '돼지고기'}">selected </c:if>>돼지고기</option>
+			<option <c:if test="${cart.product_name == '인석이 고기'}">selected </c:if>>인석이고기</option>
+			<option <c:if test="${cart.product_name == '도야지'}">selected </c:if>>도야지</option>
 			</select></td>
-			<td class="all-product-price">${cart.product_price * cart.order_detail_no}</td>
-			<td class="mileage-price">${(cart.product_price * cart.order_detail_no) * 0.01}</td>
-			<td><button type="button" id="cart-delete">삭제</button></td>
+			<td class="all-product-price">${cart.product_price}</td>
+			<td class="mileage-price">${cart.product_price * 0.01}</td>
+			<td><button type="button" class="cart-delete">삭제</button></td>
 		</tr>
-		<c:set var="gum" value="${cart.product_price* cart.order_detail_no}"/>
+		<c:set var="gum" value="${cart.product_price}"/>
 		<c:set var="total" value="${total+gum}"/>
 	</c:forEach>
 	</tbody>
@@ -203,8 +212,8 @@ h2 {
 	</div>
 
 	<div>
-	<a href="" class="">쇼핑 계속하기</a>
-	<a href="/orderDetailController.do" class="btn btn-primary" role="button">구매하기</a>
+	<a href="" class="btn btn-primary">쇼핑 계속하기</a>
+	<a href="${pageContext.request.contextPath}/orderDetailController.do" class="btn btn-primary" role="button">구매하기</a>
 	</div>
 	
 </body>

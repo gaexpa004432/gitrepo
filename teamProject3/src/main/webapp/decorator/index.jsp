@@ -133,7 +133,7 @@ h6, .h6 {
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item active"><a href="" class="nav-link">Home</a></li>
-	          <li class="nav-item"><a href="" class="nav-link">Guide</a></li>
+	          <li class="nav-item"><a href="${pageContext.request.contextPath}/CartSelectContoroller.do" class="nav-link">Guide</a></li>
 	          <li class="nav-item"><a href="" class="nav-link">Reiciepe</a></li>
 	          <li class="nav-item"><a href="" class="nav-link">Board</a></li>
 	          <li class="nav-item"><a href="/teamProject3/restaurantBoard.do" class="nav-link">Recommands</a></li>
@@ -145,7 +145,7 @@ h6, .h6 {
 		          </c:when>
 		          <c:when test="${not empty sessionScope.login.member_id}">
 			          <li class="nav-item"><a href="${pageContext.request.contextPath}/member/myPage.jsp" class="nav-link">MyPage</a></li>
-			          <li class="nav-item"><a href="${pageContext.request.contextPath}/logout.do" class="nav-link">Logout</a></li> 
+			          <li class="nav-item"><a href="${pageContext.request.contextPath}/member/logout.do" class="nav-link">Logout</a></li> 
 		          	  <li class="nav-item">${sessionScope.login.member_id}님</li> 
 		          </c:when>
 	          </c:choose>

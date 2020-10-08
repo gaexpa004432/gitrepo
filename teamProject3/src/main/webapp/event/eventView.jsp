@@ -65,12 +65,12 @@
             text-align :center;
         }
 </style>
-   <script>
+   <script>   //삭제~~~~!!!!!!!!!!
    $(function(){
 		$("#eventdele").on("click",function (){
-			var result = confirm('??????삭제???????');
+			var result = confirm('??지울라고???왜????');
 			if (result) {
-			location.href="/teamProject3/eventBoardDelete.do?board_no=${board.board_no}"
+			location.href="/teamProject3/eventDelete.do?board_no=${board.board_no}"
 			}
 		})
 		if (${id == board.member_id}){
@@ -79,6 +79,7 @@
 	})
 
    </script>
+
 </head>
 <body>
 
@@ -107,8 +108,13 @@
 		 <br>
             <hr>
             <div align = "center">
-			<button class = "btn pink">수정</button>   
-            <button class = "btn green" href="/teamProject3/eventBoardList.do" id = "eventdele">삭제</button>
+			<a href="eventViewUpdate.do?board_no=${board.board_no}">
+				<button class = "btn pink" type="button">수정</button>
+			</a>
+			   
+            <button type="button" class = "btn green" 
+            		id = "eventdele">삭제</button>
+ 		
             </div>
 	</form>	
 </body>

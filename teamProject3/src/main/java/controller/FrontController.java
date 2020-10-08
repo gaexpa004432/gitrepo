@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import buy.CartSelectContoller;
+
 /**
  * Servlet implementation class FrontController
  */
@@ -72,10 +74,9 @@ public class FrontController extends HttpServlet {
 		list.put("/eventInsert.do", new event.EventInsertController());
 		list.put("/eventBoardList.do", new event.EventListController());
 		list.put("/eventView.do", new event.EventViewController());
-		list.put("/eventBoardUpdate.do", new event.EventUpdateController());
-		
-		
-		
+		list.put("/eventDelete.do", new event.EventDeleteController());
+		list.put("/eventViewUpdate.do", new event.EventViewUpdateController());
+		list.put("/eventUpdate.do", new event.EventUpdateController());
 		
 		
 		
@@ -93,8 +94,12 @@ public class FrontController extends HttpServlet {
 		
 		
 		list.put("/cartController.do", new buy.CartSelectContoller());
-		list.put("/recipeInsert.do", new recipe.RecipeInsertController());
-		list.put("/recipeInsert.do", new recipe.RecipeInsertController());
+		list.put("/CartSelectContoroller.do", new buy.CartSelectContoller());
+		list.put("/orderDetailController.do", new buy.orderDetailController());
+		list.put("/orderOutput.do", new buy.orderOutputController());
+		list.put("/orderOutputInsert.do", new buy.orderOutputInsertController());
+		list.put("/mileageController.do", new buy.mileageCotroller());
+		
 		
 		
 		
@@ -130,7 +135,7 @@ public class FrontController extends HttpServlet {
 		list.put("/ajaxcommentList.do", new board.CommentListController());
 		list.put("/qaBoardView.do", new board.qaBoardViewController());
 		list.put("/member/memberDelete.do", new member.MemberDeleteController());
-		
+		list.put("/ajaxCommentdelete.do",new board.CommentDeleteController());
 		
 		
 		
