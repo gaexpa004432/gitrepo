@@ -27,10 +27,10 @@ public class MemberInqSelectController implements Controller {
 		MemberVO memberVO = new MemberVO();
 		memberVO.setSeller_code(seller_code);
 		
-		MemberVO resultVO2 = MemberDAO.getInstance().selectSellerId(memberVO);
+		MemberVO sellerInfo = MemberDAO.getInstance().selectSellerId(memberVO);
 		
 		request.setAttribute("inqOne", resultVO);
-		request.setAttribute("sellerInfo", resultVO2);
+		request.setAttribute("sellerInfo", sellerInfo);
 		
 		request.getRequestDispatcher("/member/inqSelect.jsp").forward(request, response);
 	}

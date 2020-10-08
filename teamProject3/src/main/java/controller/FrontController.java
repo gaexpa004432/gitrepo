@@ -54,8 +54,8 @@ public class FrontController extends HttpServlet {
 		list.put("/member/inqSellerId.do", new member.MemberInqSellerIdController());
 		list.put("/member/ansList.do", new member.MemberAnsListController());
 		list.put("/member/ansSelect.do", new member.MemberAnsSelectController());
-		
-		
+		list.put("/member/ansUpdate.do", new member.MemberAnsUpdateController());
+		list.put("/member/favList.do", new member.MemberFavListController());
 		
 		
 		
@@ -71,12 +71,12 @@ public class FrontController extends HttpServlet {
 		list.put("/productList.do", new recipe.ProductListController());
 		list.put("/recipeInsert.do", new recipe.RecipeInsertController());
 		
-		
-		
-		
-		
-		
-		
+		list.put("/eventInsert.do", new event.EventInsertController());
+		list.put("/eventBoardList.do", new event.EventListController());
+		list.put("/eventView.do", new event.EventViewController());
+		list.put("/eventDelete.do", new event.EventDeleteController());
+		list.put("/eventViewUpdate.do", new event.EventViewUpdateController());
+		list.put("/eventUpdate.do", new event.EventUpdateController());
 		
 		
 		
@@ -129,13 +129,13 @@ public class FrontController extends HttpServlet {
 		list.put("/freeBoardUpdate.do",new board.FreeBoardUpdateController());
 		list.put("/freeBoardUpdate2.do",new board.FreeBoardUpdate2Controller());
 		list.put("/freeBoardDelete.do",new board.FreeBoardDeleteController());
-		list.put("/commentInsert.do",new board.CommentInsertController());
+		list.put("/ajaxcommentInsert.do",new board.CommentInsertController());
 		list.put("/qaBoardWrite.do",new board.QaBoardWriteController());
 		list.put("/qaBoardList.do", new board.QaBoardListController());
-		list.put("/commentList.do", new board.CommentListController());
+		list.put("/ajaxcommentList.do", new board.CommentListController());
 		list.put("/qaBoardView.do", new board.qaBoardViewController());
 		list.put("/member/memberDelete.do", new member.MemberDeleteController());
-		
+		list.put("/ajaxCommentdelete.do",new board.CommentDeleteController());
 		
 		
 		

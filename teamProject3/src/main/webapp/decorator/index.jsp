@@ -137,7 +137,7 @@ h6, .h6 {
 	          <li class="nav-item"><a href="" class="nav-link">Reiciepe</a></li>
 	          <li class="nav-item"><a href="" class="nav-link">Board</a></li>
 	          <li class="nav-item"><a href="/teamProject3/restaurantBoard.do" class="nav-link">Recommands</a></li>
-	          <li class="nav-item"><a href="" class="nav-link">Event</a></li>
+	          <li class="nav-item"><a href="/teamProject3/eventBoardList.do" class="nav-link">Event</a></li>
 	          <c:choose>
 		          <c:when test="${empty sessionScope.login.member_id}">
 			          <li class="nav-item"><a href="${pageContext.request.contextPath}/member/memberInsert.jsp" class="nav-link">Join</a></li>

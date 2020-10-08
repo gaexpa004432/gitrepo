@@ -42,11 +42,11 @@
 					<fmt:parseDate value="${inq.inq_regdate}" pattern="yyyy-MM-dd HH:mm:ss" var="parseDate"/>
 					<fmt:formatDate value="${parseDate}" pattern="yyyy-MM-dd HH:mm"/>
 				</td>
-				<td>
-				<sql:query var="rs" dataSource="jdbc/server" ><!-- 집에서는 server, 학원에서는 oracle -->
-					select member_id from member where seller_code=${inq.seller_code} 
+				<td>${inq.seller_id}
+				<%-- <sql:query var="rs" dataSource="jdbc/oracle" ><!-- 집에서는 server, 학원에서는 oracle -->
+					select member_id from member where seller_code=${inq.seller_code}
 				</sql:query>
-				<c:out value="${rs.rows[0].member_id}"/><!-- 행이 몇줄이나 나올줄은 사람인 나는 알지만, 컴퓨터는 모른다 그래서 몇번째의 행이 필요한지 알려주기 위해서 rows[0]을 사용 -->
+				<c:out value="${rs.rows[0].member_id}"/> --%> <!-- 행이 몇줄이나 나올줄은 사람인 나는 알지만, 컴퓨터는 모른다 그래서 몇번째의 행이 필요한지 알려주기 위해서 rows[0]을 사용 -->
 				</td>
 				<td>
 				<c:choose>

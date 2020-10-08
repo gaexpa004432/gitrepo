@@ -50,9 +50,7 @@ public class RestaurantViewController implements Controller {
 		// 카운트에도 넘김
 		restaurantReview.setFirst(paging.getFirst());
 		restaurantReview.setLast(paging.getLast());
-	// 임시
-		request.getSession().setAttribute("id", "qqq");	
-	//
+	
 		restaurant = RestaurantDAO.getInstance().selectOne(restaurant);
 		HttpSession session = ((HttpServletRequest) request).getSession();
 		favorite.setMember_id((String) session.getAttribute("id"));
