@@ -1,10 +1,7 @@
-<%@page import="model.EventDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,57 +62,68 @@
             text-align :center;
         }
 </style>
-   <script>   //삭제~~~~!!!!!!!!!!
-   $(function(){
-		$("#eventdele").on("click",function (){
-			var result = confirm('??지울라고???왜????');
-			if (result) {
-			location.href="/teamProject3/eventDelete.do?board_no=${board.board_no}"
-			}
-		})
-		if (${id == board.member_id}){
-			$(".btn").show();
-		}
-	})
 
-   </script>
+<script>
+	
+  function eventCheck() {
+
+	        if(frm.board_sub.value == "") {
+	            window.alert("제목 적고 가라");
+	            frm.board_sub.focus();
+	            return false;
+	        }
+	    
+	        if(frm.board_content.value == "") {
+	            window.alert("내용 안적을랍니까");
+	            frm.board_content.focus();
+	            return false;
+	        }
+	        
+	        if(frm.board_file.value == "") {
+	            window.alert("파일 올리라");
+	            frm.board_file.focus();
+	            return false;
+	        } else {
+	        	window.alert("등록할랑교~");
+	            return true;
+	        }
+	    }
+	</script>
 
 </head>
 <body>
-
-<form>
-	<table style="width:820px" align = "center">
-		 <tr align = "center">
-		 	 <td>${board.board_sub}</td>
-		 </tr>
-		
-		<tr>
-		 <th>작성날짜</th>
-		 	 <td>${board.board_date}</td>
-		 </tr>
-		
-		  <tr>
-		  <th>내용</th>
-		  <td>${board.board_content}<br>
-		  
-		  	<C:if>
-		  		<img src="/teamProject3/food/${board.board_file}" style="max-width:500px">
-		  	</C:if>
-		  </td>
-		  </tr>			  
-		 </table>
+	<h2>이벤트 수정</h2>  
+	
+	<form action = "/teamProject3/eventUpdate.do" method="post" name="frm" id="frm"
+		  enctype='multipart/form-data'
+		  onsubmit="return eventCheck()" >
+		  <input type="hidden" name="board_no" value="${board.board_no}">
+	  <table>
+                <tr>
+                    <th>이벤트 제목 </th>
+                    <td><input type="text" name="board_sub" value="${board.board_sub}"></td>
+                </tr>
+               
+                <tr>
+                    <th>이벤트 내용</th>
+                    <td><textarea cols="100" rows="20" name="board_content">${board.board_content}</textarea></td>
+                </tr>
+                
+            	<tr>
+                    <td></td>
+                    <td><input type = "file" name="board_file"></td>
+                </tr>
+			
+            </table>
 		 
 		 <br>
             <hr>
             <div align = "center">
-			<a href="eventViewUpdate.do?board_no=${board.board_no}">
-				<button class = "btn pink" type="button">수정</button>
-			</a>
-			   
-            <button type="button" class = "btn green" 
-            		id = "eventdele">삭제</button>
- 		
+				<button class = "btn pink">수정완료</button>
             </div>
 	</form>	
+
+
+
 </body>
 </html>

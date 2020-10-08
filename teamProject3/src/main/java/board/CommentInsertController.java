@@ -32,8 +32,8 @@ public class CommentInsertController implements Controller {
 			    commentVO.setMember_id((String)session.getAttribute("id"));//로그인된 아이디를 들고옴
 				//등록 처리
 				CommentDAO dao = new CommentDAO();
-				dao.insert(commentVO);
-				
+				int r = dao.insert(commentVO);//댓글등록하면 반환되는 글번호를 int r에 넣는다 
+				commentVO.setComment_no(r);
 				//등록된 결과를 조회
 				
 				//등록된 정보를 응답
