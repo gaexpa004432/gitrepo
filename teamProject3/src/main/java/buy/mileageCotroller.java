@@ -8,22 +8,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import model.cartDAO;
+import model.mileageDAO;
 import model.orderVO;
 
-public class CartSelectContoller implements Controller {
+public class mileageCotroller implements Controller {
 
+	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		orderVO vo = new orderVO();
 		
-		String member_id = (String) request.getSession().getAttribute("id");//request.getParameter("member_id");
+		String member_id = (String) request.getSession().getAttribute("id");
+		//request.getParameter("member_id");
 		vo.setMember_id(member_id);
 
-		ArrayList<orderVO> list = cartDAO.getInstance().selectCart(vo);
+		ArrayList<orderVO> mil_list = mileageDAO.getInstance().getMileage(vo);
 		
-		request.setAttribute("list", list);
+		request.setAttribute("mil_list", mil_list);
 		
-		request.getRequestDispatcher("/buy/cart.jsp").forward(request, response);
+		request.getRequestDispatcher("/buy/buyDetail.jsp").forward(request, response);
 	}
 
 }

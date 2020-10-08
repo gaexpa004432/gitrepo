@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import buy.CartSelectContoller;
+
 /**
  * Servlet implementation class FrontController
  */
@@ -92,8 +94,12 @@ public class FrontController extends HttpServlet {
 		
 		
 		list.put("/cartController.do", new buy.CartSelectContoller());
-		list.put("/recipeInsert.do", new recipe.RecipeInsertController());
-		list.put("/recipeInsert.do", new recipe.RecipeInsertController());
+		list.put("/CartSelectContoroller.do", new buy.CartSelectContoller());
+		list.put("/orderDetailController.do", new buy.orderDetailController());
+		list.put("/orderOutput.do", new buy.orderOutputController());
+		list.put("/orderOutputInsert.do", new buy.orderOutputInsertController());
+		list.put("/mileageController.do", new buy.mileageCotroller());
+		
 		
 		
 		

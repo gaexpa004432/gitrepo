@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import common.ConnectionManager;
-import model.orderVO;
 
 public class orderDAO {
 
@@ -23,8 +22,11 @@ public class orderDAO {
 	private final String SELECT_ORDER = "select p.product_name, o.order_number, d.order_detail_no, o.seller_code,"
 			+ 	" o.order_status, o.order_date, o.order_total" 
 			+   " from order1 o, order_Detail d, product p" 
-			+   " WHERE o.member_id = ?";
-		
+			+   " WHERE o.member_id = ? ";
+	
+	private final String INSERT_OREDER_OUTPUT = "INSERT INTO ORDER2 VALUES (order_num_seq.nextval,"
+			+ " ?,SYSDATE, ?, ? ,? ,?)";
+	
 	    public ArrayList<orderVO> getOrder(orderVO vo){
 	    	ArrayList<orderVO> list = new ArrayList<orderVO>();
 	        try {
@@ -50,5 +52,23 @@ public class orderDAO {
 	        }
 	        return list;
 	    }
-
+	    
+	    public int Insertoutput(orderVO vo) {
+			int r = 0;
+			try {
+				conn = ConnectionManager.getConnnect();
+				psmt = conn.prepareStatement(INSERT_OREDER_OUTPUT);
+				psmt.setInt(1, vo.getOrder_total());
+				psmt.setString(2, vo.getMember_email());
+				psmt.setString(3, vo.getMember_tel());
+				psmt.setString(4, vo.getMember_name());
+				psmt.setString(5, vo.getMember_address());
+				r = psmt.executeUpdate();
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(conn);
+			}
+	    	return r;
+	    }
 }

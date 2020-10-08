@@ -26,7 +26,7 @@
 									param += "&";
 								}
 							}
-							location.href = "cart.do" + param;
+							location.href = "${pageContext.request.contextPath}/CartSelectContoroller.do" + param;
 						}
 					}
 				})
