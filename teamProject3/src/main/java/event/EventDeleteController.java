@@ -20,7 +20,7 @@ public class EventDeleteController implements Controller {
 		DAO.eventDelete(eventboard);
 		
 		//forward
-	    request.getRequestDispatcher("teamProject3/eventBoardList.do").forward(request, response);
+	    request.getRequestDispatcher("eventBoardList.do").forward(request, response);
 	}
 
 }

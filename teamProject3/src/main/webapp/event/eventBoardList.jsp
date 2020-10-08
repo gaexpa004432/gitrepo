@@ -75,12 +75,8 @@
 		<tr>
 			<td>${eventboard.board_no}</td>
 				<c:if test="${!empty eventboard.board_file}">
-					<td><img src="/teamProject3/images/${ eventboard.board_file }"></td>
+					<td><img src="/teamProject3/food/${ eventboard.board_file }"></td>
 				</c:if>
-				
-				<%-- <c:if test="${empty eventboard.board_file }">
-					<td></td>
-				</c:if> --%>
 				
 			<td><a href="eventView.do?board_no=${eventboard.board_no}">${eventboard.board_sub}</a></td>
 			<!-- 제목 누르면 view페이지로 넘어감 -->
@@ -95,8 +91,8 @@
 	<my:paging paging="${paging}" jsfunc="gopage" />
 	
 <script>
-   function gopage(p) {         // 검색 function
-      searchFrm.p.value = p;      // 페이지번호 받아와서 submit에 넘김
+   function gopage(p) {         // 검색
+      searchFrm.p.value = p;    // 페이지번호 받아와서 submit에 넘김
       searchFrm.submit();
       // location.href="deptSelectAll?p=" + p;  
       // 이동되는 주소가 달라서 여러사람이 쓰기위해서는 매개값 p로 해줌

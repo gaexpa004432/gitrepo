@@ -60,6 +60,7 @@
 
 
 <body>
+<div align="center">
 <form action="/teamProject3/eventInsert.do" 
         method="post" enctype='multipart/form-data'>
  	
@@ -68,8 +69,8 @@
 	
 	<h2>이벤트 세부내용</h2>
 
-	<div class="container" align="center">
-        	<input type="hidden" value="board_write" name="command">
+	
+        	<input type="hidden" value="board_write" name="command"s>
             <table>
                 <tr>
                     <th>제목</th>

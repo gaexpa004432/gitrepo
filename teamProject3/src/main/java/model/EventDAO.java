@@ -109,11 +109,14 @@ public class EventDAO {
 		int r = 0;
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "update board set board_sub=?, board_content=? where board_no = ?";
+			String sql = "UPDATE board SET board_sub=?, board_content=?, board_file=? "
+						+ "WHERE board_no = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, freeboardVO.getBoard_sub());
 			pstmt.setString(2, freeboardVO.getBoard_content());
-
+			pstmt.setString(3, freeboardVO.getBoard_file());
+			pstmt.setInt(4, freeboardVO.getBoard_no());
+			
 			r = pstmt.executeUpdate();
 			System.out.println(r + "건이 입력됨");
 
@@ -139,6 +142,9 @@ public class EventDAO {
 			resultVO = new FreeBoardVO();	
 			resultVO.setBoard_sub(rs.getString("board_sub"));
 			resultVO.setBoard_content(rs.getString("board_content"));
+			resultVO.setBoard_no(rs.getInt("board_no"));
+			resultVO.setBoard_file(rs.getString("board_file"));
+			resultVO.setBoard_date(rs.getString("board_date"));
 			}
 		 }catch(Exception e) {
 			 e.printStackTrace();		 
