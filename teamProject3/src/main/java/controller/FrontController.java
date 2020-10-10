@@ -164,6 +164,8 @@ public class FrontController extends HttpServlet {
 		list.put("/recipeBoard.do",new recipe.RecipeBoardController());
 		list.put("/recipeView.do",new recipe.RecipeViewController());
 		list.put("/cart.do",new buy.CartController());
+		list.put("/recipeReview.do",new recipe.RecipeReviewController());
+		list.put("/recipeReviewDel.do",new recipe.RecipeReviewDeleteController());
 		
 	}
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
