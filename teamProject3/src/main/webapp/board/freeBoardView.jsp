@@ -54,12 +54,38 @@ $(function(){
 	
 	function updateOne(){
 		var content = $(this).data("comment_content");
-		console.log(content);
-		$(this).parent().parent().children().eq(1).hide();
-		$(this).parent().hide();
+		var no = $(this).parent().children().eq(3).data("comment_no");
+	var con1 =	$(this).parent().parent().children().eq(1);
+	var con2 = con1.children().eq(2);
+		
+	con1.hide();
+	var btn1 =	$(this).parent();
+	btn1.hide();
 		$(this).parent().parent().append($("<div>").attr("class","col-sm-9").append($("<input>").css("width","850px").css("height","64px").val(content)));
-		$(this).parent().parent().append($("<div>").attr("class","col-sm-1").append($("<button>").text("등록").append($("<br>")).append($("<br>")).
-				append($("<button>").text("취소")))
+		$(this).parent().parent().append($("<div>").attr("class","col-sm-1").append($("<button>").text("등록").on("click",function(){
+			var update = $(this).parent().parent().children().eq(3).children().val();
+			console.log(update);
+			$.ajax({
+			    url: "ajaxCommentUpdate.do", 
+			    data: {update:update,comment_no:no},
+			    success: function() { 
+			    	con1.show();
+					btn1.show();
+			    	con2.text(update);
+			    	con1.parent().children().eq(3).remove();
+			    	con1.parent().children().eq(3).remove();
+			    },
+			    error:function(xhr, status, message) { 
+			        alert(" status: "+status+" er:"+message);
+			    }
+			});
+		})).append($("<br>")).append($("<br>")).
+				append($("<button>").text("취소").on("click",function(){
+					con1.show();
+					btn1.show();
+					$(this).parent().parent().children().eq(3).remove();
+					$(this).parent().remove();
+				})))
 		
 	}
 	
@@ -129,11 +155,11 @@ $(function(){
 			    }
 			});
 		});//수정 버튼 클릭
-
+	
 	
 	//사용자 등록 요청
-
-		//등록 버튼 클릭
+	
+		//등록 버튼 클릭  
 		$('#btnInsert').on('click',function(){
 		var content = $('#commentcontent').val();
 		
@@ -146,9 +172,9 @@ $(function(){
 			    	$(".re").append($("<div>").attr("class","row").attr("id","review").css("border-top-width","1px").css("border-top-style","solid")
 							.css("padding","20px").css("border-top-color","#f0f0f5")
 							.append($("<div>").attr("class","col-sm-1").text("작성자아이디"))
-							.append($("<div>").attr("class","col-sm-9").attr("align","left").html("<small style='vertical-align:top'>"+datas.comment_date +"</small>"+"<br>"+datas.comment_content))
+							.append($("<div>").attr("class","col-sm-9").attr("align","left").html("<small style='vertical-align:top'>"+datas.comment_date +"</small>"+"<br><div>"+datas.comment_content+"</div>"))
 							.append($("<div>").attr("class","col-sm-1")
-							.append($("<button>").text("수정").attr("class","update").data("comment_content",datas.comment_content))
+							.append($("<button>").text("수정").attr("class","update").on("click",updateOne).data("comment_content",datas.comment_content))
 							.append($("<br>"))
 							.append($("<br>"))
 							.append($("<button>").text("삭제").data("comment_no",datas.comment_no).on("click",
@@ -193,7 +219,7 @@ $(function(){
 					$(".re").append($("<div>").attr("class","row").attr("id","review").css("border-top-width","1px").css("border-top-style","solid")
 							.css("padding","20px").css("border-top-color","#f0f0f5")
 							.append($("<div>").attr("class","col-sm-1").text("작성자아이디"))
-							.append($("<div>").attr("class","col-sm-9").attr("align","left").html("<small style='vertical-align:top'>"+datas[i].comment_date +"</small>"+"<br>"+datas[i].comment_content))
+							.append($("<div>").attr("class","col-sm-9").attr("align","left").html("<small style='vertical-align:top'>"+datas[i].comment_date +"</small>"+"<br><div>"+datas[i].comment_content+"</div>"))
 							.append($("<div>").attr("class","col-sm-1")
 							.append($("<button>").text("수정").attr("class","update").on("click",updateOne).data("comment_content",datas[i].comment_content))
 							.append($("<br>"))
