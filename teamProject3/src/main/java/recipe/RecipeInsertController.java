@@ -26,41 +26,49 @@ import model.RecipeVO;
 public class RecipeInsertController implements Controller {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String recipe_name = request.getParameter("recipe_name");
-		String recipe_content = request.getParameter("recipe_content");
-		String cooking_time = request.getParameter("cooking_time");
-		String cooking_level = request.getParameter("cooking_level");
-
+		
 		RecipePhotoVO photo = new RecipePhotoVO();
 		RecipeVO recipe = new RecipeVO();
 		HttpSession session = ((HttpServletRequest) request).getSession(); // member id 가져오기
 		recipe.setMember_id((String) session.getAttribute("id"));
-		recipe.setRecipe_name(recipe_name);
-		recipe.setRecipe_content(recipe_content);
-		recipe.setCooking_time(cooking_time);
-		recipe.setCooking_level(cooking_level);
-
+		recipe.setRecipe_name(request.getParameter("recipe_name"));
+		recipe.setRecipe_content(request.getParameter("recipe_content"));
+		recipe.setCooking_time(request.getParameter("cooking_time"));
+		recipe.setCooking_level(request.getParameter("cooking_level"));
+		
+		
+		
+		
+		
+		
 		// 첨부파일 처리
 		Part part1 = request.getPart("main_img");
 		String fileName1 =getFileName(part1);// Long.toString(System.currentTimeMillis());
 		String path1 = request.getServletContext().getRealPath("/images"); // "c:/upload";
 		System.out.println(fileName1); 
 		 if(fileName1 != null && !fileName1.isEmpty()) {
+			 
+			 
 		// 파일명 중복체크
 		File renameFile1=common.FileRenamePolicy.rename(new File(path1, fileName1));
 		part1.write(path1 + "/" + renameFile1.getName());
 		recipe.setMain_img(renameFile1.getName());
 		 }
-
+		//판매재료 받기
 		String[] product_name = request.getParameterValues("product_name");
 		String[] product_price = request.getParameterValues("product_price");
 		String[] product_unit = request.getParameterValues("product_unit");
-
+		//비판매재료 받기
+		String[] non_product_name = request.getParameterValues("non_product_name");
+		String[] non_product_unit = request.getParameterValues("non_product_unit");
+		
 		// 서비스 처리 db처리
 		System.out.println(recipe.toString());
 		int r = RecipeDAO.getInstance().recipeInsert(recipe); // 글번호가 반환
 		MemberVO membervo = (MemberVO) request.getSession().getAttribute("login");
 		// int sellerCode = membervo.getSeller_code();
+		
+		
 		for (int a = 0; a < product_name.length; a++) {
 			ProductVO product = new ProductVO();
 			// product.setSeller_code(sellerCode);
@@ -72,12 +80,33 @@ public class RecipeInsertController implements Controller {
 			} else {
 				product.setProduct_status("N");
 			}
+			product.setProduct_code("prod");
 			product.setProduct_price(Integer.parseInt(product_price[a]));
 			product.setProduct_unit(product_unit[a]);
 
 			ProductDAO.getInstance().productInsert(product);
 		}
 
+		//상품 코드 분류~~db 처리
+		// int sellerCode = membervo.getSeller_code();
+		for (int a = 0; a < non_product_name.length; a++) {
+			ProductVO product1 = new ProductVO();
+			// product.setSeller_code(sellerCode);
+			product1.setRecipe_number(r);
+			product1.setProduct_name(non_product_name[a]);
+			boolean product_code = ProductDAO.getInstance().productStatus(product1);
+			if (product_code == true) {
+				product1.setProduct_status("Y");
+			} else {
+				product1.setProduct_status("N");
+			}
+			product1.setProduct_code("non_prod");
+			
+			product1.setProduct_unit(non_product_unit[a]);
+
+			ProductDAO.getInstance().productInsert(product1);
+		}
+		
 		// 레시피 과정
 		String[] cooking_step = request.getParameterValues("cooking_step");
 
@@ -108,9 +137,6 @@ public class RecipeInsertController implements Controller {
 			}
 
 		}
-
-		// 결과 저장
-		
 
 		// 페이지 이동
 		response.sendRedirect("recipeBoard.do"); 

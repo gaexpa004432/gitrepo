@@ -53,14 +53,23 @@
 			<h1>재료</h1>
 		</div>
 		<div class="col-sm-6" align="left">
-			<h1>[판매재료]</h1>
+			<h1>[재료]</h1>
 			<c:forEach items="${ product }" var="mater">
+				<c:if test="${mater.product_code eq 'prod'}">
 				<h3 class="material" data-mate="${ mater.product_number }">${mater.product_name }
-					개수 :${ mater.product_unit }</h3>
+					용량 :${ mater.product_unit }</h3>
+				</c:if>
 			</c:forEach>
 		</div>
-		<div class="col-sm-6" align="left">
-			<h1>그외 재료</h1>
+		
+		<div class="col-sm-6" align="right">
+			<h1>[양념]</h1>
+			<c:forEach items="${ product }" var="mater">
+				<c:if test="${mater.product_code eq 'non_prod'}">
+				<h3 class="material" data-mate="${ mater.product_number }">${mater.product_name }
+					용량 :${ mater.product_unit }</h3>
+				</c:if>
+			</c:forEach>
 		</div>
 	</div>
 	<hr>

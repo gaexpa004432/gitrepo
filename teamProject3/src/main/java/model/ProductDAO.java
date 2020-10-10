@@ -41,13 +41,16 @@ public class ProductDAO {
 	}
 	
 	
+	
+	
+	
 	public int productInsert(ProductVO productVO) {
 		int r = 0;
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = " INSERT INTO product(product_number, product_name, product_price,"
-					+ " product_unit, product_status, seller_code,recipe_number) "
-					+ " VALUES (prod_no.NEXTVAL,?,?,?,?,?,?)";
+					+ " product_unit, product_status, seller_code,recipe_number, product_code) "
+					+ " VALUES (prod_no.NEXTVAL,?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, productVO.getProduct_name());
 			pstmt.setInt(2, productVO.getProduct_price());
@@ -55,6 +58,7 @@ public class ProductDAO {
 			pstmt.setString(4, productVO.getProduct_status());
 			pstmt.setInt(5, productVO.getSeller_code());
 			pstmt.setInt(6, productVO.getRecipe_number());
+			pstmt.setString(7, productVO.getProduct_code());
 			r = pstmt.executeUpdate();
 			
 		} catch (Exception e) {
@@ -104,6 +108,7 @@ public class ProductDAO {
 				resultVO.setProduct_price(rs.getInt("product_price"));
 				resultVO.setProduct_unit(rs.getString("product_unit"));
 				resultVO.setSeller_code(rs.getInt("seller_code"));
+				resultVO.setProduct_code(rs.getString("product_code"));
 				list.add(resultVO);
 			}
 		} catch (Exception e) {
