@@ -11,6 +11,7 @@ import common.Paging;
 import controller.Controller;
 import model.FreeBoardDAO;
 import model.FreeBoardVO;
+import model.boardDAO;
 
 public class QaBoardListController implements Controller {
 
@@ -19,7 +20,7 @@ public class QaBoardListController implements Controller {
 		String url = "/board/qaBoardList.jsp";
 		
 		
-		 FreeBoardDAO DAO = new FreeBoardDAO();//dao객체 만들어서 모든 데이터 다 들고오기
+		 boardDAO DAO = new FreeBoardDAO();//dao객체 만들어서 모든 데이터 다 들고오기
 		 String p = request.getParameter("p"); // 페이징 페이지번호를 가져와서 변수에 담음
 			String search = request.getParameter("board_search");// 검색 단어를 변수에담음
 			

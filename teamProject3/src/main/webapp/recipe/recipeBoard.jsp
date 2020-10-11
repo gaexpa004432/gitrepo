@@ -11,6 +11,49 @@
 <meta charset="UTF-8">
 <title>레시피 추천</title>
 <style>
+.btn{  /* 새로운재료 추가 버튼 css */
+      text-decoration: none;
+      font-size:2rem;
+      color:white;
+      padding:10px 20px 10px 20px;
+      margin:20px;
+      display:inline-block;
+      border-radius: 10px;
+      transition:all 0.1s;
+      text-shadow: 0px -2px rgba(0, 0, 0, 0.44);
+      font-family: 'Lobster', cursive; <!-- google font -->
+    }
+    .btn:active{
+      transform: translateY(3px);
+    }
+    .btn.blue{
+      background-color: #1f75d9;
+      border-bottom:5px solid #165195;
+    }
+    .btn.blue:active{
+      border-bottom:2px solid #165195;
+    }
+    .btn.red{
+      background-color: #ff521e;
+      border-bottom:5px solid #c1370e;
+    }
+    .btn.red:active{
+      border-bottom:2px solid #c1370e;
+    }
+     .btn.green{
+      background-color: #298A08;
+      border-bottom:5px solid #165195;
+    }
+    .btn.green:active{
+      border-bottom:2px solid #165195;
+    }
+	.btn.pink{
+      background-color: #FE2E64;
+      border-bottom:5px solid #165195;
+    }
+    .btn.pink:active{
+      border-bottom:2px solid #165195;
+    }
 	img.inimg {
 		max-width: 200px;
 		min-width: 200px;
@@ -73,6 +116,7 @@
  </table>
  </div>
  <hr>
+ <a class="btn green" href="/teamProject3/recipe/recipeInsert.jsp"><button type = "button">레시피 등록</button></a>
   <form name="searchFrm">		
 	<input type="hidden" name="p" value="1">
 	<input type="hidden" name="" value="">

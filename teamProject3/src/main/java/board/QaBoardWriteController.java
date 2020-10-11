@@ -13,6 +13,7 @@ import controller.Controller;
 import model.FreeBoardDAO;
 import model.FreeBoardVO;
 import model.QaBoardVO;
+import model.boardDAO;
 
 public class QaBoardWriteController implements Controller {
 
@@ -33,7 +34,7 @@ public class QaBoardWriteController implements Controller {
 		HttpSession session = ((HttpServletRequest)request).getSession();
 	      freeboard.setMember_id((String)session.getAttribute("id"));//로그인된 아이디를 들고옴
 	     
-	    FreeBoardDAO freeboarddao = new FreeBoardDAO();
+	    boardDAO freeboarddao = new FreeBoardDAO();
 	    freeboarddao.insert(freeboard);
 		
 	    response.sendRedirect("qaBoardList.do");

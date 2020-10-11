@@ -7,15 +7,15 @@ import java.util.ArrayList;
 
 import common.ConnectionManager;
 
-public class RecipeDAO {
+public class RecipeDAO implements recipeIN {
 	Connection conn;
 	PreparedStatement pstmt;
 	ResultSet rs = null;
 	int r = 0;
 	// 싱글톤
-	static RecipeDAO instance;
+	static recipeIN instance;
 
-	public static RecipeDAO getInstance() {
+	public static recipeIN getInstance() {
 		if (instance == null)
 			instance = new RecipeDAO();
 		return instance;
