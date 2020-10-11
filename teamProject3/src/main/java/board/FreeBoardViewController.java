@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import controller.Controller;
 import model.FreeBoardDAO;
 import model.FreeBoardVO;
+import model.boardDAO;
 
 public class FreeBoardViewController implements Controller {
 
@@ -17,7 +18,7 @@ public class FreeBoardViewController implements Controller {
 		String url= "/board/freeBoardView.jsp";
 
 	//	FreeBoardDAO.getInstance().updateReadCount(num);
-		FreeBoardDAO dao = new FreeBoardDAO();//dao객체 만들어서 모든 데이터 다 들고오기
+		boardDAO dao = new FreeBoardDAO();//dao객체 만들어서 모든 데이터 다 들고오기
 		FreeBoardVO vo = new FreeBoardVO();
 		vo.setBoard_no(Integer.parseInt(request.getParameter("board_no")));
 		vo = dao.selectOne(vo);//dao에도 selectOne 만들어줘야함 

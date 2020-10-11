@@ -7,7 +7,7 @@
 <title>Dashboard - Bootstrap Admin Template</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
-
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.css" rel="stylesheet">
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -331,7 +331,7 @@
   <!-- /footer-inner --> 
 </div>
 
-<script language="javascript" type="text/javascript" src="/resources/js/full-calendar/fullcalendar.min.js"></script>
+<script language="javascript" type="text/javascript" src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.js"></script>
  
 <script src="/resources/js/base.js"></script>
 <script>     
@@ -382,7 +382,8 @@
         var d = date.getDate();
         var m = date.getMonth();
         var y = date.getFullYear();
-        var calendar = $('#calendar').fullCalendar({
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl,{
           header: {
             left: 'prev,next today',
             center: 'title',
@@ -430,7 +431,7 @@
             },
             {
               title: 'Meeting',
-              start: new Date(y, m, d, 10, 30),
+              start: new Date(y, m, 10, 10, 30),
               allDay: false
             },
             {
@@ -453,6 +454,8 @@
             }
           ]
         });
+        calendar.render();
+       
       });
     </script> 
 </body>

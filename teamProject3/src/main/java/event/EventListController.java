@@ -11,11 +11,12 @@ import common.Paging;
 import controller.Controller;
 import model.FreeBoardDAO;
 import model.FreeBoardVO;
+import model.boardDAO;
 
 public class EventListController implements Controller{
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 String url = "/event/eventBoardList.jsp";
-		 FreeBoardDAO DAO = new FreeBoardDAO();
+		 boardDAO DAO = new FreeBoardDAO();
 		 String p = request.getParameter("p");
 			String search = request.getParameter("board_search");
 			

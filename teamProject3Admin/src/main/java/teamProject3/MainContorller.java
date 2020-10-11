@@ -16,7 +16,7 @@ public class MainContorller {
 	public String home(Model model) {
 	
 		
-		model.addAttribute("serverTime", "gg" );
+		model.addAttribute("index", "1" );
 		
 		return "manager/managerMain";
 	}

@@ -17,13 +17,12 @@ $(function(){
 	    $('#tb').DataTable();
 	} );
 	
-	console.log($("#mainnav").children())
 })
 </script>
 </head>
 <body>
 <div class="container">
-	<table id="tb">
+	<table id="tb" class="table table-striped table-bordered">
 		<thead><tr><th>id</th><th>name</th><th>adress</th><th>gender</th><th>birth</th><th>type</th><th>mileage</th><th>email</th></tr></thead>
 	<tbody>
 <c:forEach items="${list }" var="member">

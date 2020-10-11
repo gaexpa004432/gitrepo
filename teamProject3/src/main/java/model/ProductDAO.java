@@ -7,14 +7,14 @@ import java.util.ArrayList;
 
 import common.ConnectionManager;
 
-public class ProductDAO {
+public class ProductDAO implements productIN {
 	Connection conn;
 	PreparedStatement pstmt;
 
 	// 싱글톤
-	static ProductDAO instance;
+	static productIN instance;
 
-	public static ProductDAO getInstance() {
+	public static productIN getInstance() {
 		if (instance == null)
 			instance = new ProductDAO();
 		return instance;
