@@ -134,8 +134,13 @@
 		<div class="col-sm-12" align="center">
 			<h1>${ recipe.recipe_name }</h1>
 		</div>
+		
+		<div> 
+			<h3> ttt${ recipe.member_id }</h3>
+		</div>
+		
 		<div class="col-sm-12" align="center">
-			<img src="/teamProject3/images/${ recipe.main_img }">
+			<img src="/teamProject3/images/${ recipe.main_img }" height="400" width="400">
 		</div>
 		<div class="col-sm-12" align="center">
 			<h3>${ recipe.recipe_content }</h3>
@@ -173,7 +178,7 @@
 		<c:forEach items="${ photo }" var="step">
 			<div class="col-sm-6">조리 내용 : ${ step.cooking_content }</div>
 			<div class="col-sm-6">
-				<img src="/teamProject3/images/${ step.cooking_photo_name }">
+				<img src="/teamProject3/images/${ step.cooking_photo_name }" height="200" width="200">
 				<br>
 			</div>
 		</c:forEach>
@@ -228,7 +233,7 @@
 
 					<div class="col-sm-8" align="center">
 						<div class="imgs_wrap">
-							<img id="img" />
+							<img id="img"/>
 						</div>
 					</div>
 					<br> <input value="${ recipe.recipe_number }" name="recipe_no"

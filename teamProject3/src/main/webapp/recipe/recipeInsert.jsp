@@ -192,7 +192,7 @@
 	<input name="product_unit" placeholder="예) 1KG">
 	<input name="product_price" placeholder="예) 10000원"><br> 
 	</div>
-	<button type="button" class="matAdd">추가</button>
+	<button type="button" class="matAdd">재료 추가</button>
 	
 	
 	<hr>
@@ -202,7 +202,7 @@
 	<input name="non_product_name" placeholder="예) 간장">
 	<input name="non_product_unit" placeholder="예) 500g"><br> 
 	</div>
-	<button type="button" class="nonmatAdd">추가</button>
+	<button type="button" class="nonmatAdd">양념 추가</button>
 	
 	
 	<hr>
