@@ -9,6 +9,53 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+.btn{  /* 새로운재료 추가 버튼 css */
+      text-decoration: none;
+      font-size:2rem;
+      color:white;
+      padding:10px 20px 10px 20px;
+      margin:20px;
+      display:inline-block;
+      border-radius: 10px;
+      transition:all 0.1s;
+      text-shadow: 0px -2px rgba(0, 0, 0, 0.44);
+      font-family: 'Lobster', cursive; <!-- google font -->
+    }
+    .btn:active{
+      transform: translateY(3px);
+    }
+    .btn.blue{
+      background-color: #1f75d9;
+      border-bottom:5px solid #165195;
+    }
+    .btn.blue:active{
+      border-bottom:2px solid #165195;
+    }
+    .btn.red{
+      background-color: #ff521e;
+      border-bottom:5px solid #c1370e;
+    }
+    .btn.red:active{
+      border-bottom:2px solid #c1370e;
+    }
+     .btn.green{
+      background-color: #298A08;
+      border-bottom:5px solid #165195;
+    }
+    .btn.green:active{
+      border-bottom:2px solid #165195;
+    }
+	.btn.pink{
+      background-color: #FE2E64;
+      border-bottom:5px solid #165195;
+    }
+    .btn.pink:active{
+      border-bottom:2px solid #165195;
+    }
+
+</style>
 <script type="text/javascript">
 	$(function() {
 		$("#cart").on(
@@ -127,6 +174,14 @@
 
 	}
 	
+/* 	$(function() {
+		$(".material").on("click", function () {
+			if (material.product_name == recipe.product_name) {
+				d
+			}
+		})
+	}) */
+	
 </script>
 </head>
 <body>
@@ -136,7 +191,7 @@
 		</div>
 		
 		<div> 
-			<h3> ttt${ recipe.member_id }</h3>
+			<h3>작성자 : ${ recipe.member_id }</h3>
 		</div>
 		
 		<div class="col-sm-12" align="center">
@@ -157,30 +212,20 @@
 			<h1>[재료]</h1>
 			<c:forEach items="${ product }" var="mater">
 				<c:if test="${mater.product_code eq 'prod'}">
-				<h3 class="material" data-mate="${ mater.product_number }">${mater.product_name }
+				<h3 class="material" data-mate="${ mater.product_number }">${ mater.product_name }
 					용량 :${ mater.product_unit }</h3>
 				</c:if>
 			</c:forEach>
 		</div>
-<<<<<<< HEAD
-		<div class="col-sm-?" align="right">
-			<h1>그외 재료</h1>
-	<%-- 		<c:forEach items="${ product }" var="non_mater">
-				<h3 class="non_material" data-mate="${ non_mater.product_number }">
-				${non_mater.product_name } 개수 :${ non_mater.product_unit }
-				</h3>
-			</c:forEach> --%>
-=======
 		
 		<div class="col-sm-6" align="right">
 			<h1>[양념]</h1>
 			<c:forEach items="${ product }" var="mater">
 				<c:if test="${mater.product_code eq 'non_prod'}">
-				<h3 class="material" data-mate="${ mater.product_number }">${mater.product_name }
+				<h3 class="non_material" data-mate="${ mater.product_number }">${mater.product_name }
 					용량 :${ mater.product_unit }</h3>
 				</c:if>
 			</c:forEach>
->>>>>>> branch 'master' of https://github.com/gaexpa004432/gitrepo.git
 		</div>
 	</div>
 	<hr>
@@ -193,6 +238,17 @@
 			</div>
 		</c:forEach>
 	</div>
+	
+	<hr>
+	<div align="center">
+	<a href="recipeViewUpdate.do?recipe_number=${recipe.recipe_number}">
+		<button type="button" class = "btn green">레시피 수정</button>
+	</a>
+	
+	<button type="button" class = "btn red"
+			id = "recipedele">레시피 삭제</button>	
+	</div>
+	
 	<hr>
 	<div class="row">
 		<div class="col-sm-12" align="center">
@@ -224,7 +280,7 @@
 	<div align="center">
  <my:paging paging="${paging}" jsfunc="gopage" />
 </div>
-   <form name="searchFrm">		
+<form name="searchFrm">		
 	<input type="hidden" name="p" value="1">
 	<input type="hidden" name="res_no" value="${ recipe.recipe_number }">
 	

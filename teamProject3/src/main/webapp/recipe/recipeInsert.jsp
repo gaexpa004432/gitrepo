@@ -151,7 +151,7 @@
 
 	<hr>
 	<br>
-	<h2>간단한 소개글</h2>
+	<h2>레시피 소개글</h2>
 
 	<br>
 	<textarea name="recipe_content" style="width: 100% rows="10" id="recipe_content"
@@ -190,32 +190,17 @@
 	<input name="product_unit" placeholder="예) 1KG">
 	<input name="product_price" placeholder="예) 10000원"><br> 
 	</div>
-<<<<<<< HEAD
-	<button type="button" class="matAdd">추가</button>
-=======
 	<button type="button" class="matAdd">재료 추가</button>
-	
->>>>>>> branch 'master' of https://github.com/gaexpa004432/gitrepo.git
-	
+
 	<hr>
-<<<<<<< HEAD
-	<h2>그외 재료</h2>
-	<div class="nonmatList">
-	<input name="non_product_name" placeholder="예) 간장">
-	<input name="non_product_unit" placeholder="예) 500g"><br> 
-	</div>
-	<button type="button" class="nonmatAdd">추가</button>
-=======
 	<h2>양념</h2>
-	
 	<div class="nonmatList">
 	<input name="non_product_name" placeholder="예) 간장">
 	<input name="non_product_unit" placeholder="예) 500g"><br> 
 	</div>
 	<button type="button" class="nonmatAdd">양념 추가</button>
 	
->>>>>>> branch 'master' of https://github.com/gaexpa004432/gitrepo.git
-	
+
 	<hr>
 	<h2>요리 순서</h2>
 	<div class = "cooking_order">

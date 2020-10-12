@@ -119,7 +119,7 @@ public class RecipeDAO{
 		      return cnt;
 		}
 		
-		public RecipeVO selectOne(RecipeVO Recipe) {
+		public RecipeVO recipeSelectOne(RecipeVO Recipe) {
 			conn = ConnectionManager.getConnnect();
 			RecipeVO resultVO = new RecipeVO();
 			try { 
