@@ -47,5 +47,6 @@ $(function(){
 			</tbody>
 		</table>
 	</div>
+	
 </body>
 </html>

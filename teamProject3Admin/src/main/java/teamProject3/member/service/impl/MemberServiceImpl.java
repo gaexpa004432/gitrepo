@@ -34,7 +34,7 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public void delete(MemberVO memberVO) {
-		// TODO Auto-generated method stub
+		memberDAO.delete(memberVO);
 		
 	}
 
@@ -52,7 +52,7 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public int update(MemberVO memberVO) {
-		// TODO Auto-generated method stub
+		memberDAO.update(memberVO);
 		return 0;
 	}
 

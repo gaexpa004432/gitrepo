@@ -17,6 +17,34 @@ $(function(){
 	    $('#tb').DataTable();
 	} );
 	
+	$(".btn-danger").on("click",function(){
+		var result = confirm("삭제하시겠습니까?");
+		var tis = $(this);
+		if(result){
+			var member = $(this).parent().parent().data("member");
+			console.log(member);
+			$.ajax({
+				 url: "/ajaxMemberDelete", 
+				    data: {member_id:member},
+				    method : "POST",
+			    success: function() { 
+			    	alert("삭제 되었습니다.")
+			    	tis.parent().parent().remove();
+					
+			    },
+			    error:function(xhr, status, message) { 
+			        alert(" status: "+status+" er:"+message);
+			    }
+			   
+		})
+		}
+	})
+	
+	$(".btn-info").on("click",function(){
+		var milegeTag = $(this).parent().parent().children().eq(6);
+		milegeTag.text("");
+		milegeTag.append($("<input>").val(milegeTag.data("mileage")).css("width","70px").css("height","15px"));
+	})
 })
 </script>
 </head>
@@ -27,14 +55,14 @@ $(function(){
 	<tbody>
 <c:forEach items="${list }" var="member">
 	 <c:set var = "string" value = "${fn:substring(member.member_birth, 0, 10)}" />
-	<tr>
+	<tr data-member="${member.member_id }">
 		<td>${member.member_id }</td>
 	<td>${member.member_name }</td>
 	<td>${member.member_roadAddress }</td>
 	<td>${member.member_gender }</td>
 	<td>${string }</td>
 	<td>${member.member_type }</td>
-	<td>${member.member_mileage }</td>
+	<td data-mileage="${member.member_mileage }">${member.member_mileage }</td>
 	<td>${member.member_email }</td>
 	<td align="center"><button class="btn btn-info">수정</button>&nbsp&nbsp<button class="btn btn-danger">삭제</button></td>
 	</tr>

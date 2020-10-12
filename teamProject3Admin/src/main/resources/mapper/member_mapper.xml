@@ -6,4 +6,12 @@
 		SELECT  *
 		FROM member
 	</select>
+	<delete id="delete" parameterType="member">
+		delete member where member_id= #{member_id}
+	</delete>
+	<update id="update" parameterType="member">
+		update member set member_mileage = #{member_mileage}
+		where member_id = #{member_id}
+	
+	</update>
  </mapper>
