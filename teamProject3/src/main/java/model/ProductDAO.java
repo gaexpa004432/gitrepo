@@ -7,14 +7,14 @@ import java.util.ArrayList;
 
 import common.ConnectionManager;
 
-public class ProductDAO implements productIN {
+public class ProductDAO{
 	Connection conn;
 	PreparedStatement pstmt;
 
 	// 싱글톤
-	static productIN instance;
+	static ProductDAO instance;
 
-	public static productIN getInstance() {
+	public static ProductDAO getInstance() {
 		if (instance == null)
 			instance = new ProductDAO();
 		return instance;
@@ -49,7 +49,8 @@ public class ProductDAO implements productIN {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = " INSERT INTO product(product_number, product_name, product_price,"
-					+ " product_unit, product_status, seller_code,recipe_number, product_code) "
+					+ " product_unit, product_status, seller_code,recipe_number,product_code) "
+
 					+ " VALUES (prod_no.NEXTVAL,?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, productVO.getProduct_name());

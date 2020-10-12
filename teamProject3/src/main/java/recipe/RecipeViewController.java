@@ -24,7 +24,7 @@ public class RecipeViewController implements Controller {
 		recipe.setMember_id((String) session.getAttribute("id"));
 		int recipe_number = Integer.parseInt(request.getParameter("recipe_number"));
 		recipe.setRecipe_number(recipe_number);
-		RecipeDAO.getInstance().selectOne(recipe);
+		RecipeDAO.getInstance().recipeSelectOne(recipe);
 		RecipeReviewVO reviewvo = new RecipeReviewVO();
 		
 		 String p = request.getParameter("p");
@@ -48,10 +48,10 @@ public class RecipeViewController implements Controller {
 			
 		request.setAttribute("paging", paging);
 		request.setAttribute("reviewlist", RecipeReviewDAO.getInstance().selectAllReview(reviewvo));
-		request.setAttribute("recipe", RecipeDAO.getInstance().selectOne(recipe));
+		request.setAttribute("recipe", RecipeDAO.getInstance().recipeSelectOne(recipe));
 		request.setAttribute("photo", RecipePhotoDAO.getInstance().selectOne(recipe));
 		request.setAttribute("product", ProductDAO.getInstance().productSelectOne(recipe));
-		request.setAttribute("member_id", RecipeDAO.getInstance().selectOne(recipe));
+		request.setAttribute("member_id", RecipeDAO.getInstance().recipeSelectOne(recipe));
 		request.getRequestDispatcher("/recipe/recipeView.jsp").forward(request, response);
 	
 		
