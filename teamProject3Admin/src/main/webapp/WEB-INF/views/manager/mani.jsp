@@ -23,7 +23,7 @@ $(function(){
 <body>
 <div class="container">
 	<table id="tb" class="table table-striped table-bordered">
-		<thead><tr><th>id</th><th>name</th><th>adress</th><th>gender</th><th>birth</th><th>type</th><th>mileage</th><th>email</th></tr></thead>
+		<thead><tr><th>id</th><th>name</th><th>adress</th><th>gender</th><th>birth</th><th>type</th><th>mileage</th><th>email</th><th></th></tr></thead>
 	<tbody>
 <c:forEach items="${list }" var="member">
 	 <c:set var = "string" value = "${fn:substring(member.member_birth, 0, 10)}" />
@@ -36,6 +36,7 @@ $(function(){
 	<td>${member.member_type }</td>
 	<td>${member.member_mileage }</td>
 	<td>${member.member_email }</td>
+	<td align="center"><button class="btn btn-info">수정</button>&nbsp&nbsp<button class="btn btn-danger">삭제</button></td>
 	</tr>
 </c:forEach>
 	</tbody>

@@ -38,4 +38,22 @@ public class ProductServiceImpl implements ProductService{
 		return null;
 	}
 
+	@Override
+	public void productUpdate(ProductVO productvo) {
+		productdao.productUpdate(productvo);
+		
+	}
+
+	@Override
+	public void productAccept(ProductVO productvo) {
+		productdao.productAccept(productvo);
+		
+	}
+
+	@Override
+	public void productDelete(ProductVO productvo) {
+		productdao.productDelete(productvo);
+		
+	}
+
 }
