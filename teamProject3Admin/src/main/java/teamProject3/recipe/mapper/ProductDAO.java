@@ -15,5 +15,10 @@ public interface ProductDAO {
 	ArrayList<ProductVO> productSelectAll(ProductVO productVO);
 
 	ArrayList<ProductVO> productSelectOne(RecipeVO recipeVO);
-
+	
+	void productUpdate(ProductVO productvo);
+	
+	void productAccept(ProductVO productvo);
+	
+	void productDelete(ProductVO productvo);
 }

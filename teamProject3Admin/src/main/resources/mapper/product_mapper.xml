@@ -7,4 +7,21 @@
 		FROM product
 		 where product_status = 'N'
 	</select>
+	<update id="productUpdate" parameterType="product">
+		update product
+		set PRODUCT_NAME = #{product_name},PRODUCT_PRICE = #{product_price},PRODUCT_UNIT =#{product_unit} 
+		where PRODUCT_NUMBER = #{product_number}
+	</update>
+	<update id="productAccept" parameterType="product">
+		update product
+		set PRODUCT_STATUS = 'Y'
+		where PRODUCT_NUMBER = #{product_number}
+	</update>
+	
+	
+	
+	<delete id="productDelete" parameterType="product">
+		delete recipe
+		where recipe_number = #{recipe_number}
+	</delete>
  </mapper>
