@@ -26,6 +26,9 @@
         text-align:center;
 }
 
+form {
+	text-align: center;
+}
 
 </style>
 <script type="text/javascript">

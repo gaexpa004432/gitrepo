@@ -10,7 +10,7 @@ import controller.Controller;
 import model.FreeBoardDAO;
 import model.FreeBoardVO;
 
-public class FreeBoardDeleteController implements Controller {
+public class QaBoardDeleteController implements Controller {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int board_no=Integer.parseInt(request.getParameter("board_no"));
@@ -20,6 +20,6 @@ public class FreeBoardDeleteController implements Controller {
 		DAO.delete(freeboard);
 		
 		//forward
-	    request.getRequestDispatcher("/freeBoardList.do").forward(request, response);
+	    request.getRequestDispatcher("/qaBoardList.do").forward(request, response);
 	}
 }

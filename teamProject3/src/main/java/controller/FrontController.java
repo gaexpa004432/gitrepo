@@ -137,7 +137,9 @@ public class FrontController extends HttpServlet {
 		list.put("/member/memberDelete.do", new member.MemberDeleteController());
 		list.put("/ajaxCommentdelete.do",new board.CommentDeleteController());
 		list.put("/ajaxCommentUpdate.do",new board.CommentUpdateController());
-		
+		list.put("/qaBoardUpdate.do",new board.QaBoardUpdateController());
+		list.put("/qaBoardUpdate2.do",new board.QaBoardUpdate2Controller());
+		list.put("/qaBoardDelete.do",new board.QaBoardDeleteController());
 		
 		
 		

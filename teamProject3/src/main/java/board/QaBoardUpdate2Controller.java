@@ -12,7 +12,7 @@ import model.FreeBoardDAO;
 import model.FreeBoardVO;
 import model.FreeBoardDAO;
 
-public class FreeBoardUpdate2Controller implements Controller {
+public class QaBoardUpdate2Controller implements Controller {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -32,7 +32,7 @@ public class FreeBoardUpdate2Controller implements Controller {
 				FreeBoardDAO DAO = new FreeBoardDAO();
 				DAO.update(freeboard);
 				
-				response.sendRedirect("freeBoardList.do");
+				response.sendRedirect("qaBoardList.do");
 				
 
 	}
