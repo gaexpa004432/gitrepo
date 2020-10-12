@@ -15,7 +15,7 @@ import net.sf.json.JSONArray;
 
 public class AjaxSellListController implements Controller {
 
-	@Override
+	
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MemberVO login = (MemberVO)request.getSession().getAttribute("login");
 		int seller_code = login.getSeller_code();
