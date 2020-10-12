@@ -63,7 +63,7 @@ public class MemberSellListController implements Controller {
 		request.setAttribute("list", list);
 		
 		request.getRequestDispatcher("/member/sellList.jsp").forward(request, response);
-		
+	
 	}
 
 }
