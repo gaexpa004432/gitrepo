@@ -30,4 +30,6 @@ public class MemberVO {
 	private String seller_detailAddress;
 	private String seller_extraAddress;
 	
+	
+	
 }

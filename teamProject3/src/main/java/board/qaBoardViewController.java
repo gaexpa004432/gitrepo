@@ -9,12 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
 import model.FreeBoardDAO;
 import model.FreeBoardVO;
+import model.boardDAO;
 
 public class qaBoardViewController implements Controller {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url= "/board/qaBoardView.jsp";
-		FreeBoardDAO dao = new FreeBoardDAO();
+		boardDAO dao = new FreeBoardDAO();
 		FreeBoardVO vo = new FreeBoardVO();
 		vo.setBoard_no(Integer.parseInt(request.getParameter("board_no")));
 		vo = dao.selectOne(vo);

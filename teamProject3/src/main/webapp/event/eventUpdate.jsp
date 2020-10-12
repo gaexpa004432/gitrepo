@@ -96,7 +96,7 @@
 	
 	<form action = "/teamProject3/eventUpdate.do" method="post" name="frm" id="frm"
 		  enctype='multipart/form-data'
-		  onsubmit="return eventCheck()" >
+		  onsubmit="return eventCheck()">
 		  <input type="hidden" name="board_no" value="${board.board_no}">
 	  <table>
                 <tr>

@@ -25,8 +25,13 @@ public class CommentDAO {
 	         pstmt.setString(1, commentVO.getComment_content());
 	         pstmt.setInt(2, commentVO.getPost_no());
 	         pstmt.setString(3, commentVO.getMember_id());
-	         r = pstmt.executeUpdate();
-	         System.out.println(r + "건이 입력됨");
+	         pstmt.executeUpdate();
+	         sql = "select COMMENT_SEQ.currval from dual"; //방금 쓰인 시퀀스 번호 들고옴
+	         pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+				r = rs.getInt(1);
+				}
 
 	      } catch (Exception e) {
 	         e.printStackTrace();
@@ -42,9 +47,10 @@ public class CommentDAO {
 			   try {
 		         conn = ConnectionManager.getConnnect();
 		         String sql = "update boardcomment set comment_content=?" 
-		         		+ "where board_no=?";
+		         		+ "where comment_no= ? ";
 		         pstmt = conn.prepareStatement(sql);
 		         pstmt.setString(1, commentVO.getComment_content());
+		         pstmt.setInt(2, commentVO.getComment_no());
 		  
 		         r = pstmt.executeUpdate();
 		         System.out.println(r + "건이 입력됨");

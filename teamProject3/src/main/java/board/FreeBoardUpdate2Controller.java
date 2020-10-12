@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import controller.Controller;
 import model.FreeBoardDAO;
 import model.FreeBoardVO;
+import model.boardDAO;
 
 public class FreeBoardUpdate2Controller implements Controller {
 
@@ -28,7 +29,7 @@ public class FreeBoardUpdate2Controller implements Controller {
 			      
 			      
 			      
-				FreeBoardDAO DAO = new FreeBoardDAO();
+				boardDAO DAO = new FreeBoardDAO();
 				DAO.update(freeboard);
 				
 				response.sendRedirect("freeBoardList.do");

@@ -26,11 +26,107 @@
 									param += "&";
 								}
 							}
-							location.href = "cart.do" + param;
+							location.href = "${pageContext.request.contextPath}/CartSelectContoroller.do" + param;
 						}
 					}
 				})
+	$("#input_imgs").on("change", handleImgFileSelect);
+		$(".reviewDel").on("click",function(){
+			var result = confirm("정말 삭제 하시겠습니까?");
+			if(result){
+				var reviewNo = $(this).data("no");
+				 location.href="/teamProject3/recipeReviewDel.do?recipe_review_no="+reviewNo+"&recipe_number=${ recipe.recipe_number }";
+			}
+		})
 	})
+	
+	function fileUploadAction() {
+		console.log("fileUploadAction");
+		$("#input_imgs").trigger('click');
+	}
+
+	function handleImgFileSelect(e) {
+
+		// 이미지 정보들을 초기화
+		sel_files = [];
+		$(".imgs_wrap").empty();
+
+		var files = e.target.files;
+		var filesArr = Array.prototype.slice.call(files);
+
+		var index = 0;
+		filesArr
+				.forEach(function(f) {
+					if (!f.type.match("image.*")) {
+						alert("확장자는 이미지 확장자만 가능합니다.");
+						return;
+					}
+
+					sel_files.push(f);
+
+					var reader = new FileReader();
+					reader.onload = function(e) {
+						var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("
+								+ index
+								+ ")\" id=\"img_id_"
+								+ index
+								+ "\"><img src=\"" + e.target.result + "\" data-file='"+f.name+"' class='selProductFile' title='Click to remove' style='width:100px; height:100px;'></a>";
+						$(".imgs_wrap").append(html);
+						index++;
+
+					}
+					reader.readAsDataURL(f);
+
+				});
+	}
+
+	function deleteImageAction(index) {
+		console.log("index : " + index);
+		console.log("sel length : " + sel_files.length);
+		var a = $("#input_imgs");
+		console.log(a);
+		sel_files.splice(index, 1);
+
+		var img_id = "#img_id_" + index;
+		$(img_id).remove();
+	}
+
+	function fileUploadAction() {
+		console.log("fileUploadAction");
+		$("#input_imgs").trigger('click');
+	}
+
+	function submitAction() {
+		console.log("업로드 파일 갯수 : " + sel_files.length);
+		var data = new FormData();
+
+		for (var i = 0, len = sel_files.length; i < len; i++) {
+			var name = "image_" + i;
+			data.append(name, sel_files[i]);
+		}
+		data.append("image_count", sel_files.length);
+
+		if (sel_files.length < 1) {
+			alert("한개이상의 파일을 선택해주세요.");
+			return;
+		}
+
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", "./study01_af.php");
+		xhr.onload = function(e) {
+			if (this.status == 200) {
+				console.log("Result : " + e.currentTarget.responseText);
+			}
+		}
+		
+		xhr.send(data);
+
+	}
+	function itemActive($el) {
+		$el.siblings().removeClass('active');
+
+	}
+	
 </script>
 </head>
 <body>
@@ -38,8 +134,13 @@
 		<div class="col-sm-12" align="center">
 			<h1>${ recipe.recipe_name }</h1>
 		</div>
+		
+		<div> 
+			<h3> ttt${ recipe.member_id }</h3>
+		</div>
+		
 		<div class="col-sm-12" align="center">
-			<img src="/teamProject3/images/${ recipe.main_img }">
+			<img src="/teamProject3/images/${ recipe.main_img }" height="400" width="400">
 		</div>
 		<div class="col-sm-12" align="center">
 			<h3>${ recipe.recipe_content }</h3>
@@ -53,12 +154,15 @@
 			<h1>재료</h1>
 		</div>
 		<div class="col-sm-6" align="left">
-			<h1>[판매재료]</h1>
+			<h1>[재료]</h1>
 			<c:forEach items="${ product }" var="mater">
+				<c:if test="${mater.product_code eq 'prod'}">
 				<h3 class="material" data-mate="${ mater.product_number }">${mater.product_name }
-					개수 :${ mater.product_unit }</h3>
+					용량 :${ mater.product_unit }</h3>
+				</c:if>
 			</c:forEach>
 		</div>
+<<<<<<< HEAD
 		<div class="col-sm-?" align="right">
 			<h1>그외 재료</h1>
 	<%-- 		<c:forEach items="${ product }" var="non_mater">
@@ -66,6 +170,17 @@
 				${non_mater.product_name } 개수 :${ non_mater.product_unit }
 				</h3>
 			</c:forEach> --%>
+=======
+		
+		<div class="col-sm-6" align="right">
+			<h1>[양념]</h1>
+			<c:forEach items="${ product }" var="mater">
+				<c:if test="${mater.product_code eq 'non_prod'}">
+				<h3 class="material" data-mate="${ mater.product_number }">${mater.product_name }
+					용량 :${ mater.product_unit }</h3>
+				</c:if>
+			</c:forEach>
+>>>>>>> branch 'master' of https://github.com/gaexpa004432/gitrepo.git
 		</div>
 	</div>
 	<hr>
@@ -73,7 +188,7 @@
 		<c:forEach items="${ photo }" var="step">
 			<div class="col-sm-6">조리 내용 : ${ step.cooking_content }</div>
 			<div class="col-sm-6">
-				<img src="/teamProject3/images/${ step.cooking_photo_name }">
+				<img src="/teamProject3/images/${ step.cooking_photo_name }" height="200" width="200">
 				<br>
 			</div>
 		</c:forEach>
@@ -84,6 +199,66 @@
 			<button id="cart">담기</button>
 		</div>
 	</div>
+	<hr>
+	
+	<c:forEach items="${ reviewlist }" var="list">
+		<div class="row" id="over" style="border-top-width:1px;border-top-style:solid;padding:20px; border-top-color : #f0f0f5;">
+
+				<div class="col-sm-1" >
+					작성자 위치 ${ list.member_id }<br>
+				</div>
+				<div class="col-sm-10" align="left">
+				<small>${ list.recipe_review_date }</small><br> ${ list.recipe_review_content }<br>
+					<br><br>
+						<img style="width: 100px; height: 100px;"
+							src="/teamProject3/images/${list.recipe_review_file }">
+				</div>
+				<div class="col-sm-1" align="right">
+				 	<c:if test="${ list.member_id == sessionScope.id }"> 
+						<a class="reviewDel" href="javascript:void(0);" data-no="${ list.recipe_review_no }"><img src="/teamProject3/images/delBtn.png" style="width: 25px; height: 25px;"></a>
+					</c:if>
+				</div>
+
+		</div>
+			</c:forEach>
+	<div align="center">
+ <my:paging paging="${paging}" jsfunc="gopage" />
+</div>
+   <form name="searchFrm">		
+	<input type="hidden" name="p" value="1">
+	<input type="hidden" name="res_no" value="${ recipe.recipe_number }">
+	
+</form>
+	<hr>
+	<div class="row">
+			<div class="col" align="center">
+				<form action="/teamProject3/recipeReview.do" method="post"
+					enctype='multipart/form-data'>
+					<div class="col-sm-8" align="center">
+						<div align="left">
+							<input type="file" id="input_imgs" name="recipe_review_file"
+								>
+						</div>
+					</div>
+
+					<div class="col-sm-8" align="center">
+						<div class="imgs_wrap">
+							<img id="img"/>
+						</div>
+					</div>
+					<br> <input value="${ recipe.recipe_number }" name="recipe_no"
+						hidden="hidden">
+					<textarea cols="100" rows="10" 
+						name="recipe_reivew_content"></textarea>
+					<button id="insert" style="vertical-align: top; ">
+						리뷰 쓰기</button>
+				</form>
+				<br>
+				<br>
+				<br>
+			</div>
+		</div>
+	<hr>
 	레시피 내용 :${ recipe.recipe_content }
 	<br> 레시피 번호 : ${ recipe.recipe_number }
 	<br> 레시피 이름 : ${ recipe.recipe_name }
@@ -102,5 +277,13 @@
 			상품이미지 :${ mater.product_img }<br>
 			판매자 : ${ mater.seller_code }<br>
 	</c:forEach>
+	<script>
+	function gopage(p) {			// 검색 function
+		searchFrm.p.value = p;		// 페이지번호 받아와서 submit에 넘김
+		searchFrm.submit();
+		
+		// location.href="deptSelectAll?p=" + p;	// 이동되는 주소가 달라서 여러사람이 쓰기위해서는 매개값 p로 해줌
+	}
+</script> 
 </body>
 </html>

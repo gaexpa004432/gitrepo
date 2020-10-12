@@ -119,7 +119,7 @@ function handleImgFileSelect(e) {
 
 	<!-- <div class="regist"> -->
 	<form method="post" name="frm" id="frm" 
-		  action="insert.do"
+		  action="/teamProject3/insert.do"
 		  enctype="multipart/form-data" 
 		  onsubmit="return inputCheck()">
 		<h3>회원등록</h3>

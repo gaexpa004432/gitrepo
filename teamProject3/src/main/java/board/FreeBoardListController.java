@@ -11,12 +11,13 @@ import common.Paging;
 import controller.Controller;
 import model.FreeBoardDAO;
 import model.FreeBoardVO;
+import model.boardDAO;
 
 public class FreeBoardListController implements Controller {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 String url = "/board/freeBoardList.jsp";
-		 FreeBoardDAO DAO = new FreeBoardDAO();//dao객체 만들어서 모든 데이터 다 들고오기
+		 boardDAO DAO = new FreeBoardDAO();//dao객체 만들어서 모든 데이터 다 들고오기
 		 String p = request.getParameter("p");
 			String search = request.getParameter("board_search");
 			

@@ -33,7 +33,7 @@ public class MemberLoginController implements Controller {
 		
 		if(resultVO == null) {//일치하는 아이디가 없으면 에러메시지를 띄우면서 login페이지에 머무르기
 			request.setAttribute("errormsg", "아이디를 다시 입력해 주세요");
-			page = "memberLogin.jsp";	
+			page = "/member/memberLogin.jsp";	
 		} else {
 			if(memberVO.getMember_pass().equals(resultVO.getMember_pass())) { //로그인 성공
 				
@@ -63,11 +63,11 @@ public class MemberLoginController implements Controller {
 				System.out.println("생년월일 : " + resultVO.getMember_birth());
 				System.out.println("판매자 코드: " + resultVO.getSeller_code());				
 				
-				page = "memberLoginOutput.jsp";
+				page = "/member/memberLoginOutput.jsp";
 			} else { //패스워드 불일치
 				request.setAttribute("resultVO", resultVO);
 				request.setAttribute("errormsg", "패스워드가 맞지 않습니다"); //패스워드 맞지 않으면 에러 메시지
-				page = "memberLogin.jsp";
+				page = "/member/memberLogin.jsp";
 			}
 		}
 		

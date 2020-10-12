@@ -35,24 +35,24 @@
 <ul>
 	<li><a href="#">주문 내역 조회</a>
 	<li><a href="#">나의활동</a>
-	<li><a href="favList.do">나의 즐겨찾기</a>
+	<li><a href="${pageContext.request.contextPath}/favList.do?fav=fs">나의 즐겨찾기</a>
 	<c:choose>
 		<c:when test="${sessionScope.login.seller_code != 0}">
-			<li><a href="ansList.do">1:1문의</a>
+			<li><a href="${pageContext.request.contextPath}/ansList.do">1:1문의</a>
 		</c:when>
 		<c:when test="${sessionScope.login.seller_code == 0}">
-			<li><a href="inqList.do">1:1문의</a>
+			<li><a href="${pageContext.request.contextPath}/inqList.do">1:1문의</a>
 		</c:when>
 	</c:choose>
-	<li><a href="select.do">내정보 조회 및 수정</a>
+	<li><a href="${pageContext.request.contextPath}/select.do">내정보 조회 및 수정</a>
 	<li><a href="#">마일리지 조회</a>
 	<c:choose>
 		<c:when test="${sessionScope.login.seller_code != 0}">
 			<li><a href="#">판매내역</a>
-			<li><a href="memberAddUpdate.jsp">소상공인 정보 수정 및 조회</a>
+			<li><a href="${pageContext.request.contextPath}/member/memberAddUpdate.jsp">소상공인 정보 수정 및 조회</a>
 		</c:when>
 		<c:when test="${sessionScope.login.seller_code == 0}">
-			<li><a href="memberAddInsert.jsp">소상공인 추가정보 등록</a>
+			<li><a href="${pageContext.request.contextPath}/member/memberAddInsert.jsp">소상공인 추가정보 등록</a>
 		</c:when> 
 	</c:choose>
 	<li><a href="#">탈퇴</a>

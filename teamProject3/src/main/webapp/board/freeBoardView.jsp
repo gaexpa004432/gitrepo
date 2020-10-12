@@ -41,6 +41,7 @@ div {
 #review:hover {
 	background-color: #f2f2f2;
 }
+
 </style>
 
 
@@ -49,6 +50,45 @@ div {
 
 <script>
 $(function(){
+	commentList();
+	
+	function updateOne(){
+		var content = $(this).data("comment_content");
+		var no = $(this).parent().children().eq(3).data("comment_no");
+	var con1 =	$(this).parent().parent().children().eq(1);
+	var con2 = con1.children().eq(2);
+		
+	con1.hide();
+	var btn1 =	$(this).parent();
+	btn1.hide();
+		$(this).parent().parent().append($("<div>").attr("class","col-sm-9").append($("<input>").css("width","850px").css("height","64px").val(content)));
+		$(this).parent().parent().append($("<div>").attr("class","col-sm-1").append($("<button>").text("등록").on("click",function(){
+			var update = $(this).parent().parent().children().eq(3).children().val();
+			console.log(update);
+			$.ajax({
+			    url: "ajaxCommentUpdate.do", 
+			    data: {update:update,comment_no:no},
+			    success: function() { 
+			    	con1.show();
+					btn1.show();
+			    	con2.text(update);
+			    	con1.parent().children().eq(3).remove();
+			    	con1.parent().children().eq(3).remove();
+			    },
+			    error:function(xhr, status, message) { 
+			        alert(" status: "+status+" er:"+message);
+			    }
+			});
+		})).append($("<br>")).append($("<br>")).
+				append($("<button>").text("취소").on("click",function(){
+					con1.show();
+					btn1.show();
+					$(this).parent().parent().children().eq(3).remove();
+					$(this).parent().remove();
+				})))
+		
+	}
+	
 	$("#delbtn").on("click",function (){
 	
 		var result = confirm('정말로 삭제하시겠습니까?');
@@ -60,38 +100,20 @@ $(function(){
 	if (${id == board.member_id}){
 		$(".btn").show();
 	}
-})
+
 
 //댓글 script부분(userClient.jsp참고)
-	$(function(){
-		commentList()
-		commentInsert()
-		commentDelete()
+	
+		
 	//삭제 버튼  이벤트
-	function commentDelete() {
+	
 		//삭제 버튼 클릭
-		console.log($('.delete'))
-		$('.delete').on('click',function(){
-			var tr = $(this).closest('div');
-			var result = confirm(" 사용자를 정말로 삭제하시겠습니까?");
-			if(result) {
-				console.log(tr);
-				 /* $.ajax({
-					url:'ajax/Commentdelete.do',
-					data : {id : userId},
-					dataType:'json',
-					error:function(xhr,status,msg){
-						console.log("상태값 :" + status + " Http에러메시지 :"+msg);						
-					}, success:function(data) {
-						tr.remove();   //userList();
-						
-					} 
-				}); */      }//if
-		}); //삭제 버튼 클릭
-	}//userDelete
+		
+		
+
 	
 	//사용자 조회 버튼 이벤트
-	function commentSelect() {
+	
 		//조회 버튼 클릭
 		$('body').on('click','#btnSelect',function(){
 			var userId = $(this).closest('tr').find('#hidden_userId').val();
@@ -106,7 +128,7 @@ $(function(){
 				success:commentSelectResult
 			});
 		}); //조회 버튼 클릭
-	}//userSelect
+
 	
 	//사용자 조회 응답
 	function commentSelectResult(user) {
@@ -117,7 +139,7 @@ $(function(){
 	}//userSelectResult
 	
 	//사용자 수정 버튼 이벤트
-	function commentUpdate() {
+
 		//수정 버튼 클릭
 		$('#btnUpdate').on('click',function(){
 			var div = $(this).closest("tr");
@@ -133,11 +155,11 @@ $(function(){
 			    }
 			});
 		});//수정 버튼 클릭
-	}//userUpdate
+	
 	
 	//사용자 등록 요청
-	function commentInsert(){
-		//등록 버튼 클릭
+	
+		//등록 버튼 클릭  
 		$('#btnInsert').on('click',function(){
 		var content = $('#commentcontent').val();
 		
@@ -150,18 +172,36 @@ $(function(){
 			    	$(".re").append($("<div>").attr("class","row").attr("id","review").css("border-top-width","1px").css("border-top-style","solid")
 							.css("padding","20px").css("border-top-color","#f0f0f5")
 							.append($("<div>").attr("class","col-sm-1").text("작성자아이디"))
-							.append($("<div>").attr("class","col-sm-9").attr("align","left").html("<small style='vertical-align:top'>"+datas.comment_date +"</small>"+"<br>"+datas.comment_content))
+							.append($("<div>").attr("class","col-sm-9").attr("align","left").html("<small style='vertical-align:top'>"+datas.comment_date +"</small>"+"<br><div>"+datas.comment_content+"</div>"))
 							.append($("<div>").attr("class","col-sm-1")
-							.append($("<button>").text("수정").attr("class","update"))
+							.append($("<button>").text("수정").attr("class","update").on("click",updateOne).data("comment_content",datas.comment_content))
 							.append($("<br>"))
 							.append($("<br>"))
-							.append($("<button>").text("삭제").attr("class","delete"))))
+							.append($("<button>").text("삭제").data("comment_no",datas.comment_no).on("click",
+									function(){
+								var tag = $(this).parent().parent();
+								var no = $(this).data("comment_no");
+								var result = confirm(" 사용자를 정말로 삭제하시겠습니까?");
+								if(result) {
+									  $.ajax({
+										url:'ajaxCommentdelete.do',
+										data : {comment_no : no},
+										
+										error:function(xhr,status,msg){
+											console.log("상태값 :" + status + " Http에러메시지 :"+msg);						
+										}, success:function() {
+											tag.remove();   //userList();
+											
+										} 
+									});       }//if
+							} //삭제 버튼 클릭
+							))))
 			    }, 
 			    error:function(xhr, status, message) { 
 			    } 
 			 });  
 		});//등록 버튼 클릭
-	}//userInsert
+
 	
 	
 	//사용자 목록 조회 요청
@@ -179,12 +219,30 @@ $(function(){
 					$(".re").append($("<div>").attr("class","row").attr("id","review").css("border-top-width","1px").css("border-top-style","solid")
 							.css("padding","20px").css("border-top-color","#f0f0f5")
 							.append($("<div>").attr("class","col-sm-1").text("작성자아이디"))
-							.append($("<div>").attr("class","col-sm-9").attr("align","left").html("<small style='vertical-align:top'>"+datas[i].comment_date +"</small>"+"<br>"+datas[i].comment_content))
+							.append($("<div>").attr("class","col-sm-9").attr("align","left").html("<small style='vertical-align:top'>"+datas[i].comment_date +"</small>"+"<br><div>"+datas[i].comment_content+"</div>"))
 							.append($("<div>").attr("class","col-sm-1")
-							.append($("<button>").text("수정").attr("class","update"))
+							.append($("<button>").text("수정").attr("class","update").on("click",updateOne).data("comment_content",datas[i].comment_content))
 							.append($("<br>"))
 							.append($("<br>"))
-							.append($("<button>").text("삭제").attr("class","delete"))))
+							.append($("<button>").text("삭제").data("comment_no",datas[i].comment_no).on("click",
+									function(){
+								var tag = $(this).parent().parent();
+								var no = $(this).data("comment_no");
+								var result = confirm(" 사용자를 정말로 삭제하시겠습니까?");
+								if(result) {
+									  $.ajax({
+										url:'ajaxCommentdelete.do',
+										data : {comment_no : no},
+										
+										error:function(xhr,status,msg){
+											console.log("상태값 :" + status + " Http에러메시지 :"+msg);						
+										}, success:function() {
+											tag.remove();   //userList();
+											
+										} 
+									});       }//if
+							} //삭제 버튼 클릭
+							))))
 					
 
 							  
@@ -201,17 +259,7 @@ $(function(){
 		});//each
 	}//userListResult
 	
-	function makeTr(item){
-		return $('<tr>')
-		.append($('<td>').html(item.id))
-		.append($('<td>').html(item.name))
-		.append($('<td>').html(item.gender))
-		.append($('<td>').html(item.role))
-		.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
-		.append($('<td>').html('<button id=\'btnDelete\'>삭제</button>'))
-		.append($('<input type=\'hidden\' id=\'hidden_userId\'>').val(item.id));
-		
-	}//
+
 	});
 </script>
 
@@ -219,7 +267,7 @@ $(function(){
 <body>
 	<div align="center" class="container">
 		<br> <br>
-		<h1 style="background-color: #dcdcdc; width: 820px; font-size: 20px;">
+		<h1 style="background-color: #a7cd80; width: 820px; font-size: 20px;">
 			<strong>글보기</strong>
 		</h1>
 		<table style="width: 820px">
@@ -259,7 +307,7 @@ $(function(){
 		<br>
 		<textarea cols="100" rows="3" id="commentcontent"></textarea>
 		<button type="button" id="btnInsert"
-			style="width: 60px; height: 65px; vertical-align: top;">등록</button>
+			style="width: 60px; border: 0px; height: 65px; vertical-align: top; background-color: #a7cd80;">등록</button>
 		<br> <br> <br> <br> <br>
 
 

@@ -3,108 +3,125 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript">
-new Vue({
-	  el: "#app",
-	  vuetify: new Vuetify()
-	});
-</script>
-<style type="text/css">
-.d-flex {
-  display: flex;
-}
-.justify-center {
-  justify-content:center;
-}
-.justify-space-between {
-  justify-content:space-between;
-}
-
-.mx-2 {
-  margin-right:30px;
-  margin-left:30px;
-}
-
-.mt-1 {
-  margin-top: 15px;
-}
-</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+ html {
+  font: 300 100%/1.5 Ubuntu, sans-serif;
+  color: #333;
+  overflow-x: hidden;
+}
+h2 {
+  margin: 0;
+  color: #8495a5;
+  font-size: 2.5em;
+  font-weight: 300;
+}
+#contact-form {
+  max-width: 1208px;
+  max-width: 75.5rem;
+  margin: 0 auto;
+}
+#contact, label, input[name="submit"] {
+  position: relative;
+}
+label > span, input, textarea, button {
+  box-sizing: border-box;
+}
+label {
+  display: block;
+}
+label > span {
+  display: none;
+}
+input, textarea, button {
+  width: 100%;
+  padding: 0.5em;
+  border: none;
+  font: 300 100%/1.2 Ubuntu, sans-serif;
+}
+input[type="text"], input[type="email"], textarea {
+  margin: 0 0 1em;
+  border: 1px solid #ccc;
+  outline: none;
+}
+input.invalid, textarea.invalid {
+  border-color: #d5144d;
+}
+textarea {
+  height: 6em;
+}
+input[type="submit"], button {
+  background: #a7cd80;
+  color: #333;
+}
+input[type="submit"]:hover, button:hover {
+  background: #91b36f;
+}
+@media screen and (min-width: 30em) {
+  #contact-form h2 {
+    margin-left: 26.3736%;
+    font-size: 2em;
+    line-height: 1.5;
+  }
+  label > span {
+    vertical-align: top;
+    display: inline-block;
+    width: 26.3736%;
+    padding: 0.5em;
+    border: 1px solid transparent;
+    text-align: right;
+  }
+  input, textarea, button {
+    width: 73.6263%;
+    line-height: 1.5;
+  }
+  textarea {
+    height: 10em;
+  }
+  input[type="submit"], button {
+    margin-left: 26.3736%;
+  }
+}
+@media screen and (min-width: 48em) {
+  #contact-form {
+    text-align: justify;
+    line-height: 0;
+  }
+  #contact-form:after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+  }
+  #contact-form h2 {
+    margin-left: 17.2661%;
+  }
+  #contact-form form, #contact-form aside {
+    vertical-align: top;
+    display: inline-block;
+    width: 65.4676%;
+    text-align: left;
+    line-height: 1.5;
+  }
+  #contact-form aside {
+    width: 30.9353%;
+  }
+}
+</style>
 </head>
 <body>
-<div id="app">
-  <v-card>
-    <v-card-title class="heaedline">
-      <div>確認付款資訊</div>
-      <v-spacer></v-spacer>
-      <v-btn icon @click="dialog = false">
-        <v-icon>mdi-close</v-icon>
-      </v-btn>
-    </v-card-title>
-    <v-card-text>
-      <div class="d-flex justify-center">
-        <div class="d-flex mx-2">
-          <div>代收金額：</div>
-          <div>2322</div>
-        </div>
-        <div class="d-flex mx-2">
-          <div>已收金額：</div>
-          <div>2322</div>
-        </div>
-        <div class="d-flex mx-2">
-          <div>總額：</div>
-          <div>2322</div>
-        </div>
-        <div class="d-flex mx-2">
-          <div>使用專案：</div>
-          <div>2322</div>
-        </div>
-      </div>
-      <v-row>
-        <v-col cols="6">
-          <v-select label="收款人員" />
-        </v-col>
-        <v-col cols="6">
-          <v-select label="收款類型" />
-        </v-col>
-        <v-col cols="6">
-          <v-text-field label="收款日期" />
-        </v-col>
-      </v-row>
-
-      <v-card outlined>
-        <v-card-text>
-      <v-row>
-        <v-col cols="6">
-          <v-select label="收款方式" />
-        </v-col>
-        <v-col cols="6">
-          <v-text-field label="備註" />
-        </v-col>
-        <v-col cols="6">
-          <v-text-field label="收款金額">
-            </v-text-filed>
-            <v-checkbox label="同待收金額"></v-checkbox>
-        </v-col>
-      </v-row>
-          </v-card-text>
-        </v-card>
-      <div class="d-flex mt-1">
-        <v-spacer></v-spacer>
-        <v-btn outlined>
-          <v-icon>mdi-plus</v-icon>
-          增加
-        </v-btn>
-      </div>
-    </v-card-text>
-    <v-card-actions>
-      <v-spacer></v-spacer>
-      <v-btn color="primary">
-        完成
-      </v-btn>
-    </v-card-actions>
-  </v-card>
-</div>
+<section id="contact-form">
+  <h2>Contact</h2>
+  <form id="contact" name="contact" accept-charset="utf-8">
+    <label><span>Name</span><input name="name" type="text" placeholder="Name"/></label>
+    <label><span>Email</span><input name="email" type="email" placeholder="Email"/></label>
+    <label><span>Message</span><textarea name="message" placeholder="Message"></textarea></label>
+    <input name="submit" type="submit" value="Send"/>
+  </form>
+  <aside>
+    <p>Just hit Send on an empty form to see the invalid input animation</p>
+    <p>Fill in the form fields to see the success animation (no real validation, any random input will do)</p>
+  </aside>
+</section>
 </body>
 </html>

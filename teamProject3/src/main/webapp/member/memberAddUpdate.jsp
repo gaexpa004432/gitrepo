@@ -14,7 +14,7 @@
 
 </head>
 <body>
-<form method="post" action="addUpdate.do">
+<form method="post" action="/teamProject3/addUpdate.do">
 	<div>
 		<label>사업자등록번호</label>
 		<input type="text" name="seller_code" value="${sessionScope.login.seller_code}">
@@ -46,7 +46,7 @@
 <script>
 	btnMypage.addEventListener("click", goMypage);
 	function goMypage() {
-		location.assign("myPage.jsp");
+		location.assign("/teamProject3/member/myPage.jsp");
 	}
 </script>
 </body>

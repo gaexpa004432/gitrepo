@@ -36,7 +36,7 @@ function inputCheck() {
 <body>
 <div class="regist">
 	<form method="post" name="frm" id="frm" 
-		  action="update.do" 
+		  action="/teamProject3/update.do" 
 		  onsubmit="return inputCheck()">
 	<div>
 		<label>아이디</label>

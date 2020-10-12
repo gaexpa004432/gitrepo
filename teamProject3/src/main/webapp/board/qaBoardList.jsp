@@ -11,6 +11,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="jquery-ui.js"></script>
 <style>
+
  #divPaging {
           clear:both; 
         margin:0 auto; 
@@ -27,6 +28,18 @@
 
 
 </style>
+<script type="text/javascript">
+$(function(){
+	$(".secret").on("click",function(){
+		if(${board.member_id == sessionScope.id} ){
+			var no =  $(this).data('no');
+			location.href="qaBoardView.do?board_no="+no; 
+		}else{
+			alert("접근 권한이 없습니다.");
+		}
+	})
+})
+</script>
 </head>
 <body>
 <div class="container">
@@ -34,7 +47,7 @@
 		<thead>
 		<tr>
 			<th>번호</th>
-			<th></th>
+			
 			<th>제목</td>
 			<th>이름</th>
 			<th>작성일</th>
@@ -44,15 +57,14 @@
 		<c:forEach items="${list}" var="board">
 		<tr>
 			<td>${board.board_no }</td>
-				<c:if test="${!empty board.board_file }">
-			<td><img src="/teamProject3/images/${ board.board_file }" style="width: 50px; height: 50px;"></td>
-				</c:if>
-				<c:if test="${empty board.board_file }">
-					<td></td>
-				</c:if>
+			<c:if test="${board.board_passyn == null}"> <!-- if태그가 참일때 if태그 사이에 있는것을 문서에 삽입 -->
 			<td><a href="qaBoardView.do?board_no=${board.board_no }">${board.board_sub }</a></td>
+			</c:if>
+			<c:if test="${board.board_passyn == 'on'}">
+			<td><a class="secret" href="javascript:void(0);" data-no="${board.board_no}">비밀글입니다.</a></td>
+			</c:if>
 			<!-- 제목 누르면 view페이지로 넘어감 -->
-			<td>${board.member_name }</td>
+			<td>${board.member_id }</td>
 			<td>${board.board_date }</td>
 		</tr>
 		</c:forEach>

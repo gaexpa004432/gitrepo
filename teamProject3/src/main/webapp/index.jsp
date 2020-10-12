@@ -7,8 +7,10 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 
+
 	location.href="qaBoardList.do"; 
 
+	
 </script>
 </head>
 <body>

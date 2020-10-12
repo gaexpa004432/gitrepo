@@ -64,13 +64,14 @@
 	$(".stepAdd").on("click",function(){
 		$(".cooking_order").append($("<div>")
 				.append($("<input>").attr("name","cooking_step"))
-				.append($("<input>").attr("type","file").attr("name","step_img"))
+				.append($("<input>").attr("type","file").attr("name","step_img"))		
 				.append($("<button>").attr("type","button").text("삭제").on("click",function(){
 					$(this).parent().remove();
 				}))
 				.append($("<br>")));		
 	})
 })
+
 	$(function(){           //상품이름 단위 가격 적는 곳 추가~!!!
 		
 		$(".matAdd").on("click",function(){
@@ -82,23 +83,29 @@
 						$(this).parent().remove();
 					}))
 					.append($("<br>")));		
-			})	
+
+		})	
+
 	})
-	$(function(){           //비매품 이름 단위 적는 곳 추가~!!!
+	
+	$(function(){           //비매품이름 단위  적는 곳 추가~!!!
 		
 		$(".nonmatAdd").on("click",function(){
 			$(".nonmatList").append($("<div>")
-					.append($("<input>").attr("name","product_name"))
-					.append($("<input>").attr("name","product_unit"))
+					.append($("<input>").attr("name","non_product_name"))
+					.append($("<input>").attr("name","non_product_unit"))
 					.append($("<button>").attr("type","button").text("삭제").on("click",function(){
 						$(this).parent().remove();
 					}))
 					.append($("<br>")));		
-			})	
+		})	
 	})
+	
+	
 	function textarea() { 
 		
 		if(frm.recipe_content.value == "") {
+			window.alert("소개글 적고 가라!!");
 			frm.recipe_content.focus();
 			return false;
 		}
@@ -141,14 +148,13 @@
 }; 
 
 </script>
-	
-	
+
 	<hr>
 	<br>
-	<h2>간단한 소개글1</h2>
+	<h2>간단한 소개글</h2>
 
 	<br>
-	<textarea name="recipe_content" style="width: 100% rows=" 10" id="recipe_content"
+	<textarea name="recipe_content" style="width: 100% rows="10" id="recipe_content"
 			placeholder = "간단한 소개글을 적어주세요">
 	</textarea>
 	<br>
@@ -184,15 +190,31 @@
 	<input name="product_unit" placeholder="예) 1KG">
 	<input name="product_price" placeholder="예) 10000원"><br> 
 	</div>
+<<<<<<< HEAD
 	<button type="button" class="matAdd">추가</button>
+=======
+	<button type="button" class="matAdd">재료 추가</button>
+	
+>>>>>>> branch 'master' of https://github.com/gaexpa004432/gitrepo.git
 	
 	<hr>
+<<<<<<< HEAD
 	<h2>그외 재료</h2>
 	<div class="nonmatList">
 	<input name="non_product_name" placeholder="예) 간장">
 	<input name="non_product_unit" placeholder="예) 500g"><br> 
 	</div>
 	<button type="button" class="nonmatAdd">추가</button>
+=======
+	<h2>양념</h2>
+	
+	<div class="nonmatList">
+	<input name="non_product_name" placeholder="예) 간장">
+	<input name="non_product_unit" placeholder="예) 500g"><br> 
+	</div>
+	<button type="button" class="nonmatAdd">양념 추가</button>
+	
+>>>>>>> branch 'master' of https://github.com/gaexpa004432/gitrepo.git
 	
 	<hr>
 	<h2>요리 순서</h2>
@@ -223,7 +245,7 @@
 	<hr>
 	<button class = "btn pink">등록</button>
 	<a class = "btn green" href="/teamProject3/recipe/productInsert.jsp">새로운재료추가</a>
-	
+	<a class = "btn red" href="/teamProject3/recipeBoard.do">레시피 목록</a>
 	</form>
 </body>
 </html>

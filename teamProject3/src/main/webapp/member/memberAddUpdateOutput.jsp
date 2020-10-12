@@ -13,7 +13,7 @@
 <script>
 	btnMypage.addEventListener("click", goMypage);
 	function goMypage() {
-		location.assign("myPage.jsp");
+		location.assign("/teamProject3/member/myPage.jsp");
 	}
 </script>
 </body>

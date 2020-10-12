@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,19 +12,26 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <title>memberFavorite.jsp</title>
+<style>
+	img.a {
+		max-width : 700px;
+		max-height : 300px;
+		background-size : contain;	
+	}
+</style>
 </head>
-<body>
 
+
+<body>
+<input type="hidden" name="fav" value="fs">
 	<div class="dropdown">
     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-      Dropdown button
+     	즐겨찾기 선택
     </button>
     <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">Link 1</a>
-      <a class="dropdown-item" href="#">Link 2</a>
-      <a class="dropdown-item" href="#">Link 3</a>
+      <a class="dropdown-item" href="${pageContext.request.contextPath}/favList.do?fav=fs">즐겨찾는 식당</a>
       <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">Another link</a>
+      <a class="dropdown-item" href="${pageContext.request.contextPath}/favList.do?fav=fr">즐겨찾는 레시피</a>
     </div>
   </div>
   
@@ -34,16 +42,16 @@
       <big>식당</big>
     </h1>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item active">식당</li>
+      <li class="breadcrumb-item active">RESTAURANT</li>
     </ol>
     <div class="row">
     <c:forEach items="${fs}" var="fs">
       <div class="col-lg-6 portfolio-item">
         <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="../images/${fs.res_pic_name}" alt=""></a>
+          <a href="${pageContext.request.contextPath}/restaurantView.do?res_no=${fs.res_no}"><img class="card-img-top a" src="images/${fs.res_pic_name}" alt="" ></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="#">Project One</a>
+              <a href="${pageContext.request.contextPath}/restaurantView.do?res_no=${fs.res_no}">${fs.res_name}</a>
             </h4>
             <p class="card-text">${fs.res_content}</p>
           </div>
@@ -51,34 +59,22 @@
       </div>
     </c:forEach>
     </div>
+</div>
     <!-- /.row -->
 
     <!-- Pagination -->
-    <ul class="pagination justify-content-center">
-      <li class="page-item">
-        <a class="page-link" href="#" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-          <span class="sr-only">Previous</span>
-        </a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="#">1</a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="#">2</a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="#">3</a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="#" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-          <span class="sr-only">Next</span>
-        </a>
-      </li>
-    </ul>
-
-  </div>
+<form name = "pageFrm">
+	<input type="hidden" name="p" value="1">
+	<input type="hidden" name="fav" value="fs">
+	<my:favTag paging="${paging}" jsfunc="gopage"/>
+</form>
   <!-- /.container -->
+<script>
+	function gopage(p) {
+		pageFrm.p.value = p;
+		pageFrm.submit();
+		//location.href="deptSelectAll?p=" + p;
+	}
+</script>
 </body>
 </html>

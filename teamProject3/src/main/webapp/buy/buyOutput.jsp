@@ -48,7 +48,7 @@
 	<td class="product">
 		<div class="product-block">
 		<div class="product-content"></div>
-		<div class="product-name"><a href="">${result.product_name}</a></div>
+		<div class="product-name">${result.product_name}</div>
 		<div class="product-order-num">${result.order_number}</div>
 		</div>
 	</td>

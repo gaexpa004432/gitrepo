@@ -6,7 +6,10 @@
 
 	<typeAliases>
 		<typeAlias type="com.dbal.app.emp.EmpVO" alias="emp"/>
-		<typeAlias type="teamProject3.member.MemberVO" alias="member"/>  
+		<typeAlias type="teamProject3.member.MemberVO" alias="member"/>
+		<typeAlias type="teamProject3.recipe.RecipeVO" alias="recipe"/>  
+		<typeAlias type="teamProject3.recipe.ProductVO" alias="product"/>
+		<typeAlias type="teamProject3.qaboard.BoardVO" alias="board"/>   
 	</typeAliases>
 
 </configuration>

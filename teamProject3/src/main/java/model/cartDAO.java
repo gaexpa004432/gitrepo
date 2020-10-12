@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import common.ConnectionManager;
-import model.orderVO;
 
 public class cartDAO {
 	Connection conn;
@@ -18,9 +17,9 @@ public class cartDAO {
 		return CARTDAO;
 	}
 	
-	private final String SELECT_CART = "SELECT p.product_name, p.product_price, d.order_detail_no, o.order_total"
-			+ " FROM product p, order_detail d, order1 o"
-			+ " WHERE o.member_id = ?"; 
+	private final String SELECT_CART = "SELECT * FROM recipe r, product p"
+			+ "  WHERE r.member_id = ? "; 
+	
 	
 	  public ArrayList<orderVO> selectCart(orderVO vo){
 	    	ArrayList<orderVO> list = new ArrayList<orderVO>();
@@ -33,7 +32,9 @@ public class cartDAO {
 	            orderVO order = new orderVO();
 	            	order.setProduct_name(rs.getString("product_name"));
 	            	order.setProduct_price(rs.getInt("product_price"));
-	            	order.setOrder_detail_no(rs.getInt("order_detail_no"));
+	            	order.setMain_img(rs.getString("main_img"));
+	            	order.setRecipe_name(rs.getString("recipe_name"));
+	            	
 	            	list.add(order);
 	            }
 	        } catch (Exception e) {
@@ -43,5 +44,5 @@ public class cartDAO {
 	        }
 	        return list;
 	    }
-	
+
 }

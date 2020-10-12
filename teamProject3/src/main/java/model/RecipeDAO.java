@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import common.ConnectionManager;
 
-public class RecipeDAO {
+public class RecipeDAO{
 	Connection conn;
 	PreparedStatement pstmt;
 	ResultSet rs = null;

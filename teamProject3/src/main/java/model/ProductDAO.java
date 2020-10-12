@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import common.ConnectionManager;
 
-public class ProductDAO {
+public class ProductDAO{
 	Connection conn;
 	PreparedStatement pstmt;
 
@@ -41,12 +41,16 @@ public class ProductDAO {
 	}
 	
 	
+	
+	
+	
 	public int productInsert(ProductVO productVO) {
 		int r = 0;
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = " INSERT INTO product(product_number, product_name, product_price,"
 					+ " product_unit, product_status, seller_code,recipe_number,product_code) "
+
 					+ " VALUES (prod_no.NEXTVAL,?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, productVO.getProduct_name());
@@ -105,6 +109,7 @@ public class ProductDAO {
 				resultVO.setProduct_price(rs.getInt("product_price"));
 				resultVO.setProduct_unit(rs.getString("product_unit"));
 				resultVO.setSeller_code(rs.getInt("seller_code"));
+				resultVO.setProduct_code(rs.getString("product_code"));
 				list.add(resultVO);
 			}
 		} catch (Exception e) {

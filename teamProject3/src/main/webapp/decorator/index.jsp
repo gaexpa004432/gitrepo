@@ -133,19 +133,23 @@ h6, .h6 {
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item active"><a href="" class="nav-link">Home</a></li>
+<<<<<<< HEAD
 	          <li class="nav-item"><a href="" class="nav-link">Guide</a></li>
+=======
+	          <li class="nav-item"><a href="${pageContext.request.contextPath}/CartSelectContoroller.do" class="nav-link">Guide</a></li>
+>>>>>>> branch 'master' of https://github.com/gaexpa004432/gitrepo.git
 	          <li class="nav-item"><a href="/teamProject3/recipeBoard.do" class="nav-link">Reiciepe</a></li>
 	          <li class="nav-item"><a href="" class="nav-link">Board</a></li>
 	          <li class="nav-item"><a href="/teamProject3/restaurantBoard.do" class="nav-link">Recommands</a></li>
 	          <li class="nav-item"><a href="/teamProject3/eventBoardList.do" class="nav-link">Event</a></li>
 	          <c:choose>
 		          <c:when test="${empty sessionScope.login.member_id}">
-			          <li class="nav-item"><a href="memberInsert.jsp" class="nav-link">Join</a></li>
-			          <li class="nav-item"><a href="memberLogin.jsp" class="nav-link">Login</a></li>
+			          <li class="nav-item"><a href="${pageContext.request.contextPath}/member/memberInsert.jsp" class="nav-link">Join</a></li>
+			          <li class="nav-item"><a href="${pageContext.request.contextPath}/member/memberLogin.jsp" class="nav-link">Login</a></li>
 		          </c:when>
 		          <c:when test="${not empty sessionScope.login.member_id}">
-			          <li class="nav-item"><a href="myPage.jsp" class="nav-link">MyPage</a></li>
-			          <li class="nav-item"><a href="logout.do" class="nav-link">Logout</a></li> 
+			          <li class="nav-item"><a href="${pageContext.request.contextPath}/member/myPage.jsp" class="nav-link">MyPage</a></li>
+			          <li class="nav-item"><a href="${pageContext.request.contextPath}/logout.do" class="nav-link">Logout</a></li> 
 		          	  <li class="nav-item">${sessionScope.login.member_id}님</li> 
 		          </c:when>
 	          </c:choose>
