@@ -197,13 +197,12 @@ public class RecipeDAO{
 			ArrayList<RecipeVO> list = new ArrayList();
 			try { 
 				 String sql = "select a.* from (select rownum rn,b.* from ( " 
-						 + "  SELECT * from recipe " 
-						 + " WHERE product_name=? " 
+						 + "SELECT * FROM recipe re JOIN product prod ON re.recipe_number = prod.recipe_number AND prod.product_name = ?" 
 						 + "  order by product_name desc" 
 						 + "  ) b) a where rn between ? and ?";
 				 pstmt = conn.prepareStatement(sql); // 미리 sql 구문이 준비가 되어야한다
 		         int pos = 1;   // 물음표값 동적으로 하려고 변수선언
-		         
+		         pstmt.setString(pos++, Recipe.getMain_img());
 		         if(Recipe.getRecipe_name() != null) {
 		          
 		            pstmt.setString(pos++, Recipe.getRecipe_name());// 물음표 부분이 pos++로 인해 동적으로 늘어남
@@ -232,17 +231,11 @@ public class RecipeDAO{
 			int cnt = 0;
 		      try {
 		         conn = ConnectionManager.getConnnect();
-		         String where = " where 1=1 ";
-		         if(Recipe.getRecipe_name() != null) {
-		            where += " and recipe_name like '%' || ? || '%'";
-		         }
-		         String sql = "select count(*) from recipe" + where;
+		     
+		         String sql = "SELECT count(*) FROM recipe re JOIN product prod ON re.recipe_number = prod.recipe_number AND prod.product_name = ?";
 		         pstmt = conn.prepareStatement(sql);
-		         int pos = 1;
-		         if(Recipe.getRecipe_name() !=null) {
-		            pstmt.setString(pos++,Recipe.getRecipe_name());
-		            
-		         }
+		         pstmt.setString(1, Recipe.getMain_img());
+		         
 		         rs = pstmt.executeQuery();
 		         rs.next();
 		         cnt = rs.getInt(1);

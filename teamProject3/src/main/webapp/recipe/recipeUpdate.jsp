@@ -120,7 +120,7 @@
 	            frm.non_product_name.focus();
 	            return false;
 	        }
-	        
+       
 	        if(frm.non_product_unit.value == "") {
 	            window.alert("양념 용량는??");
 	            frm.non_product_unit.focus();
@@ -267,8 +267,9 @@
 	}; 
 	</script>
 	</div>
+	
 	<button type="button" class="stepAdd" >순서 추가</button>
- 
+
 		 <br>
             <hr>
             <div align = "center">

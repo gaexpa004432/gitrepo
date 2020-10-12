@@ -17,7 +17,7 @@ public class RecipeChoiceBoardController implements Controller {
 		RecipeVO recipe = new RecipeVO();
 		
 		 String p = request.getParameter("p");
-			String search = request.getParameter("recipe_search");
+			String search = request.getParameter("product_name");
 			
 			//유효성 체크
 			int page = 1;
@@ -29,8 +29,8 @@ public class RecipeChoiceBoardController implements Controller {
 			paging.setPageSize(5); //페이징 번호 개수
 			paging.setPage(page);
 			
-			recipe.setRecipe_name(search);
-			paging.setTotalRecord(RecipeDAO.getInstance().count(recipe));
+			recipe.setMain_img(search);
+			paging.setTotalRecord(RecipeDAO.getInstance().choiceCount(recipe));
 			recipe.setFirst(paging.getFirst());
 			recipe.setLast(paging.getLast());
 			

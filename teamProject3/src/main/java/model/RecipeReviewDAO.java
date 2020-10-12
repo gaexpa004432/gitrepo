@@ -95,7 +95,7 @@ public class RecipeReviewDAO {
 			conn = ConnectionManager.getConnnect();
 			
 			
-			String sql = "select count(*) from res_review where recipe_number = ?";
+			String sql = "select count(*) from recipe_review where recipe_number = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1,restaurant.getRecipe_number());
 			ResultSet rs = pstmt.executeQuery();

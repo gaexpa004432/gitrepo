@@ -9,8 +9,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
 .btn { /* 새로운재료 추가 버튼 css */
 	text-decoration: none;
@@ -226,6 +224,14 @@
 				});
 			}
 		})
+		
+		$(".product_recipe").on("click",function(){
+			var result = confirm("관련 레시피창으로 이동 합니다.")
+			if(result){
+				location.href="/teamProject3/recipeChoiceBoard.do?product_name="+$(this).data("product")
+			}
+		})
+	})
 </script>
 </head>
 <body>
@@ -257,12 +263,12 @@
 			<h1>[재료]</h1>
 			<c:forEach items="${ product }" var="mater">
 				<c:if test="${mater.product_code eq 'prod'}">
-					<a  href="/teamProject3/recipeBoard.do?product_name=${product.product_name}">				
+					<%-- <a  href="/teamProject3/recipeBoard.do?product_name=${product.product_name}"> --%>				
 					<h3 class="material" data-mate="${ mater.product_number }">
-				     ${ mater.product_name }
+				    <a href="javascript:void(0);" class="product_recipe" data-product="${ mater.product_name }">  ${ mater.product_name }</a>
 				용량 : ${ mater.product_unit }
 					</h3>
-					</a>
+					<!-- </a> -->
 				</c:if>
 			</c:forEach>
 		</div>
