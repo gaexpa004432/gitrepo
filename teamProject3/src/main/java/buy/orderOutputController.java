@@ -13,7 +13,6 @@ import model.orderVO;
 
 public class orderOutputController implements Controller {
 
-	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		orderVO VO = new orderVO();

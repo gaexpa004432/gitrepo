@@ -82,8 +82,20 @@ $(function() {
 			$('#sample4_detailAddress').val("");
 			$('#sample4_extraAddress').val("");
 	 });
-	$('#mileage_input').val($('#all_price_put').html() * 0.01);
 	 
+	//마일리지 구하기
+	$('#mileage_input').val($('#all_price_put').html() * 0.01);
+	
+	//삭제
+	$('.cart_delete').on("click", function(){
+		$(this).closest('tr').remove();
+	});
+	
+	//전액사용
+	$('#mileage_all_button').on("click", function() {
+		$('#mileage_have').val($('#mileage_use').html());
+	});
+	
 	$('#payment_button').on("click", function() {
 		
 		var IMP = window.IMP; // 생략가능
@@ -94,7 +106,7 @@ $(function() {
 		    pay_method : 'card',
 		    merchant_uid : 'merchant_' + new Date().getTime(),
 		    name : '주문명:결제테스트',
-		    amount : 100,
+		    amount : '$(#final-cart-price-mileage).html()',
 		    buyer_email : '${member_email}',
 		    buyer_name : '${member_name}',
 		    buyer_tel : '${member_tel}',
@@ -114,14 +126,13 @@ $(function() {
 		        msg += '카드 승인번호 : ' + rsp.apply_num;
 		        alert(msg);
 				location.href='${pageContext.request.contextPath}/orderOutput.do';
-				frm.submit();
 		    } else {
 		        var msg = '결제에 실패하였습니다.';
 		        msg += '에러내용 : ' + rsp.error_msg;
 		    }
 		    alert(msg);
 	    }
-	}); 
+	})
 });
 </script>
 </head>
@@ -140,26 +151,32 @@ $(function() {
 		<table border='1' class="order_detail_buytable">
 		<colgroup>
 		<col style="width:auto;">
+		<col style="width:auto;">
 		<col style="width:175px;">
 		<col style="width:102px;">
 		<col style="width:102px;">
+		<col style="width:auto;">
 		</colgroup>
 		<thead class="">
 		<tr>
+		<th scope="col">선택</th>
 		<th scope="col">상품 정보</th>
 		<th scope="col">가격</th>
 		<th scope="col">수량</th>
 		<th scope="col">결제금액</th>
+		<th scope="col">삭제</th>
 		</tr>
 		</thead>
 		<tbody>
 		<c:set var="all_price" value="0"/>
 		<c:forEach items="${array}" var="orderlist">
 		<tr>
+		<td><input type="checkbox"></td>
 		<td>${orderlist.product_name}</td>
 		<td>${orderlist.product_price}</td>
 		<td>${orderlist.order_detail_no}</td>
 		<td>${orderlist.order_total}</td>
+		<td><input type="button" class="cart_delete" value="삭제"></td>
 		</tr>
 		<c:set var="all_price" value="${all_price + orderlist.order_total}"/>
 		</c:forEach>
@@ -210,18 +227,31 @@ $(function() {
 		
 		<h3>적립금</h3> 
 		<div class="miliege-imformation">
+		<c:set  var="my_mileage" value="0" />
 			보유 마일리지 :
-			<input type="text" value="${array[4].remaining}">
-			<input type="button" id="mileage_all" value="전액사용"> <br> <br> 적립 예상 마일리지 :
-		<input type="text" id="mileage_input" disabled> P
+			<input type="text" value="${array[4].remaining}" id="mileage_have" readonly>
+			<input type="button" id="mileage_all_button" value="전액사용"> <br> <br> 적립 예상 마일리지 :
+		<input type="text" id="mileage_input" disabled> P <br>
+		<c:set var="my_mileage" value="${array[4].remaining}"/>
+		사용할 마일리지: <input type="text" id="mileage_use">
+		
 		</div> 
 		<hr width=30%>
-
+		
 		<div class="final_pay_imforamtion">
 			<h3>최종 결제 정보</h3>
-			최종 결제 금액 :
+			<div>
+
+				<span>${all_price}</span>
+				
+				<img src="${pageContext.request.contextPath}/buy/images/minus.png">
+				<span>${my_mileage}</span>
+				
+				<img src="${pageContext.request.contextPath}/buy/images/equal.png">
+
+				<span id="final-cart-price-mileage">${all_price - my_mileage}</span>
+			</div>
 		</div>
-		
 		</form>
 		<input type="button" id="payment_button" value="결제하기">
 	</div>

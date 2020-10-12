@@ -17,7 +17,7 @@ public class cartDAO {
 		return CARTDAO;
 	}
 	
-	private final String SELECT_CART = "SELECT * FROM recipe r, product p"
+	private final String SELECT_CART = "SELECT * FROM recipe r, product p, order_detail o"
 			+ "  WHERE r.member_id = ? "; 
 	
 	
@@ -32,8 +32,10 @@ public class cartDAO {
 	            orderVO order = new orderVO();
 	            	order.setProduct_name(rs.getString("product_name"));
 	            	order.setProduct_price(rs.getInt("product_price"));
+	            	order.setProduct_unit(rs.getString("product_unit"));
 	            	order.setMain_img(rs.getString("main_img"));
 	            	order.setRecipe_name(rs.getString("recipe_name"));
+	            	order.setOrder_detail_no(rs.getInt("order_detail_no"));
 	            	
 	            	list.add(order);
 	            }

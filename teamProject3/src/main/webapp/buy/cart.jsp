@@ -183,11 +183,15 @@ h2 {
 			<td>${cart.main_img}</td>
 			<td>${cart.recipe_name}</td>
 			<td class="cart_price" >${cart.product_price}</td>
+			<!-- arraylist에 담아서 foreach? -->
+			<!-- for문 안에서 for문? -->
+			<td>${cart.product_name}</td>
 			<td>
 			<select class="quantity-select">
-			<option <c:if test="${cart.product_name == '돼지고기'}">selected </c:if>>돼지고기</option>
-			<option <c:if test="${cart.product_name == '인석이 고기'}">selected </c:if>>인석이고기</option>
-			<option <c:if test="${cart.product_name == '도야지'}">selected </c:if>>도야지</option>
+			<option <c:if test="${cart.order_detail_no == '1'}">selected </c:if>>1</option>
+			<option <c:if test="${cart.order_detail_no == '2'}">selected </c:if>>2</option>
+			<option <c:if test="${cart.order_detail_no == '3'}">selected </c:if>>3</option>
+			<option <c:if test="${cart.order_detail_no == '4'}">selected </c:if>>4</option>
 			</select></td>
 			<td class="all-product-price">${cart.product_price}</td>
 			<td class="mileage-price">${cart.product_price * 0.01}</td>

@@ -12,7 +12,6 @@ import model.orderVO;
 
 public class orderOutputInsertController implements Controller {
 
-	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Integer order_total = Integer.parseInt(request.getParameter("order_total"));
