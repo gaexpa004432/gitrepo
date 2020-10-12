@@ -16,4 +16,9 @@ public interface ProductService {
 
 	ArrayList<ProductVO> productSelectOne(RecipeVO recipeVO);
 
+	void productUpdate(ProductVO productVO);
+	
+	void productAccept(ProductVO productvo);
+	
+	void productDelete(ProductVO productvo);
 }
