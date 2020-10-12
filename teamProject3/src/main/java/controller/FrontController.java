@@ -72,6 +72,10 @@ public class FrontController extends HttpServlet {
 		list.put("/save_product.do", new recipe.ProductInsertController());
 		list.put("/productList.do", new recipe.ProductListController());
 		list.put("/recipeInsert.do", new recipe.RecipeInsertController());
+		list.put("/recipeDelete.do", new recipe.RecipeDeleteController());
+		list.put("/recipeViewUpdate.do", new recipe.RecipeViewUpdateController());
+		list.put("/recipeUpdate.do", new recipe.RecipeUpdateController());
+		list.put("/recipeView.do", new recipe.RecipeChoiceBoardController());
 		
 		list.put("/eventInsert.do", new event.EventInsertController());
 		list.put("/eventBoardList.do", new event.EventListController());
@@ -138,9 +142,10 @@ public class FrontController extends HttpServlet {
 		list.put("/qaBoardView.do", new board.qaBoardViewController());
 		list.put("/member/memberDelete.do", new member.MemberDeleteController());
 		list.put("/ajaxCommentdelete.do",new board.CommentDeleteController());
-		
-		
-		
+		list.put("/ajaxCommentUpdate.do",new board.CommentUpdateController());
+		list.put("/qaBoardUpdate.do",new board.QaBoardUpdateController());
+		list.put("/qaBoardUpdate2.do",new board.QaBoardUpdate2Controller());
+		list.put("/qaBoardDelete.do",new board.QaBoardDeleteController());
 		
 		
 		
@@ -167,6 +172,8 @@ public class FrontController extends HttpServlet {
 		list.put("/recipeBoard.do",new recipe.RecipeBoardController());
 		list.put("/recipeView.do",new recipe.RecipeViewController());
 		list.put("/cart.do",new buy.CartController());
+		list.put("/recipeReview.do",new recipe.RecipeReviewController());
+		list.put("/recipeReviewDel.do",new recipe.RecipeReviewDeleteController());
 		
 	}
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

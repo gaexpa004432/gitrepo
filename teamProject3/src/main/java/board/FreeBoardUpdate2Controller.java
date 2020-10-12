@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import controller.Controller;
 import model.FreeBoardDAO;
 import model.FreeBoardVO;
+import model.FreeBoardDAO;
 
 public class FreeBoardUpdate2Controller implements Controller {
 

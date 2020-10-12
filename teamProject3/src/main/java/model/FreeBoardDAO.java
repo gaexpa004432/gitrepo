@@ -46,8 +46,8 @@ public class FreeBoardDAO {
 			ArrayList<FreeBoardVO> list = new ArrayList();
 			try { 
 	         String where = " where 1=1 and board_groupcode = ?";
-	         if(freeboardVO.getBoard_sub() != null) {
-	            where += " and Board_sub like '%' || ? || '%'  or Board_content like '%' || ? || '%'";
+	         if(freeboardVO.getBoard_sub() != null && !freeboardVO.getBoard_sub().isEmpty() ) {
+	            where += " and (Board_sub like '%' || ? || '%'  or Board_content like '%' || ? || '%')";
 	         }
 				 String sql = "select a.* from (select rownum rn,b.* from ( " + 
 				 		"              SELECT * from board "+where+" order by board_no desc" + 
@@ -55,7 +55,8 @@ public class FreeBoardDAO {
 				 pstmt = conn.prepareStatement(sql); // 미리 sql 구문이 준비가 되어야한다
 		         int pos = 1;   // 물음표값 동적으로 하려고 변수선언
 		            pstmt.setString(pos++, freeboardVO.getBoard_groupcode());
-		         if(freeboardVO.getBoard_sub() != null) {
+		            System.out.println(freeboardVO.getBoard_groupcode());
+		         if(freeboardVO.getBoard_sub() != null && !freeboardVO.getBoard_sub().isEmpty()) {
 		            pstmt.setString(pos++, freeboardVO.getBoard_sub());
 		            pstmt.setString(pos++, freeboardVO.getBoard_sub());// 물음표 부분이 pos++로 인해 동적으로 늘어남
 		         }
@@ -163,20 +164,21 @@ public class FreeBoardDAO {
 				      try {
 				         conn = ConnectionManager.getConnnect();
 				         String where = " where 1=1 and board_groupcode = ?";
-				         if(freeboard.getBoard_sub() != null) {
-				            where += " and Board_sub like '%' || ? || '%' or Board_content like '%' || ? || '%'";
+				         if(freeboard.getBoard_sub() != null && !freeboard.getBoard_sub().isEmpty()) {
+				            where += " and (Board_sub like '%' || ? || '%' or Board_content like '%' || ? || '%')";
 				         }
 				         String sql = "select count(*) from board" + where;
 				         pstmt = conn.prepareStatement(sql);
 				         int pos = 1;
 				         pstmt.setString(pos++, freeboard.getBoard_groupcode());
-				         if(freeboard.getBoard_sub() !=null) {
+				         if(freeboard.getBoard_sub() !=null && !freeboard.getBoard_sub().isEmpty()) {
 				            pstmt.setString(pos++,freeboard.getBoard_sub());
 				            pstmt.setString(pos++,freeboard.getBoard_sub());
 				         }
 				         rs = pstmt.executeQuery();
 				         rs.next();
 				         cnt = rs.getInt(1);
+				         System.out.println("dsd" + freeboard.getBoard_groupcode());
 				      } catch (Exception e) {
 				         e.printStackTrace();
 				      } finally {

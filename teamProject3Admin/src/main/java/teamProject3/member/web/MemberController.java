@@ -20,7 +20,15 @@ public class MemberController {
 	@RequestMapping("/memberList")
 	public String memberList(Model model ,HttpServletRequest request,HttpServletResponse response) {
 		
-		System.out.println(memberService.selectAll(null));
-		return "";
+		model.addAttribute("list", memberService.selectAll(null));
+		model.addAttribute("index",3);
+		return "manager/mani";
+	}
+	
+	@RequestMapping("/salesList")
+	public String salesList(Model model ,HttpServletRequest request,HttpServletResponse response) {
+		
+		
+		return "manager/sales";
 	}
 }

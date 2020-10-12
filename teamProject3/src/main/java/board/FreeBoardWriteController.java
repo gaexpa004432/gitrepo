@@ -13,7 +13,8 @@ import javax.servlet.http.Part;
 import common.FileRenamePolicy;
 import controller.Controller;
 import model.FreeBoardDAO;
-import model.FreeBoardVO;   
+import model.FreeBoardVO;
+import model.FreeBoardDAO;   
 
 public class FreeBoardWriteController implements Controller {
 
@@ -46,7 +47,7 @@ public class FreeBoardWriteController implements Controller {
 	      
 	      
 	      
-		FreeBoardDAO DAO = new FreeBoardDAO();
+	    FreeBoardDAO DAO = new FreeBoardDAO();
 		DAO.insert(freeboard);
 		
 		response.sendRedirect("freeBoardList.do");

@@ -99,10 +99,12 @@ input[type="button"]:hover, button:hover {
   input[type="submit"], button {
     margin-left: 8.3736%;
     width: 7%;
+    height: 4.5%;
   }
   input[type="button"], button {
     margin-left: 1.3736%;
     width: 7%;
+    height: 4.5%;
   }
   
 }
@@ -131,6 +133,13 @@ input[type="button"]:hover, button:hover {
   }
 }
     </style>
+    <script type="text/javascript">
+    $(function(){
+    	$(".button").on("click",function(){
+    		location.href="/teamProject3/freeBoardList.do";
+    		});
+    })
+    </script>
 </head>
 <body>
     <div class="container" align="center">
@@ -141,12 +150,12 @@ input[type="button"]:hover, button:hover {
          <br>
          	<input type="hidden" value="board_write" name="command"/>
 
-    <label><span>제목</span><input name="board_sub" type="text" placeholder="Sub"/></label>
-    <label><span>내용</span><textarea name="board_content" placeholder="Content"></textarea></label>
+    <label><span>제목</span><input name="board_sub" type="text" placeholder="Sub" required></label>
+    <label><span>내용</span><textarea name="board_content" placeholder="Content" required></textarea></label>
     <label><span>첨부파일</span><input name="board_file" type="file" placeholder="File"/></label>
   <!--   <input name="submit" type="submit" value="등록"/> -->
     <input class="submit" type="submit" value="등록" align="center"/> 
-    <input class="button" type="button" value="목록으로" onclick="javascript:history.back()"/>
+    <input class="button" type="button" value="목록으로" />
   </form>
   <br><br><br>
 </section>
@@ -181,9 +190,9 @@ input[type="button"]:hover, button:hover {
             <input class="btn1" type="submit" value="등록" align="center"; >   
             <input class="btn1" type="button" value="목록으로" onclick="javascript:history.back()" >
         </form>
-        <br><br>
+        <br><br>-->
     </div>
 </body>
-</html> -->
+</html> 
 
 

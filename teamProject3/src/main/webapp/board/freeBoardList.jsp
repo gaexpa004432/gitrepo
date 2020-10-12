@@ -9,8 +9,7 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" href="/teamProject3/board/css/bootstrap.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="jquery-ui.js"></script>
+<script type="text/javascript" src="/teamProject3/board/css/bootstrap.js"></script>
 <style>
  #divPaging {
           clear:both; 
@@ -67,7 +66,7 @@ form {
    <input name="board_search">
    <button>검색</button>
 </form>
-	<hr/>
+	<hr>
 	<a href ="/teamProject3/board/freeBoardWrite.jsp" class="btn btn-default pull-right">글쓰기</a>
 	<my:paging paging="${paging}" jsfunc="gopage" />
 <script>
@@ -100,7 +99,7 @@ form {
 <<form id="frm" action="${pageContext.request.contextPath}/freeBoardUpdate.do" align="center">
 </form>
 </div>--%>
-<script type="text/javascript" src="/teamProject3/board/css/bootstrap.js"></script>
+
 </body>
 
 </html>

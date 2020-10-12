@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 import teamProject3.member.MemberVO;
 
-@Component
 public interface MemberDAO {
 
 	//전체조회

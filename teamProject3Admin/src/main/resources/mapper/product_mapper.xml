@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="teamProject3.recipe.mapper.ProductDAO" >
+ 	<select id="productSelectAll" resultType="product" parameterType="product">
+		SELECT  *
+		FROM product
+		 where product_status = 'N'
+	</select>
+	<update id="productUpdate" parameterType="product">
+		update product
+		set PRODUCT_NAME = #{product_name},PRODUCT_PRICE = #{product_price},PRODUCT_UNIT =#{product_unit} 
+		where PRODUCT_NUMBER = #{product_number}
+	</update>
+	<update id="productAccept" parameterType="product">
+		update product
+		set PRODUCT_STATUS = 'Y'
+		where PRODUCT_NUMBER = #{product_number}
+	</update>
+	
+	
+	
+	<delete id="productDelete" parameterType="product">
+		delete recipe
+		where recipe_number = #{recipe_number}
+	</delete>
+ </mapper>

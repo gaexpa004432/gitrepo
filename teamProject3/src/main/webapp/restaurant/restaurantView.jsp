@@ -341,7 +341,7 @@ img.inimg {
 		</div>
 		<div class="row">
 			<div class="col" align="center">
-				<form action="reviewInsert.do" method="post"
+				<form action="/teamProject3/reviewInsert.do" method="post"
 					enctype='multipart/form-data'>
 					<div class="col-sm-8" align="center">
 						<div align="left">
