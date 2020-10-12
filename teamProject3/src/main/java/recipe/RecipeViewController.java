@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import common.Paging;
 import controller.Controller;
+import model.FavoriteVO;
 import model.ProductDAO;
 import model.RecipeDAO;
 import model.RecipePhotoDAO;
@@ -20,6 +21,9 @@ public class RecipeViewController implements Controller {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RecipeVO recipe = new RecipeVO();
+		
+		FavoriteVO favorite = new FavoriteVO(); 
+		String bookMark = "false";
 		HttpSession session = ((HttpServletRequest) request).getSession(); // member id 가져오기
 		recipe.setMember_id((String) session.getAttribute("id"));
 		int recipe_number = Integer.parseInt(request.getParameter("recipe_number"));
@@ -47,6 +51,7 @@ public class RecipeViewController implements Controller {
 
 			
 		request.setAttribute("paging", paging);
+		request.setAttribute("favorite", bookMark);
 		request.setAttribute("reviewlist", RecipeReviewDAO.getInstance().selectAllReview(reviewvo));
 		request.setAttribute("recipe", RecipeDAO.getInstance().recipeSelectOne(recipe));
 		request.setAttribute("photo", RecipePhotoDAO.getInstance().selectOne(recipe));
