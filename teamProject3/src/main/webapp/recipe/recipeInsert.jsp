@@ -59,44 +59,42 @@
 </style>
 
 <script>
-
-
 	$(function(){           //조리 순서 추가
 	
 	$(".stepAdd").on("click",function(){
 		$(".cooking_order").append($("<div>")
 				.append($("<input>").attr("name","cooking_step"))
 				.append($("<input>").attr("type","file").attr("name","step_img"))
-				
-				
-				
-				
-				
 				.append($("<button>").attr("type","button").text("삭제").on("click",function(){
 					$(this).parent().remove();
 				}))
 				.append($("<br>")));		
 	})
 })
-
-
-
 	$(function(){           //상품이름 단위 가격 적는 곳 추가~!!!
 		
 		$(".matAdd").on("click",function(){
-			$(".matList").append($("<div>").append($("<input>").attr("name","product_name"))
+			$(".matList").append($("<div>")
+					.append($("<input>").attr("name","product_name"))
 					.append($("<input>").attr("name","product_unit"))
 					.append($("<input>").attr("name","product_price"))
 					.append($("<button>").attr("type","button").text("삭제").on("click",function(){
 						$(this).parent().remove();
 					}))
-					.append($("<br>")));
-			
-			
-			
-		})
+					.append($("<br>")));		
+			})	
+	})
+	$(function(){           //비매품 이름 단위 적는 곳 추가~!!!
 		
-		
+		$(".nonmatAdd").on("click",function(){
+			$(".nonmatList").append($("<div>")
+					.append($("<input>").attr("name","product_name"))
+					.append($("<input>").attr("name","product_unit"))
+					.append($("<button>").attr("type","button").text("삭제").on("click",function(){
+						$(this).parent().remove();
+					}))
+					.append($("<br>")));		
+			})	
 	})
 	function textarea() { 
 		
@@ -178,20 +176,23 @@
 			<option value="상상">상상</option>
 		</select>
 	</div>
-	
+
 	<hr>
 	<h2>재료</h2>
-
 	<div class="matList">
 	<input name="product_name" placeholder="예) 돼지고기">
 	<input name="product_unit" placeholder="예) 1KG">
 	<input name="product_price" placeholder="예) 10000원"><br> 
 	</div>
-	<button type="button" class="matAdd" id = "btn aqua">추가</button>
+	<button type="button" class="matAdd">추가</button>
 	
 	<hr>
 	<h2>그외 재료</h2>
-	
+	<div class="nonmatList">
+	<input name="non_product_name" placeholder="예) 간장">
+	<input name="non_product_unit" placeholder="예) 500g"><br> 
+	</div>
+	<button type="button" class="nonmatAdd">추가</button>
 	
 	<hr>
 	<h2>요리 순서</h2>

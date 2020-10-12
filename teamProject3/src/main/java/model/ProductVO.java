@@ -12,6 +12,16 @@ public class ProductVO {
 	private int seller_code;
 	private String product_img;
 	private int recipe_number;
+	private String product_code;
+	
+	
+	public String getProduct_code() {
+		return product_code;
+	}
+
+	public void setProduct_code(String product_code) {
+		this.product_code = product_code;
+	}
 	
 	public int getRecipe_number() {
 		return recipe_number;
@@ -71,10 +81,10 @@ public class ProductVO {
 	public String toString() {
 		return "ProductVO [product_number=" + product_number + ", product_name=" + product_name + ", product_price="
 				+ product_price + ", product_unit=" + product_unit + ", product_status=" + product_status
-				+ ", seller_code=" + seller_code + ", product_img=" + product_img + "]";
+				+ ", seller_code=" + seller_code + ", product_img=" + product_img + ", product_code=" + product_code +"]";
 	}
 	public ProductVO(int product_number, String product_name, int product_price, String product_unit,
-			String product_status, int seller_code, String product_img) {
+			String product_status, int seller_code, String product_img, String product_code) {
 		super();
 		this.product_number = product_number;
 		this.product_name = product_name;
@@ -83,6 +93,7 @@ public class ProductVO {
 		this.product_status = product_status;
 		this.seller_code = seller_code;
 		this.product_img = product_img;
+		this.product_code = product_code;
 	}
 	
 	

@@ -59,8 +59,13 @@
 					개수 :${ mater.product_unit }</h3>
 			</c:forEach>
 		</div>
-		<div class="col-sm-6" align="left">
+		<div class="col-sm-?" align="right">
 			<h1>그외 재료</h1>
+	<%-- 		<c:forEach items="${ product }" var="non_mater">
+				<h3 class="non_material" data-mate="${ non_mater.product_number }">
+				${non_mater.product_name } 개수 :${ non_mater.product_unit }
+				</h3>
+			</c:forEach> --%>
 		</div>
 	</div>
 	<hr>
@@ -90,12 +95,12 @@
 	<br>
 
 	<c:forEach items="${ product }" var="mater">
-상품번호 : ${ mater.product_number }<br>
-상품이름 : ${ mater.product_name }<br>
-상품가격 : ${ mater.product_price }<br>
-상품단위 : ${ mater.product_unit }<br>
-상품이미지 :${ mater.product_img }<br>
-판매자 : ${ mater.seller_code }<br>
+			상품번호 : ${ mater.product_number }<br>
+			상품이름 : ${ mater.product_name }<br>
+			상품가격 : ${ mater.product_price }<br>
+			상품단위 : ${ mater.product_unit }<br>
+			상품이미지 :${ mater.product_img }<br>
+			판매자 : ${ mater.seller_code }<br>
 	</c:forEach>
 </body>
 </html>
