@@ -48,12 +48,13 @@
 	<li><a href="#">마일리지 조회</a>
 	<c:choose>
 		<c:when test="${sessionScope.login.seller_code != 0}">
-			<li><a href="#">판매내역</a>
 			<li><a href="${pageContext.request.contextPath}/member/memberAddUpdate.jsp">소상공인 정보 수정 및 조회</a>
+			<!-- <li><a href="${pageContext.request.contextPath}/sellList.do">판매내역</a> -->
+			<li><a href="${pageContext.request.contextPath}/sellList.do">판매내역</a>
 		</c:when>
 		<c:when test="${sessionScope.login.seller_code == 0}">
 			<li><a href="${pageContext.request.contextPath}/member/memberAddInsert.jsp">소상공인 추가정보 등록</a>
-		</c:when> 
+		</c:when>
 	</c:choose>
 	<li><a href="#">탈퇴</a>
 </ul>

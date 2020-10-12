@@ -56,7 +56,9 @@ public class FrontController extends HttpServlet {
 		list.put("/ansSelect.do", new member.MemberAnsSelectController());
 		list.put("/ansUpdate.do", new member.MemberAnsUpdateController());
 		list.put("/favList.do", new member.MemberFavListController());
-		
+		list.put("/sellList.do", new member.MemberSellListController()); //아작스 사용 하지않고 판매내역 가져오는 controller
+		list.put("/ajaxSellList.do", new member.AjaxSellListController()); //아작스 사용해서 판매내역 가져오는 controller
+		list.put("/ajaxSellRequest.do", new member.SellRequestController());
 		
 		
 		

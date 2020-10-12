@@ -188,7 +188,6 @@ h6, .h6 {
       <div class="container">
             <decorator:body/>
       </div>
-  <script src="${pageContext.request.contextPath}/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/jquery.easing.1.3.js"></script>
