@@ -9,4 +9,3 @@ recipe_number number
 create sequence recipe_review_seq
 INCREMENT by 1
 start with 1;
-drop sequence recipe_reciew_seq;

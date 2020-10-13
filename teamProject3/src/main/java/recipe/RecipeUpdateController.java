@@ -10,29 +10,31 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import controller.Controller;
-import model.EventDAO;
-import model.FreeBoardVO;
+import model.RecipeDAO;
+import model.RecipeVO;
 
 public class RecipeUpdateController implements Controller {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String board_sub = request.getParameter("board_sub");
+		String recipe_name = request.getParameter("recipe_name");
 		
-		FreeBoardVO eventboard = new FreeBoardVO();
-		eventboard.setBoard_sub(board_sub);
-		eventboard.setBoard_content(request.getParameter("board_content"));
-		eventboard.setBoard_no(Integer.parseInt(request.getParameter("board_no")));
+		RecipeVO recipeboard = new RecipeVO();
+		recipeboard.setRecipe_name(recipe_name);
+		recipeboard.setRecipe_content(request.getParameter("board_content"));
+		recipeboard.setRecipe_number(Integer.parseInt(request.getParameter("recipe_number")));
+		recipeboard.setCooking_time(request.getParameter("cooking_time"));
+		recipeboard.setCooking_level(request.getParameter("cooking_level"));
 		
-		Part part1 = request.getPart("board_file");
+		Part part1 = request.getPart("main_img");
 		String fileName = getFileName(part1);// Long.toString(System.currentTimeMillis());
 		String path = request.getServletContext().getRealPath("/food"); // "c:/upload";
 		System.out.println(path); 
 		File renameFile = common.FileRenamePolicy.rename(new File(path, fileName));
 		part1.write(path +"/"+ renameFile.getName());
-		eventboard.setBoard_file(renameFile.getName());
+		recipeboard.setMain_img(renameFile.getName());
 		
-		EventDAO DAO = new EventDAO();
-		DAO.eventUpdate(eventboard);
+		RecipeDAO DAO = new RecipeDAO();
+		DAO.recipeUpdate(recipeboard);
 				
 		request.getRequestDispatcher("eventBoardList.do").forward(request, response);
 

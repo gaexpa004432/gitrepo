@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
 import model.FreeBoardDAO;
 import model.FreeBoardVO;
-import model.boardDAO;
 
 public class FreeBoardDeleteController implements Controller {
 
@@ -17,7 +16,7 @@ public class FreeBoardDeleteController implements Controller {
 		int board_no=Integer.parseInt(request.getParameter("board_no"));
 		FreeBoardVO freeboard = new FreeBoardVO();
 		freeboard.setBoard_no(board_no);
-		boardDAO DAO = new FreeBoardDAO();
+		 FreeBoardDAO DAO = new FreeBoardDAO();
 		DAO.delete(freeboard);
 		
 		//forward

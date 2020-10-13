@@ -9,8 +9,7 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" href="/teamProject3/board/css/bootstrap.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="jquery-ui.js"></script>
+<script type="text/javascript" src="/teamProject3/board/css/bootstrap.js"></script>
 <style>
  #divPaging {
           clear:both; 
@@ -40,7 +39,7 @@ form {
 			<th>번호</th>
 			<th></th>
 			<th>제목</td>
-			<th>이름</th>
+			<th>아이디</th>
 			<th>작성일</th>
 		</tr>
 		</thead>
@@ -56,7 +55,7 @@ form {
 				</c:if>
 			<td><a href="freeBoardView.do?board_no=${board.board_no }">${board.board_sub }</a></td>
 			<!-- 제목 누르면 view페이지로 넘어감 -->
-			<td>${board.member_name }</td>
+			<td>${board.member_id }</td>
 			<td>${board.board_date }</td>
 		</tr>
 		</c:forEach>
@@ -67,8 +66,8 @@ form {
    <input name="board_search">
    <button>검색</button>
 </form>
-	<hr/>
-	<a href ="/teamProject3/board/freeBoardWrite.jsp" class="btn btn-default pull-right">글쓰기</a>
+	<hr>
+	<a class="btn btn-default pull-right" onclick="checklogin()">글쓰기</a>
 	<my:paging paging="${paging}" jsfunc="gopage" />
 <script>
    function gopage(p) {         // 검색 function
@@ -77,6 +76,19 @@ form {
       
       // location.href="deptSelectAll?p=" + p;   // 이동되는 주소가 달라서 여러사람이 쓰기위해서는 매개값 p로 해줌
    }
+   
+   function checklogin() {
+	 
+	   
+	   
+	   if( ${empty sessionScope.id }){
+		   alert("로그인 후 글쓰기가 가능합니다.");
+		   location.href = '/teamProject3/member/memberLogin.jsp';
+	   } else {
+		   location.href = '/teamProject3/board/freeBoardWrite.jsp';
+	   }
+   }
+    
 </script>
 </div>
 <!-- 		<c:forEach items="${list}" var="board">
@@ -100,7 +112,7 @@ form {
 <<form id="frm" action="${pageContext.request.contextPath}/freeBoardUpdate.do" align="center">
 </form>
 </div>--%>
-<script type="text/javascript" src="/teamProject3/board/css/bootstrap.js"></script>
+
 </body>
 
 </html>

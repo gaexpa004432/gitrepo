@@ -56,7 +56,10 @@ public class FrontController extends HttpServlet {
 		list.put("/ansSelect.do", new member.MemberAnsSelectController());
 		list.put("/ansUpdate.do", new member.MemberAnsUpdateController());
 		list.put("/favList.do", new member.MemberFavListController());
-		
+		list.put("/sellList.do", new member.MemberSellListController()); //아작스 사용 하지않고 판매내역 가져오는 controller
+		//list.put("/ajaxSellList.do", new member.AjaxSellListController()); //아작스 사용해서 판매내역 가져오는 controller
+		list.put("/ajaxSellRequest.do", new member.AjaxSellRequestController());
+		list.put("/sellSelect.do", new member.MemberSellSelectController());
 		
 		
 		
@@ -67,11 +70,13 @@ public class FrontController extends HttpServlet {
 		
 		
 		//김성남
-		list.put("/save_product.do", new recipe.ProductInsertController());
 		list.put("/productList.do", new recipe.ProductListController());
 		list.put("/recipeInsert.do", new recipe.RecipeInsertController());
+		list.put("/recipeDelete.do", new recipe.RecipeDeleteController());
 		list.put("/recipeViewUpdate.do", new recipe.RecipeViewUpdateController());
 		list.put("/recipeUpdate.do", new recipe.RecipeUpdateController());
+		list.put("/recipeChoiceBoard.do", new recipe.RecipeChoiceBoardController());
+		list.put("/recipebookMark.do", new recipe.RecipeBookMarkController());
 		
 		list.put("/eventInsert.do", new event.EventInsertController());
 		list.put("/eventBoardList.do", new event.EventListController());
@@ -141,7 +146,9 @@ public class FrontController extends HttpServlet {
 		list.put("/member/memberDelete.do", new member.MemberDeleteController());
 		list.put("/ajaxCommentdelete.do",new board.CommentDeleteController());
 		list.put("/ajaxCommentUpdate.do",new board.CommentUpdateController());
-		
+		list.put("/qaBoardUpdate.do",new board.QaBoardUpdateController());
+		list.put("/qaBoardUpdate2.do",new board.QaBoardUpdate2Controller());
+		list.put("/qaBoardDelete.do",new board.QaBoardDeleteController());
 		
 		
 		

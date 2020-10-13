@@ -14,7 +14,7 @@ import common.FileRenamePolicy;
 import controller.Controller;
 import model.FreeBoardDAO;
 import model.FreeBoardVO;
-import model.boardDAO;   
+import model.FreeBoardDAO;   
 
 public class FreeBoardWriteController implements Controller {
 
@@ -47,7 +47,7 @@ public class FreeBoardWriteController implements Controller {
 	      
 	      
 	      
-		boardDAO DAO = new FreeBoardDAO();
+	    FreeBoardDAO DAO = new FreeBoardDAO();
 		DAO.insert(freeboard);
 		
 		response.sendRedirect("freeBoardList.do");

@@ -58,7 +58,7 @@
     <div class="container">
       <ul class="mainnav">
         <li ><a class="pick" href="/"><i class="icon-home"></i><span>메인</span> </a> </li>
-        <li ><a class="pick" href="reports.html"><i class="icon-money"></i><span>매출 통계</span> </a> </li>
+        <li ><a class="pick" href="/salesList"><i class="icon-money"></i><span>매출 통계</span> </a> </li>
         <li><a class="pick" href="/memberList"><i class="icon-group"></i><span>회원 관리</span> </a></li>
         <li><a class="pick" href="/recipeList"><i class="icon-book"></i><span>레시피 승인</span> </a> </li>
         <li><a class="pick" href="/boardList"><i class="icon-envelope-alt"></i><span>문의 확인</span> </a> </li>

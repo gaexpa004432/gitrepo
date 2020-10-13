@@ -60,7 +60,6 @@ public class RestaurantViewController implements Controller {
 		for(FavoriteVO fav : list) {
 			if(fav.getFavorite_code().equals("fs") && fav.getFavorite_no() == (restaurant.getRes_no())) {
 				bookMark = "true";
-				System.out.println("실행쓰~");
 			}
 		}
 		

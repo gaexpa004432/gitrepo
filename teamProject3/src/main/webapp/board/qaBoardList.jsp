@@ -26,12 +26,19 @@
         text-align:center;
 }
 
+form {
+	text-align: center;
+}
 
 </style>
 <script type="text/javascript">
 $(function(){
+	console.log("${sessionScope.id}" )
+	console.log("${sessionScope.login}" )
 	$(".secret").on("click",function(){
-		if(${board.member_id == sessionScope.id} ){
+	var member = $(this).data("member")
+		console.log(member)
+		if(member == "${sessionScope.id}" ){
 			var no =  $(this).data('no');
 			location.href="qaBoardView.do?board_no="+no; 
 		}else{
@@ -49,7 +56,7 @@ $(function(){
 			<th>번호</th>
 			
 			<th>제목</td>
-			<th>이름</th>
+			<th>아이디</th>
 			<th>작성일</th>
 		</tr>
 		</thead>
@@ -61,7 +68,10 @@ $(function(){
 			<td><a href="qaBoardView.do?board_no=${board.board_no }">${board.board_sub }</a></td>
 			</c:if>
 			<c:if test="${board.board_passyn == 'on'}">
-			<td><a class="secret" href="javascript:void(0);" data-no="${board.board_no}">비밀글입니다.</a></td>
+			<td><a class="secret" href="javascript:void(0);" data-no="${board.board_no}" data-member="${board.member_id}">
+			<img src="/teamProject3/images/비밀글.png"
+							style="max-width: 14px">&nbsp;&nbsp;비밀글입니다.
+			</a></td>
 			</c:if>
 			<!-- 제목 누르면 view페이지로 넘어감 -->
 			<td>${board.member_id }</td>
@@ -76,13 +86,23 @@ $(function(){
    <button>검색</button>
 </form>
 	<hr/>
-	<a href ="/teamProject3/board/qaBoardWrite.jsp" class="btn btn-default pull-right">글쓰기</a>
+	<a class="btn btn-default pull-right" onclick="checklogin()">글쓰기</a>
 	<my:paging paging="${paging}" jsfunc="gopage" />
 <script>
    function gopage(p) {         // 검색 function
       searchFrm.p.value = p;      // 페이지번호 받아와서 submit에 넘김
       searchFrm.submit();     
    }
+   
+   function checklogin() {
+	   if( ${empty sessionScope.id }){
+		   alert("로그인 후 글쓰기가 가능합니다.");
+		   location.href = '/teamProject3/member/memberLogin.jsp';
+	   } else {
+		   location.href = '/teamProject3/board/qaBoardWrite.jsp';
+	   }
+   }
+   
 </script>
 </div>
 <script type="text/javascript" src="/teamProject3/board/css/bootstrap.js"></script>

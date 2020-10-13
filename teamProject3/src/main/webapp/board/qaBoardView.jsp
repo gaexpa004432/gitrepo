@@ -42,6 +42,23 @@ div {
 	background-color: #f2f2f2;
 }
 
+
+td, th {
+	padding: 0.5em;
+	padding-top: 0.5em;
+	padding-right: 1em;
+	padding-left: 1em;
+}
+
+
+h1 {
+	padding: 0.1em;
+	padding-top: 0.1em;
+	padding-right: 0.1em;
+	padding-left: 0.1em;
+}
+
+
 </style>
 
 
@@ -93,7 +110,7 @@ $(function(){
 	
 		var result = confirm('정말로 삭제하시겠습니까?');
 		if (result) {
-		location.href="/teamProject3/freeBoardDelete.do?board_no=${board.board_no}"
+		location.href="/teamProject3/qaBoardDelete.do?board_no=${board.board_no}"
 		}
 	})
 	
@@ -171,9 +188,9 @@ $(function(){
 			    success: function(datas) {
 			    	$(".re").append($("<div>").attr("class","row").attr("id","review").css("border-top-width","1px").css("border-top-style","solid")
 							.css("padding","20px").css("border-top-color","#f0f0f5")
-							.append($("<div>").attr("class","col-sm-1").text("작성자아이디"))
-							.append($("<div>").attr("class","col-sm-9").attr("align","left").html("<small style='vertical-align:top'>"+datas.comment_date +"</small>"+"<br><div>"+datas.comment_content+"</div>"))
-							.append($("<div>").attr("class","col-sm-1")
+							.append($("<div>").attr("class","col-sm-3").text("작성자아이디"))
+							.append($("<div>").attr("class","col-sm-5").attr("align","left").html("<small style='vertical-align:top'>"+datas.comment_date +"</small>"+"<br><div>"+datas.comment_content+"</div>"))
+							.append($("<div>").attr("class","col-sm-3")
 							.append($("<button>").text("수정").attr("class","update").on("click",updateOne).data("comment_content",datas.comment_content))
 							.append($("<br>"))
 							.append($("<br>"))
@@ -218,9 +235,9 @@ $(function(){
 				for (i=0; i<datas.length; i++) {
 					$(".re").append($("<div>").attr("class","row").attr("id","review").css("border-top-width","1px").css("border-top-style","solid")
 							.css("padding","20px").css("border-top-color","#f0f0f5")
-							.append($("<div>").attr("class","col-sm-1").text("작성자아이디"))
-							.append($("<div>").attr("class","col-sm-9").attr("align","left").html("<small style='vertical-align:top'>"+datas[i].comment_date +"</small>"+"<br><div>"+datas[i].comment_content+"</div>"))
-							.append($("<div>").attr("class","col-sm-1")
+							.append($("<div>").attr("class","col-sm-3").text("작성자아이디"))
+							.append($("<div>").attr("class","col-sm-5").attr("align","left").html("<small style='vertical-align:top'>"+datas[i].comment_date +"</small>"+"<br><div>"+datas[i].comment_content+"</div>"))
+							.append($("<div>").attr("class","col-sm-3")
 							.append($("<button>").text("수정").attr("class","update").on("click",updateOne).data("comment_content",datas[i].comment_content))
 							.append($("<br>"))
 							.append($("<br>"))
@@ -272,12 +289,12 @@ $(function(){
 		</h1>
 		<table style="width: 820px">
 			<tr>
-				<th>제목</th>
+				<th style="width: 100px">제목</th>
 				<td>${board.board_sub}</td>
 			</tr>
 			<tr>
-				<th>작성자</th>
-				<td>${board.member_name}</td>
+				<th>아이디</th>
+				<td>${board.member_id}</td>
 			</tr>
 			<tr>
 				<th>작성일</th>
@@ -296,10 +313,10 @@ $(function(){
 		</table>
 		<br>
 		<button type="button" class="btn"
-			onclick="location.href='/teamProject3/freeBoardList.do'">목록</button>
+			onclick="location.href='/teamProject3/qaBoardList.do'">목록</button>
 		<!-- 게시물 목록이 안나옴 ?? -->
 		<button type="button" class="btn" style="display: none"
-			onclick="location.href='/teamProject3/freeBoardUpdate.do?board_no=${board.board_no}'">수정</button>
+			onclick="location.href='/teamProject3/qaBoardUpdate.do?board_no=${board.board_no}'">수정</button>
 		<button type="button" class="btn" style="display: none" id="delbtn">삭제</button>
 		<a id="gg"></a> <br> <br> <br>
 		<!-- 댓글 리스트 -->

@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false"%>
+	     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,6 +74,8 @@
 	})
 })
 
+//====================================================================================================
+	
 	$(function(){           //상품이름 단위 가격 적는 곳 추가~!!!
 		
 		$(".matAdd").on("click",function(){
@@ -83,10 +87,9 @@
 						$(this).parent().remove();
 					}))
 					.append($("<br>")));		
-
 		})	
-
 	})
+//===================================================================================================
 	
 	$(function(){           //비매품이름 단위  적는 곳 추가~!!!
 		
@@ -101,6 +104,7 @@
 		})	
 	})
 	
+//===================================================================================================
 	
 	function textarea() { 
 		
@@ -110,10 +114,21 @@
 			return false;
 		}
 	}
+	
+//===================================================================================================
+		
+ 	$(function () {     //로그인 된 회원종류에 따라 다른 레시피 등록창이 보임
+ 		console.log(${ sessionScope.login.seller_code})
+		if (${!empty sessionScope.login.seller_code} && ${ sessionScope.login.seller_code != 0}) {
+			$(".product_price").show();		
+		} else {
+			$(".product_price").hide(); 
+		}
+	})	
+	 
 </script>
 
 </head>
-
 
 <body>
 <form name="frm1" action ="/teamProject3/recipeInsert.do" enctype='multipart/form-data' method = "post">
@@ -163,7 +178,7 @@
 	<div>
 	<span class = "time">시간</span>
 		<select name = "cooking_time" text = "조리시간">
-			<option value>시간</option>
+			<option value="">시간</option>
 			<option value="5분이내">5분이내</option>
 			<option value="10분이내">10분이내</option>
 			<option value="30분이내">30분이내</option>
@@ -174,7 +189,7 @@
 		</select>	
 		<span class = "level">난이도</span>
 		<select name = "cooking_level" text = "난이도">
-			<option value>난이도</option>
+			<option value="">난이도</option>
 			<option value="누구나">누구나</option>
 			<option value="하">하</option>
 			<option value="중">중</option>
@@ -188,7 +203,8 @@
 	<div class="matList">
 	<input name="product_name" placeholder="예) 돼지고기">
 	<input name="product_unit" placeholder="예) 1KG">
-	<input name="product_price" placeholder="예) 10000원"><br> 
+	<input class="product_price" name="product_price" placeholder="예) 10000원"><br>
+	
 	</div>
 	<button type="button" class="matAdd">재료 추가</button>
 
@@ -220,7 +236,7 @@
 
     //로드 한 후
     reader1.onload = function () {
-        document.querySelector('#step_img').src = reader1.result ;
+    document.querySelector('#step_img').src = reader1.result ;
     	}; 
 	}; 
 	</script>
@@ -229,7 +245,6 @@
 	
 	<hr>
 	<button class = "btn pink">등록</button>
-	<a class = "btn green" href="/teamProject3/recipe/productInsert.jsp">새로운재료추가</a>
 	<a class = "btn red" href="/teamProject3/recipeBoard.do">레시피 목록</a>
 	</form>
 </body>

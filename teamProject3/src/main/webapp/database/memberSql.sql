@@ -290,7 +290,7 @@ insert into favorites values( 'fr',  17, 'qqq' );
 insert into recipe values (20, '국밥', sysdate, '국밥부장관', 'user5', '30분', '상', '우주하마.jpg');
 insert into favorites values( 'fr',  20, 'qqq' );
 commit;
-commit;
+
 
 select * from favorites;
 select * from recipe;
