@@ -42,6 +42,17 @@ div {
 	background-color: #f2f2f2;
 }
 
+td, th {
+	padding: 0.5em;
+	padding-top: 0.5em;
+	padding-right: 1em;
+	padding-left: 1em;
+}
+
+h1 {
+ 	padding:  4 1.5 1.5 1.5;
+}
+
 </style>
 
 
@@ -272,12 +283,12 @@ $(function(){
 		</h1>
 		<table style="width: 820px">
 			<tr>
-				<th>제목</th>
+				<th style="width: 100px">제목</th>
 				<td>${board.board_sub}</td>
 			</tr>
 			<tr>
-				<th>작성자</th>
-				<td>${board.member_name}</td>
+				<th>아이디</th>
+				<td>${board.member_id}</td>
 			</tr>
 			<tr>
 				<th>작성일</th>

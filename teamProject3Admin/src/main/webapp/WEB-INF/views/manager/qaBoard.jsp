@@ -5,6 +5,11 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
+<style>
+th {
+width:50px;
+}
+</style>
 <head>
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 	<script
@@ -47,5 +52,6 @@ $(function(){
 			</tbody>
 		</table>
 	</div>
+	
 </body>
 </html>

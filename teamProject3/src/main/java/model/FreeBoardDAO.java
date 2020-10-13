@@ -66,7 +66,7 @@ public class FreeBoardDAO {
 				rs = pstmt.executeQuery();   
 				while(rs.next()) {
 					resultVO = new FreeBoardVO();
-					resultVO.setMember_name(rs.getString("member_name"));
+					resultVO.setMember_id(rs.getString("member_id"));
 					resultVO.setBoard_sub(rs.getString("board_sub"));
 					resultVO.setBoard_content(rs.getString("board_content"));
 					resultVO.setBoard_file(rs.getString("board_file"));
