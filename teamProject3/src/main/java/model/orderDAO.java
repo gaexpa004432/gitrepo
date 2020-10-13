@@ -24,8 +24,8 @@ public class orderDAO {
 			+   " from order1 o, order_Detail d, product p" 
 			+   " WHERE o.member_id = ? ";
 	
-	private final String INSERT_OREDER_OUTPUT = "INSERT INTO ORDER2 VALUES (order_num_seq.nextval,"
-			+ " ?,SYSDATE, ?, ? ,? ,?)";
+	private final String INSERT_OREDER_OUTPUT = "INSERT INTO ORDER3 VALUES (?, ?, ?, ?, order_no.nextval,"
+			+ " ?, ? , ?, SYSDATE , ?)";
 	
 	    public ArrayList<orderVO> getOrder(orderVO vo){
 	    	ArrayList<orderVO> list = new ArrayList<orderVO>();
@@ -58,11 +58,15 @@ public class orderDAO {
 			try {
 				conn = ConnectionManager.getConnnect();
 				psmt = conn.prepareStatement(INSERT_OREDER_OUTPUT);
-				psmt.setInt(1, vo.getOrder_total());
-				psmt.setString(2, vo.getMember_email());
-				psmt.setString(3, vo.getMember_tel());
-				psmt.setString(4, vo.getMember_name());
+				psmt.setString(1, vo.getMember_name());
 				psmt.setString(5, vo.getMember_address());
+				psmt.setString(3, vo.getMember_tel());
+				psmt.setString(4, vo.getMember_email());
+				psmt.setInt(5, vo.getOrder_total());
+				psmt.setString(6, vo.getRecipe_name());
+				psmt.setString(7, vo.getProduct_name());
+				psmt.setInt(8, vo.getProduct_price());
+				psmt.setInt(9, vo.getOrder_total());
 				r = psmt.executeUpdate();
 			} catch(Exception e) {
 				e.printStackTrace();

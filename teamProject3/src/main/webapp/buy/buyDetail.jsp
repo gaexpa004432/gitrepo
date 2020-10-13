@@ -96,7 +96,7 @@ $(function() {
 		$('#mileage_have').val($('#mileage_use').html());
 	});
 	
-	$('#payment_button').on("click", function() {
+	$('#').on("click", function() {
 		
 		var IMP = window.IMP; // 생략가능
 		IMP.init('imp40069131'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
@@ -133,6 +133,10 @@ $(function() {
 		    alert(msg);
 	    }
 	})
+	
+	$('#payment_button').on("click", function() {
+		
+	})
 });
 </script>
 </head>
@@ -160,7 +164,8 @@ $(function() {
 		<thead class="">
 		<tr>
 		<th scope="col">선택</th>
-		<th scope="col">상품 정보</th>
+		<th scope="col">상품명</th>
+		<th scope="col">재료명</th>
 		<th scope="col">가격</th>
 		<th scope="col">수량</th>
 		<th scope="col">결제금액</th>
@@ -169,13 +174,20 @@ $(function() {
 		</thead>
 		<tbody>
 		<c:set var="all_price" value="0"/>
-		<c:forEach items="${array}" var="orderlist">
+		<c:forEach items="${ord}" var="orderlist">
 		<tr>
 		<td><input type="checkbox"></td>
-		<td>${orderlist.product_name}</td>
-		<td>${orderlist.product_price}</td>
-		<td>${orderlist.order_detail_no}</td>
-		<td>${orderlist.order_total}</td>
+		<td><input type="hidden" name="recipe_name" value="${orderlist.recipe_name}">${orderlist.recipe_name}</td>
+		<td><input type="hidden" name="product_name" value="${orderlist.product_name}">${orderlist.product_name}</td>
+		<td><input type="hidden" name="product_price" value="${orderlist.product_price}">${orderlist.product_price}</td>
+		<td>
+			<select class="quantity-select">
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>
+			</select>
+		<td>
 		<td><input type="button" class="cart_delete" value="삭제"></td>
 		</tr>
 		<c:set var="all_price" value="${all_price + orderlist.order_total}"/>
@@ -217,24 +229,23 @@ $(function() {
 				name="member_jibunAddress" id="sample4_jibunAddress"
 				placeholder="지번주소" > <span id="guide"
 				style="color: #999; display: none"></span> <input type="text"
-				name="member_detailAddress" id="sample4_detailAddress"
+				name="member_address" id="sample4_detailAddress"
 				placeholder="상세주소" value="${vo.member_detailAddress}" > <input type="text"
 				name="member_extraAddress" id="sample4_extraAddress"
 				placeholder="참고항목" value="${vo.member_extraAddress}">
 		</div>
 		
+		</form>
 		<hr width=30%>
-		
 		<h3>적립금</h3> 
 		<div class="miliege-imformation">
 		<c:set  var="my_mileage" value="0" />
 			보유 마일리지 :
-			<input type="text" value="${array[4].remaining}" id="mileage_have" readonly>
+			<input type="text" value="${mil.remaining}" id="mileage_have" readonly>
 			<input type="button" id="mileage_all_button" value="전액사용"> <br> <br> 적립 예상 마일리지 :
 		<input type="text" id="mileage_input" disabled> P <br>
-		<c:set var="my_mileage" value="${array[4].remaining}"/>
+		<c:set var="my_mileage" value="${mil.remaining}"/>
 		사용할 마일리지: <input type="text" id="mileage_use">
-		
 		</div> 
 		<hr width=30%>
 		
@@ -242,18 +253,18 @@ $(function() {
 			<h3>최종 결제 정보</h3>
 			<div>
 
+				<c:set var="fianl_order_price" value="0"/>
 				<span>${all_price}</span>
 				
 				<img src="${pageContext.request.contextPath}/buy/images/minus.png">
 				<span>${my_mileage}</span>
-				
 				<img src="${pageContext.request.contextPath}/buy/images/equal.png">
-
-				<span id="final-cart-price-mileage">${all_price - my_mileage}</span>
+				<c:set var="fianl_order_price" value="${all_price - my_mileage}"/>
+				<span id="final-cart-price-mileage">${fianl_order_price}</span>
 			</div>
 		</div>
-		</form>
-		<input type="button" id="payment_button" value="결제하기">
+		<a href="${pageContext.request.contextPath}/orderOutput.do" 
+		id ="payment_button" class="btn btn-primary">결제하기</a>
 	</div>
 </body>
 </html>

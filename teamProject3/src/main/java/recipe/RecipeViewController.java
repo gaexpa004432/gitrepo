@@ -20,11 +20,16 @@ public class RecipeViewController implements Controller {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RecipeVO recipe = new RecipeVO();
+		
+		
+		
 		HttpSession session = ((HttpServletRequest) request).getSession(); // member id 가져오기
 		recipe.setMember_id((String) session.getAttribute("id"));
 		int recipe_number = Integer.parseInt(request.getParameter("recipe_number"));
 		recipe.setRecipe_number(recipe_number);
 		RecipeDAO.getInstance().recipeSelectOne(recipe);
+		request.getSession().setAttribute("recipe_number", recipe);
+		RecipeVO VO = RecipeDAO.getInstance().recipeSelectOne(recipe);
 		RecipeReviewVO reviewvo = new RecipeReviewVO();
 		
 		 String p = request.getParameter("p");
@@ -44,8 +49,8 @@ public class RecipeViewController implements Controller {
 			reviewvo.setFirst(paging.getFirst());
 			reviewvo.setLast(paging.getLast());
 			
-
-			
+		request.getSession().setAttribute("cart", reviewvo);
+		
 		request.setAttribute("paging", paging);
 		request.setAttribute("reviewlist", RecipeReviewDAO.getInstance().selectAllReview(reviewvo));
 		request.setAttribute("recipe", RecipeDAO.getInstance().recipeSelectOne(recipe));

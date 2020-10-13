@@ -12,7 +12,6 @@ import model.CommentVO;
 
 public class CommentUpdateController implements Controller {
 
-	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String update = request.getParameter("update");
 		int comment = Integer.parseInt(request.getParameter("comment_no"));

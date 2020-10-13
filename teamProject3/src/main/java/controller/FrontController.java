@@ -101,6 +101,8 @@ public class FrontController extends HttpServlet {
 		list.put("/orderOutput.do", new buy.orderOutputController());
 		list.put("/orderOutputInsert.do", new buy.orderOutputInsertController());
 		list.put("/mileageController.do", new buy.mileageCotroller());
+		list.put("/mileageSelectController.do", new buy.mileageSelectCotroller());
+		
 		
 		
 		
