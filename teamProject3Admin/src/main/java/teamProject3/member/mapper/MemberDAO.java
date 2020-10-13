@@ -35,4 +35,6 @@ public interface MemberDAO {
 	//판매자 아이디 가져오기
 	MemberVO selectSellerId(MemberVO memberVO);
 
+	void updateMileage(MemberVO memberVO);
+
 }

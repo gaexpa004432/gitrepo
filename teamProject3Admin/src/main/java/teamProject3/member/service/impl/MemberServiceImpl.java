@@ -22,8 +22,8 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public MemberVO selectOne(MemberVO memberVO) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return memberDAO.selectOne(memberVO);
 	}
 
 	@Override
@@ -66,6 +66,12 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO selectSellerId(MemberVO memberVO) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void updateMileage(MemberVO memberVO) {
+		memberDAO.updateMileage(memberVO);
+		
 	}
 
 }
