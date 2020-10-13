@@ -44,6 +44,36 @@ $(function(){
 		var milegeTag = $(this).parent().parent().children().eq(6);
 		milegeTag.text("");
 		milegeTag.append($("<input>").val(milegeTag.data("mileage")).css("width","70px").css("height","15px"));
+		var tis = $(this);
+		$(this).parent().hide();
+		milegeTag.parent().append($("<td>").append($("<button>").text("등록").attr("class","btn-primary").on("click",function(){
+			var member_mileage =  milegeTag.children().eq(0).val();
+			var member = milegeTag.parent().data("member");
+			var button = $(this);
+			$.ajax({
+				 url: "/ajaxMemberUpdate", 
+				    data: {member_id:member,member_mileage:member_mileage},
+				    method : "POST",
+			    success: function() { 
+			    	button.parent().remove();
+			    	tis.parent().show();
+					milegeTag.empty();
+					milegeTag.text(member_mileage);
+					
+			    },
+			    error:function(xhr, status, message) { 
+			        alert(" status: "+status+" er:"+message);
+			    }
+			   
+		}) 
+		})).append(" ").
+				append($("<button>").text("취소").attr("class","btn-danger").on("click",function(){
+					$(this).parent().remove();
+					tis.parent().show();
+					milegeTag.empty();
+					milegeTag.text(milegeTag.data("mileage"));
+				})));
+		
 	})
 })
 </script>
@@ -64,7 +94,7 @@ $(function(){
 	<td>${member.member_type }</td>
 	<td data-mileage="${member.member_mileage }">${member.member_mileage }</td>
 	<td>${member.member_email }</td>
-	<td align="center"><button class="btn btn-info">수정</button>&nbsp&nbsp<button class="btn btn-danger">삭제</button></td>
+	<td align="center"><button class="btn-info">수정</button>&nbsp&nbsp<button class="btn-danger">삭제</button></td>
 	</tr>
 </c:forEach>
 	</tbody>
