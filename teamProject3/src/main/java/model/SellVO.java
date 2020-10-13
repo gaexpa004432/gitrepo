@@ -16,6 +16,9 @@ public class SellVO {
 	private String product_name;
 	private int recipe_number;
 	private String recipe_name;
+	private int order_detail_number;
+	private int product_number;
+	private String product_unit;
 	
 	//페이징처리를 위한
 	private Integer first;

@@ -19,9 +19,92 @@ public class SellDAO {
 			instance = new SellDAO();
 			return instance;
 	}
-		
+	
 	
 	public ArrayList<SellVO> sellRecipe(SellVO sellVO) {
+		SellVO resultVO = null;
+		ResultSet rs = null;
+		ArrayList<SellVO> list = new ArrayList<SellVO>();
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = 
+					"select o.order_number, o.order_date, sum(d.product_price), o.member_id, " + 
+					"o.order_status, o.order_reason, p.seller_code, r.recipe_name " + 
+					"from order1 o, order_detail d, product p, recipe r " + 
+					"where o.order_number=d.order_number " + 
+					"and d.product_number=p.product_number " + 
+					"and p.recipe_number=r.recipe_number " + 
+					"and p.seller_code = ? " + 
+					"group by o.order_number, o.order_date, o.member_id, " + 
+					"p.seller_code, o.order_status, o.order_reason, r.recipe_name " + 
+					"order by order_date desc" ;
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, sellVO.getSeller_code());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				resultVO = new SellVO();
+				resultVO.setOrder_number(rs.getInt(1));
+				resultVO.setOrder_date(rs.getString(2));
+				resultVO.setOrder_total(rs.getInt(3));
+				resultVO.setMember_id(rs.getString(4));
+				resultVO.setOrder_status(rs.getString(5));
+				resultVO.setOrder_reason(rs.getString(6));
+				resultVO.setSeller_code(rs.getInt(7));
+				resultVO.setRecipe_name(rs.getString(8));
+				list.add(resultVO);
+			} 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);//rs를 try안에서 선언하면 지역 변수 이기 때문에 try안에서만 사용 됨 , 그러니까 변수를 try밖으로 빼주고 초기값 null을 주면 에러없이 사용 가능
+		}
+		return list;
+	}
+	
+	public SellVO sellRecipeOne(SellVO sellVO) {
+		SellVO resultVO = null;
+		ResultSet rs = null;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = 
+					"select o.order_number, o.order_date, sum(d.product_price), o.member_id, " + 
+					"o.order_status, o.order_reason, p.seller_code, r.recipe_name " + 
+					"from order1 o, order_detail d, product p, recipe r " + 
+					"where o.order_number=d.order_number " + 
+					"and d.product_number=p.product_number " + 
+					"and p.recipe_number=r.recipe_number " + 
+					"and p.seller_code = ? " + 
+					"and o.order_number = ?" + 
+					"group by o.order_number, o.order_date, o.member_id, " + 
+					"p.seller_code, o.order_status, o.order_reason, r.recipe_name " + 
+					"order by order_date desc" ;
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, sellVO.getSeller_code());
+			pstmt.setInt(2, sellVO.getOrder_number());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				resultVO = new SellVO();
+				resultVO.setOrder_number(rs.getInt(1));
+				resultVO.setOrder_date(rs.getString(2));
+				resultVO.setOrder_total(rs.getInt(3));
+				resultVO.setMember_id(rs.getString(4));
+				resultVO.setOrder_status(rs.getString(5));
+				resultVO.setOrder_reason(rs.getString(6));
+				resultVO.setSeller_code(rs.getInt(7));
+				resultVO.setRecipe_name(rs.getString(8));
+			} else {
+				System.out.println("no data");
+			} 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);//rs를 try안에서 선언하면 지역 변수 이기 때문에 try안에서만 사용 됨 , 그러니까 변수를 try밖으로 빼주고 초기값 null을 주면 에러없이 사용 가능
+		}
+		return resultVO;
+	}
+	
+	//order에서만 리스트 불러오기 (일단보류)
+	/*public ArrayList<SellVO> sellRecipe(SellVO sellVO) {
 		SellVO resultVO = null;
 		ResultSet rs = null;
 		ArrayList<SellVO> list = new ArrayList<SellVO>();
@@ -51,7 +134,7 @@ public class SellDAO {
 			ConnectionManager.close(rs, pstmt, conn);//rs를 try안에서 선언하면 지역 변수 이기 때문에 try안에서만 사용 됨 , 그러니까 변수를 try밖으로 빼주고 초기값 null을 주면 에러없이 사용 가능
 		}
 		return list;
-	}
+	}*/
 		
 		
 	//sellList.jsp에 쓰일 count DAO
@@ -126,6 +209,41 @@ public class SellDAO {
 		}
 		return r;
 	}
+	
+	public ArrayList<SellVO> sellSelectOne(SellVO sellVO) {
+		SellVO resultVO = null;
+		ResultSet rs = null;
+		ArrayList<SellVO> list = new ArrayList<SellVO>();
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "select d.order_detail_number, d.product_number, p.product_name, " + 
+					"d.product_price, d.product_quantity, p.product_unit, p.recipe_number " + 
+					"from order_detail d, product p " + 
+					"where d.product_number=p.product_number " + 
+					"and d.order_number = ?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, sellVO.getOrder_number());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				resultVO = new SellVO();
+				resultVO.setOrder_detail_number(rs.getInt(1));
+				resultVO.setProduct_number(rs.getInt(2));
+				resultVO.setProduct_name(rs.getString(3));
+				resultVO.setProduct_price(rs.getInt(4));
+				resultVO.setProduct_quantity(rs.getInt(5));
+				resultVO.setProduct_unit(rs.getString(6));
+				resultVO.setRecipe_number(rs.getInt(7));
+				list.add(resultVO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);//rs를 try안에서 선언하면 지역 변수 이기 때문에 try안에서만 사용 됨 , 그러니까 변수를 try밖으로 빼주고 초기값 null을 주면 에러없이 사용 가능
+		}
+		return list;
+	}
+	
+	
 	
 	//판매자에게 걸려 있는 판매에 대한 디테일
 //	public SellVO sellAllDetail(SellVO sellVO) {

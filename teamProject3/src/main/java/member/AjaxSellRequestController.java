@@ -11,7 +11,7 @@ import model.SellDAO;
 import model.SellVO;
 import net.sf.json.JSONObject;
 
-public class SellRequestController implements Controller {
+public class AjaxSellRequestController implements Controller {
 
 	
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

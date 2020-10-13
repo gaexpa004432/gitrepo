@@ -11,7 +11,7 @@
     
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900&display=swap" rel="stylesheet">
 
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/animate.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ionicons.min.css">
@@ -104,9 +104,70 @@ h6, .h6 {
 	padding-top : 3%;
 }
 
+.img-fluid {
+  max-width: 20%;
+  height: auto;
+}
+
+.rounded-circle {
+  border-radius: 50% !important;
+}
 
 
 
+
+
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a{
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* .dropdown-content a:hover {
+  background-color: #ddd;
+}
+ */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
 
     </style>
@@ -146,7 +207,18 @@ h6, .h6 {
 		          <c:when test="${not empty sessionScope.login.member_id}">
 			          <li class="nav-item"><a href="${pageContext.request.contextPath}/member/myPage.jsp" class="nav-link">MyPage</a></li>
 			          <li class="nav-item"><a href="${pageContext.request.contextPath}/logout.do" class="nav-link">Logout</a></li> 
-		          	  <li class="nav-item">${sessionScope.login.member_id}님</li> 
+		          	  <li class="nav-item"><a class="nav-link">${sessionScope.login.member_id}님</a></li>
+		          	  <li class="nav-item">
+		          	  	<div class="dropdown">
+		          	  		<a type="button" class="dropbtn">
+		          	  			<i class="fa fa-caret-down"><img src="${pageContext.request.contextPath}/images/우주하마.jpg" class="img-raised rounded-circle img-fluid"></i>
+		          	  		</a>	
+		          	  		<div class="dropdown-content">
+						      <a id="link" href="#">Link 1</a>
+						      <a id="link" href="#">Link 2</a>
+						      <a id="link" href="#">Link 3</a>
+						    </div>
+		          	  	</div>
 		          </c:when>
 	          </c:choose>
 	        </ul>
