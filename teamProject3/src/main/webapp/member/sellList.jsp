@@ -133,9 +133,9 @@ $(function(){
 	})
 	
 	$("#task-table").on("dblclick",".select_order", function(){
-		//location.href = "/teamProject3/order_select.do?" + $(this).data("order_number");
+		location.href = "/teamProject3/sellSelect.do?order_number=" + $(this).data("order_number");
 		console.log($(this).data("order_number"));
-	})
+	});
 	
 });
 </script>
@@ -150,6 +150,7 @@ $(function(){
 						<thead>
 							<tr>
 								<th>주문번호</th>
+								<th>레시피</th>
 								<th>가격</th>
 								<th>주문하신분</th>
 								<th>날짜</th>
@@ -161,6 +162,7 @@ $(function(){
 						<c:forEach items="${list}" var="list">
 							<tr class="select_order" data-order_number="${list.order_number}"><!-- data에 이름 주고 값을 넣으려면 왼쪽과 같이 하면 된다. -->
 								<td>${list.order_number}</td>
+								<td>${list.recipe_name}</td>
 								<td>${list.order_total}</td>
 								<td>${list.member_id}</td>
 								<td>${list.order_date}</td>

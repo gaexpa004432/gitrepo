@@ -30,6 +30,9 @@ $(function(){
 		var chk = 0;
 	$(".updatetr").dblclick(function(){
 		var tis = $(this);
+		if(chk ==1){
+			alert("수정중인 데이터가 있습니다.")
+		}
 		if(chk == 0){
 			chk++;
 		var name = $(this).children().eq(0).data("name");

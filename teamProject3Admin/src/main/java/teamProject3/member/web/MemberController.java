@@ -1,5 +1,8 @@
 package teamProject3.member.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,7 +25,7 @@ public class MemberController {
 	@RequestMapping("/memberList")
 	public String memberList(Model model ,HttpServletRequest request,HttpServletResponse response) {
 		
-		model.addAttribute("list", memberService.selectAll(null));
+		model.addAttribute("list",memberService.selectAll(null));
 		model.addAttribute("index",3);
 		return "manager/mani";
 	}
@@ -30,7 +33,7 @@ public class MemberController {
 	@RequestMapping("/salesList")
 	public String salesList(Model model ,HttpServletRequest request,HttpServletResponse response) {
 		
-		
+		model.addAttribute("index",2);
 		return "manager/sales";
 	}
 	
@@ -45,7 +48,8 @@ public class MemberController {
 	@ResponseBody
 	public void memberUpdate(MemberVO memberVO ,HttpServletRequest request,HttpServletResponse response) {
 		
-		memberService.update(memberVO);
+		memberService.updateMileage(memberVO);
 	}
 	
+
 }

@@ -8,10 +8,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style type="text/css">	
 	/* banner */
-	.banner {position: relative; width: 340px; height: 210px; top: 50px;  margin:0 auto; padding:0; overflow: hidden;}
+	.banner {position: relative; width: 100%; height: 210px; top: 50px;  margin:0 auto; padding:0; overflow: hidden;}
 	.banner ul {position: absolute; margin: 0px; padding:0; list-style: none; }
-	.banner ul li {float: left; width: 340px; height: 210px; margin:0; padding:0;}
-
+	.banner ul li {float: left; width: 100%; height: 210px; margin:0; padding:0;}
+	img {width:1000px;
+	height:200px;}
 	
 
 </style>
@@ -38,7 +39,7 @@
 				//뒤로 복사된 첫번재 이미지는 필요 없으니 삭제한다.
 				$(this).find("li:first").remove();
 				//다음 움직임을 위해서 배너 좌측의 위치값을 초기화 한다.
-				$(this).css("left", 0);
+				$().cthisss("left", 0);
 				//이 과정을 반복하면서 계속 롤링하는 배너를 만들 수 있다.
 			});
 		}
@@ -50,11 +51,11 @@
 	<div class="contents">
 		<div class="banner">
 			<ul>
-				<li><a href="/teamProject3/event/eventView.jsp"><img src="/teamProject3/food/F6.jpg" width="340" height="210px"></a></li>
-				<li><a href="/teamProject3/event/eventView.jsp"><img src="/teamProject3/food/F64.jpg" width="340" height="210px"></a></li>
-				<li><a href="/teamProject3/event/eventView.jsp"><img src="/teamProject3/food/F52.jpg" width="340" height="210px"></a></li>
-				<li><a href="/teamProject3/event/eventView.jsp"><img src="/teamProject3/food/F10.jpg" width="340" height="210px"></a></li>
-				<li><a href="/teamProject3/event/eventView.jsp"><img src="/teamProject3/food/F9.jpg" width="340" height="210px"></a></li>
+				<li><a href="/teamProject3/event/eventView.jsp"><img src="/teamProject3/images/제목 없음.png"></a></li>
+				<li><a href="/teamProject3/event/eventView.jsp"><img src="/teamProject3/food/F64.jpg"></a></li>
+				<li><a href="/teamProject3/event/eventView.jsp"><img src="/teamProject3/food/F52.jpg"></a></li>
+				<li><a href="/teamProject3/event/eventView.jsp"><img src="/teamProject3/food/F10.jpg"></a></li>
+				<li><a href="/teamProject3/event/eventView.jsp"><img src="/teamProject3/food/F9.jpg" ></a></li>
 			</ul>
 		</div>
 	</div>

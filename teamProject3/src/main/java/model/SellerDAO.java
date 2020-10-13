@@ -104,35 +104,35 @@ public class SellerDAO {
 	}
 	
 	//한건조회(변수는 SellerVO타입으로)
-		public SellerVO selectOne2(MemberVO memberVO) {
-			SellerVO resultVO = null;
-			ResultSet rs = null;
-			try {
-				conn = ConnectionManager.getConnnect();
-				String sql = "SELECT * FROM SELLER"
-						+ " WHERE SELLER_CODE=?";
-				pstmt=conn.prepareStatement(sql);
-				pstmt.setInt(1, memberVO.getSeller_code());
-				rs = pstmt.executeQuery();
-				if(rs.next()) {
-					resultVO = new SellerVO();
-					resultVO.setSeller_code(rs.getInt("seller_code"));
-					resultVO.setSeller_roadAddress(rs.getString("seller_roadAddress"));
-					resultVO.setSeller_store(rs.getString("seller_store"));
-					resultVO.setSeller_tel(rs.getString("seller_tel"));
-					resultVO.setSeller_postcode(rs.getString("seller_postcode"));
-					resultVO.setSeller_detailAddress(rs.getString("seller_detailAddress"));
-					resultVO.setSeller_extraAddress(rs.getString("seller_extraAddress"));
-				} else {
-					System.out.println("no data");
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				ConnectionManager.close(rs, pstmt, conn);//rs를 try안에서 선언하면 지역 변수 이기 때문에 try안에서만 사용 됨 , 그러니까 변수를 try밖으로 빼주고 초기값 null을 주면 에러없이 사용 가능
+	public SellerVO selectOne2(MemberVO memberVO) {
+		SellerVO resultVO = null;
+		ResultSet rs = null;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT * FROM SELLER"
+					+ " WHERE SELLER_CODE=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, memberVO.getSeller_code());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				resultVO = new SellerVO();
+				resultVO.setSeller_code(rs.getInt("seller_code"));
+				resultVO.setSeller_roadAddress(rs.getString("seller_roadAddress"));
+				resultVO.setSeller_store(rs.getString("seller_store"));
+				resultVO.setSeller_tel(rs.getString("seller_tel"));
+				resultVO.setSeller_postcode(rs.getString("seller_postcode"));
+				resultVO.setSeller_detailAddress(rs.getString("seller_detailAddress"));
+				resultVO.setSeller_extraAddress(rs.getString("seller_extraAddress"));
+			} else {
+				System.out.println("no data");
 			}
-			return resultVO;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);//rs를 try안에서 선언하면 지역 변수 이기 때문에 try안에서만 사용 됨 , 그러니까 변수를 try밖으로 빼주고 초기값 null을 주면 에러없이 사용 가능
 		}
+		return resultVO;
+	}
 		
 		//seller_id가져오기 //필요 없을듯?
 //		public MemberVO selectOneSeller(SellerVO sellerVO) {
