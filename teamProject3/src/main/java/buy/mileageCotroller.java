@@ -24,7 +24,7 @@ public class mileageCotroller implements Controller {
 		
 		request.setAttribute("mil_list", mil_list);
 		
-		request.getRequestDispatcher("/buy/buyDetail.jsp").forward(request, response);
+		request.getRequestDispatcher("/member/mileage.jsp").forward(request, response);
 	}
 
 }

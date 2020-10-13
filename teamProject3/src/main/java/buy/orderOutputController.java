@@ -16,6 +16,8 @@ public class orderOutputController implements Controller {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		orderVO VO = new orderVO();
+		Integer order_number = Integer.parseInt(request.getParameter("order_number"));
+		VO.setOrder_number(order_number);
 		
 		String member_id = //request.getParameter("member_id");
 		(String) request.getSession().getAttribute("id");
@@ -26,7 +28,5 @@ public class orderOutputController implements Controller {
 		request.setAttribute("list", list);
 		
 		request.getRequestDispatcher("/buy/buyOutput.jsp").forward(request, response);
-
 	}
-
 }

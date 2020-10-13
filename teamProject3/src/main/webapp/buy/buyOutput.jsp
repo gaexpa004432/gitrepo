@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,11 +22,30 @@
 </style>
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/orderOutput.do" name="frm" id="frm">
+<form action="${pageContext.request.contextPath}/orderOutput.do">
 <img src="">
 <h1 align="center" class="end">구매가 완료되었습니다.</h1>
 <h3 align="center" class="end1">더 나은 서비스와 질로 보답하겠습니다.</h3>
 <hr>
+	<table>
+		<thead>
+		<tr>
+			<td>구매자이름</td>
+			<td>구매자번호</td>
+			<td>구매자이메일</td>
+		<tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>${list.member_name}</td>
+			<td>${list.member_tel}</td>
+			<td>${list.member_address}</td>
+		</tr>
+		</tbody>
+	</table>
+	
+	<hr>
+
 	<table class="order-list-table">
 		<colgroup>
 		<col style="width:auto;">
@@ -48,26 +68,21 @@
 	<td class="product">
 		<div class="product-block">
 		<div class="product-content"></div>
-		<div class="product-name">${result.product_name}</div>
 		<div class="product-order-num">${result.order_number}</div>
+		<div class="product-name">${result.product_name}</div>
 		</div>
 	</td>
 	
 	<!-- 수량 -->
 	<td class="product-quantity">
-	${reuslt.order_Detail_no}
+	${result.recipe_name}
 	</td>
 	
 	<!-- 판매자 -->
 	<td class="seller-td">
 	<span class="seller-code">
-	${result.seller_code}
+	${result.product_price}
 	</span>
-	</td>
-	
-	<!-- status -->
-	<td class="status">
-	${result.order_status}
 	</td>
 	
 	<td class="datetotal">
