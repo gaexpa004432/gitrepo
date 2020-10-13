@@ -69,6 +69,14 @@
 </style>
 <script type="text/javascript">
 	$(function() {
+		var favorite = "${favorite}";
+		if(favorite == "true"){
+			$("#bookmark").html("<img src='/teamProject3/images/즐겨찾기취소.jpg' style='width: 100px; height: 100px; margin-left: 30px;'>");
+			
+		} else {
+			$("#bookmark").html("<img src='/teamProject3/images/즐겨찾기.jpg'style='width: 100px; height: 100px; margin-left: 30px;'>");
+		}
+//======================================================================================================
 		$("#cart").on(
 				"click",
 				function() {
@@ -88,6 +96,7 @@
 						}
 					}
 				})
+//===============================================================================================			
 	$("#input_imgs").on("change", handleImgFileSelect);
 		$(".reviewDel").on("click",function(){
 			var result = confirm("정말 삭제 하시겠습니까?");
@@ -96,13 +105,14 @@
 				 location.href="/teamProject3/recipeReviewDel.do?recipe_review_no="+reviewNo+"&recipe_number=${ recipe.recipe_number }";
 			}
 		})
-	})
 	
+//==================================================================================================
 	function fileUploadAction() {
 		console.log("fileUploadAction");
 		$("#input_imgs").trigger('click');
 	}
-
+		
+//====================================================================================================
 	function handleImgFileSelect(e) {
 
 		// 이미지 정보들을 초기화
@@ -137,7 +147,7 @@
 
 				});
 	}
-
+//====================================================================================================
 	function deleteImageAction(index) {
 		console.log("index : " + index);
 		console.log("sel length : " + sel_files.length);
@@ -148,12 +158,12 @@
 		var img_id = "#img_id_" + index;
 		$(img_id).remove();
 	}
-
+//==================================================================================================
 	function fileUploadAction() {
 		console.log("fileUploadAction");
 		$("#input_imgs").trigger('click');
 	}
-
+//==================================================================================================
 	function submitAction() {
 		console.log("업로드 파일 갯수 : " + sel_files.length);
 		var data = new FormData();
@@ -184,8 +194,9 @@
 		$el.siblings().removeClass('active');
 
 	}
+//====================================================================================================
 	
-	   $(function(){    //레시피 삭제
+	      //레시피 삭제
 			$("#recipedele").on("click",function (){
 				var result = confirm('??지울라고???왜????');
 				if (result) {
@@ -195,19 +206,21 @@
 			if (${id == board.member_id}){
 				$(".btn").show();
 			}
-		})
-	
-	$(function(){	
 		
-		$("#bookmark").on("click",function(){
-			var no = "${recipe.recipe_number}";
-			if(favorite === "false"){
+	
+//====================================================================================================
+		
+		$("#bookmark").on("click",function(){   //즐겨찾기
+			
+			var recipe_no = "${recipe.recipe_number}";
+			var recipe_code = "fr";
+			if(favorite == "false") {
 					$("#bookmark").html("<img src='/teamProject3/images/즐겨찾기취소.jpg' style='width: 100px; height: 100px; margin-left: 30px;'>");
 					favorite = "true";
 			$.ajax("bookMark.do", {
 				method : "get",
 				dataType : "json",					// 서버에서 넘겨주는 데이터타입. text, html, json 등 타입을 적어줌
-				data : {no:no,bookmark:"insert"},						// 보낼 파라미터. 아작스함수가 값을 쿼리 문자형태(no=)로 바꿔서 넘겨줌
+				data : {no:recipe_no,code:recipe_code,bookmark:"insert"},						// 보낼 파라미터. 아작스함수가 값을 쿼리 문자형태(no=)로 바꿔서 넘겨줌
 				success : function(data) {
 				}
 			});
@@ -218,14 +231,14 @@
 				$.ajax("bookMark.do", {
 					method : "get",
 					dataType : "json",					// 서버에서 넘겨주는 데이터타입. text, html, json 등 타입을 적어줌
-					data : {no:no,bookmark:"delete"},						// 보낼 파라미터. 아작스함수가 값을 쿼리 문자형태(no=)로 바꿔서 넘겨줌
+					data : {no:recipe_no,code:recipe_code,bookmark:"delete"},						// 보낼 파라미터. 아작스함수가 값을 쿼리 문자형태(no=)로 바꿔서 넘겨줌
 					success : function(data) {
 					}
 				});
 			}
 		})
-		
-		$(".product_recipe").on("click",function(){
+//====================================================================================================	
+		$(".product_recipe").on("click",function(){    //재료 클릭시  재료가 포함된 레시피로 이동
 			var result = confirm("관련 레시피창으로 이동 합니다.")
 			if(result){
 				location.href="/teamProject3/recipeChoiceBoard.do?product_name="+$(this).data("product")
@@ -234,6 +247,8 @@
 	})
 </script>
 </head>
+
+
 <body>
 	<div class="row">
 		<div class="col-sm-12" align="center">
@@ -262,13 +277,11 @@
 		<div class="col-sm-6" align="left">
 			<h1>[재료]</h1>
 			<c:forEach items="${ product }" var="mater">
-				<c:if test="${mater.product_code eq 'prod'}">
-					<%-- <a  href="/teamProject3/recipeBoard.do?product_name=${product.product_name}"> --%>				
+				<c:if test="${mater.product_code eq 'prod'}">				
 					<h3 class="material" data-mate="${ mater.product_number }">
-				    <a href="javascript:void(0);" class="product_recipe" data-product="${ mater.product_name }">  ${ mater.product_name }</a>
-				용량 : ${ mater.product_unit }
+				    <a href="javascript:void(0);" class="product_recipe" data-product="${ mater.product_name }">${ mater.product_name }</a>
+					용량 : ${ mater.product_unit }
 					</h3>
-					<!-- </a> -->
 				</c:if>
 			</c:forEach>
 		</div>
@@ -347,7 +360,6 @@
 	<form name="searchFrm">
 		<input type="hidden" name="p" value="1"> <input type="hidden"
 			name="res_no" value="${ recipe.recipe_number }">
-
 	</form>
 	<hr>
 	<div class="row">
@@ -365,12 +377,12 @@
 						<img id="img" />
 					</div>
 				</div>
-				<br> <input value="${ recipe.recipe_number }" name="recipe_no"
+				<br><input value="${ recipe.recipe_number }" name="recipe_no"
 					hidden="hidden">
 				<textarea cols="100" rows="10" name="recipe_reivew_content"></textarea>
 				<button id="insert" style="vertical-align: top;">리뷰 쓰기</button>
 			</form>
-			<br> <br> <br>
+			<br><br><br>
 		</div>
 	</div>
 	<hr>

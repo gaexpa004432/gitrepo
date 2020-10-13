@@ -1,6 +1,8 @@
 package recipe;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import common.Paging;
 import controller.Controller;
+import model.FavoriteDAO;
 import model.FavoriteVO;
 import model.ProductDAO;
 import model.RecipeDAO;
@@ -21,14 +24,22 @@ public class RecipeViewController implements Controller {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RecipeVO recipe = new RecipeVO();
-		
 		FavoriteVO favorite = new FavoriteVO(); 
+		List<FavoriteVO> list = new ArrayList<FavoriteVO>();
 		String bookMark = "false";
 		HttpSession session = ((HttpServletRequest) request).getSession(); // member id 가져오기
 		recipe.setMember_id((String) session.getAttribute("id"));
 		int recipe_number = Integer.parseInt(request.getParameter("recipe_number"));
 		recipe.setRecipe_number(recipe_number);
 		RecipeDAO.getInstance().recipeSelectOne(recipe);
+		
+		list = FavoriteDAO.getInstance().selectAll(favorite);
+		for (FavoriteVO fav : list) {
+			if (fav.getFavorite_code().equals("fr") && fav.getFavorite_no() == (recipe.getRecipe_number())) {
+				bookMark = "true";
+			}
+		}
+		
 		RecipeReviewVO reviewvo = new RecipeReviewVO();
 		
 		 String p = request.getParameter("p");

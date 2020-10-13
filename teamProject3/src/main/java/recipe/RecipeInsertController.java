@@ -37,10 +37,6 @@ public class RecipeInsertController implements Controller {
 		recipe.setCooking_level(request.getParameter("cooking_level"));
 		
 		
-		
-		
-		
-		
 		// 첨부파일 처리
 		Part part1 = request.getPart("main_img");
 		String fileName1 =getFileName(part1);// Long.toString(System.currentTimeMillis());
@@ -66,12 +62,12 @@ public class RecipeInsertController implements Controller {
 		System.out.println(recipe.toString());
 		int r = RecipeDAO.getInstance().recipeInsert(recipe); // 글번호가 반환
 		MemberVO membervo = (MemberVO) request.getSession().getAttribute("login");
-		// int sellerCode = membervo.getSeller_code();
+		 int sellerCode = membervo.getSeller_code();
 		
 		
 		for (int a = 0; a < product_name.length; a++) {
 			ProductVO product = new ProductVO();
-			// product.setSeller_code(sellerCode);
+//			product.setSeller_code(sellerCode);
 			product.setRecipe_number(r);
 			product.setProduct_name(product_name[a]);
 			boolean productStatus = ProductDAO.getInstance().productStatus(product);
@@ -88,10 +84,10 @@ public class RecipeInsertController implements Controller {
 		}
 
 		//상품 코드 분류~~db 처리
-		// int sellerCode = membervo.getSeller_code();
+//		int sellerCode = membervo.getSeller_code();
 		for (int a = 0; a < non_product_name.length; a++) {
 			ProductVO product1 = new ProductVO();
-			// product.setSeller_code(sellerCode);
+//			product1.setSeller_code(sellerCode);
 			product1.setRecipe_number(r);
 			product1.setProduct_name(non_product_name[a]);
 			boolean product_code = ProductDAO.getInstance().productStatus(product1);
@@ -106,6 +102,7 @@ public class RecipeInsertController implements Controller {
 
 			ProductDAO.getInstance().productInsert(product1);
 		}
+		
 		
 		// 레시피 과정
 		String[] cooking_step = request.getParameterValues("cooking_step");
@@ -135,7 +132,6 @@ public class RecipeInsertController implements Controller {
 				photo.setRecipe_number(r);
 				RecipePhotoDAO.getInstance().recipe_photoInsert(photo);
 			}
-
 		}
 
 		// 페이지 이동

@@ -130,7 +130,7 @@
 	            return true;
 	        }
 	    }
-
+//====================================================================================================
 		$(function(){           //조리 순서 추가
 		
 		$(".stepAdd").on("click",function(){
@@ -143,7 +143,7 @@
 					.append($("<br>")));		
 		})
 	})
-
+//====================================================================================================
 		$(function(){           //상품이름 단위 가격 적는 곳 추가~!!!
 			
 			$(".matAdd").on("click",function(){
@@ -159,7 +159,7 @@
 			})	
 
 		})
-		
+//====================================================================================================		
 		$(function(){           //비매품이름 단위  적는 곳 추가~!!!
 			
 			$(".nonmatAdd").on("click",function(){
@@ -176,13 +176,14 @@
 
 </head>
 <body>
-		<h1 align="center">레시피 수정</h1>  
-	
-	<form action = "/teamProject3/recipeUpdate.do" method="post" name="frm" id="frm"
+	<h1 align="center">레시피 수정</h1>  
+	${recipe}
+	${product}
+	<form action ="/teamProject3/recipeUpdate.do" method="post" name="frm" id="frm"
 		  enctype='multipart/form-data'
 		  onsubmit="return recipeCheck()">
 		  <input type="hidden" name="recipe_number" value="${recipe.recipe_number}">
-		  
+		  <input type="hidden" name="board_no" value="${board.board_no}">
 	  <table>
                 <tr>
                     <th>레시피 제목 </th>
@@ -205,8 +206,8 @@
 	<h2>요리 정보</h2>
 	<div>
 	<span class = "time">시간</span>
-		<select name = "cooking_time" text = "조리시간" >
-			<option value="${ recipe.cooking_time }"></option>
+		<select name = "cooking_time" id = "cooking_time">
+			<option value="">조리시간</option>
 			<option value="5분이내">5분이내</option>
 			<option value="10분이내">10분이내</option>
 			<option value="30분이내">30분이내</option>
@@ -216,8 +217,8 @@
 			<option value="4시간이내">4시간이내</option>
 		</select>	
 		<span class = "level">난이도</span>
-		<select name = "cooking_level" text = "난이도" >
-			<option value="${ recipe.cooking_level }"></option>
+		<select name = "cooking_level" id = "cooking_level" >
+			<option value="">난이도</option>
 			<option value="누구나">누구나</option>
 			<option value="하">하</option>
 			<option value="중">중</option>
@@ -251,6 +252,10 @@
 	<img id="step_img" src="/teamProject3/images/${ step.cooking_photo_name }" width="100" alt="" >
 	<input type="file" id="step_img1" name = "step_img" accept="image/*" value="${ step.cooking_content }">
 	<script>  // 사진보이기
+	
+	$("#cooking_time").val("${ recipe.cooking_time }");
+	$("#cooking_level").val("${ recipe.cooking_level }");
+	
 	var file1 = document.querySelector('#step_img1');
 
 	file1.onchange = function () { 
