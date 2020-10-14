@@ -171,15 +171,13 @@ h6, .h6 {
 
 
     </style>
-    <link rel="stylesheet"
+	<link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-      <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script	src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
     <script
 	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-	<script type="text/javascript">
-	
-	</script>
+
+	 
     <decorator:head></decorator:head>
   </head>
   <body>
@@ -262,7 +260,7 @@ h6, .h6 {
             <decorator:body/>
       </div>
   <script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
-  <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> 
   <script src="${pageContext.request.contextPath}/js/jquery.easing.1.3.js"></script>
   <script src="${pageContext.request.contextPath}/js/jquery.waypoints.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/jquery.stellar.min.js"></script>
@@ -273,6 +271,6 @@ h6, .h6 {
   <script src="${pageContext.request.contextPath}/js/bootstrap-datepicker.js"></script>
   <script src="${pageContext.request.contextPath}/js/jquery.timepicker.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/scrollax.min.js"></script>
-  <script src="${pageContext.request.contextPath}/js/main.js"></script>
+  <script src="${pageContext.request.contextPath}/js/main.js"></script>  
   </body>
 </html>
