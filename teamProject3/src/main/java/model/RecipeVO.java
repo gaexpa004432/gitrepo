@@ -14,8 +14,8 @@ public class RecipeVO {
 	private String main_img;
 	private Integer first;
 	private Integer last;
-	
-	
+
+		
 	public Integer getFirst() {
 		return first;
 	}

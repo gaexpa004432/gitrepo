@@ -72,10 +72,15 @@
 		</thead>
 		<tbody>
 		<c:forEach items="${list}" var="eventboard">
+	
 		<tr>
 			<td>${eventboard.board_no}</td>
 				<c:if test="${!empty eventboard.board_file}">
-					<td><img src="/teamProject3/food/${ eventboard.board_file }"></td>
+					<td>
+					<a href="eventView.do?board_no=${eventboard.board_no}">
+					<img src="/teamProject3/food/${ eventboard.board_file }" width="250" height="250">
+					</a>
+					</td>
 				</c:if>
 				
 			<td><a href="eventView.do?board_no=${eventboard.board_no}">${eventboard.board_sub}</a></td>

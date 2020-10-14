@@ -24,7 +24,7 @@ public class orderVO {
 	int product_number;
 	String product_name;
 	Integer product_price;
-	int product_unit;
+	String product_unit;
 	String product_status;
 	String product_img;
 	

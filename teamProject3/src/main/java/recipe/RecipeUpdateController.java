@@ -20,14 +20,14 @@ public class RecipeUpdateController implements Controller {
 		
 		RecipeVO recipeboard = new RecipeVO();
 		recipeboard.setRecipe_name(recipe_name);
-		recipeboard.setRecipe_content(request.getParameter("board_content"));
+		recipeboard.setRecipe_content(request.getParameter("recipe_content"));
 		recipeboard.setRecipe_number(Integer.parseInt(request.getParameter("recipe_number")));
 		recipeboard.setCooking_time(request.getParameter("cooking_time"));
 		recipeboard.setCooking_level(request.getParameter("cooking_level"));
 		
 		Part part1 = request.getPart("main_img");
-		String fileName = getFileName(part1);// Long.toString(System.currentTimeMillis());
-		String path = request.getServletContext().getRealPath("/food"); // "c:/upload";
+		String fileName = getFileName(part1);
+		String path = request.getServletContext().getRealPath("/food");
 		System.out.println(path); 
 		File renameFile = common.FileRenamePolicy.rename(new File(path, fileName));
 		part1.write(path +"/"+ renameFile.getName());

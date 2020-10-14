@@ -23,7 +23,7 @@
 	$(document).ready(function() {
 		$("#input_imgs").on("change", handleImgFileSelect);
 	});
-
+	console.log(${sessionScope.login})
 	function fileUploadAction() {
 		console.log("fileUploadAction");
 		$("#input_imgs").trigger('click');

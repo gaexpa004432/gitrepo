@@ -18,13 +18,13 @@ public class orderDetailDAO {
 		return Detaildao;
 	}
 	
-	private final String SELECT_ORDER_DETAIL = "SELECT p.product_name,"
-			+ " p.product_price, d.order_detail_no, o.order_total"
+	private final String SELECT_ORDER_DETAIL = "SELECT r.recipe_name, p.product_name,"
+			+ " p.product_price, p.product_number"
 			+ " , SUM (CASE WHEN GROUP_CODE = '적립' THEN MILEAGE_COST * 1"
 			+ " ELSE MILEAGE_COST * -1 END) OVER (ORDER BY MILEAGE_NO) AS remaining"
-			+ " , m.group_code, m.mileage_cost, m.mileage_no"
-			+ " FROM product p, order_detail d, order1 o, mileage m"
-			+ " WHERE m.member_id = ?";
+			+ " ,m.group_code, m.mileage_cost, m.mileage_no"
+			+ " FROM product p, order_detail d, recipe r, mileage m"
+			+ " WHERE r.recipe_number = ?";
 	
 
 	public ArrayList<orderVO> selectOrder(orderVO order) {
@@ -32,14 +32,14 @@ public class orderDetailDAO {
 		try {
         	conn = ConnectionManager.getConnnect();
             psmt = conn.prepareStatement(SELECT_ORDER_DETAIL);
-            psmt.setString(1, order.getMember_id());
+            psmt.setInt(1, order.getRecipe_number());
             rs = psmt.executeQuery();
             while(rs.next()){
             	orderVO ord = new orderVO();
+            	ord.setProduct_number(rs.getInt("product_number"));
             	ord.setProduct_name(rs.getString("product_name"));
             	ord.setProduct_price(rs.getInt("product_price"));
-            	ord.setOrder_detail_no(rs.getInt("order_detail_no"));
-            	ord.setOrder_total(rs.getInt("order_total"));
+            	ord.setRecipe_name(rs.getString("recipe_name"));
             	ord.setRemaining(rs.getInt("remaining"));
             	list.add(ord);
             }

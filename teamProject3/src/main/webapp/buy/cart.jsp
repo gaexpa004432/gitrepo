@@ -164,7 +164,7 @@ h2 {
 						type="checkbox" class="all-select-cart" checked> 
 						<span> &nbsp; 전체선택</span>
 				</label></th>
-
+				<th scope="col" class="th-recipe-number">레시피번호</th>
 				<th scope="col" class="th-product-box" colspan="2">상품정보</th>
 				<th scope="col" class="th-price-box">단가</th>
 				<th scope="col" class="th-amount-box">재료</th>
@@ -181,13 +181,17 @@ h2 {
 				<input type="checkbox" class="cart-check" checked> 
 			</td>
 			<td>${cart.main_img}</td>
+			<td>${cart.recipe_number}</td>
 			<td>${cart.recipe_name}</td>
 			<td class="cart_price" >${cart.product_price}</td>
+
+			<td>${cart.product_name}</td>
 			<td>
 			<select class="quantity-select">
-			<option <c:if test="${cart.product_name == '돼지고기'}">selected </c:if>>돼지고기</option>
-			<option <c:if test="${cart.product_name == '인석이 고기'}">selected </c:if>>인석이고기</option>
-			<option <c:if test="${cart.product_name == '도야지'}">selected </c:if>>도야지</option>
+			<option <c:if test="${cart.order_detail_no == '1'}">selected </c:if>>1</option>
+			<option <c:if test="${cart.order_detail_no == '2'}">selected </c:if>>2</option>
+			<option <c:if test="${cart.order_detail_no == '3'}">selected </c:if>>3</option>
+			<option <c:if test="${cart.order_detail_no == '4'}">selected </c:if>>4</option>
 			</select></td>
 			<td class="all-product-price">${cart.product_price}</td>
 			<td class="mileage-price">${cart.product_price * 0.01}</td>
@@ -197,6 +201,11 @@ h2 {
 		<c:set var="total" value="${total+gum}"/>
 	</c:forEach>
 	</tbody>
+	<tfoot>
+	<tr>
+		<td><input type="button" id="cart_delete_all" value="장바구니비우기"></td>
+	</tr>
+	</tfoot>
 	</table>
 	<div class="cart-total-price">
 		<div class="cart-total-price-inner">
@@ -212,7 +221,7 @@ h2 {
 	</div>
 
 	<div>
-	<a href="" class="btn btn-primary">쇼핑 계속하기</a>
+	<a href="${pageContext.request.contextPath}/recipeBoard.do" class="btn btn-primary">쇼핑 계속하기</a>
 	<a href="${pageContext.request.contextPath}/orderDetailController.do" class="btn btn-primary" role="button">구매하기</a>
 	</div>
 	

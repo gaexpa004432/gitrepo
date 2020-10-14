@@ -70,13 +70,13 @@ public class FrontController extends HttpServlet {
 		
 		
 		//김성남
-		list.put("/save_product.do", new recipe.ProductInsertController());
 		list.put("/productList.do", new recipe.ProductListController());
 		list.put("/recipeInsert.do", new recipe.RecipeInsertController());
 		list.put("/recipeDelete.do", new recipe.RecipeDeleteController());
 		list.put("/recipeViewUpdate.do", new recipe.RecipeViewUpdateController());
 		list.put("/recipeUpdate.do", new recipe.RecipeUpdateController());
 		list.put("/recipeChoiceBoard.do", new recipe.RecipeChoiceBoardController());
+		list.put("/recipebookMark.do", new recipe.RecipeBookMarkController());
 		
 		list.put("/eventInsert.do", new event.EventInsertController());
 		list.put("/eventBoardList.do", new event.EventListController());
@@ -106,6 +106,9 @@ public class FrontController extends HttpServlet {
 		list.put("/orderOutput.do", new buy.orderOutputController());
 		list.put("/orderOutputInsert.do", new buy.orderOutputInsertController());
 		list.put("/mileageController.do", new buy.mileageCotroller());
+		list.put("/mileageSelectController.do", new buy.mileageSelectCotroller());
+		list.put("/orderList.do", new buy.orderListController());
+		
 		
 		
 		
@@ -154,13 +157,7 @@ public class FrontController extends HttpServlet {
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
+
 		
 		
 		//백승엽
