@@ -1,6 +1,8 @@
 package buy;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,7 +38,11 @@ public class orderOutputInsertController implements Controller {
 	
 		int ord = orderDAO.getInstance().Insertoutput(vo);
 		
+		ArrayList<orderVO> list = orderDAO.getInstance().getOrder(vo);
+		
 		request.setAttribute("ord", ord);
+		
+		request.setAttribute("list", list);
 		
 		request.getRequestDispatcher("/buy/buyOutput.jsp").forward(request, response);
 

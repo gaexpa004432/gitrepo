@@ -1,31 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
-	.order-list-table {
-		padding : 3px;
-	}
-	
-	.end {
-		font-size : 60px;
-	}
-
-	.order-list-table {
-		align : center;
-	}
-</style>
+<title>orderList</title>
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/orderOutputInsert.do">
+	<form action="${pageContext.request.contextPath}/orderList.do">
 <img src="">
-<h1 align="center" class="end">구매가 완료되었습니다.</h1>
-<h3 align="center" class="end1">더 나은 서비스와 질로 보답하겠습니다.</h3>
+<h1 align="center" class="end">주문내역</h1>
 <hr>
 	<table>
 		<thead>
@@ -37,9 +22,9 @@
 		</thead>
 		<tbody>
 		<tr>
-			<td>${list[0].member_name}</td>
-			<td>${list[0].member_tel}</td>
-			<td>${list[0].member_address}</td>
+			<td>${list.member_name}</td>
+			<td>${list.member_tel}</td>
+			<td>${list.member_address}</td>
 		</tr>
 		</tbody>
 	</table>
@@ -96,7 +81,6 @@
 	</tbody>
 	</table>
 	<hr>
-	
 </form>
 </body>
 </html>
