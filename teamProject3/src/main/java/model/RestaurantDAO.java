@@ -96,7 +96,7 @@ public class RestaurantDAO {
 			conn = ConnectionManager.getConnnect();
 			
 			String sql = "select a.*  from ( select rownum rn, b.*  from ( " + 
-					"select * from res_pic where res_pic_no in (select min(res_pic_no) from res_pic group by res_no)" + 
+					" select res_pic_no,res_pic_name,p.res_no ,(select res_name from res r where r.res_no = p.res_no)  from res_pic p where res_pic_no in (select min(res_pic_no) from res_pic group by res_no)" + 
 					"	ORDER BY res_no" + 
 					"	) b ) a where rn BETWEEN ? and ?"; // 첫번째 이미지만 들고옴
 			pstmt = conn.prepareStatement(sql); 
@@ -113,6 +113,7 @@ public class RestaurantDAO {
 				RestaurantVO restaurant = new RestaurantVO();
 				restaurant.setRes_no(rs.getInt("res_no"));
 				restaurant.setRes_name(rs.getString("res_pic_name"));
+				restaurant.setRes_gu(rs.getString(5));
 
 				list.add(restaurant);
 			}
