@@ -14,7 +14,7 @@ public class ProductVO {
 	private int recipe_number;
 	private String product_code;
 
-	
+
 	
 	public String getProduct_code() {
 		return product_code;

@@ -298,6 +298,7 @@
 	</div>
 	<hr>
 	<div class="row">
+	${ photo }
 		<c:forEach items="${ photo }" var="step">
 			<div class="col-sm-6">조리 내용 : ${ step.cooking_content }</div>
 			<div class="col-sm-6">
