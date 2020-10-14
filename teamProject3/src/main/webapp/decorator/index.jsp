@@ -194,9 +194,10 @@ h6, .h6 {
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item active"><a href="" class="nav-link">Home</a></li>
-	          <li class="nav-item"><a href="${pageContext.request.contextPath}/CartSelectContoroller.do" class="nav-link">Guide</a></li>
+	          <li class="nav-item"><a href="/teamProject3/guide/guide.jsp" class="nav-link">Guide</a></li>
 	          <li class="nav-item"><a href="/teamProject3/recipeBoard.do" class="nav-link">Reciepe</a></li>
-	          <li class="nav-item"><a href="" class="nav-link">Board</a></li>
+	          <li class="nav-item"><a href="/teamProject3/freeBoardList.do" class="nav-link">Board</a></li>
+	          <li class="nav-item"><a href="/teamProject3/qaBoardList.do" class="nav-link">QaBoard</a></li>
 	          <li class="nav-item"><a href="/teamProject3/restaurantBoard.do" class="nav-link">Recommands</a></li>
 	          <li class="nav-item"><a href="/teamProject3/eventBoardList.do" class="nav-link">Event</a></li>
 	          <c:choose>

@@ -76,12 +76,18 @@ public class ProductDAO{
 		ArrayList<ProductVO> list = new ArrayList<ProductVO>();
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT DISTINCT product_name FROM product";
+			String sql = "SELECT DISTINCT product_name, product_unit, product_price, product_code "
+						+ "FROM product"
+						+ " WHERE recipe_number = ?";
 			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, productVO.getRecipe_number());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				resultVO = new ProductVO();
 				resultVO.setProduct_name(rs.getString("product_name"));
+				resultVO.setProduct_unit(rs.getString("product_unit"));
+				resultVO.setProduct_price(rs.getInt("product_price"));
+				resultVO.setProduct_code(rs.getString("product_code"));
 				list.add(resultVO);
 			}
 		} catch (Exception e) {
