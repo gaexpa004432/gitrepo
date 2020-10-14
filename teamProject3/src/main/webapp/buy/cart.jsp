@@ -109,15 +109,15 @@ h2 {
 			tr.find('.mileage-price').html(mileage);
 			m_sum();
 		})
+		
 		$('.cart-delete').on("click", function(){
-
 				$(this).closest('tr').remove();
 				sum();
 		});
 		
 		
 	});
-	
+		
 	//상품들의 총 가격 계산 function
 	function sum() {
 		var check =	$('.cart-check:checked');
@@ -145,6 +145,7 @@ h2 {
 </script>
 </head>
 <body>
+<form action="${pageContext.request.contextPath}/CartSelectContoroller.do">
 	<h3>장바구니</h3>
 	<hr width=70%>
 	<table class="cartTable">
@@ -184,28 +185,23 @@ h2 {
 			<td>${cart.recipe_number}</td>
 			<td>${cart.recipe_name}</td>
 			<td class="cart_price" >${cart.product_price}</td>
-
 			<td>${cart.product_name}</td>
 			<td>
 			<select class="quantity-select">
-			<option <c:if test="${cart.order_detail_no == '1'}">selected </c:if>>1</option>
-			<option <c:if test="${cart.order_detail_no == '2'}">selected </c:if>>2</option>
-			<option <c:if test="${cart.order_detail_no == '3'}">selected </c:if>>3</option>
-			<option <c:if test="${cart.order_detail_no == '4'}">selected </c:if>>4</option>
+			<option <c:if test="${cart.order_detail_no == '1'}">selected </c:if> value="1">1</option>
+			<option <c:if test="${cart.order_detail_no == '2'}">selected </c:if> value="2">2</option>
+			<option <c:if test="${cart.order_detail_no == '3'}">selected </c:if> value="3">3</option>
+			<option <c:if test="${cart.order_detail_no == '4'}">selected </c:if> value="4">4</option>
 			</select></td>
 			<td class="all-product-price">${cart.product_price}</td>
 			<td class="mileage-price">${cart.product_price * 0.01}</td>
-			<td><button type="button" class="cart-delete">삭제</button></td>
+			<td class="seller-box"><input type="hidden" value="${cart.seller_code}"></td>
+			<td><button type="button" class="cart-delete">삭제</button><td>
 		</tr>
 		<c:set var="gum" value="${cart.product_price}"/>
 		<c:set var="total" value="${total+gum}"/>
 	</c:forEach>
 	</tbody>
-	<tfoot>
-	<tr>
-		<td><input type="button" id="cart_delete_all" value="장바구니비우기"></td>
-	</tr>
-	</tfoot>
 	</table>
 	<div class="cart-total-price">
 		<div class="cart-total-price-inner">
@@ -224,6 +220,7 @@ h2 {
 	<a href="${pageContext.request.contextPath}/recipeBoard.do" class="btn btn-primary">쇼핑 계속하기</a>
 	<a href="${pageContext.request.contextPath}/orderDetailController.do" class="btn btn-primary" role="button">구매하기</a>
 	</div>
+</form>
 	
 </body>
 </html>

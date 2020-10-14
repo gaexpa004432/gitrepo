@@ -23,7 +23,7 @@ public class orderDetailDAO {
 			+ " , SUM (CASE WHEN GROUP_CODE = '적립' THEN MILEAGE_COST * 1"
 			+ " ELSE MILEAGE_COST * -1 END) OVER (ORDER BY MILEAGE_NO) AS remaining"
 			+ " ,m.group_code, m.mileage_cost, m.mileage_no"
-			+ " FROM product p, order_detail d, recipe r, mileage m"
+			+ " FROM product p, recipe r, mileage m"
 			+ " WHERE r.recipe_number = ?";
 	
 
