@@ -86,13 +86,13 @@
 						if (material != null) {
 							var param = "?";
 							for (i = 0; i <= material.length - 1; i++) {
-								param += "product_number="
+								param += "recipe_number="
 										+ $(".material").eq(i).data("mate");
 								if (material.length - 1 != i) {
 									param += "&";
 								}
 							}
-							location.href = "${pageContext.request.contextPath}/CartSelectContoroller.do" + param;
+							location.href = "${pageContext.request.contextPath}/CartSelectContoroller.do?recipe_number=" + ${ recipe.recipe_number };
 						}
 					}
 				})
@@ -356,12 +356,15 @@
 		</div>
 	</c:forEach>
 	<div align="center">
-		<my:paging paging="${paging}" jsfunc="gopage" />
-	</div>
-	<form name="searchFrm">
-		<input type="hidden" name="p" value="1"> <input type="hidden"
-			name="res_no" value="${ recipe.recipe_number }">
-	</form>
+
+ <my:paging paging="${paging}" jsfunc="gopage" />
+</div>
+<form name="searchFrm">		
+	<input type="hidden" name="p" value="1">
+	<input type="hidden" name="res_no" class="recipe_no" value="${ recipe.recipe_number }">
+	
+</form>
+
 	<hr>
 	<div class="row">
 		<div class="col" align="center">

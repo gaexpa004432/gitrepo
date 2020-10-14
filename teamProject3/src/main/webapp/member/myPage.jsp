@@ -45,7 +45,7 @@
 		</c:when>
 	</c:choose>
 	<li><a href="${pageContext.request.contextPath}/select.do">내정보 조회 및 수정</a>
-	<li><a href="#">마일리지 조회</a>
+	<li><a href="${pageContext.request.contextPath}/mileageController.do">마일리지 조회</a>
 	<c:choose>
 		<c:when test="${sessionScope.login.seller_code != 0}">
 			<li><a href="${pageContext.request.contextPath}/member/memberAddUpdate.jsp">소상공인 정보 수정 및 조회</a>
@@ -56,6 +56,7 @@
 			<li><a href="${pageContext.request.contextPath}/member/memberAddInsert.jsp">소상공인 추가정보 등록</a>
 		</c:when>
 	</c:choose>
+	<li><a href="#">주문내역</a>
 	<li><a href="#">탈퇴</a>
 </ul>
 </form>
