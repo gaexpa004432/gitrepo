@@ -62,7 +62,7 @@ public class RecipeInsertController implements Controller {
 		System.out.println(recipe.toString());
 		int r = RecipeDAO.getInstance().recipeInsert(recipe); // 글번호가 반환
 		MemberVO membervo = (MemberVO) request.getSession().getAttribute("login");
-		 int sellerCode = membervo.getSeller_code();
+//		 int sellerCode = membervo.getSeller_code();
 		
 		
 		for (int a = 0; a < product_name.length; a++) {

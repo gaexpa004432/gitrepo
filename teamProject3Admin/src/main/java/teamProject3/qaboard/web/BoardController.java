@@ -17,19 +17,26 @@ import teamProject3.qaboard.service.BoardService;
 
 @Controller
 public class BoardController {
-	@Autowired BoardService boardservice;
-	
+	@Autowired
+	BoardService boardservice;
+
 	@RequestMapping("/boardList")
-	public String memberList(Model model ,HttpServletRequest request,HttpServletResponse response) {
-		List<BoardVO> list = new ArrayList<BoardVO>();
-		BoardVO boardvo = new BoardVO();
-		 list = boardservice.selectAll(null);
-		 for(BoardVO all : list) {
-			 boardvo.setBoard_no(all.getBoard_no());
-			 
-		 }
-		model.addAttribute("list", boardservice.selectAll(null));
-		model.addAttribute("index",5);
+	public String memberList(Model model, HttpServletRequest request, HttpServletResponse response) {
+		List<BoardVO> list = boardservice.selectAll(null);
+		List<BoardVO> list2 = new ArrayList<BoardVO>();
+		List<BoardVO> listComment = boardservice.commntSelectAll(null);
+
+		for (BoardVO all : list) {
+			
+			for (BoardVO comment : listComment) {
+				if (comment.getBoard_no() == all.getBoard_no() && comment.getMember_id().equals("vegan")) {
+					all.setMember_name("답변완료");
+				}
+			}
+			list2.add(all);
+		}
+		model.addAttribute("list", list2);
+		model.addAttribute("index", 5);
 		return "manager/qaBoard";
 	}
 }

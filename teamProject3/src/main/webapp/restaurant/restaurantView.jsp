@@ -62,6 +62,10 @@ img.inimg {
 <script type="text/javascript">
 	var sel_files = [];
 	$(function() {
+		if(${!empty focus}){
+			document.getElementById('review').focus();
+			console.log("gg")
+		}
 		var favorite = "${favorite}";
 		if(favorite == "true"){
 			$("#bookmark").html("<img src='/teamProject3/images/즐겨찾기취소.jpg' style='width: 100px; height: 100px; margin-left: 30px;'>");

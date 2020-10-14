@@ -62,4 +62,10 @@ public class BoardServiceImpl implements BoardService{
 		return null;
 	}
 
+	@Override
+	public ArrayList<BoardVO> commntSelectAll(BoardVO freeboardVO) {
+		
+		return boarddao.commntSelectAll(freeboardVO);
+	}
+
 }

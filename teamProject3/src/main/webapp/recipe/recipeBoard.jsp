@@ -87,6 +87,7 @@
 <c:set var="i" value="0" />
  <c:set var="j" value="4" />
  <div class="row" align="center">
+
  <table  style="border-spacing:50px;">
   <c:choose>
    <c:when test="${list != null && fn:length(list) > 0 }"> 

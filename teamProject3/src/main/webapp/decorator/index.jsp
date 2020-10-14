@@ -191,7 +191,7 @@ h6, .h6 {
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item active"><a href="" class="nav-link">Home</a></li>
+	          <li class="nav-item active"><a href="/teamProject3/" class="nav-link">Home</a></li>
 	          <li class="nav-item"><a href="/teamProject3/guide/guide.jsp" class="nav-link">Guide</a></li>
 	          <li class="nav-item"><a href="/teamProject3/recipeBoard.do" class="nav-link">Reciepe</a></li>
 	          <li class="nav-item"><a href="/teamProject3/freeBoardList.do" class="nav-link">Board</a></li>
