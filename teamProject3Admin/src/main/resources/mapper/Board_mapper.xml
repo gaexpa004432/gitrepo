@@ -7,4 +7,7 @@
 		FROM board
 		 where board_groupcode = 'pq'
 	</select>
+	<select id="commntSelectAll" resultType="board" parameterType="board">
+		select c.post_no as board_no, c.member_id,max(c.comment_no) from boardcomment c,board b where  b.board_no = c.post_no and b.BOARD_GROUPCODE='pq' group by c.post_no,c.member_id 
+	</select>
  </mapper>

@@ -31,6 +31,9 @@ $(function(){
 	    	
 	    });
 	} );
+	$(".qaboard").on("click",function(){
+		location.href="/teamProject3/qaBoardView.do?board_no="+$(this).data("board");
+	})
 	
 })
 </script>
@@ -41,8 +44,13 @@ $(function(){
 			<thead><tr><th>사진</th><th>글제목</th><th>글내용</th><th>날짜</th><th>작성자 ID</th></thead>
 			<tbody>
 	<c:forEach items="${ list }" var="board">
-		<tr>
-		<td>${board.board_file }</td>
+		<tr class="qaboard" data-board="${board.board_no }">
+		<c:if test="${!empty board.member_name }">
+		<td>${board.member_name }</td>
+		</c:if>
+		<c:if test="${empty board.member_name }">
+		<td>답변 대기중</td>
+		</c:if>
 		<td>${board.board_sub }</td>
 		<td>${board.board_content }</td>
 		<td>${board.board_date }</td>

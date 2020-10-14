@@ -60,8 +60,8 @@ public class reviewInsertController implements Controller {
 				RestaurantReviewDAO.getInstance().insert_res_pic(restaurant);
 			}
 		}
-
-		response.sendRedirect("restaurantView.do?res_no="+no);
+	
+		response.sendRedirect("restaurantView.do?res_no="+no+"&focus=0");
 
 	}
 

@@ -19,6 +19,11 @@ public class SellVO {
 	private int order_detail_number;
 	private int product_number;
 	private String product_unit;
+	private String member_postcode;
+	private String member_roadAddress;
+	private String member_detailAddress;
+	private String member_extraAddress;
+	
 	
 	//페이징처리를 위한
 	private Integer first;
