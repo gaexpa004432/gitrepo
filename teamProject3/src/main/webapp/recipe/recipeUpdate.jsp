@@ -132,19 +132,22 @@
 	    }
 //====================================================================================================
 		$(function(){           //조리 순서 추가
-		
+			
+			
 		$(".stepAdd").on("click",function(){
 			$(".cooking_order").append($("<div>")
 					.append($("<input>").attr("name","cooking_step"))
-					.append($("<input>").attr("type","file").attr("name","step_img"))		
+					.append($("<img>").css("width","100px").attr("class","step_img"))
+					.append($("<input>").attr("type","file").attr("name","step_img").attr("class","step_img1"))		
 					.append($("<button>").attr("type","button").text("삭제").on("click",function(){
 						$(this).parent().remove();
 					}))
-					.append($("<br>")));		
+					.append($("<br>")));
+			
 		})
-	})
+	
 //====================================================================================================
-		$(function(){           //상품이름 단위 가격 적는 곳 추가~!!!
+		          //상품이름 단위 가격 적는 곳 추가~!!!
 			
 			$(".matAdd").on("click",function(){
 				$(".matList").append($("<div>")
@@ -155,12 +158,12 @@
 							$(this).parent().remove();
 						}))
 						.append($("<br>")));		
-
+		
 			})	
 
-		})
+		
 //====================================================================================================		
-		$(function(){           //비매품이름 단위  적는 곳 추가~!!!
+		         //비매품이름 단위  적는 곳 추가~!!!
 			
 			$(".nonmatAdd").on("click",function(){
 				$(".nonmatList").append($("<div>")
@@ -171,7 +174,32 @@
 						}))
 						.append($("<br>")));		
 			})	
-		})
+		
+		
+			
+	
+	$("#cooking_time").val("${ recipe.cooking_time }");
+	$("#cooking_level").val("${ recipe.cooking_level }");
+	
+$(document).on("change",".step_img1",function () { 
+		
+    var fileList1 = this.files ;
+    console.log(fileList1);
+    // 읽기
+    var reader1 = new FileReader();
+    reader1.readAsDataURL(fileList1 [0]);
+
+    //로드 한 후
+    	reader1.onload(function(){
+    		console.log($(this).parent().children().eq(1));
+        $(this).parent().children().eq(1).src(reader1.result); 
+    	})
+    reader1.onload = function () {
+       // this.parentNode.childNode[1].src = reader1.result ;
+    	}; 
+    		
+	}); 
+})
 	</script>
 
 </head>
@@ -262,33 +290,14 @@
 	<div class = "cooking_order">
 	<c:forEach items="${ photo }" var = "step">
 	<input name = "cooking_step" value="${ step.cooking_content }">
-	<img id="step_img" src="/teamProject3/images/${ step.cooking_photo_name }" width="100" alt="" >
-	<input  id="step_img1" name = "step_img" 
+	<img class="step_img" src="/teamProject3/images/${ step.cooking_photo_name }" width="100" alt="" >
+	<input type="file" class="step_img1" name = "step_img" 
 			accept="image/*" >
 			<br>
 	</c:forEach>
 	
 			
-	<script>  // 사진보이기
-	
-	$("#cooking_time").val("${ recipe.cooking_time }");
-	$("#cooking_level").val("${ recipe.cooking_level }");
-	
-	var file1 = document.querySelector('#step_img1');
 
-	file1.onchange = function () { 
-    var fileList1 = file1.files ;
-    
-    // 읽기
-    var reader1 = new FileReader();
-    reader1.readAsDataURL(fileList1 [0]);
-
-    //로드 한 후
-    reader1.onload = function () {
-        document.querySelector('#step_img').src = reader1.result ;
-    	}; 
-	}; 
-	</script>
 	</div>
 	
 	<button type="button" class="stepAdd">순서 추가</button>
