@@ -181,6 +181,7 @@ public class RecipeDAO{
 				pstmt.setString(3, recipeVO.getCooking_time());
 				pstmt.setString(4, recipeVO.getCooking_level());
 				pstmt.setString(5, recipeVO.getMain_img());
+				pstmt.setInt(6, recipeVO.getRecipe_number());
 				r = pstmt.executeUpdate();
 
 			} catch (Exception e) {

@@ -184,14 +184,17 @@
 		  onsubmit="return recipeCheck()">
 		  <input type="hidden" name="recipe_number" value="${recipe.recipe_number}">
 		  <input type="hidden" name="board_no" value="${board.board_no}">
+		  ${ recipe.main_img }
 	  <table>
                 <tr>
                     <th>레시피 제목 </th>
                     <td><input type="text" name="recipe_name" value="${recipe.recipe_name}"></td>
                 </tr>
                
-               <tr>
-                    <td></td>
+                <tr>
+                    <td>
+                    <img id="main_img" src="/teamProject3/images/${ recipe.main_img }" width="100" alt="" />
+                    </td>
                     <td><input type = "file" name="main_img"></td>
                 </tr>
                
@@ -234,7 +237,6 @@
 	
 	<c:forEach items="${product}" var="productList">
 	<c:if test="${productList.product_code eq 'prod'}">
-	<%-- ${productList.product_code} --%>
 	<input name="product_name" placeholder="예) 돼지고기" value="${productList.product_name}">
 	<input name="product_unit" placeholder="예) 1KG"  value="${productList.product_unit}">
 	<input name="product_price" placeholder="예) 10000원"  value="${productList.product_price}"><br>
@@ -261,7 +263,7 @@
 	<c:forEach items="${ photo }" var = "step">
 	<input name = "cooking_step" value="${ step.cooking_content }">
 	<img id="step_img" src="/teamProject3/images/${ step.cooking_photo_name }" width="100" alt="" >
-	<input type="file" id="step_img1" name = "step_img" 
+	<input  id="step_img1" name = "step_img" 
 			accept="image/*" >
 			<br>
 	</c:forEach>
