@@ -8,26 +8,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import model.orderDAO;
+import model.orderListDAO;
 import model.orderVO;
 
-public class orderOutputController implements Controller {
+public class orderListController implements Controller {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		orderVO VO = new orderVO();
-		
-		
-		Integer order_number = Integer.parseInt(request.getParameter("order_number"));
-		VO.setOrder_number(order_number);
+
+		orderVO vo = new orderVO();
 		
 		String member_id = //request.getParameter("member_id");
-		(String) request.getSession().getAttribute("id");
-		VO.setMember_id(member_id);
+				(String) request.getSession().getAttribute("id");
+				vo.setMember_id(member_id);
 		
-		ArrayList<orderVO> list = orderDAO.getInstance().getOrder(VO);
+		Integer order_number = Integer.parseInt(request.getParameter("order_number"));
+		vo.setOrder_number(order_number);
+
+		ArrayList<orderVO> list = orderListDAO.getInstance().getOrder(vo);
 		
 		request.setAttribute("list", list);
 				
-		request.getRequestDispatcher("/buy/buyOutput.jsp").forward(request, response);
+		request.getRequestDispatcher("/member/orderList.jsp").forward(request, response);
 	}
+
 }

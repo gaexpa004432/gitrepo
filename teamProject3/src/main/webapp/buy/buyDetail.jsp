@@ -96,6 +96,10 @@ $(function() {
 		$('#mileage_have').val($('#mileage_use').html());
 	});
 	
+	$('#payment_button').on("click", function() {
+		frm.submit();
+	});
+	
 	$('#').on("click", function() {
 		
 		var IMP = window.IMP; // 생략가능
@@ -134,9 +138,6 @@ $(function() {
 	    }
 	})
 	
-	$('#payment_button').on("click", function() {
-		
-	})
 });
 </script>
 </head>
@@ -194,6 +195,7 @@ $(function() {
 		</c:forEach>
 		</tbody>
 		</table>
+		<input type="hidden" name="member_id" value="${vo.member_id}">
 		<div class="payment">
 		<strong>최종결제금액 : </strong>
 		<input type="hidden" name="order_total" value="${all_price}">
@@ -235,7 +237,6 @@ $(function() {
 				placeholder="참고항목" value="${vo.member_extraAddress}">
 		</div>
 		
-		</form>
 		<hr width=30%>
 		<h3>적립금</h3> 
 		<div class="miliege-imformation">
@@ -259,12 +260,14 @@ $(function() {
 				<img src="${pageContext.request.contextPath}/buy/images/minus.png">
 				<span>${my_mileage}</span>
 				<img src="${pageContext.request.contextPath}/buy/images/equal.png">
-				<c:set var="fianl_order_price" value="${all_price - my_mileage}"/>
-				<span id="final-cart-price-mileage">${fianl_order_price}</span>
+				<c:set var="final_order_price" value="${all_price - my_mileage}"/>
+				<span id="final-cart-price-mileage">${final_order_price}</span>
 			</div>
 		</div>
-		<a href="${pageContext.request.contextPath}/orderOutput.do" 
-		id ="payment_button" class="btn btn-primary">결제하기</a>
+		
+		<button type="button" id="payment_button">결제하기</button>
+		</form>
 	</div>
+	
 </body>
 </html>

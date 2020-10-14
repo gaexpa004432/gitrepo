@@ -240,8 +240,9 @@
     	}; 
 	}; 
 	</script>
+	
 	</div>
-	<button type="button" class="stepAdd" >순서 추가</button>
+	<button type="button" class="stepAdd">순서 추가</button>
 	
 	<hr>
 	<button class = "btn pink">등록</button>

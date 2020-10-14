@@ -23,18 +23,14 @@ public class CartSelectContoller implements Controller {
 			request.getSession().setAttribute("session_cart", session_cart);
 		}
 		
-		String[] recipe_number = request.getParameterValues("recipe_number");
-		int i=0;
-		for(i=0; i<recipe_number.length; i++) {
-			orderVO VO = new orderVO();
-			VO.setRecipe_number(Integer.parseInt(recipe_number[i]));
-			session_cart.add(VO);
-		}
-
+		Integer recipe_number = Integer.parseInt(request.getParameter("recipe_number"));	
+		orderVO VO = new orderVO();
+		VO.setRecipe_number(recipe_number);
+			
 		String member_id = (String) request.getSession().getAttribute("id");//request.getParameter("member_id");
 		vo.setMember_id(member_id);
+		ArrayList<orderVO> list = cartDAO.getInstance().selectCart(VO);
 		
-		ArrayList<orderVO> list = cartDAO.getInstance().selectCart(session_cart);
 		
 		request.getSession().setAttribute("session_cart", list);//세션에 저장
 
