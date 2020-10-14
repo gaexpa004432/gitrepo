@@ -64,6 +64,9 @@ public class MemberLoginController implements Controller {
 				System.out.println("판매자 코드: " + resultVO.getSeller_code());				
 				
 				page = "/member/memberLoginOutput.jsp";
+				if(memberVO.getMember_id().equals("vegan")) {
+					page = "/";
+				}
 			} else { //패스워드 불일치
 				request.setAttribute("resultVO", resultVO);
 				request.setAttribute("errormsg", "패스워드가 맞지 않습니다"); //패스워드 맞지 않으면 에러 메시지

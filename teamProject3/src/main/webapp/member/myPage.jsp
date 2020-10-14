@@ -56,7 +56,7 @@
 			<li><a href="${pageContext.request.contextPath}/member/memberAddInsert.jsp">소상공인 추가정보 등록</a>
 		</c:when>
 	</c:choose>
-	<li><a href="#">탈퇴</a>
+	<li><a href="/teamproject3/member/memberDelete.jsp">탈퇴</a>
 </ul>
 </form>
 </body>
