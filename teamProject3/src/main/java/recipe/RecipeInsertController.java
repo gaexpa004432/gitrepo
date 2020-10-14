@@ -67,7 +67,7 @@ public class RecipeInsertController implements Controller {
 		
 		for (int a = 0; a < product_name.length; a++) {
 			ProductVO product = new ProductVO();
-//			product.setSeller_code(sellerCode);
+			product.setSeller_code(sellerCode);
 			product.setRecipe_number(r);
 			product.setProduct_name(product_name[a]);
 			boolean productStatus = ProductDAO.getInstance().productStatus(product);
@@ -84,10 +84,10 @@ public class RecipeInsertController implements Controller {
 		}
 
 		//상품 코드 분류~~db 처리
-//		int sellerCode = membervo.getSeller_code();
+		sellerCode = membervo.getSeller_code();
 		for (int a = 0; a < non_product_name.length; a++) {
 			ProductVO product1 = new ProductVO();
-//			product1.setSeller_code(sellerCode);
+			product1.setSeller_code(sellerCode);
 			product1.setRecipe_number(r);
 			product1.setProduct_name(non_product_name[a]);
 			boolean product_code = ProductDAO.getInstance().productStatus(product1);

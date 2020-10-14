@@ -59,6 +59,8 @@ $(function(){
     	<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-success">
+					<h3>${orderOne.member_id}님의 주문입니다.</h3>
+					<h4>배송지 : ${orderOne.member_roadAddress} ${orderOne.member_detailAddress} ${orderOne.member_extraAddress} , 우편번호 : ${orderOne.member_postcode }</h4>
 					<table class="table table-hover" id="task-table">
 						<thead>
 							<tr>

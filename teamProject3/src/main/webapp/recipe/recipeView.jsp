@@ -298,7 +298,6 @@
 	</div>
 	<hr>
 	<div class="row">
-	${ photo }
 		<c:forEach items="${ photo }" var="step">
 			<div class="col-sm-6">조리 내용 : ${ step.cooking_content }</div>
 			<div class="col-sm-6">
@@ -389,32 +388,6 @@
 			<br><br><br>
 		</div>
 	</div>
-	<hr>
-	레시피 내용 :${ recipe.recipe_content }
-	<br> 레시피 번호 : ${ recipe.recipe_number }
-	<br> 레시피 이름 : ${ recipe.recipe_name }
-	<br> 레시피 날짜 : ${ recipe.recipe_date }
-	<br> 레시피 아이디 :${ recipe.member_id }
-	<br> 레시피 시간 :${ recipe.cooking_time }
-	<br> 레시피 레벨 :${ recipe.cooking_level }
-	<br> 레시피 이미지 :${ recipe.main_img }
-	<br>
 
-	<c:forEach items="${ product }" var="mater">
-			상품번호 : ${ mater.product_number }<br>
-			상품이름 : ${ mater.product_name }<br>
-			상품가격 : ${ mater.product_price }<br>
-			상품단위 : ${ mater.product_unit }<br>
-			상품이미지 :${ mater.product_img }<br>
-			판매자 : ${ mater.seller_code }<br>
-	</c:forEach>
-	<script>
-	function gopage(p) {			// 검색 function
-		searchFrm.p.value = p;		// 페이지번호 받아와서 submit에 넘김
-		searchFrm.submit();
-		
-		// location.href="deptSelectAll?p=" + p;	// 이동되는 주소가 달라서 여러사람이 쓰기위해서는 매개값 p로 해줌
-	}
-</script>
 </body>
 </html>
