@@ -99,7 +99,7 @@
 		  <td>${board.board_content}<br>
 		  
 		  	<C:if>
-		  		<img src="/teamProject3/food/${board.board_file}" style="max-width:500px">
+		  		<img src="/teamProject3/images/${board.board_file}" style="max-width:500px">
 		  	</C:if>
 		  </td>
 		  </tr>			  

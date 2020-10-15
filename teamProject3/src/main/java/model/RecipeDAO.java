@@ -61,7 +61,7 @@ public class RecipeDAO{
 			try { 
 	         String where = " where 1=1";
 	         if(Recipe.getRecipe_name() != null) {
-	            where += " and Recipe_number like '%' || ? || '%'";
+	            where += " and Recipe_name like '%' || ? || '%'";
 	         }
 				 String sql = "select a.* from (select rownum rn,b.* from ( " + 
 				 		"              SELECT * from recipe "+where+" order by recipe_number desc" + 
