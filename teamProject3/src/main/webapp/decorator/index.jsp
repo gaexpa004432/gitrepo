@@ -130,7 +130,7 @@ $(function() {
                            <div class="header__top__right__language">
 			               		<c:choose>
 				               		<c:when test="${empty sessionScope.login.member_id}">
-				                	<img style ="width:20px" src="${pageContext.request.contextPath}/img/login_icon.png" alt="">
+				                	<img style ="width:20px" src="${pageContext.request.contextPath}/images/login_icon.png" alt="">
 						                <div>  Join & Login  </div>
 						                <span class="arrow_carrot-down"></span>
 							                <ul>
@@ -158,7 +158,8 @@ $(function() {
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="${pageContext.request.contextPath}/img/logo.png" alt=""></a>
+                        <a href="./index.html"><img src="${pageContext.request.contextPath}/images/로고.png" alt="" 
+                        style="width:200px; height:110px;"></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
