@@ -247,8 +247,9 @@ $(function() {
    <%@include file="/common/header.jsp" %>
 
 
-
+<div class="container">
  <decorator:body/>
+ </div>
 
 </body>
 </html>
