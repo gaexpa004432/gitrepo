@@ -3,9 +3,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
 	prefix="decorator"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -13,22 +12,6 @@
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
-     <!-- Js Plugins -->
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery.nice-select.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
-
-    
-    
-    <title>Ogani | Template</title>
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-
-    <!-- Css Styles -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/elegant-icons.css" type="text/css">
@@ -37,7 +20,25 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
-</head>
+    
+     <!-- Js Plugins -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.nice-select.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
+     <script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/main.js"></script>
+    
+    
+    <title>Ogani | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+
 
 <style>
 .img-fluid {
@@ -75,8 +76,8 @@
 }
 
 .header__menu ul li{
-	margin-right: 30px;
-	margin-left: 30px;
+	margin-right: 10px;
+	margin-left: 10px;
 	
 }
 
@@ -103,14 +104,18 @@
 </style>
 <script>
 $(function() {
-	$("#mainImg").on("click", function() {
-		console.log($(this))
-	})
+	$("#faceIcon").on("dblclick", function() {
+		var photoCan = confirm("사진을 수정 하시겠습니까?");
+		alert(photoCan);
+		if (photoCan==true) {
+			location.href="/teamProject3/member/memberPhotoUpdate.jsp";
+		}
+	});
 });
 </script>
 <decorator:head></decorator:head>
+</head>
 <body>
-    
     <!-- Header Section Begin -->
     <header class="header">
         <div class="header__top">
@@ -125,7 +130,7 @@ $(function() {
                            <div class="header__top__right__language">
 			               		<c:choose>
 				               		<c:when test="${empty sessionScope.login.member_id}">
-				                	<img style ="width:20px" src="${pageContext.request.contextPath}/img/login_icon.png" alt="">
+				                	<img style ="width:20px" src="${pageContext.request.contextPath}/images/login_icon.png" alt="">
 						                <div>  Join & Login  </div>
 						                <span class="arrow_carrot-down"></span>
 							                <ul>
@@ -138,6 +143,7 @@ $(function() {
 					                	<div>  LogOut  </div>
 					                	<span class="arrow_carrot-down"></span>
 							                <ul>
+							                	<li><a href="${pageContext.request.contextPath}/member/myPage.jsp">My Page</a></li>
 							                    <li><a href="${pageContext.request.contextPath}/logout.do">LogOut</a></li>
 							                </ul>
 				                	</c:when>
@@ -152,7 +158,8 @@ $(function() {
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="${pageContext.request.contextPath}/img/logo.png" alt=""></a>
+                        <a href="./index.html"><img src="${pageContext.request.contextPath}/images/로고.png" alt="" 
+                        style="width:200px; height:110px;"></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -160,10 +167,10 @@ $(function() {
                         <ul>
                             <li class="active"><a href="/teamProject3/">Home</a></li>
                             <li><a href="/teamProject3/guide/guide.jsp">Guide</a></li>
+                            <li><a href="/teamProject3/recipeBoard.do">Recipe</a></li>
+                            <li><a href="/teamProject3/restaurantBoard.do">Restaurant</a></li>
                             <li><a href="#">Board</a>
                                 <ul class="header__menu__dropdown">
-                                    <li><a href="/teamProject3/restaurantBoard.do">Recommands</a></li>
-                                    <li><a href="/teamProject3/recipeBoard.do">Receipe</a></li>
                                     <li><a href="/teamProject3/freeBoardList.do">Free Board</a></li>
                                     <li><a href="/teamProject3/qaBoardList.do">QA Board</a></li>
                                 </ul> 
@@ -179,15 +186,12 @@ $(function() {
                             <li><a href="#"><i class="fa fa-heart"></i> <span>즐겨찾기개수</span></a></li>
                             <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>장바구니개수</span></a></li>
                		    </ul>
-               		    <div class="aa header__top__right__language">
-	                	<img id="mainImg" src="./img/우주하마.jpg" class="img-raised rounded-circle img-fluid">
-			                <div>${sessionScope.login.member_id}</div>
-			                <span class="arrow_carrot"></span>
-			                <ul>
-			                    <li><a href="${pageContext.request.contextPath}/member/myPage.jsp">My Page</a></li>
-			                    <li><a href="#">My Photo</a></li>
-			                </ul>
-			           </div>
+               		    <c:if test="${not empty sessionScope.login.member_image}">
+	                		<img id="faceIcon" src="${pageContext.request.contextPath}/img/${sessionScope.login.member_image}" class="img-raised rounded-circle img-fluid">
+	                	</c:if>
+	                	<c:if test="${empty sessionScope.login.member_image}">
+               		    	<img id="faceIcon" src="${pageContext.request.contextPath}/img/face_icon.png" class="img-raised rounded-circle img-fluid">
+               		    </c:if>
 					</c:if>         
                     </div>
                 </div>
@@ -240,14 +244,12 @@ $(function() {
         </div> 
     </section>
     <!-- Hero Section End -->
-   
+   <%@include file="/common/header.jsp" %>
 
 
-
-
+<div class="container">
  <decorator:body/>
-     <script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/main.js"></script>
+ </div>
+
 </body>
 </html>

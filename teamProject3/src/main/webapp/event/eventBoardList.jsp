@@ -63,12 +63,7 @@
 	<div class="container">
 	<table class="table table-striped" >
 		<thead>
-		<tr>
-			<th>번호</th>
-			<th>이벤트</th>
-			<th>제목</th>
-			<th>작성일</th>
-		</tr>
+		
 		</thead>
 		<tbody>
 		<c:forEach items="${list}" var="eventboard">

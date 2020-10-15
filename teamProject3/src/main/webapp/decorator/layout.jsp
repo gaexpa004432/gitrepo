@@ -241,8 +241,9 @@ $(function() {
 
 
 
-
+<div class="container">
  <decorator:body/>
+ </div>
      <script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/main.js"></script>
