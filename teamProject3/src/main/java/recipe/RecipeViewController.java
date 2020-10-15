@@ -62,6 +62,7 @@ public class RecipeViewController implements Controller {
 
          
       request.setAttribute("paging", paging);
+      request.setAttribute("focus", request.getParameter("focus"));
       request.setAttribute("favorite", bookMark);
       request.setAttribute("reviewlist", RecipeReviewDAO.getInstance().selectAllReview(reviewvo));
       request.setAttribute("recipe", RecipeDAO.getInstance().recipeSelectOne(recipe));

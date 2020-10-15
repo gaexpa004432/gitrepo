@@ -21,12 +21,14 @@ import model.ProductVO;
 import model.RecipeDAO;
 import model.RecipePhotoDAO;
 import model.RecipePhotoVO;
+import model.RecipeReviewVO;
 import model.RecipeVO;
 
 public class RecipeInsertController implements Controller {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		RecipeReviewVO recipe_review = new RecipeReviewVO();
 		RecipePhotoVO photo = new RecipePhotoVO();
 		RecipeVO recipe = new RecipeVO();
 		HttpSession session = request.getSession(); // member id 가져오기
@@ -133,6 +135,7 @@ public class RecipeInsertController implements Controller {
 				RecipePhotoDAO.getInstance().recipe_photoInsert(photo);
 			}
 		}
+
 
 		// 페이지 이동
 		response.sendRedirect("recipeBoard.do"); 

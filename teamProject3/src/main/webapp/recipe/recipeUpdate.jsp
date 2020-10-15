@@ -165,15 +165,15 @@
 //====================================================================================================		
 		         //비매품이름 단위  적는 곳 추가~!!!
 			
-			$(".nonmatAdd").on("click",function(){
-				$(".nonmatList").append($("<div>")
-						.append($("<input>").attr("name","non_product_name"))
-						.append($("<input>").attr("name","non_product_unit"))
-						.append($("<button>").attr("type","button").text("삭제").on("click",function(){
-							$(this).parent().remove();
-						}))
-						.append($("<br>")));		
-			})	
+		$(".nonmatAdd").on("click",function(){
+			$(".nonmatList").append($("<div>")
+				.append($("<input>").attr("name","non_product_name"))
+				.append($("<input>").attr("name","non_product_unit"))
+				.append($("<button>").attr("type","button").text("삭제").on("click",function(){
+					$(this).parent().remove();
+					}))
+					.append($("<br>")));		
+		})	
 		
 		
 			
@@ -190,12 +190,16 @@ $(document).on("change",".step_img1",function () {
     reader1.readAsDataURL(fileList1 [0]);
 
     //로드 한 후
-    	reader1.onload(function(){
+    	/* $(reader1).onload(function(){
     		console.log($(this).parent().children().eq(1));
         $(this).parent().children().eq(1).src(reader1.result); 
-    	})
+    	})*/
+    var start = this;
+    console.log(this.parentNode.childNodes[0])
     reader1.onload = function () {
-       // this.parentNode.childNode[1].src = reader1.result ;
+    	start.parentNode.childNodes[1].src = reader1.result ;
+    	start.parentNode.childNodes[3].src = reader1.result ;
+       // this.parentNode.childNodes.src = reader1.result ;
     	}; 
     		
 	}); 
@@ -212,7 +216,6 @@ $(document).on("change",".step_img1",function () {
 		  onsubmit="return recipeCheck()">
 		  <input type="hidden" name="recipe_number" value="${recipe.recipe_number}">
 		  <input type="hidden" name="board_no" value="${board.board_no}">
-		  ${ recipe.main_img }
 	  <table>
                 <tr>
                     <th>레시피 제목 </th>
@@ -221,14 +224,20 @@ $(document).on("change",".step_img1",function () {
                
                 <tr>
                     <td>
+                    
                     <img id="main_img" src="/teamProject3/images/${ recipe.main_img }" width="100" alt="" />
+                    <input type = "file" name="main_img" class="step_img1">
                     </td>
-                    <td><input type = "file" name="main_img"></td>
+                    
                 </tr>
                
                 <tr>
                     <th>레시피 소개글</th>
-                    <td><textarea cols="100" rows="20" name="recipe_content">${recipe.recipe_content}</textarea></td>
+                    <td>
+                    <textarea cols="100" rows="20" name="recipe_content" >
+                    ${recipe.recipe_content}
+                    </textarea>
+                    </td>
                 </tr>
 			
             </table>
@@ -289,17 +298,16 @@ $(document).on("change",".step_img1",function () {
 	<h2>요리 순서</h2>
 	<div class = "cooking_order">
 	<c:forEach items="${ photo }" var = "step">
+	<div>
 	<input name = "cooking_step" value="${ step.cooking_content }">
-	<img class="step_img" src="/teamProject3/images/${ step.cooking_photo_name }" width="100" alt="" >
-	<input type="file" class="step_img1" name = "step_img" 
-			accept="image/*" >
-			<br>
+	<img class="step_img" src="/teamProject3/images/${ step.cooking_photo_name }" width="100" alt="">
+	<input type="file" class="step_img1" name = "step_img" accept="image/*" >
+	<br>
+	</div>
 	</c:forEach>
 	
-			
-
+		
 	</div>
-	
 	<button type="button" class="stepAdd">순서 추가</button>
 
 		<br>
@@ -308,6 +316,5 @@ $(document).on("change",".step_img1",function () {
 			<button class = "btn pink">수정완료</button>
         </div>
 	</form>	
-
 </body>
 </html>
