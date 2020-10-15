@@ -26,7 +26,7 @@ public class reviewInsertController implements Controller {
 		restaurant.setRes_review_content(request.getParameter("res_review_content"));
 		int no = Integer.parseInt(request.getParameter("res_no"));
 		restaurant.setRes_no(no);
-		HttpSession session = ((HttpServletRequest) request).getSession();
+		HttpSession session = request.getSession();
 		restaurant.setMember_id((String) session.getAttribute("id"));
 
 		Collection<Part> fileList = request.getParts(); // 모든 파라미터를 파트타입으로 불러옴

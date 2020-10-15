@@ -54,7 +54,7 @@ public class RestaurantViewController implements Controller {
 	
 		
 		restaurant = RestaurantDAO.getInstance().selectOne(restaurant);
-		HttpSession session = ((HttpServletRequest) request).getSession();
+		HttpSession session =  request.getSession();
 		favorite.setMember_id((String) session.getAttribute("id"));
 		
 		

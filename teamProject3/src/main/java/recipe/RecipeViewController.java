@@ -27,7 +27,6 @@ public class RecipeViewController implements Controller {
       FavoriteVO favorite = new FavoriteVO(); 
       List<FavoriteVO> list = new ArrayList<FavoriteVO>();
       String bookMark = "false";
-      
       HttpSession session = ((HttpServletRequest) request).getSession(); // member id 가져오기
       recipe.setMember_id((String) session.getAttribute("id"));
       int recipe_number = Integer.parseInt(request.getParameter("recipe_number"));
@@ -66,6 +65,7 @@ public class RecipeViewController implements Controller {
          
          
       request.setAttribute("paging", paging);
+      request.setAttribute("focus", request.getParameter("focus"));
       request.setAttribute("favorite", bookMark);
       request.setAttribute("reviewlist", RecipeReviewDAO.getInstance().selectAllReview(reviewvo));
       request.setAttribute("recipe", RecipeDAO.getInstance().recipeSelectOne(recipe));

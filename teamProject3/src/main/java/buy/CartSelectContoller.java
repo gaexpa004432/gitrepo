@@ -15,6 +15,7 @@ import model.orderVO;
 
 public class CartSelectContoller implements Controller {
 
+	@SuppressWarnings("unchecked")
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		orderVO vo = new orderVO();
 		List<orderVO> session_cart = (List<orderVO>)request.getSession().getAttribute("session_cart");

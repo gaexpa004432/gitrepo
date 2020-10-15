@@ -63,12 +63,7 @@
 	<div class="container">
 	<table class="table table-striped" >
 		<thead>
-		<tr>
-			<th>번호</th>
-			<th>이벤트</th>
-			<th>제목</th>
-			<th>작성일</th>
-		</tr>
+		
 		</thead>
 		<tbody>
 		<c:forEach items="${list}" var="eventboard">
@@ -78,7 +73,7 @@
 				<c:if test="${!empty eventboard.board_file}">
 					<td>
 					<a href="eventView.do?board_no=${eventboard.board_no}">
-					<img src="/teamProject3/food/${ eventboard.board_file }" width="250" height="250">
+					<img src="/teamProject3/images/${ eventboard.board_file }" width="250" height="250">
 					</a>
 					</td>
 				</c:if>

@@ -25,7 +25,7 @@ public class EventUpdateController implements Controller {
 		
 		Part part1 = request.getPart("board_file");
 		String fileName = getFileName(part1);// Long.toString(System.currentTimeMillis());
-		String path = request.getServletContext().getRealPath("/food"); // "c:/upload";
+		String path = request.getServletContext().getRealPath("/images"); // "c:/upload";
 		System.out.println(path); 
 		File renameFile = common.FileRenamePolicy.rename(new File(path, fileName));
 		part1.write(path +"/"+ renameFile.getName());

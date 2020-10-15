@@ -9,12 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
 import model.RecipeReviewDAO;
 import model.RecipeReviewVO;
-import model.RestaurantReviewDAO;
-import model.RestaurantReviewVO;
 
 public class RecipeReviewDeleteController implements Controller {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		RecipeReviewVO reviewVO = new RecipeReviewVO(); 
 		int recipe_review_no = Integer.parseInt(request.getParameter("recipe_review_no"));
 		int recipe_no = Integer.parseInt(request.getParameter("recipe_number"));
