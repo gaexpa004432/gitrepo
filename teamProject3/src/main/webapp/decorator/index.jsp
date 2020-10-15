@@ -240,8 +240,7 @@ $(function() {
         </div> 
     </section>
     <!-- Hero Section End -->
-   
-
+   <%@include file="/common/header.jsp" %>
 
 
 
