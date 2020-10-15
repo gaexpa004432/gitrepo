@@ -3,7 +3,7 @@
 <decorators defaultdir="/decorator">
 
 	<decorator name="main" page="index.jsp">
-		<pattern>/2*</pattern>
+		<pattern>/*</pattern>
 	</decorator>
 	
 	<!-- <decorator name="main" page="insertLayout.jsp">
