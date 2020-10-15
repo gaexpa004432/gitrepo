@@ -37,9 +37,9 @@
 		</thead>
 		<tbody>
 		<tr>
-			<td>${list[0].member_name}</td>
-			<td>${list[0].member_tel}</td>
-			<td>${list[0].member_address}</td>
+			<td>${vo.member_name}</td>
+			<td>${vo.member_tel}</td>
+			<td>${vo.member_email}</td>
 		</tr>
 		</tbody>
 	</table>
@@ -75,7 +75,7 @@
 	
 	<!-- 수량 -->
 	<td class="product-quantity">
-	${result.recipe_name}
+	${result.product_quantity}
 	</td>
 	
 	<!-- 판매자 -->
@@ -85,6 +85,7 @@
 	</span>
 	</td>
 	
+
 	<td class="datetotal">
 	<div class="order-date">주문날짜 : ${result.order_date}</div>
 	<div class="total-charge">구매금액 : ${result.order_total} 

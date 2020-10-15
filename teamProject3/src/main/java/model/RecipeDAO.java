@@ -124,9 +124,11 @@ public class RecipeDAO{
 			RecipeVO resultVO = new RecipeVO();
 			try { 
 	         
-				 String sql = "select * from recipe where recipe_number=?";
+				 String sql = "select r.main_img, r.recipe_name, r.member_id, r.recipe_number, r.cooking_level,"
+				 		+ " r.cooking_time, r.recipe_content, r.recipe_date, m.seller_code"
+				 		+ " from recipe r, member m where r.member_id = m.member_id AND"
+				 		+ " r.recipe_number = ?";
 				 pstmt = conn.prepareStatement(sql); 
-
 		         pstmt.setInt(1, Recipe.getRecipe_number());
 				rs = pstmt.executeQuery();
 
@@ -140,6 +142,7 @@ public class RecipeDAO{
 					resultVO.setCooking_time(rs.getString("cooking_time"));
 					resultVO.setRecipe_content(rs.getString("recipe_content"));
 					resultVO.setRecipe_date(rs.getString("recipe_date"));
+					resultVO.setSeller_code(rs.getString("seller_code"));
 					
 				} 
 			 }catch(Exception e) {

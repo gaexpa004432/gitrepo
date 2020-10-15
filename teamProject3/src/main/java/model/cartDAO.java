@@ -37,7 +37,7 @@ public class cartDAO {
 	            orderVO order = new orderVO();
 	            	order.setProduct_number(rs.getInt("product_number"));
 	            	order.setProduct_name(rs.getString("product_name"));
-	            	order.setProduct_price(rs.getInt("product_price"));
+	            	order.setProduct_price(rs.getString("product_price"));
 	            	order.setMain_img(rs.getString("main_img"));
 	            	order.setRecipe_name(rs.getString("recipe_name"));
 	            	order.setSeller_code(rs.getString("seller_code"));

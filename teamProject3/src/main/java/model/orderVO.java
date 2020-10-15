@@ -23,7 +23,7 @@ public class orderVO {
 	// product
 	int product_number;
 	String product_name;
-	Integer product_price;
+	String product_price;
 	String product_unit;
 	String product_status;
 	String product_img;
@@ -60,6 +60,10 @@ public class orderVO {
 	String member_detailAddress;
 	String member_extraAddress;
 	
+	//Detail
+	String PRODUCT_NUMBER;
+	String PRODUCT_PRICE;
+	String PRODUCT_QUANTITY;
 	
 	//default 생성자
 	public orderVO() {

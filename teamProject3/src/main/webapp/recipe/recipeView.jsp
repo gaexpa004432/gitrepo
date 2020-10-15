@@ -92,11 +92,11 @@
 									param += "&";
 								}
 							}
-							location.href = "${pageContext.request.contextPath}/CartSelectContoroller.do?recipe_number=" + ${ recipe.recipe_number };
+							location.href = "${pageContext.request.contextPath}/CartSelectContoroller.do?recipe_number=" + ${ recipe.recipe_number} + "&seller_code=" + ${recipe.seller_code};
 						}
 					}
 				})
-//===============================================================================================			
+//=========== ====================================================================================			
 	$("#input_imgs").on("change", handleImgFileSelect);
 		$(".reviewDel").on("click",function(){
 			var result = confirm("정말 삭제 하시겠습니까?");
@@ -249,7 +249,7 @@
 </head>
 
 
-<body>
+<body>${recipe}
 	<div class="row">
 		<div class="col-sm-12" align="center">
 			<h1>${ recipe.recipe_name }</h1>
@@ -257,6 +257,7 @@
 
 		<div>
 			<h3>작성자 : ${ recipe.member_id }</h3>
+			<input type="hidden" value="${recipe.seller_code}">
 		</div>
 
 		<div class="col-sm-12" align="center">
