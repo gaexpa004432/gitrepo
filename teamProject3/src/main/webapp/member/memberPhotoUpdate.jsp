@@ -7,22 +7,34 @@
 <meta charset="UTF-8">
 <title>memberPhotoUpdate.jsp</title>
 <style>
-.img {
-	align
+.photo  {
+	text-align:center;
 }
+
+#photo {
+	max-width : 1000px;
+}
+
 </style>
+<script>
+$(function() {
+	$("#photo").css("cursor","pointer").click(function() {
+		console.log($(this));
+	});	  
+});
+</script>
 </head>
 <body>
 <div>
 <c:if test="${empty sessionScope.login.member_image}">
-	<div>
-		<img src="/teamProject3/img/face_icon.png" class="img-fluid rounded-circle img"/>
+	<div class="photo">
+		<img src="/teamProject3/img/face_icon.png" id="photo" style="width:500px" class="img-fluid rounded-circle img"/>
 	</div>
 </c:if>
 
 <c:if test="${not empty sessionScope.login.member_image}">
-	<div>
-		<img src="/teamProject3/img/${sessionScope.login.member_image}" class="img-fluid rounded-circle"/>
+	<div class="photo">
+		<img src="/teamProject3/img/${sessionScope.login.member_image}" id="photo" class="img-fluid rounded-circle"/>
 	</div>
 </c:if>
 </div>
