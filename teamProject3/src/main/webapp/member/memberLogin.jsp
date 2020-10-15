@@ -30,7 +30,7 @@ body {
   color: #384047;
 }
 
-form {
+#form {
   max-width: 300px;
   margin: 10px auto;
   padding: 10px 20px;
@@ -43,8 +43,8 @@ h1 {
   text-align: center;
 }
 
-input[type="text"],
-input[type="password"],
+input[id="member_id"],
+input[id="member_pass"],
 input[type="date"],
 input[type="datetime"],
 input[type="email"],
@@ -80,7 +80,7 @@ select {
   border-radius: 2px;
 }
 
-button {
+#btnLogin {
   padding: 19px 39px 18px 39px;
   color: #FFF;
   background-color: #4bc970;
@@ -131,7 +131,7 @@ label.light {
 
 @media screen and (min-width: 480px) {
 
-  form {
+  #form {
     max-width: 480px;
   }
 
@@ -140,14 +140,14 @@ label.light {
 </head>
 <body>
 <input type="hidden" value="${errormsg}">
-	<form method="post" action="/teamProject3/login.do">
+	<form id="form" method="post" action="/teamProject3/login.do">
 		<div>
 			<label for="member_id">ID</label>
 			<input type="text" id="member_id" name="member_id">
 		</div>
 		<div>
 			<label for="member_pass">PW</label>
-			<input type="password" name="member_pass" id="member_pass">
+			<input type="password" id="member_pass" name="member_pass">
 		</div>
 		<button id="btnLogin">로그인</button>
 	</form>
