@@ -12,6 +12,7 @@ import controller.Controller;
 
 public class CartController implements Controller {
 
+	@SuppressWarnings("unchecked")
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String[] recipe_number =  request.getParameterValues("product_number");
 		List<String[]> list = null;

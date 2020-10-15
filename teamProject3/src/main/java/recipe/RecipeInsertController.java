@@ -29,7 +29,7 @@ public class RecipeInsertController implements Controller {
 		
 		RecipePhotoVO photo = new RecipePhotoVO();
 		RecipeVO recipe = new RecipeVO();
-		HttpSession session = ((HttpServletRequest) request).getSession(); // member id 가져오기
+		HttpSession session = request.getSession(); // member id 가져오기
 		recipe.setMember_id((String) session.getAttribute("id"));
 		recipe.setRecipe_name(request.getParameter("recipe_name"));
 		recipe.setRecipe_content(request.getParameter("recipe_content"));
