@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -120,17 +121,26 @@ $(function() {
                         <div class="header__top__right">
                             
                            <div class="header__top__right__language">
-				                <img style ="width:20px" src="img/login_icon_137429.png" alt="">
-				                <div>  Join & Lonin  </div>
-				                <span class="arrow_carrot-down"></span>
-				                <ul>
-				                    <li><a href="#">Join</a></li>
-				                    <li><a href="#">Login</a></li>
-				                </ul>
+			               		<c:choose>
+				               		<c:when test="${empty sessionScope.login.member_id}">
+				                	<img style ="width:20px" src="img/login_icon.png" alt="">
+						                <div>  Join & Login  </div>
+						                <span class="arrow_carrot-down"></span>
+							                <ul>
+							                    <li><a href="${pageContext.request.contextPath}/member/memberInsert.jsp">Join</a></li>
+							                    <li><a href="${pageContext.request.contextPath}/member/memberLogin.jsp">Login</a></li>
+							                </ul>
+					                </c:when>
+					                <c:when test="${not empty sessionScope.login.member_id}">
+					                <img style ="width:20px" src="img/logout_icon.png" alt="">
+					                	<div>  LogOut  </div>
+					                	<span class="arrow_carrot-down"></span>
+							                <ul>
+							                    <li><a href="${pageContext.request.contextPath}/logout.do">LogOut</a></li>
+							                </ul>
+				                	</c:when>
+			                	</c:choose>
 				            </div>
-                          <!--   <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Login</a> 
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -161,24 +171,21 @@ $(function() {
                 </div>
                 <div class="col-lg-3">
                     <div class="header__cart ">
-	                        <ul>
-	                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-	                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-                  		   </ul>
-                  		   
-	                  		   <div class="aa header__top__right__language">
-	                  		   		<img id="mainImg" src="./img/우주하마.jpg" class="img-raised rounded-circle img-fluid">
-					                
-					               <div>${sessionScope.login.member_id}<!-- ${sessionScope.login.member_id} --></div>
-					                <span class="arrow_carrot"></span>
-					                <ul>
-					                    <li><a href="#">My Page</a></li>
-					                    <li><a href="#"></a></li>
-					                </ul>
-					            </div>
-				            
-                  		   <span>
-                  		   </span>
+                    <c:if test="${not empty sessionScope.login.member_id}">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-heart"></i> <span>즐겨찾기개수</span></a></li>
+                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>장바구니개수</span></a></li>
+               		    </ul>
+               		    <div class="aa header__top__right__language">
+	                	<img id="mainImg" src="./img/우주하마.jpg" class="img-raised rounded-circle img-fluid">
+			                <div>${sessionScope.login.member_id}</div>
+			                <span class="arrow_carrot"></span>
+			                <ul>
+			                    <li><a href="#">My Page</a></li>
+			                    <li><a href="#"></a></li>
+			                </ul>
+			           </div>
+					</c:if>         
                     </div>
                 </div>
             </div>
