@@ -27,20 +27,16 @@
                     class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="index.html">Vegan Admin </a>
       <div class="nav-collapse">
         <ul class="nav pull-right">
+          
+          <li><a href="/teamProject3/freeBoardList.do"><i class="icon-info-sign"></i> 홈페이지로 이동<b></b></a>
+           
+          </li>
           <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
                             class="icon-cog"></i> 계정 관리 <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li><a href="javascript:;">Profile</a></li>
               <li><a href="javascript:;">Logout</a></li>
             </ul>
-          </li>
-          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                            class="icon-user"></i> EGrappler.com <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="javascript:;">Profile</a></li>
-              <li><a href="javascript:;">Logout</a></li>
-            </ul>
-          </li>
         </ul>
         <form class="navbar-search pull-right">
           <input type="text" class="search-query" placeholder="Search">

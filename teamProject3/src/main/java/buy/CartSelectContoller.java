@@ -14,6 +14,7 @@ import model.orderVO;
 
 public class CartSelectContoller implements Controller {
 
+	@SuppressWarnings("unchecked")
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		orderVO vo = new orderVO();
 		List<orderVO> session_cart = (List<orderVO>)request.getSession().getAttribute("session_cart");
@@ -24,14 +25,16 @@ public class CartSelectContoller implements Controller {
 		}
 		
 		Integer recipe_number = Integer.parseInt(request.getParameter("recipe_number"));	
+		String seller_code = request.getParameter("seller_code");
 		orderVO VO = new orderVO();
 		VO.setRecipe_number(recipe_number);
-			
+		VO.setSeller_code(seller_code);
+		
 		String member_id = (String) request.getSession().getAttribute("id");//request.getParameter("member_id");
 		vo.setMember_id(member_id);
+		
 		ArrayList<orderVO> list = cartDAO.getInstance().selectCart(VO);
-		
-		
+				
 		request.getSession().setAttribute("session_cart", list);//세션에 저장
 
 		request.setAttribute("list", list);

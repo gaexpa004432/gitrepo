@@ -31,7 +31,7 @@ public class QaBoardWriteController implements Controller {
 		freeboard.setBoard_passyn(qaboard_passyn);
 		freeboard.setBoard_groupcode("pq");
 		
-		HttpSession session = ((HttpServletRequest)request).getSession();
+		HttpSession session = request.getSession();
 	      freeboard.setMember_id((String)session.getAttribute("id"));//로그인된 아이디를 들고옴
 	     
 	    FreeBoardDAO freeboarddao = new FreeBoardDAO();

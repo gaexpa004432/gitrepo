@@ -27,6 +27,7 @@ public class RestaurantViewController implements Controller {
 		FavoriteVO favorite = new FavoriteVO(); 
 		List<FavoriteVO> list =new ArrayList<FavoriteVO>();
 		
+		
 		String bookMark = "false";
 		int res_no = Integer.parseInt(request.getParameter("res_no"));
 		System.out.println(res_no);
@@ -51,8 +52,9 @@ public class RestaurantViewController implements Controller {
 		restaurantReview.setFirst(paging.getFirst());
 		restaurantReview.setLast(paging.getLast());
 	
+		
 		restaurant = RestaurantDAO.getInstance().selectOne(restaurant);
-		HttpSession session = ((HttpServletRequest) request).getSession();
+		HttpSession session =  request.getSession();
 		favorite.setMember_id((String) session.getAttribute("id"));
 		
 		
@@ -63,6 +65,7 @@ public class RestaurantViewController implements Controller {
 			}
 		}
 		
+		request.setAttribute("focus", request.getParameter("focus"));
 		request.setAttribute("favorite", bookMark);
 		request.setAttribute("paging", paging);
 		request.setAttribute("res", restaurant);

@@ -5,12 +5,12 @@ import lombok.Data;
 @Data
 public class orderVO {
 	
-	//order1
+	//orderList
 	int order_number;
 	String order_date;
-	int order_total;
+	String order_total;
 	String member_id;
-	int seller_code;
+	String seller_code;
 	String order_status;
 	String order_reason;
 
@@ -53,6 +53,13 @@ public class orderVO {
 	Integer first;
 	Integer last; 
 	String main_img;
+	
+	//address 
+	String member_postcode;
+	String member_roadAddress;
+	String member_detailAddress;
+	String member_extraAddress;
+	
 	
 	//default 생성자
 	public orderVO() {

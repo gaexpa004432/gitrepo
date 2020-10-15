@@ -23,6 +23,7 @@ if(${sessionScope.id eq 'vegan'}){
 <div class="container">
 <ul class="bxslider"> 
 <li><img src="images/샐러드레시피.jpg" /></li>
+<li><img src="images/적립금.png" /></li>
 <li><img src="images/커피.jpg" /></li></ul>
 </div>
 <script type="text/javascript"> 

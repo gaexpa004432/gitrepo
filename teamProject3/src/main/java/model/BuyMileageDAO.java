@@ -23,9 +23,11 @@ public class BuyMileageDAO {
 			String sql = "select member_id,"
 					+ " SUM (CASE WHEN GROUP_CODE = '적립' THEN MILEAGE_COST * 1 ELSE MILEAGE_COST * -1 END) AS remaining"
 					+ " from mileage"
+					+ " WHERE member_id = ?"
 					+ " GROUP BY MEMBER_ID";
 
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getMember_id());
 			rs = pstmt.executeQuery();
 			// true값을 넘겨줘야하기때문에 if구문이 필수임.
 			if (rs.next()) {

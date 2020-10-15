@@ -52,7 +52,7 @@ public class RecipePhotoDAO {
 	}
 	
 	public List<RecipePhotoVO> selectOne(RecipeVO Recipe) {
-		List<RecipePhotoVO> list = new ArrayList();
+		List<RecipePhotoVO> list = new ArrayList<RecipePhotoVO>();
 		conn = ConnectionManager.getConnnect();
 		RecipePhotoVO resultVO = new RecipePhotoVO();
 		try { 

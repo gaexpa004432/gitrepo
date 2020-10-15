@@ -25,11 +25,10 @@ public class orderDAO {
 			+ " FROM ORDER3"
 			+ " WHERE MEMBER_ID = ?";
 	
-	private final String INSERT_OREDER_OUTPUT = "INSERT INTO ORDER3 (member_name, member_address, member_tel,"
-			+ " member_email, order_number, order_total, recipe_name, product_name, order_date, product_price,"
-			+ " member_id) "
-			+ " VALUES (?, ?, ?, ?, order_no.nextval,"
-			+ " ?, ? , ?, SYSDATE , ?, ?)";
+	private final String INSERT_OREDER_OUTPUT = "INSERT INTO orderList (ORDER_NUMBER, ORDER_DATE, ORDER_TOTAL,"
+			+ " MEMBER_ID, ORDER_STATUS, ORDER_REASON, SELLER_CODE,  MEMBER_POSTCODE, MEMBER_ROADADDRESS,"
+			+ " MEMBER_DETAILADDRESS, MEMBER_EXTRAADDRESS, MEMBER_TEL, MEMBER_NAME, MEMBER_EMAIL) "
+			+ " VALUES(order_number_seq.nextval, SYSDATE, ?, ?, 'ow', ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	
 	    public ArrayList<orderVO> getOrder(orderVO vo){
 	    	ArrayList<orderVO> list = new ArrayList<orderVO>();
@@ -49,7 +48,7 @@ public class orderDAO {
 	            order.setProduct_name(rs.getString("product_name"));
 	            order.setProduct_price(rs.getInt("product_price"));
 	            order.setOrder_date(rs.getString("order_date"));
-	            order.setOrder_total(rs.getInt("order_total"));
+	            order.setOrder_total(rs.getString("order_total"));
 	            list.add(order);
 	            }
 	        } catch (Exception e) {
@@ -59,21 +58,23 @@ public class orderDAO {
 	        }
 	        return list;
 	    }
-
+	    
 	    public int Insertoutput(orderVO vo) {
 			int r = 0;
 			try {
 				conn = ConnectionManager.getConnnect();
 				psmt = conn.prepareStatement(INSERT_OREDER_OUTPUT);
-				psmt.setString(1, vo.getMember_name());
-				psmt.setString(2, vo.getMember_address());
-				psmt.setString(3, vo.getMember_tel());
-				psmt.setString(4, vo.getMember_email());
-				psmt.setInt(5, vo.getOrder_total());
-				psmt.setString(6, vo.getRecipe_name());
-				psmt.setString(7, vo.getProduct_name());
-				psmt.setInt(8, vo.getProduct_price());
-				psmt.setString(9, vo.getMember_id());
+				psmt.setString(1, vo.getOrder_total());
+				psmt.setString(2, vo.getMember_id());
+				psmt.setString(3, vo.getOrder_reason());
+				psmt.setString(4, vo.getSeller_code());
+				psmt.setString(5, vo.getMember_postcode());
+				psmt.setString(6, vo.getMember_roadAddress());
+				psmt.setString(7, vo.getMember_detailAddress());
+				psmt.setString(8, vo.getMember_extraAddress());
+				psmt.setString(9, vo.getMember_tel());
+				psmt.setString(10, vo.getMember_name());
+				psmt.setString(11, vo.getMember_email());
 				r = psmt.executeUpdate();
 			} catch(Exception e) {
 				e.printStackTrace();

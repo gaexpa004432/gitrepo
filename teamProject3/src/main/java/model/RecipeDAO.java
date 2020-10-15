@@ -57,7 +57,7 @@ public class RecipeDAO{
 		public ArrayList<RecipeVO> selectAll(RecipeVO Recipe) {
 			conn = ConnectionManager.getConnnect();
 			RecipeVO resultVO = new RecipeVO();
-			ArrayList<RecipeVO> list = new ArrayList();
+			ArrayList<RecipeVO> list = new ArrayList<RecipeVO>();
 			try { 
 	         String where = " where 1=1";
 	         if(Recipe.getRecipe_name() != null) {
@@ -181,6 +181,7 @@ public class RecipeDAO{
 				pstmt.setString(3, recipeVO.getCooking_time());
 				pstmt.setString(4, recipeVO.getCooking_level());
 				pstmt.setString(5, recipeVO.getMain_img());
+				pstmt.setInt(6, recipeVO.getRecipe_number());
 				r = pstmt.executeUpdate();
 
 			} catch (Exception e) {
@@ -194,7 +195,7 @@ public class RecipeDAO{
 		public ArrayList<RecipeVO> choiceSelectAll(RecipeVO Recipe) { //재료 클릭시 재료포함 레시피 모두 출력
 			conn = ConnectionManager.getConnnect();
 			RecipeVO resultVO = new RecipeVO();
-			ArrayList<RecipeVO> list = new ArrayList();
+			ArrayList<RecipeVO> list = new ArrayList<RecipeVO>();
 			try { 
 				 String sql = "select a.* from (select rownum rn,b.* from ( " 
 						 + "SELECT * FROM recipe re JOIN product prod ON re.recipe_number = prod.recipe_number AND prod.product_name = ?" 

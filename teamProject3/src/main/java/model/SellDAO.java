@@ -30,7 +30,7 @@ public class SellDAO {
 			String sql = 
 					"select o.order_number, o.order_date, sum(d.product_price), o.member_id, " + 
 					"o.order_status, o.order_reason, p.seller_code, r.recipe_name " + 
-					"from order1 o, order_detail d, product p, recipe r " + 
+					"from orderlist o, order_detail d, product p, recipe r " + 
 					"where o.order_number=d.order_number " + 
 					"and d.product_number=p.product_number " + 
 					"and p.recipe_number=r.recipe_number " + 
@@ -68,15 +68,18 @@ public class SellDAO {
 			conn = ConnectionManager.getConnnect();
 			String sql = 
 					"select o.order_number, o.order_date, sum(d.product_price), o.member_id, " + 
-					"o.order_status, o.order_reason, p.seller_code, r.recipe_name " + 
-					"from order1 o, order_detail d, product p, recipe r " + 
+					"o.order_status, o.order_reason, p.seller_code, r.recipe_name, " +
+					"o.member_postcode, o.member_roadaddress, o.member_detailaddress, o.member_extraaddress " + 
+					"from orderlist o, order_detail d, product p, recipe r, member m " + 
 					"where o.order_number=d.order_number " + 
 					"and d.product_number=p.product_number " + 
-					"and p.recipe_number=r.recipe_number " + 
+					"and p.recipe_number=r.recipe_number " +
+					"and o.member_id=m.member_id " + 
 					"and p.seller_code = ? " + 
-					"and o.order_number = ?" + 
+					"and o.order_number = ? " + 
 					"group by o.order_number, o.order_date, o.member_id, " + 
-					"p.seller_code, o.order_status, o.order_reason, r.recipe_name " + 
+					"p.seller_code, o.order_status, o.order_reason, r.recipe_name, " + 
+					"o.member_postcode, o.member_roadaddress, o.member_detailaddress, o.member_extraaddress " + 
 					"order by order_date desc" ;
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, sellVO.getSeller_code());
@@ -92,6 +95,10 @@ public class SellDAO {
 				resultVO.setOrder_reason(rs.getString(6));
 				resultVO.setSeller_code(rs.getInt(7));
 				resultVO.setRecipe_name(rs.getString(8));
+				resultVO.setMember_postcode(rs.getString(9));
+				resultVO.setMember_roadAddress(rs.getString(10));
+				resultVO.setMember_detailAddress(rs.getString(11));
+				resultVO.setMember_extraAddress(rs.getString(12));
 			} else {
 				System.out.println("no data");
 			} 
@@ -149,7 +156,8 @@ public class SellDAO {
 			String sql = "select count(*) from( " + 
 					"select r.recipe_name, o.member_id, o.order_date, sum(d.product_price), " + 
 					"o.order_status, o.order_reason, r.recipe_number, p.seller_code " + 
-					"from order1 o, order_detail d, product p, recipe r " + 
+					"m.member_postcode, m.member_roadaddress, m.member_detailaddress, m.member_extraaddress" + 
+					"from orderlist o, order_detail d, product p, recipe r " + 
 					"where o.order_number=d.order_number  " + 
 					"and d.product_number=p.product_number " + 
 					"and p.recipe_number=r.recipe_number  " + 
@@ -196,7 +204,7 @@ public class SellDAO {
 		int r = 0;
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "update order1 set order_status = 'or', order_reason = ? where order_number = ?";
+			String sql = "update orderlist set order_status = 'or', order_reason = ? where order_number = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, sellVO.getOrder_reason());
 			pstmt.setInt(2, sellVO.getOrder_number());
