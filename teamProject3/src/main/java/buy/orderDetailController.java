@@ -18,6 +18,7 @@ public class orderDetailController implements Controller {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		orderVO VO = new orderVO();
 		
+		@SuppressWarnings("unchecked")
 		ArrayList<orderVO> ord = (ArrayList<orderVO>) request.getSession().getAttribute("session_cart");
 		request.getSession().setAttribute("ord", ord);
 		

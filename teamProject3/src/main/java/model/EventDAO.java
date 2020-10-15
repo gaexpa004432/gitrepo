@@ -48,7 +48,7 @@ public class EventDAO {
 	public ArrayList<FreeBoardVO> eventSelectAll(FreeBoardVO freeboardVO) {
 		conn = ConnectionManager.getConnnect();
 		FreeBoardVO resultVO = new FreeBoardVO();
-		ArrayList<FreeBoardVO> list = new ArrayList();
+		ArrayList<FreeBoardVO> list = new ArrayList<FreeBoardVO>();
 		try {
 			String where = " where 1=1 and board_groupcode = ?";
 			if (freeboardVO.getBoard_sub() != null) {
