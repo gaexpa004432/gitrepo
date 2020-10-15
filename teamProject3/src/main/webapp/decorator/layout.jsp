@@ -160,16 +160,17 @@ $(function() {
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Home</a></li>
-                            <li><a href="./shop-grid.html">Guide</a></li>
+                            <li class="active"><a href="/teamProject3/">Home</a></li>
+                            <li><a href="/teamProject3/guide/guide.jsp">Guide</a></li>
                             <li><a href="#">Board</a>
                                 <ul class="header__menu__dropdown">
-                                    <li><a href="./shop-details.html">Recommands</a></li>
-                                    <li><a href="./shoping-cart.html">Receipe</a></li>
-                                    <li><a href="./checkout.html">Free Board</a></li>
+                                    <li><a href="/teamProject3/restaurantBoard.do">Recommands</a></li>
+                                    <li><a href="/teamProject3/recipeBoard.do">Receipe</a></li>
+                                    <li><a href="/teamProject3/freeBoardList.do">Free Board</a></li>
+                                    <li><a href="/teamProject3/qaBoardList.do">QA Board</a></li>
                                 </ul> 
                             </li>
-                            <li><a href="./contact.html">Event</a></li>
+                            <li><a href="/teamProject3/eventBoardList.do">Event</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -185,8 +186,8 @@ $(function() {
 			                <div>${sessionScope.login.member_id}</div>
 			                <span class="arrow_carrot"></span>
 			                <ul>
-			                    <li><a href="#">My Page</a></li>
-			                    <li><a href="#"></a></li>
+			                    <li><a href="${pageContext.request.contextPath}/member/myPage.jsp">My Page</a></li>
+			                    <li><a href="#">My Photo</a></li>
 			                </ul>
 			           </div>
 					</c:if>         
