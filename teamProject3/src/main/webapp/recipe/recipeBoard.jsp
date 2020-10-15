@@ -120,7 +120,8 @@
  <a class="btn green" href="/teamProject3/recipe/recipeInsert.jsp"><button type = "button">레시피 등록</button></a>
   <form name="searchFrm">		
 	<input type="hidden" name="p" value="1">
-	<input type="hidden" name="" value="">
+	<input  name="recipe_search" >
+	<button>검색</button>
 	
 </form>
 <br> 

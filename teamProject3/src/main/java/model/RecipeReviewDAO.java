@@ -50,6 +50,7 @@ public class RecipeReviewDAO {
 		}
 		return r;
 	}
+
 	
 	public List<RecipeReviewVO> selectAllReview(RecipeReviewVO recipe) { //게시판 목록 이미지 뿌려주기
 		RecipeReviewVO recipevo = null;
@@ -133,4 +134,5 @@ public class RecipeReviewDAO {
 		}
 		return r;
 	}
+	
 }

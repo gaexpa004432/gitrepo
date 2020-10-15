@@ -45,7 +45,7 @@ public class RecipeReviewController implements Controller {
 		 }
 		RecipeReviewDAO.getInstance().insert(recipe);
 		 
-		response.sendRedirect("recipeView.do?recipe_number="+no);
+		response.sendRedirect("recipeView.do?recipe_number=" + no + "&focus=0");
 
 	}
 
