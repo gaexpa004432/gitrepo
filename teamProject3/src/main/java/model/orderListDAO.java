@@ -43,7 +43,7 @@ public class orderListDAO {
             order.setProduct_name(rs.getString("product_name"));
             order.setProduct_price(rs.getInt("product_price"));
             order.setOrder_date(rs.getString("order_date"));
-            order.setOrder_total(rs.getInt("order_total"));
+            order.setOrder_total(rs.getString("order_total"));
             list.add(order);
             }
         } catch (Exception e) {

@@ -40,6 +40,7 @@
 <div>
 <h1>Vegan 식당 추천</h1>
 </div>
+<a href="/teamProject3/restaurant/restaurantWrite.jsp"> <button> 글쓰기</button></a>
 <hr>
 <c:set var="i" value="0" />
  <c:set var="j" value="3" />
@@ -52,7 +53,8 @@
      <c:if test="${i%j == 0}">
       <tr>
      </c:if>
-     <td><div class="imgin"><a href="/teamProject3/restaurantView.do?res_no=${restaurantlist.res_no}"><img class="inimg" src="/teamProject3/images/${restaurantlist.res_name}"></a></div></td>
+     <td><div class="imgin"><a align="center" href="/teamProject3/restaurantView.do?res_no=${restaurantlist.res_no}"><img class="inimg" src="/teamProject3/images/${restaurantlist.res_name}"></div><div align="center">
+     ${restaurantlist.res_gu }</div></a></td>
     <c:if test="${i%j == j-1}">
      </tr>
     </c:if> 

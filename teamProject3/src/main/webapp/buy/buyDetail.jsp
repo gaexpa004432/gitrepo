@@ -195,7 +195,8 @@ $(function() {
 		</c:forEach>
 		</tbody>
 		</table>
-		<input type="hidden" name="member_id" value="${vo.member_id}">
+		<input type="text" name ="seller_code" value="${vo.seller_code}">
+		<input type="text" name="member_id" value="${vo.member_id}">
 		<div class="payment">
 		<strong>최종결제금액 : </strong>
 		<input type="hidden" name="order_total" value="${all_price}">
@@ -226,12 +227,12 @@ $(function() {
 			<label>주소</label><br> <input type="text" name="member_postcode"
 				id="sample4_postcode" placeholder="우편번호" value="${vo.member_postcode}"> <input
 				type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-			<input type="text" name="member_roadaddress" id="sample4_roadAddress"
+			<input type="text" name="member_roadAddress" id="sample4_roadAddress"
 				placeholder="도로명주소" value="${vo.member_roadAddress}" > <input type="hidden"
 				name="member_jibunAddress" id="sample4_jibunAddress"
 				placeholder="지번주소" > <span id="guide"
 				style="color: #999; display: none"></span> <input type="text"
-				name="member_address" id="sample4_detailAddress"
+				name="member_detailAddress" id="sample4_detailAddress"
 				placeholder="상세주소" value="${vo.member_detailAddress}" > <input type="text"
 				name="member_extraAddress" id="sample4_extraAddress"
 				placeholder="참고항목" value="${vo.member_extraAddress}">

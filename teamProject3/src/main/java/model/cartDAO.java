@@ -18,9 +18,9 @@ public class cartDAO {
 	}
 	
 	private final String SELECT_CART = "SELECT p.product_number, p.product_name, p.product_price, r.recipe_number,"
-			+ " r.recipe_name, r.main_img FROM product p, recipe r"
+			+ " r.recipe_name, r.main_img, m.seller_code FROM product p, recipe r, member m"
 			+ " WHERE r.recipe_number = p.recipe_number AND p.product_code = 'prod' AND"
-			+ " p.recipe_number = ?"; 
+			+ " p.recipe_number = ? AND r.member_id = m.member_id"; 
 	
 	
 	  public ArrayList<orderVO> selectCart(orderVO pro){
@@ -40,6 +40,7 @@ public class cartDAO {
 	            	order.setProduct_price(rs.getInt("product_price"));
 	            	order.setMain_img(rs.getString("main_img"));
 	            	order.setRecipe_name(rs.getString("recipe_name"));
+	            	order.setSeller_code(rs.getString("seller_code"));
 	            	list.add(order);
 	            }
 	        } catch (Exception e) {

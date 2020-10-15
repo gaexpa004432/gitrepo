@@ -26,5 +26,7 @@ public interface BoardService {
 	void updateReadCount(String num);
 
 	BoardVO selectOneBoardByNum(String num);
+	
+	ArrayList<BoardVO> commntSelectAll(BoardVO freeboardVO);
 
 }
