@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
+	prefix="decorator"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -12,14 +15,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
      <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.nice-select.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
+
     
     
     <title>Ogani | Template</title>
@@ -28,14 +29,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 </head>
 
 <style>
@@ -107,6 +108,7 @@ $(function() {
 	})
 });
 </script>
+<decorator:head></decorator:head>
 <body>
     
     <!-- Header Section Begin -->
@@ -123,7 +125,7 @@ $(function() {
                            <div class="header__top__right__language">
 			               		<c:choose>
 				               		<c:when test="${empty sessionScope.login.member_id}">
-				                	<img style ="width:20px" src="img/login_icon.png" alt="">
+				                	<img style ="width:20px" src="${pageContext.request.contextPath}/img/login_icon.png" alt="">
 						                <div>  Join & Login  </div>
 						                <span class="arrow_carrot-down"></span>
 							                <ul>
@@ -132,7 +134,7 @@ $(function() {
 							                </ul>
 					                </c:when>
 					                <c:when test="${not empty sessionScope.login.member_id}">
-					                <img style ="width:20px" src="img/logout_icon.png" alt="">
+					                <img style ="width:20px" src="${pageContext.request.contextPath}/img/logout_icon.png" alt="">
 					                	<div>  LogOut  </div>
 					                	<span class="arrow_carrot-down"></span>
 							                <ul>
@@ -150,7 +152,7 @@ $(function() {
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                        <a href="./index.html"><img src="${pageContext.request.contextPath}/img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -240,6 +242,9 @@ $(function() {
 
 
 
-
+ <decorator:body/>
+     <script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/main.js"></script>
 </body>
 </html>
