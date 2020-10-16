@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
+import model.RecipeVO;
 import model.cartDAO;
 import model.orderVO;
 
@@ -24,19 +25,23 @@ public class CartSelectContoller implements Controller {
 			request.getSession().setAttribute("session_cart", session_cart);
 		}
 		
-		Integer recipe_number = Integer.parseInt(request.getParameter("recipe_number"));	
-		String seller_code = request.getParameter("seller_code");
 		orderVO VO = new orderVO();
+		Integer recipe_number = Integer.parseInt(request.getParameter("recipe_number"));	
 		VO.setRecipe_number(recipe_number);
-		VO.setSeller_code(seller_code);
 		
 		String member_id = (String) request.getSession().getAttribute("id");//request.getParameter("member_id");
 		vo.setMember_id(member_id);
 		
+//		request.getSession().getAttribute("seller_code");
+		
 		ArrayList<orderVO> list = cartDAO.getInstance().selectCart(VO);
-				
+		
+		RecipeVO res = (RecipeVO) request.getSession().getAttribute("resultVO");
+		String seller_code = res.getSeller_code();
+		
 		request.getSession().setAttribute("session_cart", list);//세션에 저장
-
+		
+		request.setAttribute("seller_code", seller_code);
 		request.setAttribute("list", list);
 		request.setAttribute("session_cart", session_cart);
 		

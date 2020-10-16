@@ -10,6 +10,7 @@
 		<typeAlias type="teamProject3.recipe.RecipeVO" alias="recipe"/>  
 		<typeAlias type="teamProject3.recipe.ProductVO" alias="product"/>
 		<typeAlias type="teamProject3.qaboard.BoardVO" alias="board"/>   
+		<typeAlias type="teamProject3.order.OrderVO" alias="order"/>
 	</typeAliases>
 
 </configuration>
