@@ -59,12 +59,12 @@ public class RecipeDAO{
 			RecipeVO resultVO = new RecipeVO();
 			ArrayList<RecipeVO> list = new ArrayList<RecipeVO>();
 			try { 
-	         String where = " where 1=1";
+	         String where = "";
 	         if(Recipe.getRecipe_name() != null) {
 	            where += " and Recipe_name like '%' || ? || '%'";
 	         }
 				 String sql = "select a.* from (select rownum rn,b.* from ( " + 
-				 		"              SELECT * from recipe "+where+" order by recipe_number desc" + 
+				 		"             select * from recipe r where not exists(select * from product p where p.recipe_number = r.recipe_number and PRODUCT_STATUS = 'N') "+where+" order by recipe_number desc" + 
 				 		"           ) b) a where rn between ? and ?";
 				 pstmt = conn.prepareStatement(sql); // 미리 sql 구문이 준비가 되어야한다
 		         int pos = 1;   // 물음표값 동적으로 하려고 변수선언
@@ -97,11 +97,12 @@ public class RecipeDAO{
 			int cnt = 0;
 		      try {
 		         conn = ConnectionManager.getConnnect();
-		         String where = " where 1=1 ";
+		         String where = "";
 		         if(Recipe.getRecipe_name() != null) {
 		            where += " and recipe_name like '%' || ? || '%'";
 		         }
-		         String sql = "select count(*) from recipe" + where;
+		         String sql = "select count(*) from recipe r where not exists(select * from product p where p.recipe_number = r.recipe_number and PRODUCT_STATUS = 'N')" + where;
+		         
 		         pstmt = conn.prepareStatement(sql);
 		         int pos = 1;
 		         if(Recipe.getRecipe_name() !=null) {
@@ -124,9 +125,11 @@ public class RecipeDAO{
 			RecipeVO resultVO = new RecipeVO();
 			try { 
 	         
-				 String sql = "select * from recipe where recipe_number=?";
+				 String sql = "select r.main_img, r.recipe_name, r.member_id, r.recipe_number, r.cooking_level,"
+				 		+ " r.cooking_time, r.recipe_content, r.recipe_date, m.seller_code"
+				 		+ " from recipe r, member m where r.member_id = m.member_id AND"
+				 		+ " r.recipe_number = ?";
 				 pstmt = conn.prepareStatement(sql); 
-
 		         pstmt.setInt(1, Recipe.getRecipe_number());
 				rs = pstmt.executeQuery();
 
@@ -140,6 +143,7 @@ public class RecipeDAO{
 					resultVO.setCooking_time(rs.getString("cooking_time"));
 					resultVO.setRecipe_content(rs.getString("recipe_content"));
 					resultVO.setRecipe_date(rs.getString("recipe_date"));
+					resultVO.setSeller_code(rs.getString("seller_code"));
 					
 				} 
 			 }catch(Exception e) {
@@ -172,16 +176,18 @@ public class RecipeDAO{
 			int r = 0;
 			try {
 				conn = ConnectionManager.getConnnect();
-				String sql = "UPDATE recipe SET recipe_name=?, recipe_content=?, cooking_time=?,"
-						   + "cooking_level=?, main_img=?"
+				String sql = "UPDATE recipe SET  recipe_name=?,  "
+						   + "recipe_content=?, member_id=?, cooking_time=?, cooking_level=?, main_img=? "
 						   + "WHERE recipe_number=?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, recipeVO.getRecipe_name());
 				pstmt.setString(2, recipeVO.getRecipe_content());
-				pstmt.setString(3, recipeVO.getCooking_time());
-				pstmt.setString(4, recipeVO.getCooking_level());
-				pstmt.setString(5, recipeVO.getMain_img());
-				pstmt.setInt(6, recipeVO.getRecipe_number());
+				pstmt.setString(3, recipeVO.getMember_id());
+				pstmt.setString(4, recipeVO.getCooking_time());
+				pstmt.setString(5, recipeVO.getCooking_level());
+				pstmt.setString(6, recipeVO.getMain_img());
+				pstmt.setInt(7, recipeVO.getRecipe_number());
+		
 				r = pstmt.executeUpdate();
 
 			} catch (Exception e) {
@@ -246,5 +252,28 @@ public class RecipeDAO{
 		         ConnectionManager.close(conn);
 		      }
 		      return cnt;
+		}
+		
+		public int recipePhotoUpdate(RecipePhotoVO recipephotoVO) {
+			int r = 0;
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "UPDATE recipe_photo SET cooking_content=?, photo_name=? "
+						   + "WHERE photo_number=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, recipephotoVO.getCooking_content());
+				pstmt.setString(2, recipephotoVO.getCooking_photo_name());
+				pstmt.setInt(3, recipephotoVO.getRecipe_number());
+				
+				
+				r = pstmt.executeUpdate();
+				System.out.println(r + " 건 입력 완료 ");
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(conn);
+			}
+			return r;
 		}
 }

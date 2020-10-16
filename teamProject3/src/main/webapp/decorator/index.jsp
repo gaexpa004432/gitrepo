@@ -230,12 +230,16 @@ $(function() {
         </div> 
     </section>
     <!-- Hero Section End -->
-   <%@include file="/common/header.jsp" %>
+  
 
 
-<div class="container">
+
  <decorator:body/>
+<<<<<<< HEAD
 </div>
+=======
+
+>>>>>>> branch 'master' of https://github.com/gaexpa004432/gitrepo.git
 
 </body>
 </html>

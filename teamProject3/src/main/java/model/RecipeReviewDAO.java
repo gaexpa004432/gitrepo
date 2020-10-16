@@ -76,8 +76,8 @@ public class RecipeReviewDAO {
 				recipevo.setRecipe_review_file(rs1.getString("recipe_review_file"));
 				recipevo.setRecipe_review_date(rs1.getString("recipe_review_date"));
 				recipevo.setMember_id(rs1.getString("member_id"));
-			recipevo.setRecipe_number(rs1.getInt("recipe_number"));
-			recipeList.add(recipevo);
+				recipevo.setRecipe_number(rs1.getInt("recipe_number"));
+				recipeList.add(recipevo);
 			
 			}
 			

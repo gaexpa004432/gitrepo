@@ -78,13 +78,13 @@
                 </tr>                
 
           	    <tr>
-                    <td></td>
-                    <td><input type = "file" name="board_file"></td>
+                    <td>배너 등록 : <input type = "file" name="board_banner"></td>
+                    <td>내용 등록 : <input type = "file" name="board_file"></td>
                 </tr>
                 
                 <tr>
                     <th>내용</th>
-                    <td><textarea cols="100" rows="20" name="board_content"></textarea></td>
+                    <td><textarea cols="100" rows="20" name="board_content" required></textarea></td>
                 </tr>
             </table>
 			<br>

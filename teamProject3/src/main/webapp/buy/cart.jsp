@@ -195,7 +195,7 @@ h2 {
 			</select></td>
 			<td class="all-product-price">${cart.product_price}</td>
 			<td class="mileage-price">${cart.product_price * 0.01}</td>
-			<td class="seller-box"><input type="hidden" value="${cart.seller_code}"></td>
+			<td class="seller-box"><input type="text" name="seller_code" value="${cart.seller_code}"></td>
 			<td><button type="button" class="cart-delete">삭제</button><td>
 		</tr>
 		<c:set var="gum" value="${cart.product_price}"/>

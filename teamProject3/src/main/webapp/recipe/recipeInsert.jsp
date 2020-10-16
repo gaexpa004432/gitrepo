@@ -109,7 +109,7 @@
 	function textarea() { 
 		
 		if(frm.recipe_content.value == "") {
-			window.alert("소개글 적고 가라!!");
+			window.alert("소개글을 적어주세요!!!");
 			frm.recipe_content.focus();
 			return false;
 		}
@@ -245,8 +245,11 @@
 	<button type="button" class="stepAdd">순서 추가</button>
 	
 	<hr>
+	<div class="blog__item__text">
 	<button class = "btn pink">등록</button>
-	<a class = "btn red" href="/teamProject3/recipeBoard.do">레시피 목록</a>
+	<a class = "blog__btn" href="/teamProject3/recipeBoard.do" >레시피 목록</a>
+	</div>
 	</form>
+                                  
 </body>
 </html>

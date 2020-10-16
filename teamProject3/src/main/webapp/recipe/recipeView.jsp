@@ -81,6 +81,7 @@
 		} else {
 			$("#bookmark").html("<img src='/teamProject3/images/즐겨찾기.jpg'style='width: 100px; height: 100px; margin-left: 30px;'>");
 		}
+		$("#input_imgs").on("change", handleImgFileSelect);
 //======================================================================================================
 		$("#cart").on(
 				"click",
@@ -97,11 +98,11 @@
 									param += "&";
 								}
 							}
-							location.href = "${pageContext.request.contextPath}/CartSelectContoroller.do?recipe_number=" + ${ recipe.recipe_number };
+							location.href = "${pageContext.request.contextPath}/CartSelectContoroller.do?recipe_number=" + ${ recipe.recipe_number} + "&seller_code=" + ${recipe.seller_code};
 						}
 					}
 				})
-//===============================================================================================			
+//=========== ====================================================================================			
 	$("#input_imgs").on("change", handleImgFileSelect);
 		$(".reviewDel").on("click",function(){
 			var result = confirm("정말 삭제 하시겠습니까?");
@@ -263,6 +264,7 @@
 
 		<div>
 			<h3>작성자 : ${ recipe.member_id }</h3>
+			<input type="hidden" value="${recipe.seller_code}">
 		</div>
 
 		<div class="col-sm-12" align="center">
@@ -314,13 +316,14 @@
 	</div>
 
 	<hr>
+	<c:if test="${recipe.member_id eq sessionScope.id}">
 	<div align="center">
 		<a href="recipeViewUpdate.do?recipe_number=${recipe.recipe_number}">
 			<button type="button" class="btn green">레시피 수정</button>
 		</a>
-
 		<button type="button" class="btn red" id="recipedele">레시피 삭제</button>
 	</div>
+	</c:if>
 
 	<div align="right">
 		<a href="javascript:void(0);" id="bookmark"> 
