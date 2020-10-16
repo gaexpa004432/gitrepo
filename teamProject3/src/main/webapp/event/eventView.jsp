@@ -85,9 +85,9 @@
 
 <form>
 	<table style="width:820px" align = "center">
-		 <tr align = "center">
+		<%--  <tr align = "center">
 		 	 <td>${board.board_sub}</td>
-		 </tr>
+		 </tr> --%>
 		
 		<tr>
 		 <th>작성날짜</th>
