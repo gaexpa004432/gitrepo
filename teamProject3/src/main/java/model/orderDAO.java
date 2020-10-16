@@ -20,16 +20,16 @@ public class orderDAO {
 	}
 	
 	
-	private final String INSERT_OREDER_OUTPUT = "INSERT INTO orderList (ORDER_NUMBER, ORDER_DATE, ORDER_TOTAL,"
+	String INSERT_OREDER_OUTPUT = "INSERT INTO orderList (ORDER_NUMBER, ORDER_DATE, ORDER_TOTAL,"
 			+ " MEMBER_ID, ORDER_STATUS, ORDER_REASON, SELLER_CODE,  MEMBER_POSTCODE, MEMBER_ROADADDRESS,"
 			+ " MEMBER_DETAILADDRESS, MEMBER_EXTRAADDRESS, MEMBER_TEL, MEMBER_NAME, MEMBER_EMAIL) "
 			+ " VALUES(order_number_seq.nextval, SYSDATE, ?, ?, 'ow', ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	
-	private final String INSERT_ORDER_DETAIL = "INSERT INTO ORDER_DETAIL(order_detail_number, PRODUCT_NUMBER,"
+	String INSERT_ORDER_DETAIL = "INSERT INTO ORDER_DETAIL(order_detail_number, PRODUCT_NUMBER,"
 			+ " ORDER_NUMBER, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_QUANTITY)"
-			+ " VALUES (order_detial_number_seq.nextval, ?, order_number_seq.currval, ?, ?, ?)";
+			+ " VALUES (order_detial_number_seq.nextval, ?, ?, ?, ?, ?)";
 	
-	private final String SELECT_ORDER = "SELECT l.order_date, l.member_postcode, l.MEMBER_ROADADDRESS"
+	String SELECT_ORDER = "SELECT l.order_date, l.member_postcode, l.MEMBER_ROADADDRESS,"
 			+ " l.MEMBER_DETAILADDRESS, l.MEMBER_EXTRAADDRESS, l.ORDER_TOTAL"
 			+ "	, d.product_number, d.product_price, d.product_quantity, d.product_name"
 			+ " FROM orderList l, order_detail d"
@@ -40,7 +40,7 @@ public class orderDAO {
 	        try {
 	        	conn = ConnectionManager.getConnnect();
 	            psmt = conn.prepareStatement(SELECT_ORDER);
-	            psmt.setInt(1, vo.getOrder_number());
+	            psmt.setString(1, vo.getOrder_number());
 	            rs = psmt.executeQuery();
 	            while(rs.next()){
 	            orderVO order = new orderVO();
@@ -51,15 +51,14 @@ public class orderDAO {
 	            order.setMember_detailAddress(rs.getString("member_detailAddress"));
 	            order.setMember_extraAddress(rs.getString("member_extraAddress"));
 	            order.setOrder_total(rs.getString("order_total"));
-	            order.setProduct_number(rs.getInt("product_number"));
+	            order.setProduct_number(rs.getString("product_number"));
 	            order.setProduct_price(rs.getString("product_price"));
-	            order.setPRODUCT_QUANTITY(rs.getString("product_quantity"));
+	            order.setProduct_quantity(rs.getString("product_quantity"));
 	            list.add(order);
+	            System.out.println("list:" + list);
 	            }
 	        } catch (Exception e) {
 	            e.printStackTrace();
-	        } finally {
-	        	ConnectionManager.close(conn);
 	        }
 	        return list;
 	    }
@@ -81,10 +80,15 @@ public class orderDAO {
 				psmt.setString(10, vo.getMember_name());
 				psmt.setString(11, vo.getMember_email());
 				r = psmt.executeUpdate();
+							
+				INSERT_OREDER_OUTPUT = "select order_number_seq.currval from dual";
+				psmt = conn.prepareStatement(INSERT_OREDER_OUTPUT);
+				rs = psmt.executeQuery();
+				if (rs.next()) {
+					r = rs.getInt(1);
+				}
 			} catch(Exception e) {
 				e.printStackTrace();
-			} finally {
-				ConnectionManager.close(conn);
 			}
 	    	return r;
 	    }
@@ -94,15 +98,15 @@ public class orderDAO {
 			try {
 				conn = ConnectionManager.getConnnect();
 				psmt = conn.prepareStatement(INSERT_ORDER_DETAIL);
-				psmt.setInt(1, vo.getProduct_number());
-				psmt.setString(2, vo.getProduct_name());
-				psmt.setString(3, vo.getProduct_price());
-				psmt.setString(4, vo.getPRODUCT_QUANTITY());
+				psmt.setString(1, vo.getProduct_number());
+				psmt.setInt(2, vo.getLast());
+				psmt.setString(3, vo.getProduct_name());
+				psmt.setString(4, vo.getProduct_price());
+				psmt.setString(5, vo.getProduct_quantity());
 				r = psmt.executeUpdate();
+				
 			} catch(Exception e) {
 				e.printStackTrace();
-			} finally {
-				ConnectionManager.close(conn);
 			}
 	    	return r;
 	    }
