@@ -78,8 +78,8 @@
                 </tr>                
 
           	    <tr>
-                    <td></td>
-                    <td><input type = "file" name="board_file"></td>
+                    <td>배너 등록 : <input type = "file" name="board_banner"></td>
+                    <td>내용 등록 : <input type = "file" name="board_file"></td>
                 </tr>
                 
                 <tr>

@@ -38,6 +38,7 @@ public class MemberController {
 	public String salesList(Model model ,HttpServletRequest request,HttpServletResponse response) {
 		
 		List<OrderVO> list = orderService.dailySales(null);
+		List<OrderVO> sales = orderService.getOrderoutput(null);
 		List<String> date = new ArrayList<String>();
 		List<String> total = new ArrayList<String>();
 		
@@ -49,6 +50,7 @@ public class MemberController {
 		model.addAttribute("date",date);
 		model.addAttribute("data",total);
 		model.addAttribute("index",2);
+		model.addAttribute("sales",sales);
 		return "manager/sales";
 	}
 	
