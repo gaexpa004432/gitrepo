@@ -10,5 +10,10 @@
 	order by TO_CHAR(order_date)
 
 	</select>
-
+	<select id="getOrderoutput" resultType="order" parameterType="order">
+	select m.seller_code ,m.member_id, m.member_tel, m.member_email,sum(o.order_total) as order_total
+from member m, orderlist o 
+where m.seller_code = o.seller_code  and m.seller_code is not null 
+group by m.seller_code ,m.member_id, m.member_tel, m.member_email
+	</select>
  </mapper>

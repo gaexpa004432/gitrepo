@@ -8,10 +8,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+	<script
+	src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-
+  <script>
+$(function(){
+	$(document).ready( function () {
+	    $('#tb').DataTable({
+	    	info: false,
+	    	
+	    	
+	    });
+	} );
+	
+	
+})
+</script>
 </head>
-<body>
 <body>
    
     
@@ -34,38 +48,13 @@
                             </div>
                             <!-- /widget-content -->
                         </div>
-                        <!-- /widget -->
-                        <div class="widget">
-                            <div class="widget-header">
-                                <i class="icon-bar-chart"></i>
-                                <h3>
-                                    Line Chart</h3>
-                            </div>
-                            <!-- /widget-header -->
-                            <div class="widget-content">
-                                <canvas id="area-chart" class="chart-holder" width="538" height="250">
-                                </canvas>
-                                <!-- /line-chart -->
-                            </div>
-                            <!-- /widget-content -->
-                        </div>
-                        <!-- /widget -->
-                        <div class="widget">
-                            <div class="widget-header">
-                                <i class="icon-bar-chart"></i>
-                                <h3>
-                                    Pie Chart</h3>
-                            </div>
-                            <!-- /widget-header -->
-                            <div class="widget-content">
-                                <canvas id="pie-chart" class="chart-holder" width="538" height="250">
-                                </canvas>
-                                <!-- /pie-chart -->
-                            </div>
-                            <!-- /widget-content -->
-                        </div>
+                      
+                        
                         <!-- /widget -->
                     </div>
+                    
+                      
+                      
                     <!-- /span6 -->
                     <div class="span6">
                         <div class="widget">
@@ -83,24 +72,34 @@
                             <!-- /widget-content -->
                         </div>
                         <!-- /widget -->
-                        <div class="widget">
-                            <div class="widget-header">
-                                <i class="icon-bar-chart"></i>
-                                <h3>
-                                    A Chart</h3>
-                            </div>
+                        
+                           
                             <!-- /widget-header -->
-                            <div class="widget-content">
-                                <canvas id="line-chart" class="chart-holder" width="538" height="250">
-                                </canvas>
-                                <!-- /-chart -->
-                            </div>
+                           
+                              
+                              
+                            
                             <!-- /widget-content -->
-                        </div>
+                        
                         <!-- /widget -->
                     </div>
                     <!-- /span6 -->
                 </div>
+                
+                	<table id="tb" class="table table-striped table-bordered">
+		<thead><tr><th>소상공인 번호</th><th>소상공인 아이디</th><th>전화번호</th><th>이메일</th><th>판매총액</th></tr></thead>
+	<tbody>
+<c:forEach items="${sales }" var="member">
+	<tr>
+	<td>${member.seller_code }</td>
+	<td>${member.member_id }</td>
+	<td>${member.member_tel }</td>
+	<td>${member.member_email }</td>
+	<td>${member.order_total }</td>
+	</tr>
+</c:forEach>
+	</tbody>
+	</table>
                 <!-- /row -->
             </div>
             <!-- /container -->

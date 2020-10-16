@@ -179,6 +179,8 @@ $(function(){
 		//등록 버튼 클릭  
 		$('#btnInsert').on('click',function(){
 		var content = $('#commentcontent').val();
+		if(${!empty sessionScope.login}){
+			
 		
 			$.ajax({ 
 			    url: "/teamProject3/ajaxcommentInsert.do",  
@@ -188,7 +190,7 @@ $(function(){
 			    success: function(datas) {
 			    	$(".re").append($("<div>").attr("class","row").attr("id","review").css("border-top-width","1px").css("border-top-style","solid")
 							.css("padding","20px").css("border-top-color","#f0f0f5")
-							.append($("<div>").attr("class","col-sm-3").text("작성자아이디"))
+							.append($("<div>").attr("class","col-sm-3").text(datas.member_id))
 							.append($("<div>").attr("class","col-sm-5").attr("align","left").html("<small style='vertical-align:top'>"+datas.comment_date +"</small>"+"<br><div>"+datas.comment_content+"</div>"))
 							.append($("<div>").attr("class","col-sm-3")
 							.append($("<button>").text("수정").attr("class","update").on("click",updateOne).data("comment_content",datas.comment_content))
@@ -217,6 +219,11 @@ $(function(){
 			    error:function(xhr, status, message) { 
 			    } 
 			 });  
+		
+		} else {
+			alert("로그인이 필요합니다.")
+		}
+		
 		});//등록 버튼 클릭
 
 	
@@ -233,39 +240,51 @@ $(function(){
 			},
 			success:function(datas) {
 				for (i=0; i<datas.length; i++) {
-					$(".re").append($("<div>").attr("class","row").attr("id","review").css("border-top-width","1px").css("border-top-style","solid")
-							.css("padding","20px").css("border-top-color","#f0f0f5")
-							.append($("<div>").attr("class","col-sm-3").text("작성자아이디"))
-							.append($("<div>").attr("class","col-sm-5").attr("align","left").html("<small style='vertical-align:top'>"+datas[i].comment_date +"</small>"+"<br><div>"+datas[i].comment_content+"</div>"))
-							.append($("<div>").attr("class","col-sm-3")
-							.append($("<button>").text("수정").attr("class","update").on("click",updateOne).data("comment_content",datas[i].comment_content))
-							.append($("<br>"))
-							.append($("<br>"))
-							.append($("<button>").text("삭제").data("comment_no",datas[i].comment_no).on("click",
-									function(){
-								var tag = $(this).parent().parent();
-								var no = $(this).data("comment_no");
-								var result = confirm(" 사용자를 정말로 삭제하시겠습니까?");
-								if(result) {
-									  $.ajax({
-										url:'ajaxCommentdelete.do',
-										data : {comment_no : no},
-										
-										error:function(xhr,status,msg){
-											console.log("상태값 :" + status + " Http에러메시지 :"+msg);						
-										}, success:function() {
-											tag.remove();   //userList();
-											
-										} 
-									});       }//if
-							} //삭제 버튼 클릭
-							))))
 					
-
+					
+					var btn = "";
+					
+					if(datas[i].member_id == "${id}"){
+					//세션 아이디와 멤버 아이디 비교
+						btn = $("<div>")
+						  .attr("class","col-sm-3")
+				          .append($("<button>").text("수정").attr("class","update").on("click",updateOne).data("comment_content",datas[i].comment_content))
+				          .append($("<br>"))
+				          .append($("<br>"))
+				          .append($("<button>").text("삭제").data("comment_no",datas[i].comment_no).on("click",
+						      function(){
+									var tag = $(this).parent().parent();
+									var no = $(this).data("comment_no");
+									var result = confirm(" 사용자를 정말로 삭제하시겠습니까?");
+									if(result) {
+										  $.ajax({
+											url:'ajaxCommentdelete.do',
+											data : {comment_no : no},
+											
+											error:function(xhr,status,msg){
+												console.log("상태값 :" + status + " Http에러메시지 :"+msg);						
+											}, success:function() {
+												tag.remove();   //userList();
+												
+											} 
+										}); 
+									}//if
+							}) //삭제 버튼 클릭
+						)
+						
+					}
+					$(".re").append(
+						$("<div>")
+							.attr("class","row").attr("id","review").css("border-top-width","1px").css("border-top-style","solid")
+						    .css("padding","20px").css("border-top-color","#f0f0f5")
+						    .append($("<div>").attr("class","col-sm-3").text(datas[i].member_id))
+							.append($("<div>").attr("class","col-sm-5").attr("align","left").html("<small style='vertical-align:top'>"+datas[i].comment_date +"</small>"+"<br><div>"+datas[i].comment_content+"</div>"))
+							.append(btn) // div append 끝
+						)  //  .re append 끝
 							  
-				}
-			}
-		});
+				}  //for문 끝
+			}  //success 끝
+		}); // ajax 끝
 	}//commentList
 	
 	//사용자 목록 조회 응답

@@ -16,8 +16,7 @@ public class OrderServiceImpl implements OrderService{
 	
 	@Override
 	public ArrayList<OrderVO> getOrderoutput(OrderVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return orderDAO.getOrderoutput(null);
 	}
 
 	@Override

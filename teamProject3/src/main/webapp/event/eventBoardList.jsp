@@ -73,7 +73,7 @@
 				<c:if test="${!empty eventboard.board_file}">
 					<td>
 					<a href="eventView.do?board_no=${eventboard.board_no}">
-					<img src="/teamProject3/images/${ eventboard.board_file }" width="250" height="250">
+					<img src="/teamProject3/images/${ eventboard.member_name }" width="250" height="250">
 					</a>
 					</td>
 				</c:if>
