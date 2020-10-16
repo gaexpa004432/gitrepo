@@ -38,7 +38,7 @@ public class orderDetailDAO {
             	orderVO ord = new orderVO();
             	ord.setProduct_number(rs.getInt("product_number"));
             	ord.setProduct_name(rs.getString("product_name"));
-            	ord.setProduct_price(rs.getInt("product_price"));
+            	ord.setProduct_price(rs.getString("product_price"));
             	ord.setRecipe_name(rs.getString("recipe_name"));
             	ord.setRemaining(rs.getInt("remaining"));
             	list.add(ord);

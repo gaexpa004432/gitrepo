@@ -178,15 +178,16 @@ $(function() {
 		<c:forEach items="${ord}" var="orderlist">
 		<tr>
 		<td><input type="checkbox"></td>
+		<td><input type="hidden" name="product_number" value="${orderlist.product_number}"></td>
 		<td><input type="hidden" name="recipe_name" value="${orderlist.recipe_name}">${orderlist.recipe_name}</td>
 		<td><input type="hidden" name="product_name" value="${orderlist.product_name}">${orderlist.product_name}</td>
 		<td><input type="hidden" name="product_price" value="${orderlist.product_price}">${orderlist.product_price}</td>
 		<td>
-			<select class="quantity-select">
-			<option>1</option>
-			<option>2</option>
-			<option>3</option>
-			<option>4</option>
+			<select class="quantity-select" name="product_quantity">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
 			</select>
 		<td>
 		<td><input type="button" class="cart_delete" value="삭제"></td>
@@ -195,8 +196,8 @@ $(function() {
 		</c:forEach>
 		</tbody>
 		</table>
-		<input type="text" name ="seller_code" value="${vo.seller_code}">
-		<input type="text" name="member_id" value="${vo.member_id}">
+		<input type="hidden" name ="seller_code" value="${resultVO.seller_code}">
+		<input type="hidden" name="member_id" value="${vo.member_id}">
 		<div class="payment">
 		<strong>최종결제금액 : </strong>
 		<input type="hidden" name="order_total" value="${all_price}">
@@ -211,9 +212,9 @@ $(function() {
 		</div>
 
 		<div class="order_detail_buyimformation">
-			<span>이 름 : </span><input type="text" name="member_name" value="${vo.member_name}" readonly/><br> <span>휴대폰
-				: </span><input type="text" name="member_tel" value="${vo.member_tel}" readonly/><br> <span>이메일 : </span><input
-				type="text" name="member_email" value="${vo.member_email}" readonly />
+			<span>이 름 : </span><input type="text" id="name" name="member_name" value="${vo.member_name}"/><br> <span>휴대폰
+				: </span><input type="text" id="tel" name="member_tel" value="${vo.member_tel}"/><br> <span>이메일 : </span><input
+				type="text" name="member_email" id="emial" value="${vo.member_email}" />
 		</div>
 		<hr width=30%>
 			<h3 class="order_detail_locationtitle">배송지 정보</h3>

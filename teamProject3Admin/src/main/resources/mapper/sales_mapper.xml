@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="teamProject3.order.mapper.OrderDAO" >
+ 	<select id="dailySales" resultType="order" parameterType="order">
+	select TO_CHAR(order_date) as order_date, sum(order_total) as order_total 
+	from orderList 
+	group by TO_CHAR(order_date) 
+	having TO_CHAR(order_date) between sysdate - (interval '7' day) and sysdate  
+	order by TO_CHAR(order_date)
+
+	</select>
+
+ </mapper>
