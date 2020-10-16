@@ -115,6 +115,22 @@ h2 {
 				sum();
 		});
 		
+		$('#check_button').on('click', function() {
+			var arr = [];
+			$('.cart-check:checked').each(function (index, item) {
+				var tds = $(this).parent().parent().find('td')
+				var recipe_name = tds.get(3).innerText;
+				var product_quantity =   $(this).parent().parent().find('.quantity-select').val();
+				var product_price = tds.get(4).innerText;
+				var product_name = tds.get(5).innerText;
+                arr.push({recipe_name:recipe_name, product_quantity:product_quantity, product_price:product_price, product_name:product_name});
+				
+			})
+			frm.arr.value = JSON.stringify(arr)
+			frm.submit();
+		})
+		
+		
 		
 	});
 		
@@ -145,7 +161,10 @@ h2 {
 </script>
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/CartSelectContoroller.do">
+
+<form action="${pageContext.request.contextPath}/orderDetailController.do" name="frm" id="frm">
+<input type="hidden" name="arr">
+</form>
 	<h3>장바구니</h3>
 	<hr width=70%>
 	<table class="cartTable">
@@ -179,23 +198,23 @@ h2 {
 	<c:forEach items="${list}" var="cart">
 		<tr class="cart-deal-items">
 			<td class="select-event">
-				<input type="checkbox" class="cart-check" checked> 
+				<input type="checkbox" class="cart-check" value="${cart.product_number}" checked> 
 			</td>
 			<td>${cart.main_img}</td>
 			<td>${cart.recipe_number}</td>
 			<td>${cart.recipe_name}</td>
-			<td class="cart_price" >${cart.product_price}</td>
+			<td class="cart_price">${cart.product_price}</td>
 			<td>${cart.product_name}</td>
 			<td>
-			<select class="quantity-select">
-			<option <c:if test="${cart.order_detail_no == '1'}">selected </c:if> value="1">1</option>
-			<option <c:if test="${cart.order_detail_no == '2'}">selected </c:if> value="2">2</option>
-			<option <c:if test="${cart.order_detail_no == '3'}">selected </c:if> value="3">3</option>
-			<option <c:if test="${cart.order_detail_no == '4'}">selected </c:if> value="4">4</option>
+			<select class="quantity-select" name="product_quantity">
+			<option <c:if test="${cart.product_quantity == '1'}">selected </c:if> value="1">1</option>
+			<option <c:if test="${cart.product_quantity == '2'}">selected </c:if> value="2">2</option>
+			<option <c:if test="${cart.product_quantity == '3'}">selected </c:if> value="3">3</option>
+			<option <c:if test="${cart.product_quantity == '4'}">selected </c:if> value="4">4</option>
 			</select></td>
 			<td class="all-product-price">${cart.product_price}</td>
 			<td class="mileage-price">${cart.product_price * 0.01}</td>
-			<td class="seller-box"><input type="text" name="seller_code" value="${cart.seller_code}"></td>
+			<td class="seller-box"><input type="hidden" name="seller_code" value="${cart.seller_code}"></td>
 			<td><button type="button" class="cart-delete">삭제</button><td>
 		</tr>
 		<c:set var="gum" value="${cart.product_price}"/>
@@ -207,7 +226,7 @@ h2 {
 		<div class="cart-total-price-inner">
 			<div class="price-area">
 				<span>총 상품가격: </span>
-				<em class="final-order-price">${total}</em>
+				<em class="final-order-price"><input type="hidden" name="total">${total}</em>
 				<span>원</span>
 				<span>&nbsp; / &nbsp;</span>
 				<span>총 적립포인트: </span>
@@ -218,9 +237,9 @@ h2 {
 
 	<div>
 	<a href="${pageContext.request.contextPath}/recipeBoard.do" class="btn btn-primary">쇼핑 계속하기</a>
-	<a href="${pageContext.request.contextPath}/orderDetailController.do" class="btn btn-primary" role="button">구매하기</a>
+	<input type="button" id="check_button" value="결제">
 	</div>
-</form>
+
 	
 </body>
 </html>

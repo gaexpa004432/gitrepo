@@ -31,8 +31,6 @@ public class RecipeViewController implements Controller {
       recipe.setMember_id((String) session.getAttribute("id"));
       int recipe_number = Integer.parseInt(request.getParameter("recipe_number"));
       recipe.setRecipe_number(recipe_number);
-      String seller_code =(String) request.getParameter("seller_code");
-      recipe.setSeller_code(seller_code);
       RecipeVO resultVO = RecipeDAO.getInstance().recipeSelectOne(recipe);
       favorite.setMember_id((String) session.getAttribute("id"));
       
