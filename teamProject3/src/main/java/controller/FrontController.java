@@ -85,6 +85,7 @@ public class FrontController extends HttpServlet {
 		list.put("/eventViewUpdate.do", new event.EventViewUpdateController());
 		list.put("/eventUpdate.do", new event.EventUpdateController());
 		
+		list.put("/ajaxRecipeUpdate.do",new recipe.AjaxRecipeUpdateController());
 		
 		
 		

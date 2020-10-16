@@ -107,6 +107,7 @@
 		 
 		 <br>
             <hr>
+            <c:if test="${sessionScope.id == 'vegan'}">
             <div align = "center">
 			<a href="eventViewUpdate.do?board_no=${board.board_no}">
 				<button class = "btn pink" type="button">수정</button>
@@ -114,8 +115,8 @@
 			   
             <button type="button" class = "btn green" 
             		id = "eventdele">삭제</button>
- 		
             </div>
+            </c:if>
 	</form>	
 </body>
 </html>
