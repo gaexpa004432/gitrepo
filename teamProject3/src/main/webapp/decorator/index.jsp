@@ -27,7 +27,7 @@
     <script src="${pageContext.request.contextPath}/js/jquery.nice-select.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
-     <script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/main.js"></script>
     
@@ -42,17 +42,20 @@
 
 <style>
 .img-fluid {
-  max-width: 40%;
+  max-width: 30px;
   height: auto;
+  object-fit:cover;
 }
 
 .rounded-circle {
   border-radius: 50% !important;  
 }
 
-#mainImg{
-
-}
+/* #faceIcon{
+	width: 120px;
+  	height: 100px;
+  	object-fit: cover;
+} */
 
 #subUl{
 	position: absolute;
@@ -108,7 +111,7 @@ $(function() {
 		var photoCan = confirm("사진을 수정 하시겠습니까?");
 		alert(photoCan);
 		if (photoCan==true) {
-			location.href="/teamProject3/member/memberPhotoUpdate.jsp";
+			location.href="/teamProject3/select.do";
 		}
 	});
 });
@@ -143,7 +146,7 @@ $(function() {
 					                	<div>  LogOut  </div>
 					                	<span class="arrow_carrot-down"></span>
 							                <ul>
-							                	<li><a href="${pageContext.request.contextPath}/member/myPage.jsp">My Page</a></li>
+							                	<li><a href="${pageContext.request.contextPath}/member/myPageMenu.jsp">My Page</a></li>
 							                    <li><a href="${pageContext.request.contextPath}/logout.do">LogOut</a></li>
 							                </ul>
 				                	</c:when>
@@ -180,17 +183,19 @@ $(function() {
                     </nav>
                 </div>
                 <div class="col-lg-3">
-                    <div class="header__cart ">
+                    <div class="header__cart " style="vertical-align:top;">
                     <c:if test="${not empty sessionScope.login.member_id}">
                         <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span>즐겨찾기개수</span></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>장바구니개수</span></a></li>
+                            <li><a href="#"><i class="fa fa-heart"></i> <span></span></a></li>
+                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span></span></a></li>
                		    </ul>
                		    <c:if test="${not empty sessionScope.login.member_image}">
-	                		<img id="faceIcon" src="${pageContext.request.contextPath}/img/${sessionScope.login.member_image}" class="img-raised rounded-circle img-fluid">
+	                		<img id="faceIcon" src="${pageContext.request.contextPath}/img/${sessionScope.login.member_image}" 
+	                		     class="img-raised rounded-circle img-fluid" style="width:50px;vertical-align:top;">
 	                	</c:if>
 	                	<c:if test="${empty sessionScope.login.member_image}">
-               		    	<img id="faceIcon" src="${pageContext.request.contextPath}/img/face_icon.png" class="img-raised rounded-circle img-fluid">
+               		    	<img id="faceIcon" src="${pageContext.request.contextPath}/img/face_icon.png" 
+               		    	     class="img-raised rounded-circle img-fluid" style="vertical-align:top;">
                		    </c:if>
 					</c:if>         
                     </div>
@@ -219,26 +224,7 @@ $(function() {
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
                         </div>
-                        
-
-                        <!-- <div class="hero__search__phone">
-                            <div class="hero__search__phone__icon">
-                                <i class="fa fa-phone"></i>
-                            </div>
-                            <div class="hero__search__phone__text">
-                                <h5>+65 11.188.888</h5>
-                                <span>support 24/7 time</span>
-                            </div>
-                        </div> -->
                     </div>
-                   <!--  <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg">
-                        <div class="hero__text">
-                            <span>FRUIT FRESH</span>
-                            <h2>Vegetable <br />100% Organic</h2>
-                            <p>Free Pickup and Delivery Available</p>
-                            <a href="#" class="primary-btn">SHOP NOW</a>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div> 
@@ -249,7 +235,7 @@ $(function() {
 
 <div class="container">
  <decorator:body/>
- </div>
+</div>
 
 </body>
 </html>
