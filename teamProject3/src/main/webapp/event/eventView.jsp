@@ -82,7 +82,7 @@
 
 </head>
 <body>
-
+ <%@include file="/common/header.jsp" %>
 <form>
 	<table style="width:820px" align = "center">
 		<%--  <tr align = "center">
@@ -95,12 +95,13 @@
 		 </tr>
 		
 		  <tr>
-		  <th>내용</th>
-		  <td>${board.board_content}<br>
+		  <th></th>
+		  <td>
 		  
 		  	<C:if>
-		  		<img src="/teamProject3/images/${board.board_file}" style="max-width:500px">
+		  		<img src="/teamProject3/images/${board.board_file}" style="max-width:500px"><br>
 		  	</C:if>
+		  	${board.board_content}
 		  </td>
 		  </tr>			  
 		 </table>
