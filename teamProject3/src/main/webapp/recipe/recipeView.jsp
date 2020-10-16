@@ -81,6 +81,7 @@
 		} else {
 			$("#bookmark").html("<img src='/teamProject3/images/즐겨찾기.jpg'style='width: 100px; height: 100px; margin-left: 30px;'>");
 		}
+		$("#input_imgs").on("change", handleImgFileSelect);
 //======================================================================================================
 		$("#cart").on(
 				"click",
@@ -255,7 +256,7 @@
 </head>
 
 
-<body>${recipe}
+<body>
 	<div class="row">
 		<div class="col-sm-12" align="center">
 			<h1>${ recipe.recipe_name }</h1>
@@ -315,13 +316,14 @@
 	</div>
 
 	<hr>
+	<c:if test="${recipe.member_id eq sessionScope.id}">
 	<div align="center">
 		<a href="recipeViewUpdate.do?recipe_number=${recipe.recipe_number}">
 			<button type="button" class="btn green">레시피 수정</button>
 		</a>
-
 		<button type="button" class="btn red" id="recipedele">레시피 삭제</button>
 	</div>
+	</c:if>
 
 	<div align="right">
 		<a href="javascript:void(0);" id="bookmark"> 

@@ -27,13 +27,14 @@ public class RecipeViewController implements Controller {
       FavoriteVO favorite = new FavoriteVO(); 
       List<FavoriteVO> list = new ArrayList<FavoriteVO>();
       String bookMark = "false";
-      HttpSession session = ((HttpServletRequest) request).getSession(); // member id 가져오기
+      HttpSession session = (request).getSession(); // member id 가져오기
       recipe.setMember_id((String) session.getAttribute("id"));
       int recipe_number = Integer.parseInt(request.getParameter("recipe_number"));
       recipe.setRecipe_number(recipe_number);
       String seller_code =(String) request.getParameter("seller_code");
       recipe.setSeller_code(seller_code);
       RecipeVO resultVO = RecipeDAO.getInstance().recipeSelectOne(recipe);
+      favorite.setMember_id((String) session.getAttribute("id"));
       
       list = FavoriteDAO.getInstance().selectAll(favorite);
       for (FavoriteVO fav : list) {

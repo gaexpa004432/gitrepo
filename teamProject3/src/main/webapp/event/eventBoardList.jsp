@@ -87,9 +87,10 @@
 	</table>
 	
 	<hr/>
+	<c:if test="${sessionScope.id == 'vegan'}">
 	<a class = "btn red" href ="/teamProject3/event/eventInsert.jsp">이벤트 등록</a>
+	</c:if>
 	<my:paging paging="${paging}" jsfunc="gopage" />
-	
 <script>
    function gopage(p) {         // 검색
       searchFrm.p.value = p;    // 페이지번호 받아와서 submit에 넘김
@@ -97,6 +98,8 @@
       // location.href="deptSelectAll?p=" + p;  
       // 이동되는 주소가 달라서 여러사람이 쓰기위해서는 매개값 p로 해줌
    }
+   console.log("${sessionScope.id}");
+   console.log("${sessionScope.login}");
 </script>
 </div>
 </body>
