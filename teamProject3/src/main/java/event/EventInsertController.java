@@ -32,6 +32,12 @@ public class EventInsertController implements Controller {
 		File renameFile = common.FileRenamePolicy.rename(new File(path, fileName));
 		part1.write(path +"/"+ renameFile.getName());
 		eventboard.setBoard_file(renameFile.getName());
+		
+		Part part2 = request.getPart("board_banner");
+		String fileName2 = getFileName(part2);// Long.toString(System.currentTimeMillis());
+		File renameFile2 = common.FileRenamePolicy.rename(new File(path, fileName2));
+		part2.write(path +"/"+ renameFile2.getName());
+		eventboard.setMember_name(renameFile2.getName());
 
 		//서비스 db처리
 		int r  = EventDAO.getInstance().eventInsert(eventboard);

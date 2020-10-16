@@ -40,10 +40,7 @@ public class ProductDAO{
 		return false;
 	}
 	
-	
-	
-	
-	
+
 	public int productInsert(ProductVO productVO) {
 		int r = 0;
 		try {
