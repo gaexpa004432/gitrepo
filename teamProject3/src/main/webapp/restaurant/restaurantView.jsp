@@ -64,7 +64,6 @@ img.inimg {
 	$(function() {
 		if(${!empty focus}){
 			document.getElementById('review').focus();
-			console.log("gg")
 		}
 		var favorite = "${favorite}";
 		if(favorite == "true"){

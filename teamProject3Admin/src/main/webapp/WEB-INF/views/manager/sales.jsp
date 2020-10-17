@@ -1,12 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+            <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+	<script
+	src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+  <script>
+$(function(){
+	$(document).ready( function () {
+	    $('#tb').DataTable({
+	    	info: false,
+	    	
+	    	
+	    });
+	} );
+	
+	
+})
+</script>
 </head>
-<body>
 <body>
    
     
@@ -23,44 +42,19 @@
                             </div>
                             <!-- /widget-header -->
                             <div class="widget-content">
-                                <canvas id="bar-chart" class="chart-holder" width="538" height="250">
+                                <canvas id="myChart" class="chart-holder" width="538" height="250">
                                 </canvas>
                                 <!-- /bar-chart -->
                             </div>
                             <!-- /widget-content -->
                         </div>
-                        <!-- /widget -->
-                        <div class="widget">
-                            <div class="widget-header">
-                                <i class="icon-bar-chart"></i>
-                                <h3>
-                                    Line Chart</h3>
-                            </div>
-                            <!-- /widget-header -->
-                            <div class="widget-content">
-                                <canvas id="area-chart" class="chart-holder" width="538" height="250">
-                                </canvas>
-                                <!-- /line-chart -->
-                            </div>
-                            <!-- /widget-content -->
-                        </div>
-                        <!-- /widget -->
-                        <div class="widget">
-                            <div class="widget-header">
-                                <i class="icon-bar-chart"></i>
-                                <h3>
-                                    Pie Chart</h3>
-                            </div>
-                            <!-- /widget-header -->
-                            <div class="widget-content">
-                                <canvas id="pie-chart" class="chart-holder" width="538" height="250">
-                                </canvas>
-                                <!-- /pie-chart -->
-                            </div>
-                            <!-- /widget-content -->
-                        </div>
+                      
+                        
                         <!-- /widget -->
                     </div>
+                    
+                      
+                      
                     <!-- /span6 -->
                     <div class="span6">
                         <div class="widget">
@@ -78,24 +72,34 @@
                             <!-- /widget-content -->
                         </div>
                         <!-- /widget -->
-                        <div class="widget">
-                            <div class="widget-header">
-                                <i class="icon-bar-chart"></i>
-                                <h3>
-                                    A Chart</h3>
-                            </div>
+                        
+                           
                             <!-- /widget-header -->
-                            <div class="widget-content">
-                                <canvas id="line-chart" class="chart-holder" width="538" height="250">
-                                </canvas>
-                                <!-- /-chart -->
-                            </div>
+                           
+                              
+                              
+                            
                             <!-- /widget-content -->
-                        </div>
+                        
                         <!-- /widget -->
                     </div>
                     <!-- /span6 -->
                 </div>
+                
+                	<table id="tb" class="table table-striped table-bordered">
+		<thead><tr><th>소상공인 번호</th><th>소상공인 아이디</th><th>전화번호</th><th>이메일</th><th>판매총액</th></tr></thead>
+	<tbody>
+<c:forEach items="${sales }" var="member">
+	<tr>
+	<td>${member.seller_code }</td>
+	<td>${member.member_id }</td>
+	<td>${member.member_tel }</td>
+	<td>${member.member_email }</td>
+	<td>${member.order_total }</td>
+	</tr>
+</c:forEach>
+	</tbody>
+	</table>
                 <!-- /row -->
             </div>
             <!-- /container -->
@@ -179,6 +183,60 @@
     <!-- Placed at the end of the document so the pages load faster -->
  
     <script>
+
+    var data = {
+    	    labels:${date},
+    	    datasets: [
+    	        {
+    	            label: ['일별 데이터 '],
+    	            data:${data},
+    	            backgroundColor: [
+    	                'rgba(255, 99, 132, 0.2)',
+    	                'rgba(54, 162, 235, 0.2)',
+    	                'rgba(255, 206, 86, 0.2)',
+    	                'rgba(75, 192, 192, 0.2)',
+    	                'rgba(153, 102, 255, 0.2)',                                                               
+    	                'rgba(255, 159, 64, 0.2)'
+    	            ],
+    	            borderColor: [
+    	                'rgba(255,99,132,1)',
+    	                'rgba(54, 162, 235, 1)',
+    	                'rgba(255, 206, 86, 1)',
+    	                'rgba(75, 192, 192, 1)',
+    	                'rgba(153, 102, 255, 1)',
+    	                'rgba(255, 159, 64, 1)'
+    	            ],
+    	            borderWidth: 1
+    	        }
+    	    ]
+    	};
+    
+    var options = {
+    	    animation: {
+    	        animateScale: true
+    	    },
+    	    responsive: false,
+    	    scales: {
+    	        yAxes: [
+    	            {
+    	                ticks: {
+    	                    beginAtZero: true                                                                    
+    	                }
+    	            }
+    	        ]
+    	    }
+    	};
+
+    
+    var ctx = document.getElementById("myChart").getContext('2d');                                           
+    var myBarChart = new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: options
+    });
+
+    
+
         var doughnutData = [
 				{
 				    value: 30,

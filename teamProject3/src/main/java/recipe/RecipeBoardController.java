@@ -16,7 +16,7 @@ public class RecipeBoardController implements Controller {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RecipeVO recipe = new RecipeVO();
 		
-		 String p = request.getParameter("p");
+		 	String p = request.getParameter("p");
 			String search = request.getParameter("recipe_search");
 			
 			//유효성 체크

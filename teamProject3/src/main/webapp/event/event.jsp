@@ -52,10 +52,10 @@
 		<div class="banner">
 			<ul>
 				<li><a href="/teamProject3/event/eventView.jsp"><img src="/teamProject3/images/제목 없음.png"></a></li>
-				<li><a href="/teamProject3/event/eventView.jsp"><img src="/teamProject3/food/F64.jpg"></a></li>
-				<li><a href="/teamProject3/event/eventView.jsp"><img src="/teamProject3/food/F52.jpg"></a></li>
-				<li><a href="/teamProject3/event/eventView.jsp"><img src="/teamProject3/food/F10.jpg"></a></li>
-				<li><a href="/teamProject3/event/eventView.jsp"><img src="/teamProject3/food/F9.jpg" ></a></li>
+				<li><a href="/teamProject3/event/eventView.jsp"><img src="/teamProject3/images/F64.jpg"></a></li>
+				<li><a href="/teamProject3/event/eventView.jsp"><img src="/teamProject3/images/F52.jpg"></a></li>
+				<li><a href="/teamProject3/event/eventView.jsp"><img src="/teamProject3/images/F10.jpg"></a></li>
+				<li><a href="/teamProject3/event/eventView.jsp"><img src="/teamProject3/images/F9.jpg" ></a></li>
 			</ul>
 		</div>
 	</div>

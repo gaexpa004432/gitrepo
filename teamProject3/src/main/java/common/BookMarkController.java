@@ -18,7 +18,7 @@ public class BookMarkController implements Controller {
 		String res_no = request.getParameter("no");
 		String bookmark = request.getParameter("bookmark");
 		String favorite_code= request.getParameter("code");
-		HttpSession session = ((HttpServletRequest) request).getSession();
+		HttpSession session = request.getSession();
 		favorite.setMember_id((String) session.getAttribute("id"));
 		favorite.setFavorite_no(Integer.parseInt(res_no));
 		favorite.setFavorite_code(favorite_code);

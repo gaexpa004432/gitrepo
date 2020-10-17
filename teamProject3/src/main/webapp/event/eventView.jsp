@@ -82,12 +82,12 @@
 
 </head>
 <body>
-
+ <%@include file="/common/header.jsp" %>
 <form>
 	<table style="width:820px" align = "center">
-		 <tr align = "center">
+		<%--  <tr align = "center">
 		 	 <td>${board.board_sub}</td>
-		 </tr>
+		 </tr> --%>
 		
 		<tr>
 		 <th>작성날짜</th>
@@ -95,18 +95,20 @@
 		 </tr>
 		
 		  <tr>
-		  <th>내용</th>
-		  <td>${board.board_content}<br>
+		  <th></th>
+		  <td>
 		  
 		  	<C:if>
-		  		<img src="/teamProject3/food/${board.board_file}" style="max-width:500px">
+		  		<img src="/teamProject3/images/${board.board_file}" style="max-width:500px"><br>
 		  	</C:if>
+		  	${board.board_content}
 		  </td>
 		  </tr>			  
 		 </table>
 		 
 		 <br>
             <hr>
+            <c:if test="${sessionScope.id == 'vegan'}">
             <div align = "center">
 			<a href="eventViewUpdate.do?board_no=${board.board_no}">
 				<button class = "btn pink" type="button">수정</button>
@@ -114,8 +116,8 @@
 			   
             <button type="button" class = "btn green" 
             		id = "eventdele">삭제</button>
- 		
             </div>
+            </c:if>
 	</form>	
 </body>
 </html>

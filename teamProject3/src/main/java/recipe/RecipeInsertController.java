@@ -21,15 +21,17 @@ import model.ProductVO;
 import model.RecipeDAO;
 import model.RecipePhotoDAO;
 import model.RecipePhotoVO;
+import model.RecipeReviewVO;
 import model.RecipeVO;
 
 public class RecipeInsertController implements Controller {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		RecipeReviewVO recipe_review = new RecipeReviewVO();
 		RecipePhotoVO photo = new RecipePhotoVO();
 		RecipeVO recipe = new RecipeVO();
-		HttpSession session = ((HttpServletRequest) request).getSession(); // member id 가져오기
+		HttpSession session = request.getSession(); // member id 가져오기
 		recipe.setMember_id((String) session.getAttribute("id"));
 		recipe.setRecipe_name(request.getParameter("recipe_name"));
 		recipe.setRecipe_content(request.getParameter("recipe_content"));
@@ -62,7 +64,7 @@ public class RecipeInsertController implements Controller {
 		System.out.println(recipe.toString());
 		int r = RecipeDAO.getInstance().recipeInsert(recipe); // 글번호가 반환
 		MemberVO membervo = (MemberVO) request.getSession().getAttribute("login");
-//		 int sellerCode = membervo.getSeller_code();
+		 int sellerCode = membervo.getSeller_code();
 		
 		
 		for (int a = 0; a < product_name.length; a++) {
@@ -133,6 +135,7 @@ public class RecipeInsertController implements Controller {
 				RecipePhotoDAO.getInstance().recipe_photoInsert(photo);
 			}
 		}
+
 
 		// 페이지 이동
 		response.sendRedirect("recipeBoard.do"); 

@@ -67,8 +67,13 @@
 	border-bottom: 2px solid #165195;
 }
 </style>
+
 <script type="text/javascript">
+
 	$(function() {
+		if(${!empty focus}){
+			document.getElementById('recipe_insert').focus();
+		}
 		var favorite = "${favorite}";
 		if(favorite == "true"){
 			$("#bookmark").html("<img src='/teamProject3/images/즐겨찾기취소.jpg' style='width: 100px; height: 100px; margin-left: 30px;'>");
@@ -76,6 +81,7 @@
 		} else {
 			$("#bookmark").html("<img src='/teamProject3/images/즐겨찾기.jpg'style='width: 100px; height: 100px; margin-left: 30px;'>");
 		}
+		$("#input_imgs").on("change", handleImgFileSelect);
 //======================================================================================================
 		$("#cart").on(
 				"click",
@@ -92,11 +98,11 @@
 									param += "&";
 								}
 							}
-							location.href = "${pageContext.request.contextPath}/CartSelectContoroller.do?recipe_number=" + ${ recipe.recipe_number };
+							location.href = "${pageContext.request.contextPath}/CartSelectContoroller.do?recipe_number=" + ${ recipe.recipe_number} + "&seller_code=" + ${recipe.seller_code};
 						}
 					}
 				})
-//===============================================================================================			
+//=========== ====================================================================================			
 	$("#input_imgs").on("change", handleImgFileSelect);
 		$(".reviewDel").on("click",function(){
 			var result = confirm("정말 삭제 하시겠습니까?");
@@ -144,8 +150,7 @@
 
 					}
 					reader.readAsDataURL(f);
-
-				});
+			});
 	}
 //====================================================================================================
 	function deleteImageAction(index) {
@@ -245,6 +250,8 @@
 			}
 		})
 	})
+//====================================================================================================
+
 </script>
 </head>
 
@@ -257,6 +264,7 @@
 
 		<div>
 			<h3>작성자 : ${ recipe.member_id }</h3>
+			<input type="hidden" value="${recipe.seller_code}">
 		</div>
 
 		<div class="col-sm-12" align="center">
@@ -308,13 +316,14 @@
 	</div>
 
 	<hr>
+	<c:if test="${recipe.member_id eq sessionScope.id}">
 	<div align="center">
 		<a href="recipeViewUpdate.do?recipe_number=${recipe.recipe_number}">
 			<button type="button" class="btn green">레시피 수정</button>
 		</a>
-
 		<button type="button" class="btn red" id="recipedele">레시피 삭제</button>
 	</div>
+	</c:if>
 
 	<div align="right">
 		<a href="javascript:void(0);" id="bookmark"> 
@@ -329,6 +338,38 @@
 		</div>
 	</div>
 	<hr>
+<form name="searchFrm">		
+	<input type="hidden" name="p" value="1">
+	<input type="hidden" name="res_no" class="recipe_no" value="${ recipe.recipe_number }">
+	
+</form>
+
+	<hr>
+	<div class="row">
+		<div class="col" align="center">
+			<form action="/teamProject3/recipeReview.do" method="post"
+				enctype='multipart/form-data'>
+				<div class="col-sm-8" align="center">
+					<div class="imgs_wrap">
+						<img id="img" />
+					</div>
+				</div>
+				<br><input value="${ recipe.recipe_number }" name="recipe_no"
+					hidden="hidden">
+				<textarea cols="100" rows="10" name="recipe_reivew_content"></textarea>
+				
+				<div class="col-sm-8" align="center">
+					<div align="left">
+						<input type="file" id="input_imgs" name="recipe_review_file">
+					</div>
+				</div>
+
+				<button id="recipe_insert" style="vertical-align: top;">리뷰 쓰기</button>
+			</form>
+			<br><br><br>
+		</div>
+	</div>
+
 
 	<c:forEach items="${ reviewlist }" var="list">
 		<div class="row" id="over"
@@ -351,43 +392,19 @@
 						style="width: 25px; height: 25px;"></a>
 				</c:if>
 			</div>
-
+			
+			<div class="col-sm-1" align="right">
+				 	<c:if test="${ list.member_id == sessionScope.id }"> 
+						<a class="reviewDel" href="javascript:void(0);" data-no="${ list.recipe_review_no }"><img src="/teamProject3/images/delBtn.png" style="width: 25px; height: 25px;"></a>
+					</c:if>
+			</div>
 		</div>
 	</c:forEach>
 	<div align="center">
 
+
  <my:paging paging="${paging}" jsfunc="gopage" />
 </div>
-<form name="searchFrm">		
-	<input type="hidden" name="p" value="1">
-	<input type="hidden" name="res_no" class="recipe_no" value="${ recipe.recipe_number }">
-	
-</form>
-
-	<hr>
-	<div class="row">
-		<div class="col" align="center">
-			<form action="/teamProject3/recipeReview.do" method="post"
-				enctype='multipart/form-data'>
-				<div class="col-sm-8" align="center">
-					<div align="left">
-						<input type="file" id="input_imgs" name="recipe_review_file">
-					</div>
-				</div>
-
-				<div class="col-sm-8" align="center">
-					<div class="imgs_wrap">
-						<img id="img" />
-					</div>
-				</div>
-				<br><input value="${ recipe.recipe_number }" name="recipe_no"
-					hidden="hidden">
-				<textarea cols="100" rows="10" name="recipe_reivew_content"></textarea>
-				<button id="insert" style="vertical-align: top;">리뷰 쓰기</button>
-			</form>
-			<br><br><br>
-		</div>
-	</div>
 
 </body>
 </html>

@@ -26,13 +26,14 @@ public class EventDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "INSERT INTO BOARD (board_no, board_sub, board_content,"
-					+ " board_date, board_file, board_groupcode)" 
-					+ " VALUES (BOARD_SEQ.NEXTVAL,?,?,SYSDATE,?,?)"; // 시퀀스
+					+ " board_date, board_file, board_groupcode,member_name)" 
+					+ " VALUES (BOARD_SEQ.NEXTVAL,?,?,SYSDATE,?,?,?)"; // 시퀀스
 			pstmt = conn.prepareStatement(sql); 
 			pstmt.setString(1, freeboardVO.getBoard_sub());
 			pstmt.setString(2, freeboardVO.getBoard_content());
 			pstmt.setString(3, freeboardVO.getBoard_file());
 			pstmt.setString(4, freeboardVO.getBoard_groupcode());
+			pstmt.setString(5, freeboardVO.getMember_name());
 			r = pstmt.executeUpdate();
 			System.out.println(r + "건이 입력됨");
 
@@ -48,7 +49,7 @@ public class EventDAO {
 	public ArrayList<FreeBoardVO> eventSelectAll(FreeBoardVO freeboardVO) {
 		conn = ConnectionManager.getConnnect();
 		FreeBoardVO resultVO = new FreeBoardVO();
-		ArrayList<FreeBoardVO> list = new ArrayList();
+		ArrayList<FreeBoardVO> list = new ArrayList<FreeBoardVO>();
 		try {
 			String where = " where 1=1 and board_groupcode = ?";
 			if (freeboardVO.getBoard_sub() != null) {

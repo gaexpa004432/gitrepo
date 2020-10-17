@@ -28,7 +28,7 @@ public class CommentInsertController implements Controller {
 				
 				System.out.println(post_no);
 				
-				HttpSession session = ((HttpServletRequest)request).getSession();
+				HttpSession session = request.getSession();
 			    commentVO.setMember_id((String)session.getAttribute("id"));//로그인된 아이디를 들고옴
 				//등록 처리
 				CommentDAO dao = new CommentDAO();

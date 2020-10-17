@@ -78,9 +78,16 @@ $(function() {
 			var valuecheck = $('#newbtn:checked').val();
 			$('#sample4_postcode').val("");
 			$('#sample4_roadAddress').val("");
-			$('#sample4_jibunAddress').val("");
 			$('#sample4_detailAddress').val("");
 			$('#sample4_extraAddress').val("");
+	 });
+	 
+	 $('#oldbtn').on("click", function() {
+			var valuecheck = $('#oldbtn:checked').val();
+			$('#sample4_postcode').val("${vo.member_postcode}");
+			$('#sample4_roadAddress').val("${vo.member_roadAddress}");
+			$('#sample4_detailAddress').val("${vo.member_detailAddress}");
+			$('#sample4_extraAddress').val("${vo.member_extraAddress}");
 	 });
 	 
 	//마일리지 구하기
@@ -100,7 +107,7 @@ $(function() {
 		frm.submit();
 	});
 	
-	$('#').on("click", function() {
+	/*$('#').on("click", function() {
 		
 		var IMP = window.IMP; // 생략가능
 		IMP.init('imp40069131'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
@@ -136,7 +143,7 @@ $(function() {
 		    }
 		    alert(msg);
 	    }
-	})
+	})*/
 	
 });
 </script>
@@ -151,8 +158,7 @@ $(function() {
 		<div class="lay">
 			<h3 class="order_detail_producttitle">상품 정보</h3>
 		</div>
-		
-	<form action="${pageContext.request.contextPath}/orderOutputInsert.do" name="frm" method="post">
+	<form action="${pageContext.request.contextPath}/orderOutputInsert.do" id="frm" name="frm" method="post">
 		<table border='1' class="order_detail_buytable">
 		<colgroup>
 		<col style="width:auto;">
@@ -170,36 +176,31 @@ $(function() {
 		<th scope="col">가격</th>
 		<th scope="col">수량</th>
 		<th scope="col">결제금액</th>
-		<th scope="col">삭제</th>
 		</tr>
 		</thead>
 		<tbody>
 		<c:set var="all_price" value="0"/>
-		<c:forEach items="${ord}" var="orderlist">
+		<c:forEach items="${array}" var="orderlist">
 		<tr>
 		<td><input type="checkbox"></td>
+		<td><input type="hidden" name="product_number" value="${orderlist.product_number}"></td>
 		<td><input type="hidden" name="recipe_name" value="${orderlist.recipe_name}">${orderlist.recipe_name}</td>
 		<td><input type="hidden" name="product_name" value="${orderlist.product_name}">${orderlist.product_name}</td>
 		<td><input type="hidden" name="product_price" value="${orderlist.product_price}">${orderlist.product_price}</td>
 		<td>
-			<select class="quantity-select">
-			<option>1</option>
-			<option>2</option>
-			<option>3</option>
-			<option>4</option>
-			</select>
+			<input type="hidden" name="product_quantity" value="${orderlist.product_quantity}">${orderlist.product_quantity}
 		<td>
-		<td><input type="button" class="cart_delete" value="삭제"></td>
+		<input type="hidden" name="recipe_number" value="${orderlist.recipe_number}">
 		</tr>
 		<c:set var="all_price" value="${all_price + orderlist.order_total}"/>
 		</c:forEach>
 		</tbody>
 		</table>
-		<input type="text" name ="seller_code" value="${vo.seller_code}">
-		<input type="text" name="member_id" value="${vo.member_id}">
+		<input type="hidden" name ="seller_code" value="${resultVO.seller_code}">
+		<input type="hidden" name="member_id" value="${vo.member_id}">
 		<div class="payment">
 		<strong>최종결제금액 : </strong>
-		<input type="hidden" name="order_total" value="${all_price}">
+		<input type="hidden" value="${all_price}">
 		<h2 id="all_price_put">
 		${all_price}</h2>
 		</div>
@@ -211,14 +212,14 @@ $(function() {
 		</div>
 
 		<div class="order_detail_buyimformation">
-			<span>이 름 : </span><input type="text" name="member_name" value="${vo.member_name}" readonly/><br> <span>휴대폰
-				: </span><input type="text" name="member_tel" value="${vo.member_tel}" readonly/><br> <span>이메일 : </span><input
-				type="text" name="member_email" value="${vo.member_email}" readonly />
+			<span>이 름 : </span><input type="text" id="name" name="member_name" value="${vo.member_name}"/><br> <span>휴대폰
+				: </span><input type="text" id="tel" name="member_tel" value="${vo.member_tel}"/><br> <span>이메일 : </span><input
+				type="text" name="member_email" id="emial" value="${vo.member_email}" />
 		</div>
 		<hr width=30%>
 			<h3 class="order_detail_locationtitle">배송지 정보</h3>
 			<div class="location_radio">
-		<input type="radio" id="oldbtn" name="radio1" value="old" checked>원래 주소
+		<input type="radio" id="oldbtn" name="radio1" value="old" onclick="click()" checked>원래 주소
 		<input type="radio" id="newbtn" name="radio1" value="new" onclick="click()">새 배송지
 		<br>
 		</div>
@@ -228,7 +229,8 @@ $(function() {
 				id="sample4_postcode" placeholder="우편번호" value="${vo.member_postcode}"> <input
 				type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
 			<input type="text" name="member_roadAddress" id="sample4_roadAddress"
-				placeholder="도로명주소" value="${vo.member_roadAddress}" > <input type="hidden"
+				placeholder="도로명주소" value="${vo.member_roadAddress}" 
+				size=50 maxlength=100> <input type="hidden"
 				name="member_jibunAddress" id="sample4_jibunAddress"
 				placeholder="지번주소" > <span id="guide"
 				style="color: #999; display: none"></span> <input type="text"
@@ -262,12 +264,11 @@ $(function() {
 				<span>${my_mileage}</span>
 				<img src="${pageContext.request.contextPath}/buy/images/equal.png">
 				<c:set var="final_order_price" value="${all_price - my_mileage}"/>
-				<span id="final-cart-price-mileage">${final_order_price}</span>
+				<input id="final-cart-price-mileage" name="order_total" value="${final_order_price}">${final_order_price}
 			</div>
 		</div>
-		
-		<button type="button" id="payment_button">결제하기</button>
 		</form>
+		<button type="button" id="payment_button" onclick="click">결제하기</button>
 	</div>
 	
 </body>

@@ -1,276 +1,255 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8 " isELIgnored="false"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" isELIgnored="false"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
 	prefix="decorator"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-  <head>
-  
-    <title>Vegan - For Vegan , For Free!</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
     
-    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900&display=swap" rel="stylesheet">
+     <!-- Js Plugins -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.nice-select.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
+     <script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/main.js"></script>
+    
+    
+    <title>Ogani | Template</title>
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/animate.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ionicons.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-    <style>
-    h1, h2, h3, h4, h5, h6 {
-  margin-top: 0;
-  margin-bottom: 0.5rem; }
-  
-  p {
-  margin-top: 0;
-  margin-bottom: 1rem; }
-  
-  a {
-  color: #007bff;
-  text-decoration: none;
-  background-color: transparent; }
-  a:hover {
-    color: #0056b3;
-    text-decoration: underline; }
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
-a:not([href]):not([tabindex]) {
-  color: inherit;
-  text-decoration: none; }
-  a:not([href]):not([tabindex]):hover, a:not([href]):not([tabindex]):focus {
-    color: inherit;
-    text-decoration: none; }
-  a:not([href]):not([tabindex]):focus {
-    outline: 0; }
-  
-  button {
-  border-radius: 0; }
+    <!-- Css Styles -->
 
-button:focus {
-  outline: 1px dotted;
-  outline: 5px auto -webkit-focus-ring-color; }
 
-input,
-button,
-select,
-optgroup,
-textarea {
-  margin: 0;
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit; }
-
-input {
-  overflow: visible; }
-
-select {
-  text-transform: none; }
-
-input[type="radio"],
-input[type="checkbox"] {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  padding: 0; }
-
-  h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
-  margin-bottom: 0.5rem;
-  font-family: inherit;
-  font-weight: 500;
-  line-height: 1.2;
-  color: inherit;
-  font-color : #FFF; }
-
-h1, .h1 {
-  font-size: 2.5rem; 
-  font-color : #fff;
-  }
-
-h2, .h2 {
-  font-size: 2rem; }
-
-h3, .h3 {
-  font-size: 1.75rem; }
-
-h4, .h4 {
-  font-size: 1.5rem; }
-
-h5, .h5 {
-  font-size: 1.25rem; }
-
-h6, .h6 {
-  font-size: 1rem; }
-  
-.padding_test {
-	padding-top : 3%;
-}
-
+<style>
 .img-fluid {
-  max-width: 20%;
+  max-width: 40%;
   height: auto;
 }
 
 .rounded-circle {
-  border-radius: 50% !important;
+  border-radius: 50% !important;  
 }
 
+#mainImg{
 
-
-
-
-
-.navbar a {
-  float: left;
-  font-size: 16px;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
 }
 
-.dropdown {
-  float: left;
-  overflow: hidden;
+#subUl{
+	position: absolute;
+	background : #green;
 }
 
-.dropdown .dropbtn {
-  font-size: 16px;  
-  border: none;
-  outline: none;
-  color: white;
-  
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
+#subUl > li {
+	padding: 16px 28px;
+	border-botton : 1px solid rgba(0,0,0,0.15);
 }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+#subUl > li > a {
+	font-size : 0.85rem;
+	color : rgba(255,255,255,0.85);
+	text-align : center;
+	letter-spacing: 0.05em;
+	display : block;
+	padding : 12px 24px; 
+	color : rgba(255,255,255,0.6);
+	text-decoration : none;
 }
 
-.dropdown-content a{
-  float: none;
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
+.header__menu ul li{
+	margin-right: 10px;
+	margin-left: 10px;
+	
 }
 
-/* .dropdown-content a:hover {
-  background-color: #ddd;
+.hero__search__form {
+	width: 610px;
+	height: 50px;
+	border: 1px solid #ebebeb;
+	position: relative;
+	float: none;
+	margin:0 auto;
 }
- */
-.dropdown:hover .dropdown-content {
-  display: block;
+
+.aa {
+	display : inline-block;
+	height:100%;
+	position:absolute;
+	width: 100px;
 }
 
-
-    </style>
-	<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-      <script	src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-    <script
-	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-
-	 
-    <decorator:head></decorator:head>
-  </head>
-  <body>
-    
-	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	    <div class="container">
-	      <a class="navbar-brand" href="index.html">Vegan</a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
-	      </button>
-
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item active"><a href="/teamProject3/" class="nav-link">Home</a></li>
-	          <li class="nav-item"><a href="/teamProject3/guide/guide.jsp" class="nav-link">Guide</a></li>
-	          <li class="nav-item"><a href="/teamProject3/recipeBoard.do" class="nav-link">Reciepe</a></li>
-	          <li class="nav-item"><a href="/teamProject3/freeBoardList.do" class="nav-link">Board</a></li>
-	          <li class="nav-item"><a href="/teamProject3/qaBoardList.do" class="nav-link">QaBoard</a></li>
-	          <li class="nav-item"><a href="/teamProject3/restaurantBoard.do" class="nav-link">Recommands</a></li>
-	          <li class="nav-item"><a href="/teamProject3/eventBoardList.do" class="nav-link">Event</a></li>
-	          <c:choose>
-		          <c:when test="${empty sessionScope.login.member_id}">
-			          <li class="nav-item"><a href="${pageContext.request.contextPath}/member/memberInsert.jsp" class="nav-link">Join</a></li>
-			          <li class="nav-item"><a href="${pageContext.request.contextPath}/member/memberLogin.jsp" class="nav-link">Login</a></li>
-		          </c:when>
-		          <c:when test="${not empty sessionScope.login.member_id}">
-			          <li class="nav-item"><a href="${pageContext.request.contextPath}/member/myPage.jsp" class="nav-link">MyPage</a></li>
-			          <li class="nav-item"><a href="${pageContext.request.contextPath}/logout.do" class="nav-link">Logout</a></li> 
-		          	  <li class="nav-item"><a class="nav-link">${sessionScope.login.member_id}님</a></li>
-		          	  <li class="nav-item">
-		          	  	<div class="dropdown">
-		          	  		<a type="button" class="dropbtn">
-		          	  			<i class="fa fa-caret-down"><img src="${pageContext.request.contextPath}/images/우주하마.jpg" class="img-raised rounded-circle img-fluid"></i>
-		          	  		</a>	
-		          	  		<div class="dropdown-content">
-						      <a id="link" href="#">Link 1</a>
-						      <a id="link" href="#">Link 2</a>
-						      <a id="link" href="#">Link 3</a>
-						    </div>
-		          	  	</div>
-		          </c:when>
-	          </c:choose>
-	        </ul>
-	      </div>
-	    </div>
-	  </nav>
-    <!-- END nav -->
-    
-    <div class="hero-wrap ftco-degree-bg" style="background-image: 
-    url('${pageContext.request.contextPath}/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text justify-content-center align-items-center">
-          <div class="col-lg-8 col-md-6 ftco-animate d-flex align-items-end">
-          	<div class="text text-center">
-	            <h1 class="mb-4">Vegan <br>For free, Enjoy it NOW!</h1>
-	            <p style="font-size: 18px;">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts</p>
-	            <form action="#" class="search-location mt-md-5">
-		        		<div class="row justify-content-center">
-		        			<div class="col-lg-10 align-items-end">
-		        				<div class="form-group">
-		          				<div class="form-field">
-				                <input type="text" class="form-control" placeholder="Search Reciepe">
-				                <button><span class="ion-ios-search"></span></button>
-				              </div>
-			              </div>
-		        			</div>
-		        		</div>
-		        	</form>
+.header__cart ul li {
+	margin:0, 5px, 0, 0 auto;
+	float: left;
+}
+</style>
+<script>
+$(function() {
+	$("#faceIcon").on("dblclick", function() {
+		var photoCan = confirm("사진을 수정 하시겠습니까?");
+		alert(photoCan);
+		if (photoCan==true) {
+			location.href="/teamProject3/member/memberPhotoUpdate.jsp";
+		}
+	});
+});
+</script>
+<decorator:head></decorator:head>
+</head>
+<body>
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+           	<div class="container">
+           		<div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__right">
+                            
+                           <div class="header__top__right__language">
+			               		<c:choose>
+				               		<c:when test="${empty sessionScope.login.member_id}">
+				                	<img style ="width:20px" src="${pageContext.request.contextPath}/images/login_icon.png" alt="">
+						                <div>  Join & Login  </div>
+						                <span class="arrow_carrot-down"></span>
+							                <ul>
+							                    <li><a href="${pageContext.request.contextPath}/member/memberInsert.jsp">Join</a></li>
+							                    <li><a href="${pageContext.request.contextPath}/member/memberLogin.jsp">Login</a></li>
+							                </ul>
+					                </c:when>
+					                <c:when test="${not empty sessionScope.login.member_id}">
+					                <img style ="width:20px" src="${pageContext.request.contextPath}/img/logout_icon.png" alt="">
+					                	<div>  LogOut  </div>
+					                	<span class="arrow_carrot-down"></span>
+							                <ul>
+							                	<li><a href="${pageContext.request.contextPath}/member/myPage.jsp">My Page</a></li>
+							                    <li><a href="${pageContext.request.contextPath}/logout.do">LogOut</a></li>
+							                </ul>
+				                	</c:when>
+			                	</c:choose>
+				            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>  
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="header__logo">
+                        <a href="./index.html"><img src="${pageContext.request.contextPath}/images/로고.png" alt="" 
+                        style="width:200px; height:110px;"></a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <nav class="header__menu">
+                        <ul>
+                            <li class="active"><a href="/teamProject3/">Home</a></li>
+                            <li><a href="/teamProject3/guide/guide.jsp">Guide</a></li>
+                            <li><a href="/teamProject3/recipeBoard.do">Recipe</a></li>
+                            <li><a href="/teamProject3/restaurantBoard.do">Restaurant</a></li>
+                            <li><a href="#">Board</a>
+                                <ul class="header__menu__dropdown">
+                                    <li><a href="/teamProject3/freeBoardList.do">Free Board</a></li>
+                                    <li><a href="/teamProject3/qaBoardList.do">QA Board</a></li>
+                                </ul> 
+                            </li>
+                            <li><a href="/teamProject3/eventBoardList.do">Event</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3">
+                    <div class="header__cart ">
+                    <c:if test="${not empty sessionScope.login.member_id}">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-heart"></i> <span>즐겨찾기개수</span></a></li>
+                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>장바구니개수</span></a></li>
+               		    </ul>
+               		    <c:if test="${not empty sessionScope.login.member_image}">
+	                		<img id="faceIcon" src="${pageContext.request.contextPath}/img/${sessionScope.login.member_image}" class="img-raised rounded-circle img-fluid">
+	                	</c:if>
+	                	<c:if test="${empty sessionScope.login.member_image}">
+               		    	<img id="faceIcon" src="${pageContext.request.contextPath}/img/face_icon.png" class="img-raised rounded-circle img-fluid">
+               		    </c:if>
+					</c:if>         
+                    </div>
+                </div>
             </div>
-          </div>
+            <div class="humberger__open ">
+                <i class="fa fa-bars"></i>
+            </div>
         </div>
-      </div>
-      <div class="padding_test">
-      <br>
-      <br>
-      <br>
-      </div>
-      <div class="container">
-            <decorator:body/>
-      </div>
-  <script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
-  <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> 
-  <script src="${pageContext.request.contextPath}/js/jquery.easing.1.3.js"></script>
-  <script src="${pageContext.request.contextPath}/js/jquery.waypoints.min.js"></script>
-  <script src="${pageContext.request.contextPath}/js/jquery.stellar.min.js"></script>
-  <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
-  <script src="${pageContext.request.contextPath}/js/jquery.magnific-popup.min.js"></script>
-  <script src="${pageContext.request.contextPath}/js/aos.js"></script>
-  <script src="${pageContext.request.contextPath}/js/jquery.animateNumber.min.js"></script>
-  <script src="${pageContext.request.contextPath}/js/bootstrap-datepicker.js"></script>
-  <script src="${pageContext.request.contextPath}/js/jquery.timepicker.min.js"></script>
-  <script src="${pageContext.request.contextPath}/js/scrollax.min.js"></script>
-  <script src="${pageContext.request.contextPath}/js/main.js"></script>  
-  </body>
+    </header>  
+    <!-- Header Section End -->
+
+    <!-- Hero Section Begin -->
+    <section class="hero">
+        <div class="container">
+            <div class="row">
+               <div class="col-lg-12">
+                    <div class="hero__search " >
+                        <div class="hero__search__form">
+                            <form action="#">
+                                <!-- <div class="hero__search__categories">
+                                    All Categories
+                                    <span class="arrow_carrot-down"></span>
+                                </div> -->
+                                <input type="text" placeholder="What do yo u need?">
+                                <button type="submit" class="site-btn">SEARCH</button>
+                            </form>
+                        </div>
+                        
+
+                        <!-- <div class="hero__search__phone">
+                            <div class="hero__search__phone__icon">
+                                <i class="fa fa-phone"></i>
+                            </div>
+                            <div class="hero__search__phone__text">
+                                <h5>+65 11.188.888</h5>
+                                <span>support 24/7 time</span>
+                            </div>
+                        </div> -->
+                    </div>
+                   <!--  <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg">
+                        <div class="hero__text">
+                            <span>FRUIT FRESH</span>
+                            <h2>Vegetable <br />100% Organic</h2>
+                            <p>Free Pickup and Delivery Available</p>
+                            <a href="#" class="primary-btn">SHOP NOW</a>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div> 
+    </section>
+    <!-- Hero Section End -->
+  
+
+
+
+ <decorator:body/>
+
+
+</body>
 </html>

@@ -66,7 +66,7 @@ public class CommentDAO {
 		//단건조회(댓글view) 
 		public ArrayList<CommentVO> selectOne(CommentVO commentVO) {
 			 CommentVO resultVO = null;
-			 ArrayList<CommentVO> list = new ArrayList();
+			 ArrayList<CommentVO> list = new ArrayList<CommentVO>();
 			
 			 try {
 				 conn = ConnectionManager.getConnnect();

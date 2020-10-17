@@ -23,11 +23,7 @@ public class orderListController implements Controller {
 		
 		Integer order_number = Integer.parseInt(request.getParameter("order_number"));
 		vo.setOrder_number(order_number);
-
-		ArrayList<orderVO> list = orderListDAO.getInstance().getOrder(vo);
-		
-		request.setAttribute("list", list);
-				
+						
 		request.getRequestDispatcher("/member/orderList.jsp").forward(request, response);
 	}
 

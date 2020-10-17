@@ -1,12 +1,14 @@
 package model;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
 public class orderVO {
 	
 	//orderList
-	int order_number;
+	String order_number;
 	String order_date;
 	String order_total;
 	String member_id;
@@ -14,16 +16,10 @@ public class orderVO {
 	String order_status;
 	String order_reason;
 
-	// detail
-	int order_detail_number;
-	int product_detail;
-	int order_detail;
-	int order_detail_no;
-
 	// product
-	int product_number;
+	String product_number;
 	String product_name;
-	Integer product_price;
+	String product_price;
 	String product_unit;
 	String product_status;
 	String product_img;
@@ -44,7 +40,7 @@ public class orderVO {
 	Integer remaining;
 	
 	//recipe
-	int recipe_number;
+	String recipe_number;
 	String recipe_name;
 	String recipe_date;
 	String recipe_content;
@@ -60,6 +56,10 @@ public class orderVO {
 	String member_detailAddress;
 	String member_extraAddress;
 	
+	//Detail
+	String PRODUCT_NUMBER;
+	String PRODUCT_PRICE;
+	String product_quantity;
 	
 	//default 생성자
 	public orderVO() {

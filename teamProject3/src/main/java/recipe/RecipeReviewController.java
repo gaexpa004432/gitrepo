@@ -28,7 +28,7 @@ public class RecipeReviewController implements Controller {
 		recipe.setRecipe_review_content(request.getParameter("recipe_reivew_content"));
 		int no = Integer.parseInt(request.getParameter("recipe_no"));
 		recipe.setRecipe_number(no);
-		HttpSession session = ((HttpServletRequest) request).getSession();
+		HttpSession session =  request.getSession();
 		recipe.setMember_id((String) session.getAttribute("id"));
 
 		Part part1 = request.getPart("recipe_review_file");
@@ -45,7 +45,7 @@ public class RecipeReviewController implements Controller {
 		 }
 		RecipeReviewDAO.getInstance().insert(recipe);
 		 
-		response.sendRedirect("recipeView.do?recipe_number="+no);
+		response.sendRedirect("recipeView.do?recipe_number=" + no + "&focus=0");
 
 	}
 
