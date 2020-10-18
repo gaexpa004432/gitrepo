@@ -16,18 +16,17 @@ public class FreeBoardDAO {
 	       int r = 0;
 		   try {
 	         conn = ConnectionManager.getConnnect();
-	         String sql = "INSERT INTO BOARD (BOARD_NO, MEMBER_NAME, BOARD_SUB, BOARD_CONTENT,"
+	         String sql = "INSERT INTO BOARD (BOARD_NO, BOARD_SUB, BOARD_CONTENT,"
 	         		+ "BOARD_DATE, BOARD_FILE, BOARD_GROUPCODE, MEMBER_ID, Board_passyn"
 	         		+ ")"
-	               + "VALUES (BOARD_SEQ.NEXTVAL,?,?,?,SYSDATE,?,?,?,?)"; //시퀀스
+	               + "VALUES (BOARD_SEQ.NEXTVAL,?,?,SYSDATE,?,?,?,?)"; //시퀀스
 	         pstmt = conn.prepareStatement(sql);
-	         pstmt.setString(1, freeboardVO.getMember_name());
-	         pstmt.setString(2, freeboardVO.getBoard_sub());
-	         pstmt.setString(3, freeboardVO.getBoard_content());
-	         pstmt.setString(4, freeboardVO.getBoard_file());
-	         pstmt.setString(5, freeboardVO.getBoard_groupcode());
-	         pstmt.setString(6, freeboardVO.getMember_id());
-	         pstmt.setString(7, freeboardVO.getBoard_passyn());
+	         pstmt.setString(1, freeboardVO.getBoard_sub());
+	         pstmt.setString(2, freeboardVO.getBoard_content());
+	         pstmt.setString(3, freeboardVO.getBoard_file());
+	         pstmt.setString(4, freeboardVO.getBoard_groupcode());
+	         pstmt.setString(5, freeboardVO.getMember_id());
+	         pstmt.setString(6, freeboardVO.getBoard_passyn());
 	         r = pstmt.executeUpdate();
 	         System.out.println(r + "건이 입력됨");
 
