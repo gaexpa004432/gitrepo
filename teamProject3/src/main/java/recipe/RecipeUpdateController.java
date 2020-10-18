@@ -39,6 +39,7 @@ public class RecipeUpdateController implements Controller {
 		recipeup.setCooking_level(request.getParameter("cooking_level"));
 		
 		Part part1 = request.getPart("main_img");
+		
 		String fileName = getFileName(part1);
 		String path = request.getServletContext().getRealPath("images");
 		System.out.println(path); 
@@ -56,7 +57,7 @@ public class RecipeUpdateController implements Controller {
 		
 		// 서비스 처리 db처리
 		System.out.println(recipeup.toString());
-		int r = RecipeDAO.getInstance().recipeInsert(recipeup); // 글번호가 반환
+		int r = RecipeDAO.getInstance().recipeUpdate(recipeup); // 글번호가 반환
 		MemberVO membervo = (MemberVO) request.getSession().getAttribute("login");
 //		int sellerCode = membervo.getSeller_code();
 		
@@ -107,7 +108,7 @@ public class RecipeUpdateController implements Controller {
 				List<RecipePhotoVO> renameArray = new ArrayList<RecipePhotoVO>();
 
 				for (Part part : fileList) { // 파트수만큼 반복
-System.out.println(getFileName(part)+"skfdmenfk");
+						System.out.println(getFileName(part)+"skfdmenfk");
 					if (getFileName(part) != null) { // 파일타입으로 받아온 파라미터만 값을 가지고 있음
 						if (ignore == 0) {
 							ignore++;
@@ -122,7 +123,7 @@ System.out.println(getFileName(part)+"skfdmenfk");
 						
 						photo.setCooking_photo_name(renamefile.getName());
 						photo.setCooking_content(cooking_step[cnt++]);
-						photo.setRecipe_number(r);
+						photo.setRecipe_number(recipeup.getRecipe_number());
 						RecipePhotoDAO.getInstance().recipe_photoInsert(photo);
 					}
 				}

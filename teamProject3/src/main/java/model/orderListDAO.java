@@ -41,7 +41,7 @@ public class orderListDAO {
             order.setOrder_number(rs.getInt("order_number"));
             order.setRecipe_name(rs.getString("recipe_name"));
             order.setProduct_name(rs.getString("product_name"));
-            order.setProduct_price(rs.getInt("product_price"));
+            order.setProduct_price(rs.getString("product_price"));
             order.setOrder_date(rs.getString("order_date"));
             order.setOrder_total(rs.getString("order_total"));
             list.add(order);

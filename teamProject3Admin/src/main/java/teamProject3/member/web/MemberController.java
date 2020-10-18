@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import teamProject3.member.MemberVO;
 import teamProject3.member.service.MemberService;
+import teamProject3.order.OrderVO;
+import teamProject3.order.service.OrderService;
 
 
 @Controller
@@ -21,6 +23,8 @@ public class MemberController {
 	
 	@Autowired
 	MemberService memberService;
+	@Autowired OrderService orderService;
+	
 	
 	@RequestMapping("/memberList")
 	public String memberList(Model model ,HttpServletRequest request,HttpServletResponse response) {
@@ -33,7 +37,20 @@ public class MemberController {
 	@RequestMapping("/salesList")
 	public String salesList(Model model ,HttpServletRequest request,HttpServletResponse response) {
 		
+		List<OrderVO> list = orderService.dailySales(null);
+		List<OrderVO> sales = orderService.getOrderoutput(null);
+		List<String> date = new ArrayList<String>();
+		List<String> total = new ArrayList<String>();
+		
+		int i = 0 ;
+		for(OrderVO data: list) {
+			date.add("'"+data.getOrder_date()+"'");
+			total.add(data.getOrder_total());
+		}
+		model.addAttribute("date",date);
+		model.addAttribute("data",total);
 		model.addAttribute("index",2);
+		model.addAttribute("sales",sales);
 		return "manager/sales";
 	}
 	

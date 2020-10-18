@@ -73,6 +73,7 @@ public class FreeBoardDAO {
 					resultVO.setBoard_no(rs.getInt("board_no"));
 					resultVO.setBoard_date(rs.getString("board_date"));
 					resultVO.setBoard_passyn(rs.getString("board_passyn"));
+					resultVO.setMember_name(rs.getString("member_name"));
 					list.add(resultVO);
 					System.out.println(resultVO.getBoard_sub());
 				} 

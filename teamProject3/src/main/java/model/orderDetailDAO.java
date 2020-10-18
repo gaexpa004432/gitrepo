@@ -32,13 +32,13 @@ public class orderDetailDAO {
 		try {
         	conn = ConnectionManager.getConnnect();
             psmt = conn.prepareStatement(SELECT_ORDER_DETAIL);
-            psmt.setInt(1, order.getRecipe_number());
+            psmt.setString(1, order.getRecipe_number());
             rs = psmt.executeQuery();
             while(rs.next()){
             	orderVO ord = new orderVO();
-            	ord.setProduct_number(rs.getInt("product_number"));
+            	ord.setProduct_number(rs.getString("product_number"));
             	ord.setProduct_name(rs.getString("product_name"));
-            	ord.setProduct_price(rs.getInt("product_price"));
+            	ord.setProduct_price(rs.getString("product_price"));
             	ord.setRecipe_name(rs.getString("recipe_name"));
             	ord.setRemaining(rs.getInt("remaining"));
             	list.add(ord);
