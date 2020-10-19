@@ -184,7 +184,7 @@ img.inimg {
 		})
 		
 		$("#bookmark").on("click",function(){
-			if(${!empty sessionScope.login})
+			if(${!empty sessionScope.login}){
 			var no = "${res.res_no}";
 			var code = "fs";
 			if(favorite === "false"){
@@ -207,6 +207,9 @@ img.inimg {
 					success : function(data) {
 					}
 				});
+			}
+			}else{
+				alert("로그인이 필요합니다.")
 			}
 		})
 		

@@ -18,7 +18,27 @@ form {
   		margin-left: 26.3736%;
     }    
 
+.hero__search__form form button{
+width: 115px;
+font-size: 12px;
+    color: #ffffff;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 13px 30px 12px;
+    background: #7fad39;
+    border: none;}
+    </style>
+    <script type="text/javascript">
+    $(function(){
+    	$(".button").on("click",function(){
+    		location.href="/teamProject3/eventBoardList.do";
+    		});
+    })
  </style>
+ <script>
+ 
+ </script>
 </head>
 <body>
 <form name="contact" id="contact" action="freeBoardUpdate2.do" method="post"

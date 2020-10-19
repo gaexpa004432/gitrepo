@@ -52,7 +52,7 @@ orderVO VO = new orderVO();
 		MemberVO vo = (MemberVO) request.getSession().getAttribute("login");
 		request.getSession().setAttribute("vo", vo);
 		
-//		ArrayList<orderVO> array = cartDAO.getInstance().order_detail(product_number);
+	//	ArrayList<orderVO> array = cartDAO.getInstance().order_detail(product_number);
 		orderVO mil = BuyMileageDAO.getInstance().selectOne(VO);
 //		System.out.println(array);
 		request.setAttribute("mil", mil);

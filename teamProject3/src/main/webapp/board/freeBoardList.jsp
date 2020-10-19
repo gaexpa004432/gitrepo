@@ -32,6 +32,7 @@ form {
 </style>
 </head>
 <body>
+<%@include  file="/common/header.jsp" %>
 <div class="container">
 	<table class="table table-striped" >
 		<thead>

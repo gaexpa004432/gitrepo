@@ -1,123 +1,124 @@
-<%@page import="model.EventDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" isELIgnored="false"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	isELIgnored="false" pageEncoding="UTF-8"%>
+<%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="/teamProject3/board/css/bootstrap.css">
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
+	rel="stylesheet">
 <style>
- table {font-size: 20pt;}
- 
-.btn{  /* 새로운재료 추가 버튼 css */
-      text-decoration: none;
-      font-size:2rem;
-      color:white;
-      padding:10px 20px 10px 20px;
-      margin:20px;
-      display:inline-block;
-      border-radius: 10px;
-      transition:all 0.1s;
-      text-shadow: 0px -2px rgba(0, 0, 0, 0.44);
-      font-family: 'Lobster', cursive; <!-- google font -->
-    }
-    .btn:active{
-      transform: translateY(3px);
-    }
-    .btn.blue{
-      background-color: #1f75d9;
-      border-bottom:5px solid #165195;
-    }
-    .btn.blue:active{
-      border-bottom:2px solid #165195;
-    }
-    .btn.red{
-      background-color: #ff521e;
-      border-bottom:5px solid #c1370e;
-    }
-    .btn.red:active{
-      border-bottom:2px solid #c1370e;
-    }
-     .btn.green{
-      background-color: #298A08;
-      border-bottom:5px solid #165195;
-    }
-    .btn.green:active{
-      border-bottom:2px solid #165195;
-    }
-	.btn.pink{
-      background-color: #FE2E64;
-      border-bottom:5px solid #165195;
-    }
-    .btn.pink:active{
-      border-bottom:2px solid #165195;
-    }
-    
-    #title{
-            height : 16;
-            font-family :'돋움';
-            font-size : 12;
-            text-align :center;
-        }
+
+
+
+tr:nth-child(even) {
+	background-color: #f5F5f5;
+}
+
+table {
+	border-width: 1px;
+	border-style: solid;
+	border-color: #F5F5F5;
+}
+
+h1, table {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+th {
+	width: 70px
+}
+
+#review:hover {
+	background-color: #f2f2f2;
+}
+
+
+td, th {
+	padding: 0.5em;
+	padding-top: 0.5em;
+	padding-right: 1em;
+	padding-left: 1em;
+}
+
+
+h1 {
+	padding: 0.1em;
+	padding-top: 0.1em;
+	padding-right: 0.1em;
+	padding-left: 0.1em;
+}
+
+
 </style>
-   <script>   //삭제~~~~!!!!!!!!!!
-   $(function(){
-		$("#eventdele").on("click",function (){
-			var result = confirm('??지울라고???왜????');
-			if (result) {
-			location.href="/teamProject3/eventDelete.do?board_no=${board.board_no}"
-			}
-		})
-		if (${id == board.member_id}){
-			$(".btn").show();
+
+
+<title>Insert title here</title>
+
+
+<script>
+	$(function(){
+	$("#delbtn").on("click",function (){
+	
+		var result = confirm('정말로 삭제하시겠습니까?');
+		if (result) {
+		location.href="/teamProject3/eventDelete.do?board_no=${board.board_no}"
 		}
 	})
+	console.log("${sessionScope.id}")
+	if (${sessionScope.id == "vegan"}){
+		$(".btn").show();
+	}
+})
 
-   </script>
+</script>
 
 </head>
 <body>
- <%@include file="/common/header.jsp" %>
-<form>
-	<table style="width:820px" align = "center">
-		<%--  <tr align = "center">
-		 	 <td>${board.board_sub}</td>
-		 </tr> --%>
-		
-		<tr>
-		 <th>작성날짜</th>
-		 	 <td>${board.board_date}</td>
-		 </tr>
-		
-		  <tr>
-		  <th></th>
-		  <td>
-		  
-		  	<C:if>
-		  		<img src="/teamProject3/images/${board.board_file}" style="max-width:500px"><br>
-		  	</C:if>
-		  	${board.board_content}
-		  </td>
-		  </tr>			  
-		 </table>
-		 
-		 <br>
-            <hr>
-            <c:if test="${sessionScope.id == 'vegan'}">
-            <div align = "center">
-			<a href="eventViewUpdate.do?board_no=${board.board_no}">
-				<button class = "btn pink" type="button">수정</button>
-			</a>
-			   
-            <button type="button" class = "btn green" 
-            		id = "eventdele">삭제</button>
-            </div>
-            </c:if>
-	</form>	
-</body>
+	<div align="center" class="container">
+		<br> <br>
+		<h1 style="background-color: #a7cd80; width: 820px; font-size: 20px;">
+			<strong>Event</strong>
+		</h1>
+		<table style="width: 820px">
+			<tr>
+				<th width=>작성일</th>
+				<td>${board.board_date}</td>
+			</tr>
+			<tr>
+			
+				<th></th>
+				<td>
+				<C:if
+						test="${ !empty board.board_file}">
+						<img src="/teamProject3/images/${ board.board_file }"
+							style="max-width: 90%; margin-top:40px">
+				<br>
+				${board.board_content}<br> 
+					</C:if>
+
+				</td>
+			</tr>
+		</table>
+		<br><br>
+		<button type="button" class="btn site-btn"
+			onclick="location.href='/teamProject3/eventBoardList.do'">목록</button>&nbsp;&nbsp;
+		<!-- 게시물 목록이 안나옴 ?? -->
+		<button type="button" class="btn site-btn" style="display: none"
+			onclick="location.href='/teamProject3/eventViewUpdate.do?board_no=${board.board_no}'">수정</button>&nbsp;&nbsp;
+		<button type="button" class="btn site-btn" style="display: none" id="delbtn">삭제</button>
+		<a id="gg"></a> <br> <br> <br>
+		<!-- 댓글 리스트 -->
+		<!-- <div class="re"></div>
+		<br>
+		<textarea cols="100" rows="3" id="commentcontent"></textarea>
+		<button type="button" id="btnInsert"
+			style="width: 60px; border: 0px; height: 65px; vertical-align: top; background-color: #a7cd80;">등록</button>
+		<br> <br> <br> <br> <br> -->
+
+
+
+	</div>
 </html>

@@ -18,7 +18,7 @@
 <form>
 <h1 align="center">마이페이지</h1> 
 <ul>
-	<li><a href="#">주문 내역 조회</a>
+	<li><a href="${pageContext.request.contextPath}/orderList.do">주문 내역 조회</a>
 	<li><a href="#">나의활동</a>
 	<li><a href="${pageContext.request.contextPath}/favList.do?fav=fs">나의 즐겨찾기</a>
 	<c:choose>

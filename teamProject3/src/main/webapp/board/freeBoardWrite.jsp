@@ -132,6 +132,17 @@ input[type="button"]:hover, button:hover {
     width: 30.9353%;
   }
 }
+
+.hero__search__form form button{
+width: 110px;
+font-size: 12px;
+    color: #ffffff;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 13px 30px 12px;
+    background: #7fad39;
+    border: none;}
     </style>
     <script type="text/javascript">
     $(function(){

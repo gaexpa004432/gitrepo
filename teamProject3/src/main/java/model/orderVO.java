@@ -60,7 +60,7 @@ public class orderVO {
 	String PRODUCT_NUMBER;
 	String PRODUCT_PRICE;
 	String product_quantity;
-	
+		
 	//default 생성자
 	public orderVO() {
 		
