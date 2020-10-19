@@ -21,7 +21,7 @@
 	 border-radius: 50% !important;  
 }
 
-#btnUpdate {
+#btnAddInsert {
 	display: inline-block;
 	font-size: 14px;
 	color: #1c1c1c;
@@ -30,6 +30,14 @@
 	border: 1px solid #b2b2b2;
 	padding: 14px 20px 12px;
 	border-radius: 25px;
+}
+
+#btnAddInsert:hover {
+	background-color: #caccd1;
+}
+
+#btnAddInsert:active {
+	background-color: #f3f4f7;
 }
 
 input[type="button"]{
@@ -123,7 +131,7 @@ input[type="button"]:active {
                             </div>
                         </div>
                         <div class="col-lg-12" style="text-align:center; ">
-							<button id="btnUpdate" style="width:40%; float:left;">등록</button>
+							<button id="btnAddInsert" style="width:40%; float:left;">등록</button>
 						</div>
 					</div>
 				</form>

@@ -252,7 +252,6 @@ public class SellDAO {
 	}
 	
 	
-	
 	//판매자에게 걸려 있는 판매에 대한 디테일
 //	public SellVO sellAllDetail(SellVO sellVO) {
 //		SellVO resultVO = null;

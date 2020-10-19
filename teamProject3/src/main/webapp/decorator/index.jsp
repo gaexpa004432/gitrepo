@@ -114,7 +114,40 @@ $(function() {
 			location.href="/teamProject3/select.do";
 		}
 	});
+	console.log($("#searchWord").val());
 });
+
+$("#searchWord").autocomplete({
+	//var keyword = $("#searchWord").val();
+	//console.log(keyword);
+	source:function(request, response) {
+		$.ajax({
+			url:"/teamProject3/ajaxAutocomplete.do",
+			method:"post",
+			dataType:"json",
+			data: {keyword : keyword},
+			success : function(data) {
+				response (
+					$.map(data, function(item){
+						return {
+							label:item.data,
+							value:item.data
+						}
+					})
+				);
+			}
+		});
+	},
+	minLength:1,
+	autoFocus:false,
+	select:function(evt, ui) {
+		console.log("전체 data: " + JSON.stringfy(ui));
+        console.log("검색 데이터 : " + ui.item.value);
+	},
+	focus:function(evt, ui) {
+		return false;
+	}
+})
 </script>
 <decorator:head></decorator:head>
 </head>
@@ -143,7 +176,7 @@ $(function() {
 					                </c:when>
 					                <c:when test="${not empty sessionScope.login.member_id}">
 					                <img style ="width:20px" src="${pageContext.request.contextPath}/img/logout_icon.png" alt="">
-					                	<div>  LogOut  </div>
+					                	<div>  My Page & LogOut  </div>
 					                	<span class="arrow_carrot-down"></span>
 							                <ul>
 							                	<li><a href="${pageContext.request.contextPath}/member/myPageMenu.jsp">My Page</a></li>
@@ -215,12 +248,20 @@ $(function() {
                <div class="col-lg-12">
                     <div class="hero__search " >
                         <div class="hero__search__form">
-                            <form action="#">
-                                <!-- <div class="hero__search__categories">
-                                    All Categories
-                                    <span class="arrow_carrot-down"></span>
-                                </div> -->
-                                <input type="text" placeholder="What do yo u need?">
+                            <form action="/teamProject3/search.do">
+                                <div class="hero__search__categories">
+                               		<select name="categories" style="border-style:none;">
+                                    	<option value="">검색카테고리</option>
+									    <option value="rs">식당이름</option>
+									    <option value="rc">레시피이름</option>
+									    <option value="rsc">식당내용</option>
+									    <option value="rcc">레시피내용</option>
+									    <option value="p">재료</option>
+									    <option value="a">지역</option>
+                                    </select> 
+                                    <!-- <span class="arrow_carrot-down"></span> --> 
+                                </div>
+                                <input type="text" name="searchWord" id="searchWord" placeholder="What do yo u need?">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
                         </div>
@@ -235,8 +276,11 @@ $(function() {
 
 
  <decorator:body/>
+<<<<<<< HEAD
 
 </div>
+=======
+>>>>>>> branch 'master' of https://github.com/gaexpa004432/gitrepo.git
 
 </body>
 </html>
