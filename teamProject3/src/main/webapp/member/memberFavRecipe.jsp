@@ -6,93 +6,190 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<!-- CSS only -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-<!-- JS, Popper.js, and jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-<title>memberFavorite.jsp</title>
+<title>memberFavRecipe.jsp</title>
 <style>
-	img.a {
-		max-width : 700px;
-		max-height : 300px;
-		background-size : contain;	
+.center {
+  position: absolute;
+  display: inline-block;
+  top: -40px; left: 95px;
+  transform: translate(-50%, -50%);
+}
+
+/** Custom Select **/
+.custom-select-wrapper {
+  position: relative;
+  display: inline-block;
+  user-select: none;
+}
+  .custom-select-wrapper select {
+    display: none;
+    border-style: none;
+}
+  .custom-select {
+    position: relative;
+    display: inline-block;
+}
+    .custom-select-trigger {
+      position: relative;
+      display: block;
+      width: 130px;
+      padding: 0 84px 0 22px;
+      font-size: 22px;
+      font-weight: 300;
+      color: #fff;
+      line-height: 60px;
+      background: #5c9cd8;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+      .custom-select-trigger:after {
+        position: absolute;
+        display: block;
+        content: '';
+        width: 10px; height: 10px;
+        top: 50%; right: 25px;
+        margin-top: -3px;
+        border-bottom: 1px solid #fff;
+        border-right: 1px solid #fff;
+        transform: rotate(45deg) translateY(-50%);
+        transition: all .4s ease-in-out;
+        transform-origin: 50% 0;
+      }
+      .custom-select.opened .custom-select-trigger:after {
+        margin-top: 3px;
+        transform: rotate(-135deg) translateY(-50%);
+      }
+  .custom-options {
+    position: absolute;
+    display: block;
+    top: 100%; left: 0; right: 0;
+    min-width: 100%;
+    margin: 15px 0;
+    border: 1px solid #b5b5b5;
+    border-radius: 4px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 1px rgba(0,0,0,.07);
+    background: #fff;
+    transition: all .4s ease-in-out;
+    
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-15px);
+  }
+  .custom-select.opened .custom-options {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    transform: translateY(0);
+  }
+    .custom-options:before {
+      position: absolute;
+      display: block;
+      content: '';
+      bottom: 100%; right: 25px;
+      width: 7px; height: 7px;
+      margin-bottom: -4px;
+      border-top: 1px solid #b5b5b5;
+      border-left: 1px solid #b5b5b5;
+      background: #fff;
+      transform: rotate(45deg);
+      transition: all .4s ease-in-out;
+    }
+    .option-hover:before {
+      background: #f9f9f9;
+    }
+    .custom-option {
+      position: relative;
+      display: block;
+      padding: 0 22px;
+      border-bottom: 1px solid #b5b5b5;
+      font-size: 18px;
+      font-weight: 600;
+      color: #b5b5b5;
+      line-height: 47px;
+      cursor: pointer;
+      transition: all .4s ease-in-out;
+    }
+    .custom-option:first-of-type {
+      border-radius: 4px 4px 0 0;
+    }
+    .custom-option:last-of-type {
+      border-bottom: 0;
+      border-radius: 0 0 4px 4px;
+    }
+    .custom-option:hover,
+    .custom-option.selection {
+      background: #f9f9f9;
+    }
+    
+img.a {
+		/*max-width : 100%;
+		height : auto; */
+		overflow:hidden;
+		background-size : contain;
+		max-width: 200px;
+        min-width: 200px;
+        max-height:200px;
+        min-height:200px;
 	}
 </style>
 </head>
-
-
 <body>
 <input type="hidden" name="fav" value="fr">
-	<div class="dropdown">
-	  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	          즐겨찾기 선택
-	  </a>
-	
-	  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-	    <a class="dropdown-item" href="${pageContext.request.contextPath}/favList.do?fav=fs">즐겨찾는 식당</a>
-	    <div class="dropdown-divider"></div>
-	    <a class="dropdown-item" href="${pageContext.request.contextPath}/favList.do?fav=fr">즐겨찾는 레시피</a>
-	  </div>
-	</div>
-	<%-- <div class="dropdown">
-    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-     	즐겨찾기 선택
-    </button>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="${pageContext.request.contextPath}/favList.do?fav=fs">즐겨찾는 식당</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="${pageContext.request.contextPath}/favList.do?fav=fr">즐겨찾는 레시피</a>
-    </div>
-  </div> --%>
-  
- <div class="container">
-
-    <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">내가 즐겨찾는
-      <big>레시피</big>
-    </h1>
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item active">RECIPE</li>
-    </ol>
-    <div class="row">
-    <c:forEach items="${fr}" var="fr">
-      <div class="col-lg-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top a" src="images/${fr.main_img}" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="#">${fr.recipe_name}</a>
-            </h4>
-            <p class="card-text">${fr.recipe_content}</p>
-          </div>
+<section class="blog spad">
+<%@include file="/member/myPageMenu.jsp" %>
+	<div class="col-lg-8 col-md-7">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-7">
+                <div class="center">
+				    <select name="sources" id="sources" class="custom-select sources" onchange="if(this.value) location.href=(this.value);" placeholder="Source Type">
+					    <option value="">선택</option>
+					    <option value="${pageContext.request.contextPath}/favList.do?fav=fs">즐겨찾는 식당</option>
+					    <option value="${pageContext.request.contextPath}/favList.do?fav=fr">즐겨찾는 레시피</option>
+				    </select>
+				</div>
+                    <div class="row">
+                    	<c:forEach items="${fr}" var="fr">
+	                        <div class="col-lg-6 col-md-6 col-sm-6">
+	                            <div class="blog__item">
+	                                <div class="blog__item__pic">
+	                                    <img class="a" src="images/${fr.main_img}" alt="">
+	                                </div>
+	                                <div class="blog__item__text">
+	                                    <ul>
+	                                       <%-- <li><i class="fa fa-calendar-o"></i>${fr.recipe_date}</li> --%>
+	                                       <!--  <li><i class="fa fa-comment-o"></i> 5</li> -->
+	                                    </ul>
+	                                    <h5><a href="${pageContext.request.contextPath}/restaurantView.do?res_no=${fs.recipe_number}">${fr.recipe_name}</a></h5>
+	                                    <p>${fr.recipe_content}</p>
+	                                    <a href="${pageContext.request.contextPath}/restaurantView.do?res_no=${fs.recipe_number}" class="blog__btn">레시피 자세히보기<span class="arrow_right"></span></a>
+	                                </div>
+	                            </div>
+	                        </div>
+                        </c:forEach>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </c:forEach>
+    <div class="col-lg-8 col-md-7">    
+	    <form name = "pageFrm">
+			<input type="hidden" name="p" value="1">
+			<input type="hidden" name="fav" value="fr">
+			<my:favTag paging="${paging}" jsfunc="gopage"/>
+		</form>
+	</div>
     </div>
-</div>
-    <!-- /.row -->
-
-    <!-- Pagination -->
-<form name = "pageFrm">
-	<input type="hidden" name="p" value="1">
-	<input type="hidden" name="fav" value="fr">
-	<my:favTag paging="${paging}" jsfunc="gopage"/>
-</form>
-  <!-- /.container -->
+</section>
+	
 <script>
-	function gopage(p) {
-		pageFrm.p.value = p;
-		pageFrm.submit();
-		//location.href="deptSelectAll?p=" + p;
-	}
+function gopage(p) {
+	pageFrm.p.value = p;
+	pageFrm.submit();
+	//location.href="deptSelectAll?p=" + p;
+}
 </script>
 </body>
 </html>

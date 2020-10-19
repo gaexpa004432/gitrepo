@@ -10,62 +10,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-.btn { /* 새로운재료 추가 버튼 css */
-	text-decoration: none;
-	font-size: 2rem;
-	color: white;
-	padding: 10px 20px 10px 20px;
-	margin: 20px;
-	display: inline-block;
-	border-radius: 10px;
-	transition: all 0.1s;
-	text-shadow: 0px -2px rgba(0, 0, 0, 0.44);
-	font-family: 'Lobster', cursive;
-	<!--
-	google
-	font
-	-->
-}
 
-.btn:active {
-	transform: translateY(3px);
-}
-
-.btn.blue {
-	background-color: #1f75d9;
-	border-bottom: 5px solid #165195;
-}
-
-.btn.blue:active {
-	border-bottom: 2px solid #165195;
-}
-
-.btn.red {
-	background-color: #ff521e;
-	border-bottom: 5px solid #c1370e;
-}
-
-.btn.red:active {
-	border-bottom: 2px solid #c1370e;
-}
-
-.btn.green {
-	background-color: #298A08;
-	border-bottom: 5px solid #165195;
-}
-
-.btn.green:active {
-	border-bottom: 2px solid #165195;
-}
-
-.btn.pink {
-	background-color: #FE2E64;
-	border-bottom: 5px solid #165195;
-}
-
-.btn.pink:active {
-	border-bottom: 2px solid #165195;
-}
 </style>
 
 <script type="text/javascript">
@@ -261,12 +206,14 @@
 		<div class="col-sm-12" align="center">
 			<h1>${ recipe.recipe_name }</h1>
 		</div>
+		<br>
 
-		<div>
-			<h3>작성자 : ${ recipe.member_id }</h3>
+		<div class="col-sm-12" align="center">
+			<h4>${ recipe.member_id }</h4>
 			<input type="hidden" value="${recipe.seller_code}">
 		</div>
-
+		<br>
+		
 		<div class="col-sm-12" align="center">
 			<img src="/teamProject3/images/${ recipe.main_img }" height="400"
 				width="400">
@@ -274,16 +221,32 @@
 		<div class="col-sm-12" align="center">
 			<h3>${ recipe.recipe_content }</h3>
 		</div>
-		<div class="col-sm-6" align="center">레시피 시간 : ${ recipe.cooking_time }</div>
-		<div class="col-sm-6" align="center">레시피 레벨 : ${ recipe.cooking_level }</div>
+		<div class="col-sm-6 contact__widget" align="center">
+		<span class="icon_clock_alt"></span><br>레시피 시간 : ${ recipe.cooking_time }</div>
+		
+		<div class="col-sm-6 product__details__rating" align="center">
+			<i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i><br>
+          	  레시피 레벨 : ${ recipe.cooking_level }</div>
+		</div>
+		<br>
+		<br>	
+	<div align="right">
+		<a href="javascript:void(0);" id="bookmark"> 
+		<img src="/teamProject3/images/" style="width: 100px; height: 100px; margin-left: 30px;">
+		</a>
 	</div>
+		
 	<hr>
 	<div class="row">
 		<div class="col-sm-12" align="center">
-			<h1>재료</h1>
+			<h3>레시피 재료</h3>
 		</div>
-		<div class="col-sm-6" align="left">
-			<h1>[재료]</h1>
+		<div class="col-sm-6" align="center">
+			<h3>[재료]</h3>
 			<c:forEach items="${ product }" var="mater">
 				<c:if test="${mater.product_code eq 'prod'}">				
 					<h3 class="material" data-mate="${ mater.product_number }">
@@ -293,9 +256,9 @@
 				</c:if>
 			</c:forEach>
 		</div>
-
-		<div class="col-sm-6" align="right">
-			<h1>[양념]</h1>
+	
+		<div class="col-sm-6" align="center">
+			<h3>[양념]</h3>
 			<c:forEach items="${ product }" var="mater">
 				<c:if test="${mater.product_code eq 'non_prod'}">
 					<h3 class="non_material" data-mate="${ mater.product_number }">${mater.product_name }
@@ -304,39 +267,40 @@
 			</c:forEach>
 		</div>
 	</div>
+	<br>
+	<br>
+	<br>
+	<div class="row">
+		<div class="col-sm-12" align="center">
+			<button id="cart" class="site-btn">담기</button>
+		</div>
+	</div>
 	<hr>
+	
+	<h3 class="col-sm-12" align="center">조리 순서</h3><br><br>
 	<div class="row">
 		<c:forEach items="${ photo }" var="step">
 			<div class="col-sm-6">조리 내용 : ${ step.cooking_content }</div>
 			<div class="col-sm-6">
 				<img src="/teamProject3/images/${ step.cooking_photo_name }"
-					height="200" width="200"> <br>
+					height="200" width="200"><br><br>
 			</div>
 		</c:forEach>
 	</div>
 
 	<hr>
+	<div class=".col-xs-6 .col-md-4">
 	<c:if test="${recipe.member_id eq sessionScope.id}">
 	<div align="center">
 		<a href="recipeViewUpdate.do?recipe_number=${recipe.recipe_number}">
-			<button type="button" class="btn green">레시피 수정</button>
+			<button type="button" class="site-btn">레시피 수정</button>
 		</a>
-		<button type="button" class="btn red" id="recipedele">레시피 삭제</button>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button type="button" class="site-btn" id="recipedele">레시피 삭제</button>
 	</div>
 	</c:if>
-
-	<div align="right">
-		<a href="javascript:void(0);" id="bookmark"> 
-		<img src="/teamProject3/images/" style="width: 100px; height: 100px; margin-left: 30px;">
-		</a>
 	</div>
 
-	<hr>
-	<div class="row">
-		<div class="col-sm-12" align="center">
-			<button id="cart">담기</button>
-		</div>
-	</div>
 	<hr>
 <form name="searchFrm">		
 	<input type="hidden" name="p" value="1">
@@ -348,7 +312,7 @@
 	<div class="row">
 		<div class="col" align="center">
 			<form action="/teamProject3/recipeReview.do" method="post"
-				enctype='multipart/form-data'>
+					enctype='multipart/form-data'>
 				<div class="col-sm-8" align="center">
 					<div class="imgs_wrap">
 						<img id="img" />
@@ -356,14 +320,15 @@
 				</div>
 				<br><input value="${ recipe.recipe_number }" name="recipe_no"
 					hidden="hidden">
-				<textarea cols="100" rows="10" name="recipe_reivew_content"></textarea>
+				<textarea cols="100" rows="10" name="recipe_reivew_content"
+						style= "height:100px; width:610px;"></textarea>
 				
-				<div class="col-sm-8" align="center">
-					<div align="left">
+				<div class="col-sm-10" align="right">
+					<div>
 						<input type="file" id="input_imgs" name="recipe_review_file">
 					</div>
 				</div>
-
+				<br>
 				<button id="recipe_insert" style="vertical-align: top;">리뷰 쓰기</button>
 			</form>
 			<br><br><br>

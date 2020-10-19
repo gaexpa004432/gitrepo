@@ -19,6 +19,7 @@ public class MemberFavoriteVO {
 	private String recipe_name;
 	private String recipe_content;
 	private String main_img;
+	private String recipe_date;
 	
 	//paging 처리
 	private Integer first;
