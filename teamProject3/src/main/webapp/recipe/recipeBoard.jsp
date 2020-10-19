@@ -11,49 +11,19 @@
 <meta charset="UTF-8">
 <title>레시피 추천</title>
 <style>
-.btn{  /* 새로운재료 추가 버튼 css */
-      text-decoration: none;
-      font-size:2rem;
-      color:white;
-      padding:10px 20px 10px 20px;
-      margin:20px;
-      display:inline-block;
-      border-radius: 10px;
-      transition:all 0.1s;
-      text-shadow: 0px -2px rgba(0, 0, 0, 0.44);
-      font-family: 'Lobster', cursive; <!-- google font -->
-    }
-    .btn:active{
-      transform: translateY(3px);
-    }
-    .btn.blue{
-      background-color: #1f75d9;
-      border-bottom:5px solid #165195;
-    }
-    .btn.blue:active{
-      border-bottom:2px solid #165195;
-    }
-    .btn.red{
-      background-color: #ff521e;
-      border-bottom:5px solid #c1370e;
-    }
-    .btn.red:active{
-      border-bottom:2px solid #c1370e;
-    }
-     .btn.green{
-      background-color: #298A08;
-      border-bottom:5px solid #165195;
-    }
-    .btn.green:active{
-      border-bottom:2px solid #165195;
-    }
-	.btn.pink{
-      background-color: #FE2E64;
-      border-bottom:5px solid #165195;
-    }
-    .btn.pink:active{
-      border-bottom:2px solid #165195;
-    }
+	textarea {
+		width: 100%;
+		height: 150px;
+		font-size: 16px;
+		color: #6f6f6f;
+		padding-left: 20px;
+		margin-bottom: 24px;
+		border: 1px solid #ebebeb;
+		border-radius: 4px;
+		padding-top: 12px;
+		resize: none;
+		}
+	
 	img.inimg {
 		max-width: 200px;
 		min-width: 200px;
@@ -80,8 +50,9 @@
 </style>
 </head>
 <body >
+<div class="container">
 <div>
-<h1>레시피 추천</h1>
+<h1 style = "color:#FA8C8C;">레시피 추천</h1>
 </div>
 <hr>
 <c:set var="i" value="0" />
@@ -96,16 +67,28 @@
      <c:if test="${i%j == 0}">
       <tr>
      </c:if>
-     <td align="center"><div class="imgin"><a href="/teamProject3/recipeView.do?recipe_number=${recipelist.recipe_number}"><img class="inimg" src="/teamProject3/images/${recipelist.main_img}">
-     <br>
-     ${recipelist.recipe_name}<br>
-     ${recipelist.member_id}</a></div></td>
+     
+     <td align="center">
+     	<div class="imgin">
+     		<a href="/teamProject3/recipeView.do?recipe_number=${recipelist.recipe_number}">
+     			<img class="inimg" src="/teamProject3/images/${recipelist.main_img}">
+    		</a>
+     	<br>
+     		<div class="fa fa-calendar-o ">
+     			<i>${recipelist.recipe_date}</i>
+     		</div><br>
+     				${recipelist.recipe_name}<br>
+     				${recipelist.member_id}
+     	</div>
+     </td>
+     
+     
     <c:if test="${i%j == j-1}">
-     </tr>
     </c:if> 
    <c:set var="i" value="${i+1}" />
     </c:forEach>
    </c:when>
+   
   <c:otherwise>
    <tr>
     <td>레시피가 없어요!</td>
@@ -116,20 +99,28 @@
   
  </table>
  </div>
+ 
  <hr>
- <a class="btn green" href="/teamProject3/recipe/recipeInsert.jsp"><button type = "button">레시피 등록</button></a>
-  <form name="searchFrm">		
-	<input type="hidden" name="p" value="1">
-	<input  name="recipe_search" >
-	<button>검색</button>
-	
-</form>
+ <div class="col-sm-12" align="right">
+ 	<a href="/teamProject3/recipe/recipeInsert.jsp">
+ 		<button type="button" class="site-btn">레시피 등록</button>
+ 	</a>
+ </div>
+
 <br> 
 <br>
+ 
+ <div  class="col-sm-10" align="center">
+  <form name="searchFrm">		
+	<input type="hidden" name="p" value="1">
+	<input  name="recipe_search" size="50px" style="height :47px">
+	<button class="site-btn">검색</button>	
+  </form>
+ </div>	
+
+<br> 
 <br>
-<br>
-<br>
-<br>
+
 <div align="center">
  <my:paging paging="${paging}" jsfunc="gopage" />
  </div>
@@ -141,7 +132,7 @@
 		// location.href="deptSelectAll?p=" + p;	// 이동되는 주소가 달라서 여러사람이 쓰기위해서는 매개값 p로 해줌
 	}
 </script> 
-
+</div>
 </body>
 
 </html>
