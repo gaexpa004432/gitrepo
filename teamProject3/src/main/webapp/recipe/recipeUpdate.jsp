@@ -97,10 +97,10 @@
 			
 		$(".stepAdd").on("click",function(){
 			$(".cooking_order").append($("<div>")
-					.append($("<input>").attr("name","cooking_step").attr("weith", "40px").attr("height", "100px"))
-					.append($("<img>").css("width","150px").css("height","150px").attr("class","step_img"))
+					.append($("<input>").attr("name","cooking_step").css("size", "50").attr("height", "100px"))
+					.append($("<img>").css("width","150px").css("height","100px").attr("class","step_img"))
 					.append($("<input>").attr("type","file").attr("name","step_img").attr("class","step_img1"))		
-					.append($("<button>").attr("type","button").text("삭제").on("click",function(){
+					.append($("<button>").attr("type","button").attr("class", "site-btn").text("삭제").on("click",function(){
 						$(this).parent().remove();
 					}))
 					.append($("<br>")));
@@ -324,12 +324,13 @@ $(document).on("change",".step_img1",function () {
 			<c:forEach items="${ photo }" var="step">
 
 				<div>
-					<input size="40" style="height :100px" value="${ step.cooking_content }">
+					<input style=" size:50; height :100px" value="${ step.cooking_content }">
 					<img class="step_img"
 						 src="/teamProject3/images/${ step.cooking_photo_name }"
 						 width="150" height="100" alt=""> 
 					<input type="file" class="step_img1"  accept="image/*"> 
 					<input type="hidden" class="photo_number" value="${ step.photo_number }">
+					<img style="visibility:hidden;" src="/teamProject3/images/휴지통.png" width="30px" height="30px" />
 					<button type="button" class="cooking_update site-btn">요리 순서 수정</button>
 					<br>
 				</div>
@@ -337,7 +338,7 @@ $(document).on("change",".step_img1",function () {
 			</c:forEach>
 
 		</div>
-		<button type="button" class="stepAdd site-btn ">순서 추가</button>
+		<button type="button" class="stepAdd site-btn">순서 추가</button>
 
 		<br>
 		<hr>
