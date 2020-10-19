@@ -276,11 +276,6 @@ $("#searchWord").autocomplete({
 
 
  <decorator:body/>
-<<<<<<< HEAD
-
-</div>
-=======
->>>>>>> branch 'master' of https://github.com/gaexpa004432/gitrepo.git
 
 </body>
 </html>
