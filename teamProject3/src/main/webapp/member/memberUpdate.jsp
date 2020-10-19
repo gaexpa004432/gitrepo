@@ -44,11 +44,11 @@ input[type="button"]{
 	border-radius: 25px;
 }
 input[type="button"]:hover {
-  background-color: #caccd1;
+  	background-color: #caccd1;
 }
 
 input[type="button"]:active {
-  background-color: #f3f4f7;
+  	background-color: #f3f4f7;
 }
 
 #btnUpdate {
@@ -62,40 +62,47 @@ input[type="button"]:active {
 	border-radius: 25px;
 }
 
+#btnUpdate:hover {
+	background-color: #caccd1;
+}
+
+#btnUpdate:active {
+	background-color: #f3f4f7;
+}
 .filebox label {
-  display: inline-block;
-  padding: 14px 20px 12px;
-  /* color: #fff; */
-  font-size: inherit;
-  line-height: normal;
-  vertical-align: middle;
-  background-color: #EFEFEF;
-  cursor: pointer;
-  border: 1px solid #b2b2b2;
-  border-radius: 25px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  -webkit-transition: background-color 0.2s;
-  transition: background-color 0.2s;
+	  display: inline-block;
+	  padding: 14px 20px 12px;
+	  /* color: #fff; */
+	  font-size: inherit;
+	  line-height: normal;
+	  vertical-align: middle;
+	  background-color: #EFEFEF;
+	  cursor: pointer;
+	  border: 1px solid #b2b2b2;
+	  border-radius: 25px;
+	  text-transform: uppercase;
+	  letter-spacing: 1px;
+	  -webkit-transition: background-color 0.2s;
+	  transition: background-color 0.2s;
 }
 
 .filebox label:hover {
-  background-color: #caccd1;
+  	background-color: #caccd1;
 }
 
 .filebox label:active {
-  background-color: #f3f4f7;
+  	background-color: #f3f4f7;
 }
 
 .filebox input[type="file"] {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
 }
 </style>
 <script>
@@ -264,20 +271,20 @@ function inputCheck() {
 		                        </div>
 		                    </div>  
 		                    <div class="row"> 
-		                    	<div class="col-lg-4">  
+		                    	<div class="col-lg-12">  
 		                            <div class="checkout__input">
-		                                <input type="text" name="member_roadAddress" id="sample4_roadAddress" placeholder="도로명주소" 
-					       					   value="${sessionScope.login.member_roadAddress}" readonly>
+		                                <input type="text" name="member_roadAddress" id="sample4_roadAddress" class="checkout__input__add" placeholder="도로명주소"
+					       					   value="${sessionScope.login.member_roadAddress}" readonly>					       					   
 		                            </div>
 		                        </div>  
-		                        <div class="col-lg-4">  
+		                        <div class="col-lg-6">  
 		                            <div class="checkout__input">
 		                                <input type="hidden" name="member_jibunAddress" id="sample4_jibunAddress" placeholder="지번주소" readonly>
 		                                <input type="text" name="member_detailAddress" id="sample4_detailAddress" placeholder="상세주소" 
 						   					   value="${sessionScope.login.member_detailAddress}">
 		                            </div>
 	                        	</div>
-	                        	<div class="col-lg-4">  
+	                        	<div class="col-lg-6">  
 		                            <div class="checkout__input">
 		                                <input type="text" name="member_extraAddress" id="sample4_extraAddress" placeholder="참고항목" 
 						   					   value="${sessionScope.login.member_extraAddress}"readonly>
