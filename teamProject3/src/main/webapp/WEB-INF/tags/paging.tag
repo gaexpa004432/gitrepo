@@ -2,21 +2,25 @@
 <%@ attribute name="paging" type="common.Paging" %>
 <%@ attribute name="jsfunc" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div class="pagination">
-<div id="divPaging">
+
+
+<div class="product__pagination blog__pagination" style="position: static" align="center">
 <c:if test="${paging.startPage>1}">
-	<div><a href="javascript:${jsfunc}(${paging.startPage-1})">◀</a></div>
+	<a href="javascript:${jsfunc}(${paging.startPage-1})"><li class="fa fa-long-arrow-left"></li></a>
 </c:if>
 <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="i">
 	<c:if test="${i != paging.page}">
-		<div><a href="javascript:${jsfunc}(${i})">${i}</a></div>
+		<a href="javascript:${jsfunc}(${i})">${i}</a>
 	</c:if>
 	<c:if test="${i == paging.page}">
-		<div class="active">${i} </div>
+		<a style="background: #7fad39;
+	border-color: #7fad39;
+	color: #ffffff;">${i} </a>
 	</c:if>
+	
 </c:forEach>
 <c:if test="${paging.endPage<paging.totalPageCount}">
-	<li><a href="javascript:${jsfunc}(${paging.endPage+1})">▶</a>
+	<a href="javascript:${jsfunc}(${paging.endPage+1})" ><li class="fa fa-long-arrow-right"></li></a>
 </c:if>
-</div>
-</div>
+ </div>
+

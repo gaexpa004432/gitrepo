@@ -17,6 +17,37 @@
 
 <meta charset="UTF-8">
 <style>
+	textarea {
+	width: 100%;
+	height: 150px;
+	font-size: 16px;
+	color: #6f6f6f;
+	padding-left: 20px;
+	margin-bottom: 24px;
+	border: 1px solid #ebebeb;
+	border-radius: 4px;
+	padding-top: 12px;
+	resize: none;
+}
+	.col-sm-2{
+	    width: 110px;
+    font-size: .9rem;
+    color: rgba(79,79,79,0.6);
+    line-height: 1.7;
+    text-align: left;
+    vertical-align: top;
+    padding-right: 10px;
+    padding-bottom: 5px;
+	}
+	
+	.col-sm-9{
+	    font-size: .9rem;
+    color: #4f4f4f;
+    line-height: 1.7;
+    text-align: left;
+    vertical-align: middle;
+    padding-bottom: 5px;
+	}
 	#divPaging {
           clear:both; 
         margin:0 auto; 
@@ -41,9 +72,9 @@ ul.inline {
 }
 
 li.inline {
-	width: 237px;
+	width: 100%;
 	background-color: #f8f8f8;
-	height: 250px;
+	height: 340px;
 	color: #444;
 	line-height: 100px;
 	text-align: center;
@@ -52,11 +83,12 @@ li.inline {
 }
 
 img.inimg {
-	max-width: 237px;
-	min-width: 237px;
-	max-height: 250px;
-	min-height: 250px;
+	max-width: 100%;
+	min-width: 100%;
+	max-height: 340px;
+	min-height: 340px;
 }
+
 </style>
 <title>Insert title here</title>
 <script type="text/javascript">
@@ -76,10 +108,10 @@ img.inimg {
 		
 		
 		var settings = {
-				slideWidth : 235,
+				slideWidth : 500,
 				slideMargin : 10,
 				minSlides : 1,
-				maxSlides : 5,
+				maxSlides : 6,
 				infiniteLoop : true,
 				responsive : true,
 				controls : true,
@@ -288,20 +320,20 @@ img.inimg {
 </script>
 </head>
 <body>
-
-	<div class="container" align="center">
+<%@include  file="/common/restaurant.jsp" %>
 		<ul class="bxslider">
 			<c:forEach items="${res.res_picture}" var="res_pic">
 				<li class="inline"><img class="inimg"
 					src="/teamProject3/images/${res_pic }"></li>
 			</c:forEach>
 		</ul>
+	<div class="container" align="center">
 
 
 
 
 		<div class="row">
-			<div class="col-sm-6" align="left">
+			<div class="col-sm-6" align="left" >
 				<h1>${res.res_name }</h1>
 
 			</div>
@@ -317,10 +349,49 @@ img.inimg {
 
 
 		<div class="row">
-			<div class="col-sm-8" align="left">
-				<br> 주소 : ${res.res_si } <br> <br> 전화번호 : ${ res.res_tel}
-				<br> <br> 영업 시간 : ${ res.res_time } <br> <br> 추가
-				사항 : ${ res.res_extra }
+			<div class="col-sm-8" >
+				<div class="row">
+				<div class="col-sm-2" align="left">
+				<br>
+				주소
+				<br> 
+				</div>
+				<div class="col-sm-9" align="left">
+				<br>
+				${res.res_si }
+				<br>
+				</div>
+				<div class="col-sm-2" align="left">
+				<br>
+				전화번호
+				<br> 
+				</div>
+				<div class="col-sm-9" align="left">
+				<br>
+				${ res.res_tel}
+				<br> 
+				</div>
+				<div class="col-sm-2" align="left">
+				<br>
+				영업 시간
+				<br> 
+				</div>
+				<div class="col-sm-9" align="left">
+				<br>
+				${ res.res_time }
+				<br> 
+				</div>
+				<div class="col-sm-2" align="left">
+				<br>
+				추가 사항
+				<br> 
+				</div>
+				<div class="col-sm-9" align="left">
+				<br>
+				 ${ res.res_extra }
+				<br>
+				</div>
+				</div>
 			</div>
 			<div class="col-sm-4" align="right">
 				<div id="map" style="width: 350px; height: 350px;"></div>
@@ -338,19 +409,23 @@ img.inimg {
 		<hr>
 
 		<div class="row">
-			<div class="col" align="center">
-				<button id="review">리뷰 등록</button>
+			<div class="col" align="center" style="position: static">
+				<button id="review"  class="site-btn">리뷰 등록</button>
 			</div>
 		</div>
+			<br>
+			<br>
 		<div class="row">
-			<div class="col" align="center">
-				<form action="/teamProject3/reviewInsert.do" method="post"
+			<div class="col" align="center" style="position: static">
+				<form action="/teamProject3/reviewInsert.do" method="post" 
 					enctype='multipart/form-data'>
+				<div class="checkout__input">
 					<div class="col-sm-8" align="center">
 						<div align="left">
 							<input type="file" id="input_imgs" name="pic_img"
-								style="display: none;" multiple>
+								 style="display: none;padding:8px;width:80%" multiple>
 						</div>
+						<br>
 					</div>
 
 					<div class="col-sm-8" align="center">
@@ -358,12 +433,18 @@ img.inimg {
 							<img id="img" />
 						</div>
 					</div>
-					<br> <input value="${ res.res_no }" name="res_no"
-						hidden="hidden">
-					<textarea cols="100" rows="10" id="res_reivew_content"
-						name="res_review_content" style="display: none;"></textarea>
-					<button id="insert" style="vertical-align: top; display: none;">
-						리뷰 쓰기</button>
+					<br> <input value="${ res.res_no }" name="res_no" hidden="hidden">
+					<div class="row">
+					<div class="col-sm-10">
+					<textarea cols="100" rows="10" id="res_reivew_content" name="res_review_content" style="display: none;"></textarea>
+					</div>
+					<div class="col-sm-2">
+					<button id="insert" style="vertical-align: top; display: none;width:80%;height:85%;padding:0px"  class="site-btn">리뷰 쓰기</button>
+					<div>
+					</div>
+				</div>
+				</div>
+				</div>
 				</form>
 				<br>
 				<br>
@@ -402,11 +483,17 @@ img.inimg {
 <div align="center">
  <my:paging paging="${paging}" jsfunc="gopage" />
 </div>
-   <form name="searchFrm" action="/teamProject3/restaurantView.do">		
+   <form name="searchFrm" action="/teamProject3/restaurantView.do">
 	<input type="hidden" name="p" value="1">
 	<input type="hidden" name="res_no" value="${ res.res_no }">
-	
+
 </form>
+
+<ul class="featured__item__pic__hover">
+                                <li><a href="#" style="width:80px;height:80px"><i class="fa fa-heart"></i></a></li>
+                           
+</ul>
+
 <script>
 	function gopage(p) {			// 검색 function
 		searchFrm.p.value = p;		// 페이지번호 받아와서 submit에 넘김

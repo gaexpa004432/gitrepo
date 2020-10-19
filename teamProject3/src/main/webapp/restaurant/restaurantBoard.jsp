@@ -16,31 +16,55 @@
 		min-width: 300px;
 		max-height:250px;
 		min-height:250px;
+		
+		
 	}
+	figure {
+	width: 300px;
+	height: 250px;
+	margin: 0;
+	padding: 0;
+	background: #fff;
+	overflow: hidden;
+}
 	
 	td {
 	padding:50px;
 	}
-	#divPaging {
-          clear:both; 
-        margin:0 auto; 
-        width:220px; 
-        height:50px;
+	
+	.active{
+    border: 1px solid #b2b2b2;
+    color: #b2b2b2;
+
+	}
+	
+figure img {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+figure:hover img {
+	-webkit-transform: scale(1.3);
+	transform: scale(1.3);
 }
 
-    #divPaging > div {
-        float:left;
-        width: 30px;
-        margin:0 auto;
-        text-align:center;
-}
 </style>
+<script>
+$(function(){
+	
+})
+</script>
 </head>
 <body >
+<%@include  file="/common/restaurant.jsp" %>
+<div style="margin:100px"></div>
+<div class="container">
 <div>
-<h1>Vegan 식당 추천</h1>
+<h1>
+Vegan Restaurant </h1>
 </div>
-<a href="/teamProject3/restaurant/restaurantWrite.jsp"> <button> 글쓰기</button></a>
+
 <hr>
 <c:set var="i" value="0" />
  <c:set var="j" value="3" />
@@ -53,8 +77,23 @@
      <c:if test="${i%j == 0}">
       <tr>
      </c:if>
-     <td><div class="imgin"><a align="center" href="/teamProject3/restaurantView.do?res_no=${restaurantlist.res_no}"><img class="inimg" src="/teamProject3/images/${restaurantlist.res_name}"></div><div align="center">
-     ${restaurantlist.res_gu }</div></a></td>
+     <td><div class="imgin"><a align="center" href="/teamProject3/restaurantView.do?res_no=${restaurantlist.res_no}">
+     <figure><img class="inimg" src="/teamProject3/images/${restaurantlist.res_name}"></figure></div></a>
+     <div class="blog__item__text" align="left">
+     <ul>
+         <li><i class="fa fa-calendar-o"></i> ${restaurantlist.res_date }</li>
+         <li><i class="fa fa-comment-o"></i> ${restaurantlist.res_si }</li>
+     </ul>
+     <div align="left">
+     <h5>
+     ${restaurantlist.res_gu }
+     </h5>
+     </div>
+ <a class="blog__btn" href="/teamProject3/restaurantView.do?res_no=${restaurantlist.res_no}">READ MORE <span class="arrow_right"></span></a>
+    </div>
+     
+     
+     </td>
     <c:if test="${i%j == j-1}">
      </tr>
     </c:if> 
@@ -71,7 +110,7 @@
   
  </table>
  </div>
- <hr>
+
   <form name="searchFrm">		
 	<input type="hidden" name="p" value="1">
 	<input type="hidden" name="" value="">
@@ -79,13 +118,16 @@
 </form>
 <br> 
 <br>
-<br>
-<br>
-<br>
-<br>
-<div align="center">
+
+<div class="row" align="center">
+	<div class="col-sm-10">
  <my:paging paging="${paging}" jsfunc="gopage" />
+</div>
+	<div class="col-sm-2">
+<a href="/teamProject3/restaurant/restaurantWrite.jsp"> <button class="site-btn" > 글쓰기</button></a>
+	</div>
  </div>
+
 <script>
 	function gopage(p) {			// 검색 function
 		searchFrm.p.value = p;		// 페이지번호 받아와서 submit에 넘김

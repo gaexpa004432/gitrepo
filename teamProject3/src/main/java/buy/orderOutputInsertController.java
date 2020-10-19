@@ -1,6 +1,9 @@
 package buy;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +17,9 @@ public class orderOutputInsertController implements Controller {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		orderVO vo = new orderVO();
 		
+		String member_id = (String) request.getSession().getAttribute("id");//request.getParameter("member_id");
+		vo.setMember_id(member_id);
+		
 		String order_total = request.getParameter("order_total");
 		String seller_code = request.getParameter("seller_code");
 		String member_postcode = request.getParameter("member_postcode");
@@ -26,11 +32,12 @@ public class orderOutputInsertController implements Controller {
 		
 		//디테일 인서트
 		
-		Integer product_number = Integer.parseInt(request.getParameter("product_number"));
-		String product_price = request.getParameter("product_price");
-		String product_quantity = request.getParameter("product_quantity");
-		String product_name = request.getParameter("product_name");
-		
+		String[] product_price = request.getParameterValues("product_price");
+		String[] product_number = request.getParameterValues("product_number");
+		String[] product_quantity = request.getParameterValues("product_quantity");
+		String[] product_name = request.getParameterValues("product_name");
+
+		List<orderVO> ord = new ArrayList<orderVO>();
 		vo.setOrder_total(order_total);
 		vo.setSeller_code(seller_code);
 		vo.setMember_postcode(member_postcode);
@@ -40,26 +47,22 @@ public class orderOutputInsertController implements Controller {
 		vo.setMember_tel(member_tel);
 		vo.setMember_name(member_name);
 		vo.setMember_email(member_email);
-		vo.setProduct_number(product_number);
-		vo.setProduct_price(product_price);
-		vo.setPRODUCT_QUANTITY(product_quantity);
-		vo.setProduct_name(product_name);
 		
+		vo.setLast(orderDAO.getInstance().Insertoutput(vo));
 		
-		String member_id = (String) request.getSession().getAttribute("id");//request.getParameter("member_id");
-		vo.setMember_id(member_id);
-		
-		int ord = orderDAO.getInstance().Insertoutput(vo);
-	
-		int orderd = orderDAO.getInstance().InsertDetail(vo);
-						
+		for(int i=0;  i<product_number.length; i++) {
+			vo.setProduct_number(product_number[i]);
+			vo.setProduct_price(product_price[i]);
+			vo.setProduct_quantity(product_quantity[i]);
+			vo.setProduct_name(product_name[i]);
+			orderDAO.getInstance().InsertDetail(vo);
+			ord.add(vo);
+		}
 		request.setAttribute("ord", ord);
-		request.setAttribute("ord", orderd);
 		
-		request.getSession().setAttribute("ord", ord);
-		request.getSession().setAttribute("ord", orderd);
-
+		request.getSession().setAttribute("ord", "ord");
+		
 		request.getRequestDispatcher("/buy/buyOutput.jsp").forward(request, response);
-
+		
 	}
 }

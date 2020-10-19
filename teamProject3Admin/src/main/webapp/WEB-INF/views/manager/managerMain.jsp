@@ -9,6 +9,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.css" rel="stylesheet">
  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -82,8 +83,14 @@
               <h3> Area Chart Example</h3>
             </div>
             <!-- /widget-header -->
-            <div class="widget-content">
-              <canvas id="area-chart" class="chart-holder" height="250" width="538"> </canvas>
+            <div class="widget-content" id="scroll" style="min-height:500px;max-height:500px;overflow:auto">
+            
+            <ul class="messages_layout" id="messageWindow">
+            
+           
+            </ul>
+            
+
               <!-- /area-chart --> 
             </div>
             <!-- /widget-content --> 
@@ -92,7 +99,8 @@
     
           <!-- /widget --> 
  
- 
+ <input id="inputMessage" type="text"/>
+        <input type="submit" value="send" onclick="send()" />
  
          <div class="widget">
             <div class="widget-header"> <i class="icon-file"></i>
@@ -103,20 +111,12 @@
               <ul class="messages_layout">
                 <li class="from_user left"> <a href="#" class="avatar"><img src="/resources/img/message_avatar1.png"/></a>
                   <div class="message_wrap"> <span class="arrow"></span>
-                    <div class="info"> <a class="name">John Smith</a> <span class="time">1 hour ago</span>
-                      <div class="options_arrow">
-                        <div class="dropdown pull-right"> <a class="dropdown-toggle " id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#"> <i class="icon-caret-down"></i> </a>
-                          <ul class="dropdown-menu " role="menu" aria-labelledby="dLabel">
-                            <li><a href="#"><i class=" icon-share-alt icon-large"></i> Reply</a></li>
-                            <li><a href="#"><i class=" icon-trash icon-large"></i> Delete</a></li>
-                            <li><a href="#"><i class=" icon-share icon-large"></i> Share</a></li>
-                          </ul>
-                        </div>
-                      </div>
+                    <div class="info"> <a class="name">John Smith</a>
                     </div>
                     <div class="text"> As an interesting side note, as a head without a body, I envy the dead. There's one way and only one way to determine if an animal is intelligent. Dissect its brain! Man, I'm sore all over. I feel like I just went ten rounds with mighty Thor. </div>
                   </div>
                 </li>
+                
                 <li class="by_myself right"> <a href="#" class="avatar"><img src="/resources/img/message_avatar2.png"/></a>
                   <div class="message_wrap"> <span class="arrow"></span>
                     <div class="info"> <a class="name">Bender (myself) </a> <span class="time">4 hours ago</span>
@@ -130,7 +130,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="text"> All I want is to be a monkey of moderate intelligence who wears a suit… that's why I'm transferring to business school! I had more, but you go ahead. Man, I'm sore all over. I feel like I just went ten rounds with mighty Thor. File not found. </div>
+                    <div class="text"> All I. </div>
                   </div>
                 </li>
                 <li class="from_user left"> <a href="#" class="avatar"><img src="/resources/img/message_avatar1.png"/></a>
@@ -259,46 +259,7 @@
 <script src="/resources/js/base.js"></script>
 <script>     
 
-        var lineChartData = {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
-            datasets: [
-				{
-				    fillColor: "rgba(220,220,220,0.5)",
-				    strokeColor: "rgba(220,220,220,1)",
-				    pointColor: "rgba(220,220,220,1)",
-				    pointStrokeColor: "#fff",
-				    data: [65, 59, 90, 81, 56, 55, 40]
-				},
-				{
-				    fillColor: "rgba(151,187,205,0.5)",
-				    strokeColor: "rgba(151,187,205,1)",
-				    pointColor: "rgba(151,187,205,1)",
-				    pointStrokeColor: "#fff",
-				    data: [28, 48, 40, 19, 96, 27, 100]
-				}
-			]
-
-        }
-
-        var myLine = new Chart(document.getElementById("area-chart").getContext("2d")).Line(lineChartData);
-
-
-        var barChartData = {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
-            datasets: [
-				{
-				    fillColor: "rgba(220,220,220,0.5)",
-				    strokeColor: "rgba(220,220,220,1)",
-				    data: [65, 59, 90, 81, 56, 55, 40]
-				},
-				{
-				    fillColor: "rgba(151,187,205,0.5)",
-				    strokeColor: "rgba(151,187,205,1)",
-				    data: [28, 48, 40, 19, 96, 27, 100]
-				}
-			]
-
-        }    
+ 
 
         $(document).ready(function() {
         var date = new Date();
@@ -380,6 +341,50 @@
         calendar.render();
        
       });
-    </script> 
+        
+      
+        var textarea = document.getElementById("messageWindow");
+        var webSocket = new WebSocket('ws://localhost:80/broadcasting');
+        var inputMessage = document.getElementById('inputMessage');
+    webSocket.onerror = function(event) {
+      onError(event)
+    };
+
+    webSocket.onopen = function(event) {
+      onOpen(event)
+    };
+
+    webSocket.onmessage = function(event) {
+      onMessage(event)
+    };
+
+    function onMessage(event) {
+    	console.log(event.data.indexOf(","))
+    	var id = event.data.substr(0,event.data.indexOf(","));
+    	var content = event.data.substring(event.data.indexOf(",")+1,event.data.length);
+    	
+        $("#messageWindow").append($("<li>").attr("class","from_user left").css("width","85%").html("<a href='#' class='avatar'><img src='/resources/img/message_avatar2.png'/></a><div class='message_wrap'> <span class='arrow'></span><div class='info'> <a class='name'>"+id+"</a><span></span></div><div class='text'> " + content +" </div></div>"))
+        ;
+        $("#scroll").scrollTop($("#scroll")[0].scrollHeight);
+    }
+
+    function onOpen(event) {
+    	 $("#messageWindow").append($("<div>").text("${sessionScope.id} 님 환영합니다."));
+    	 $("#scroll").scrollTop($("#scroll")[0].scrollHeight);
+    }
+
+    function onError(event) {
+      alert(event.data);
+    }
+
+    function send() {
+        $("#messageWindow").append($("<li>").attr("class","by_myself right").css("width","85%").attr("align","right").html("<a href='#' class='avatar'><img src='/resources/img/message_avatar1.png'/></a><div class='message_wrap' style='float:right'> <span class='arrow'></span><div class='info'> <a class='name'>${sessionScope.id}</a><span></span></div><div class='text' align='left'> " + inputMessage.value +" </div></div>"))
+        ;
+		var data =["${sessionScope.id}", inputMessage.value];
+        webSocket.send(data);
+        inputMessage.value = "";
+        $("#scroll").scrollTop($("#scroll")[0].scrollHeight);
+    }
+  </script>
 </body>
 </html>

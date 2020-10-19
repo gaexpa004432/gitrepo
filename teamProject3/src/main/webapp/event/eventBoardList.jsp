@@ -57,9 +57,9 @@
 
 </head>
 <body>
-
-	<h1>이벤트</h1>
-
+ <%@include file="/common/song.jsp" %>
+ <div class="container">
+	<br><br>
 	<div class="container">
 	<table class="table table-striped" >
 		<thead>
@@ -73,13 +73,13 @@
 				<c:if test="${!empty eventboard.board_file}">
 					<td>
 					<a href="eventView.do?board_no=${eventboard.board_no}">
-					<img src="/teamProject3/images/${ eventboard.member_name }" width="250" height="250">
+					<img src="/teamProject3/images/${ eventboard.member_name }" width="600" height="200">
 					</a>
 					</td>
 				</c:if>
 				
-			<td><a href="eventView.do?board_no=${eventboard.board_no}">${eventboard.board_sub}</a></td>
-			<!-- 제목 누르면 view페이지로 넘어감 -->
+		<%-- 	<td><a href="eventView.do?board_no=${eventboard.board_no}">${eventboard.board_sub}</a></td>
+			<!-- 제목 누르면 view페이지로 넘어감 --> --%>
 			<td>${eventboard.board_date}</td>
 		</tr>
 		</c:forEach>
@@ -91,6 +91,7 @@
 	<a class = "btn red" href ="/teamProject3/event/eventInsert.jsp">이벤트 등록</a>
 	</c:if>
 	<my:paging paging="${paging}" jsfunc="gopage" />
+	</div>
 <script>
    function gopage(p) {         // 검색
       searchFrm.p.value = p;    // 페이지번호 받아와서 submit에 넘김

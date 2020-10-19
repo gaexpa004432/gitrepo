@@ -364,7 +364,7 @@ public class MemberDAO {
 			try {
 				conn = ConnectionManager.getConnnect();
 				String sql = "select a.* from( select b.* , rownum rn    from(" + 
-						"select r.recipe_number, r.recipe_name, r.recipe_content, r.main_img, f.favorite_code " + 
+						"select r.recipe_number, r.recipe_name, r.recipe_content, r.main_img, f.favorite_code, r.recipe_date " + 
 						"from recipe r, favorites f " + 
 						"where r.recipe_number = f.favorite_no " + 
 						"and f.member_id = ? " + 
@@ -383,6 +383,7 @@ public class MemberDAO {
 					resultVO.setRecipe_content(rs.getString(3));
 					resultVO.setMain_img(rs.getString(4));
 					resultVO.setFavorite_code(rs.getString(5));
+					resultVO.setRecipe_date(rs.getString(6));
 					list.add(resultVO);
 				}
 			} catch (Exception e) {
