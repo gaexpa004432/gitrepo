@@ -20,7 +20,8 @@
 		$(".cooking_order").append($("<div>")
 				.append($("<input>").attr("name","cooking_step"))
 				.append($("<input>").attr("type","file").attr("name","step_img"))		
-				.append($("<button>").attr("type","button").text("삭제").on("click",function(){
+				.append($("<img>").attr("type","img").attr("src", "/teamProject3/images/휴지통.png")
+								  .attr("width", "30px").attr("height", "30px").on("click",function(){
 					$(this).parent().remove();
 				}))
 				.append($("<br>")));		
@@ -242,6 +243,7 @@ $(function(){           //상품이름 단위 가격 적는 곳 추가~!!!
 	
 	<img id="step_img" src="" width="100" alt="">
 	<input type="file" id="step_img1" name = "step_img" accept="image/*">
+	<img style="visibility:hidden;" src="/teamProject3/images/휴지통.png" width="30px" height="30px" />
 	<div class="cooking_order"></div>
 	<script>  // 사진보이기
 	var file1 = document.querySelector('#step_img1');
