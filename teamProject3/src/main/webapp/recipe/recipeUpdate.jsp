@@ -76,10 +76,19 @@
 //====================================================================================================
 		$(function(){           //조리 순서 추가
 			
+			
+			$('input[type="text"]').keydown(function() {
+			    if (event.keyCode === 13) {
+			        event.preventDefault();
+			    }
+			});
+			
+			
+			
 		$(".stepAdd").on("click",function(){
 			$(".cooking_order").append($("<div>")
-					.append($("<input>").attr("name","cooking_step"))
-					.append($("<img>").css("width","100px").attr("class","step_img"))
+					.append($("<input>").attr("name","cooking_step").attr("weith", "40px").attr("height", "100px"))
+					.append($("<img>").css("width","150px").css("height","150px").attr("class","step_img"))
 					.append($("<input>").attr("type","file").attr("name","step_img").attr("class","step_img1"))		
 					.append($("<button>").attr("type","button").text("삭제").on("click",function(){
 						$(this).parent().remove();
@@ -92,10 +101,12 @@
 			
 			$(".matAdd").on("click",function(){
 				$(".matList").append($("<div>")
-						.append($("<input>").attr("name","product_name"))
-						.append($("<input>").attr("name","product_unit"))
-						.append($("<input>").attr("name","product_price"))
-						.append($("<button>").attr("type","button").text("삭제").on("click",function(){
+						.append($("<input>").attr("name","product_name").attr("placeholder", "예) 아보카도"))
+						.append($("<input>").attr("name","product_unit").attr("placeholder", "예) 10kg"))
+						.append($("<input>").attr("name","product_price").attr("placeholder", "예) 20000"))
+						.append($("<img>").attr("type","img")
+								.attr("src", "/teamProject3/images/휴지통.png")
+								.attr("width", "30px").attr("height", "30px").text("삭제").on("click",function(){
 							$(this).parent().remove();
 						}))
 						.append($("<br>")));		
@@ -105,14 +116,15 @@
 		//비매품이름 단위  적는 곳 추가~!!!	
 		$(".nonmatAdd").on("click",function(){
 			$(".nonmatList").append($("<div>")
-				.append($("<input>").attr("name","non_product_name"))
-				.append($("<input>").attr("name","non_product_unit"))
-				.append($("<button>").attr("type","button").text("삭제").on("click",function(){
+				.append($("<input>").attr("name","non_product_name").attr("placeholder", "예) 된장"))
+				.append($("<input>").attr("name","non_product_unit").attr("placeholder", "예) 350g"))
+				.append($("<img>").attr("type","img").attr("src", "/teamProject3/images/휴지통.png")
+								  .attr("width", "30px").attr("height", "30px").on("click",function(){
 					$(this).parent().remove();
 					}))
 					.append($("<br>")));		
 		})		
-	
+		
 	$("#cooking_time").val("${ recipe.cooking_time }");
 	$("#cooking_level").val("${ recipe.cooking_level }");
 	
@@ -172,20 +184,7 @@ $(document).on("change",".step_img1",function () {
         position: relative;
   		z-index: 1;
        }
-       
-       .container::after {
- 		width: 100%;
-  		height: 100%;
-  		content: "";
-  		background: url("./images/sunrise.jpg");
-  		position: absolute;
-  		top: 0;
-  		left: 0;
-  		z-index: -1;
-  		opacity: 0.5;
-		}
-       
-       
+
        textarea {
 		width: 100%;
 		height: 150px;
@@ -198,7 +197,17 @@ $(document).on("change",".step_img1",function () {
 		padding-top: 12px;
 		resize: none;
 		}
-
+       
+		input {
+		font-size: 16px;
+		color: #6f6f6f;
+		padding-left: 20px;
+		margin-bottom: 24px;
+		border: 1px solid #ebebeb;
+		border-radius: 4px;
+		padding-top: 12px;
+		resize: none;
+		}       
        
        select {
 		width: 200px;
@@ -213,6 +222,7 @@ $(document).on("change",".step_img1",function () {
     </style>
 </head>
 <body>
+	<div class="container">
 	<h1 align="center">레시피 수정</h1><br><br>
 
 	<form action="/teamProject3/recipeUpdate.do" method="post" name="frm"
@@ -220,25 +230,25 @@ $(document).on("change",".step_img1",function () {
 		<input type="hidden" name="recipe_number" value="${recipe.recipe_number}"> 
 		<input type="hidden" name="board_no" value="${board.board_no}">
 	
-			<h2>레시피 제목</h2><br><br>	
+			<h2 style = "color:#9ACD32;">레시피 제목</h2><br><br>	
 			<input type="text" name="recipe_name" value="${recipe.recipe_name}">
 			<hr>
 			
-			<h2>food photograph</h2><br><br>
-			<img id="main_img" src="/teamProject3/images/${ recipe.main_img }" width="100" alt="" />
+			<h2 style = "color:#9ACD32;">완성 사진</h2><br><br>
+			<img id="main_img" src="/teamProject3/images/${ recipe.main_img }" width="300" height="300" alt="" />
 			<input type="file" name="main_img" class="step_img1">
 				
 			<hr>
 			<div class="row">
 			<div class="col-sm-12" align="center">
-			<h2>레시피 소개글</h2><br><br>
+			<h2 style = "color:#6B8E23;">레시피 소개글</h2><br><br>
 			<textarea cols="100" rows="20" name="recipe_content" style= "height:100px; width:610px;"
 					placeholder = "간단한 소개글을 적어주세요">${recipe.recipe_content}</textarea>
 			</div>
 			</div>
 
 		<hr>
-		<h2 class="container" style = "color:#6B8E23; font-family: Fantasy;">Cooking Information</h2><br>
+		<h2 class="container" style = "color:#6B8E23; font-family: Fantasy;">요리 정보</h2><br>
 		<div class="container">
 			<span class="time">시간</span> 
 			<select name="cooking_time" id="cooking_time">
@@ -264,7 +274,7 @@ $(document).on("change",".step_img1",function () {
 		</div>
 
 		<hr>
-		<h2 class="container" style = "color:#6B8E23; font-family: Fantasy;">Material</h2><br>
+		<h2 class="container" style = "color:#6B8E23; font-family: Fantasy;">재료</h2><br>
 		<div class="matList container">
 
 			<c:forEach items="${product}" var="productList">
@@ -275,29 +285,31 @@ $(document).on("change",".step_img1",function () {
 						value="${productList.product_unit}">
 					<input name="product_price" placeholder="예) 10000원"
 						value="${productList.product_price}">
+					 <img style="visibility:hidden;" src="/teamProject3/images/휴지통.png" width="30px" height="30px" />
 					<br>
 				</c:if>
 			</c:forEach>
 		</div>
-		<button type="button" class="matAdd">재료 추가</button>
+		<button type="button" class="matAdd site-btn">재료 추가</button>
 
 		<hr>
-		<h2>양념</h2><br><br>
+		<h2 style = "color:green;">양념</h2><br><br>
 		<div class="nonmatList">
 			<c:forEach items="${product}" var="non_productList">
 				<c:if test="${non_productList.product_code eq 'non_prod'}">
 					<input name="non_product_name" placeholder="예) 간장"
-							value="${non_productList.product_name}">
+						   value="${non_productList.product_name}">
 					<input name="non_product_unit" placeholder="예) 500g"
-							value="${non_productList.product_unit}">
+						   value="${non_productList.product_unit}">
+					<img style="visibility:hidden;" src="/teamProject3/images/휴지통.png" width="30px" height="30px" />
 					<br>
 				</c:if>
 			</c:forEach>
 		</div>
-		<button type="button" class="nonmatAdd">양념 추가</button>
+		<button type="button" class="nonmatAdd site-btn">양념 추가</button>
 
 		<hr>
-		<h2>요리 순서</h2><br><br>
+		<h2 style = "color:green;">요리 순서</h2><br><br>
 		<div class="cooking_order">
 			<c:forEach items="${ photo }" var="step">
 
@@ -315,7 +327,7 @@ $(document).on("change",".step_img1",function () {
 			</c:forEach>
 
 		</div>
-		<button type="button" class="stepAdd site-btn">순서 추가</button>
+		<button type="button" class="stepAdd site-btn ">순서 추가</button>
 
 		<br>
 		<hr>
@@ -324,5 +336,6 @@ $(document).on("change",".step_img1",function () {
 		</div>
 		<br><br><br><br>
 	</form>
+	</div>
 </body>
 </html>

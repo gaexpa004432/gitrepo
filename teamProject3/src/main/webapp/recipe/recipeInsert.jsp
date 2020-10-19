@@ -35,13 +35,14 @@ $(function(){           //상품이름 단위 가격 적는 곳 추가~!!!
 			var seller = ""
 			console.log("${sessionScope.login.seller_code}")
 			if(${!empty sessionScope.login.seller_code}){
-				seller = $("<input>").attr("name","product_price");				
+				seller = $("<input>").attr("name","product_price").attr("placeholder", "예) 10000");				
 			}
 			$(".matList").append($("<div>")
-					.append($("<input>").attr("name","product_name"))
-					.append($("<input>").attr("name","product_unit"))
+					.append($("<input>").attr("name","product_name").attr("placeholder", "예) 오이"))
+					.append($("<input>").attr("name","product_unit").attr("placeholder", "예) 10kg"))
 					.append(seller)
-					.append($("<button>").attr("type","button").text("삭제").on("click",function(){
+					.append($("<img>").attr("type","img").attr("src", "/teamProject3/images/휴지통.png")
+								  .attr("width", "30px").attr("height", "30px").on("click",function(){
 						$(this).parent().remove();
 					}))
 					.append($("<br>")));		
@@ -53,9 +54,10 @@ $(function(){           //상품이름 단위 가격 적는 곳 추가~!!!
 		
 		$(".nonmatAdd").on("click",function(){
 			$(".nonmatList").append($("<div>")
-					.append($("<input>").attr("name","non_product_name"))
-					.append($("<input>").attr("name","non_product_unit"))
-					.append($("<button>").attr("type","button").text("삭제").on("click",function(){
+					.append($("<input>").attr("name","non_product_name").attr("placeholder", "예) 초장"))
+					.append($("<input>").attr("name","non_product_unit").attr("placeholder", "예) 1kg"))
+					.append($("<img>").attr("type","img").attr("src", "/teamProject3/images/휴지통.png")
+								  .attr("width", "30px").attr("height", "30px").on("click",function(){
 						$(this).parent().remove();
 					}))
 					.append($("<br>")));		
@@ -92,20 +94,7 @@ $(function(){           //상품이름 단위 가격 적는 곳 추가~!!!
   		z-index: 1;
        }
        
-       .container::after {
- 		width: 100%;
-  		height: 100%;
-  		content: "";
-  		background: url("./images/sunrise.jpg");
-  		position: absolute;
-  		top: 0;
-  		left: 0;
-  		z-index: -1;
-  		opacity: 0.5;
-		}
-       
-       
-       textarea {
+     textarea {
 		width: 100%;
 		height: 150px;
 		font-size: 16px;
@@ -117,15 +106,18 @@ $(function(){           //상품이름 단위 가격 적는 곳 추가~!!!
 		padding-top: 12px;
 		resize: none;
 		}
-		
-      /*  body {
        
-       background : url("/teamProject3/images/비건.png");
-       background-repeat: no-repeat;	
-	   background-size: cover;
-	   
-       } */
-       
+		input {
+		font-size: 16px;
+		color: #6f6f6f;
+		padding-left: 20px;
+		margin-bottom: 24px;
+		border: 1px solid #ebebeb;
+		border-radius: 4px;
+		padding-top: 12px;
+		resize: none;
+		}     
+
        select {
 		width: 200px;
 		height: 30px;
@@ -144,12 +136,12 @@ $(function(){           //상품이름 단위 가격 적는 곳 추가~!!!
 <div class="container">
 	<h2  align = "left" style = "color:green;">레시피 등록</h2><br>
 	<hr>
-	<h3 class="container" style = "color:#9ACD32; font-family: Fantasy;">Menu Name</h3><br>
+	<h3 class="container" style = "color:#9ACD32; font-family: Fantasy;">메뉴 이름</h3><br>
 	<input  type="text" name="recipe_name" id="recipe_name">
 	<br>
 	<hr>
 	
-	<h3 class="container" style = "color:#9ACD32; font-family: Fantasy;">food photograph</h3><br>
+	<h3 class="container" style = "color:#9ACD32; font-family: Fantasy;">완성 사진</h3><br>
 	<img id="main_img" src="" width="300" alt="">
 	<input type="file" id="getfile" name = "main_img" accept="image/*">
 
@@ -178,7 +170,7 @@ $(function(){           //상품이름 단위 가격 적는 곳 추가~!!!
 
 	<hr>
 	<br>
-	<h3 class="container" style = "color:#9ACD32; font-family: Fantasy;">Recipe Introduction</h3>
+	<h3 class="container" style = "color:#9ACD32; font-family: Fantasy;">레시피 소개글</h3>
 
 	<div class="row">
 	<div class="col-sm-12" align="center">
@@ -189,7 +181,7 @@ $(function(){           //상품이름 단위 가격 적는 곳 추가~!!!
 	<br>
 	<hr>
 	
-	<h3 class="container" style = "color:#6B8E23; font-family: Fantasy;">Cooking Information</h3><br>
+	<h3 class="container" style = "color:#6B8E23; font-family: Fantasy;">요리 정보</h3><br>
 	<div class="container">
 	<span class = "time" >시간</span>
 		<select name = "cooking_time">
@@ -215,34 +207,36 @@ $(function(){           //상품이름 단위 가격 적는 곳 추가~!!!
 	</div>
 
 	<hr>
-	<h3 class="container" style = "color:#6B8E23; font-family: Fantasy;">Material</h3><br>
+	<h3 class="container" style = "color:#6B8E23; font-family: Fantasy;">재료</h3><br>
 	<div class="matList container">
 	<input name="product_name" placeholder="예) 돼지고기">
 	<input name="product_unit" placeholder="예) 1KG">
-	<input class="product_price" name="product_price" placeholder="예) 10000원"><br><br><br>
+	<input class="product_price" name="product_price" placeholder="예) 10000원">
+	<img style="visibility:hidden;" src="/teamProject3/images/휴지통.png" width="30px" height="30px" />
 	</div>
 	
 	<div class="row">
 	<div class="col-sm-12" align="center">
-	<button type="button" class="matAdd">재료 추가</button>
+	<button type="button" class="matAdd site-btn">재료 추가</button>
 	</div>
 	</div>
 
 	<hr>
-	<h3 class="container" style = "color:green; font-family: Fantasy;">Seasoning</h3><br>
+	<h3 class="container" style = "color:green; font-family: Fantasy;">양념</h3><br>
 	<div class="nonmatList container">
 	<input name="non_product_name" placeholder="예) 간장">
-	<input name="non_product_unit" placeholder="예) 500g"><br><br><br> 
+	<input name="non_product_unit" placeholder="예) 500g">
+	<img style="visibility:hidden;" src="/teamProject3/images/휴지통.png" width="30px" height="30px" />
 	</div>
 	
 	<div class="row">
 	<div class="col-sm-12" align="center">
-	<button type="button" class="nonmatAdd">양념 추가</button><br><br>
+	<button type="button" class="nonmatAdd site-btn"">양념 추가</button><br><br>
 	</div>
 	</div>
 
 	<hr>
-	<h3 class="container" style = "color:green; font-family: Fantasy;">cooking sequence</h3><br>
+	<h3 class="container" style = "color:green; font-family: Fantasy;">조리 순서</h3><br>
 	<div class = "cooking_order, container">
 	<input name = "cooking_step">
 	

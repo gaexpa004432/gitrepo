@@ -10,7 +10,30 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-
+ textarea {
+		width: 100%;
+		height: 150px;
+		font-size: 16px;
+		color: #6f6f6f;
+		padding-left: 20px;
+		margin-bottom: 24px;
+		border: 1px solid #ebebeb;
+		border-radius: 4px;
+		padding-top: 12px;
+		resize: none;
+		}
+		
+  input {
+  		font-size: 16px;
+		color: #6f6f6f;
+		padding-left: 20px;
+		margin-bottom: 24px;
+		border: 1px solid #ebebeb;
+		border-radius: 4px;
+		padding-top: 12px;
+		resize: none;
+ 	    }	
+ 	    a { color: #000; }
 </style>
 
 <script type="text/javascript">
@@ -202,14 +225,17 @@
 
 
 <body>
+<div class="container">
 	<div class="row">
-		<div class="col-sm-12" align="center">
+		<div class="col-sm-12" align="center">		
 			<h1>${ recipe.recipe_name }</h1>
 		</div>
 		<br>
 
-		<div class="col-sm-12" align="center">
+		<div class="col-sm-12  fa fa-user" align="center">
+			<div class="header__top__right__auth">
 			<h4>${ recipe.member_id }</h4>
+			</div>
 			<input type="hidden" value="${recipe.seller_code}">
 		</div>
 		<br>
@@ -243,14 +269,14 @@
 	<hr>
 	<div class="row">
 		<div class="col-sm-12" align="center">
-			<h3>레시피 재료</h3>
+			<h3 style = "color:#9ACD32;">레시피 재료</h3>
 		</div>
 		<div class="col-sm-6" align="center">
 			<h3>[재료]</h3>
 			<c:forEach items="${ product }" var="mater">
 				<c:if test="${mater.product_code eq 'prod'}">				
 					<h3 class="material" data-mate="${ mater.product_number }">
-				    <a href="javascript:void(0);" class="product_recipe" data-product="${ mater.product_name }">${ mater.product_name }</a>
+				    <a style="font_color:black;" href="javascript:void(0);" class="product_recipe" data-product="${ mater.product_name }">${ mater.product_name }</a>
 					용량 : ${ mater.product_unit }
 					</h3>
 				</c:if>
@@ -277,15 +303,17 @@
 	</div>
 	<hr>
 	
-	<h3 class="col-sm-12" align="center">조리 순서</h3><br><br>
-	<div class="row">
-		<c:forEach items="${ photo }" var="step">
-			<div class="col-sm-6">조리 내용 : ${ step.cooking_content }</div>
-			<div class="col-sm-6">
+	<h3 class="col-sm-12" align="center" style = "color:#6B8E23;">조리 순서</h3><br><br>
+	<div class="row" align="center">
+	  <div class="col-sm-12" align="center">
+		<c:forEach items="${ photo }" var="step"><br>
+			<div class="col-sm-9" align="left">조리 내용 : ${ step.cooking_content }</div>
+			<div class="col-sm-10" align="center">
 				<img src="/teamProject3/images/${ step.cooking_photo_name }"
-					height="200" width="200"><br><br>
+					height="150" width="200"><hr style="visibility:hidden;"><br>
 			</div>
 		</c:forEach>
+	  </div>	
 	</div>
 
 	<hr>
@@ -318,6 +346,9 @@
 						<img id="img" />
 					</div>
 				</div>
+				<div class="">
+				<h3  class="col-sm-6" align="left" style="color:green;">리뷰</h3>
+				</div>
 				<br><input value="${ recipe.recipe_number }" name="recipe_no"
 					hidden="hidden">
 				<textarea cols="100" rows="10" name="recipe_reivew_content"
@@ -329,12 +360,12 @@
 					</div>
 				</div>
 				<br>
-				<button id="recipe_insert" style="vertical-align: top;">리뷰 쓰기</button>
+				<button id="recipe_insert" style="vertical-align: top;" class="site-btn">리뷰 쓰기</button>
 			</form>
 			<br><br><br>
 		</div>
 	</div>
-
+</div>
 
 	<c:forEach items="${ reviewlist }" var="list">
 		<div class="row" id="over"
@@ -365,6 +396,7 @@
 			</div>
 		</div>
 	</c:forEach>
+	
 	<div align="center">
 
 
