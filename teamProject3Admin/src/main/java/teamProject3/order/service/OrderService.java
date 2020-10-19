@@ -14,6 +14,7 @@ public interface OrderService {
 
 	int InsertDetail(OrderVO vo);
 	
-
-
+	void insertChat(OrderVO vo);
+	
+	ArrayList<OrderVO> selectChat();
 }

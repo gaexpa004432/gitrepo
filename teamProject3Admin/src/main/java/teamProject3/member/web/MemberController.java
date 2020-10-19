@@ -31,6 +31,7 @@ public class MemberController {
 		
 		model.addAttribute("list",memberService.selectAll(null));
 		model.addAttribute("index",3);
+		request.getSession().setAttribute("id", "manager");
 		return "manager/mani";
 	}
 	
@@ -47,6 +48,7 @@ public class MemberController {
 			date.add("'"+data.getOrder_date()+"'");
 			total.add(data.getOrder_total());
 		}
+		request.getSession().setAttribute("id", "vegan");
 		model.addAttribute("date",date);
 		model.addAttribute("data",total);
 		model.addAttribute("index",2);
@@ -68,5 +70,11 @@ public class MemberController {
 		memberService.updateMileage(memberVO);
 	}
 	
+	@RequestMapping("/ajaxChatInsert")
+	@ResponseBody
+	public void chatInsert(OrderVO orderVO ,HttpServletRequest request,HttpServletResponse response) {
+		
+		orderService.insertChat(orderVO);
+	}
 
 }

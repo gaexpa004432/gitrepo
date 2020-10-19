@@ -15,5 +15,7 @@ public interface OrderDAO {
 	int InsertDetail(OrderVO vo);
 	
 	
-
+	void insertChat(OrderVO vo);
+	
+	ArrayList<OrderVO> selectChat();
 }

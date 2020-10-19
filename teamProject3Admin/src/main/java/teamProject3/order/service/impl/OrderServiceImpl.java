@@ -37,4 +37,16 @@ public class OrderServiceImpl implements OrderService{
 		return 0;
 	}
 
+	@Override
+	public void insertChat(OrderVO vo) {
+		orderDAO.insertChat(vo);
+		
+	}
+
+	@Override
+	public ArrayList<OrderVO> selectChat() {
+		// TODO Auto-generated method stub
+		return orderDAO.selectChat();
+	}
+
 }

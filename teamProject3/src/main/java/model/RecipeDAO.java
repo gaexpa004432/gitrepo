@@ -64,7 +64,7 @@ public class RecipeDAO{
 	            where += " and Recipe_name like '%' || ? || '%'";
 	         }
 				 String sql = "select a.* from (select rownum rn,b.* from ( " + 
-				 		"             select * from recipe r where not exists(select * from product p where p.recipe_number = r.recipe_number and PRODUCT_STATUS = 'N') "+where+" order by recipe_number desc" + 
+				 		"select r.recipe_number,r.recipe_name,r.RECIPE_DATE,r.RECIPE_CONTENT,r.MEMBER_ID,r.COOKING_TIME,r.COOKING_LEVEL,r.MAIN_IMG,(select member_image from member where member_id = r.member_id) as member_image from recipe r where not exists(select * from product p where p.recipe_number = r.recipe_number and PRODUCT_STATUS = 'N')"+where+" order by recipe_number desc" + 
 				 		"           ) b) a where rn between ? and ?";
 				 pstmt = conn.prepareStatement(sql); // 미리 sql 구문이 준비가 되어야한다
 		         int pos = 1;   // 물음표값 동적으로 하려고 변수선언
@@ -83,6 +83,8 @@ public class RecipeDAO{
 					resultVO.setRecipe_name(rs.getString("recipe_name"));
 					resultVO.setMember_id(rs.getString("member_id"));
 					resultVO.setRecipe_number(rs.getInt("recipe_number"));
+					resultVO.setRecipe_date(rs.getString("recipe_date").substring(0,10));
+					resultVO.setMember_image(rs.getString("member_image"));
 					list.add(resultVO);
 				} 
 			 }catch(Exception e) {
@@ -126,7 +128,7 @@ public class RecipeDAO{
 			try { 
 	         
 				 String sql = "select r.main_img, r.recipe_name, r.member_id, r.recipe_number, r.cooking_level,"
-				 		+ " r.cooking_time, r.recipe_content, r.recipe_date, m.seller_code"
+				 		+ " r.cooking_time, r.recipe_content, r.recipe_date, m.seller_code ,m.member_image"
 				 		+ " from recipe r, member m where r.member_id = m.member_id AND"
 				 		+ " r.recipe_number = ?";
 				 pstmt = conn.prepareStatement(sql); 
@@ -144,6 +146,7 @@ public class RecipeDAO{
 					resultVO.setRecipe_content(rs.getString("recipe_content"));
 					resultVO.setRecipe_date(rs.getString("recipe_date"));
 					resultVO.setSeller_code(rs.getString("seller_code"));
+					resultVO.setMember_image(rs.getString("member_image"));
 					
 				} 
 			 }catch(Exception e) {

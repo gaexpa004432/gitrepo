@@ -7,65 +7,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="/teamProject3/css/userImage.css">	
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-.btn { /* 새로운재료 추가 버튼 css */
-	text-decoration: none;
-	font-size: 2rem;
-	color: white;
-	padding: 10px 20px 10px 20px;
-	margin: 20px;
-	display: inline-block;
-	border-radius: 10px;
-	transition: all 0.1s;
-	text-shadow: 0px -2px rgba(0, 0, 0, 0.44);
-	font-family: 'Lobster', cursive;
-	<!--
-	google
-	font
-	-->
-}
-
-.btn:active {
-	transform: translateY(3px);
-}
-
-.btn.blue {
-	background-color: #1f75d9;
-	border-bottom: 5px solid #165195;
-}
-
-.btn.blue:active {
-	border-bottom: 2px solid #165195;
-}
-
-.btn.red {
-	background-color: #ff521e;
-	border-bottom: 5px solid #c1370e;
-}
-
-.btn.red:active {
-	border-bottom: 2px solid #c1370e;
-}
-
-.btn.green {
-	background-color: #298A08;
-	border-bottom: 5px solid #165195;
-}
-
-.btn.green:active {
-	border-bottom: 2px solid #165195;
-}
-
-.btn.pink {
-	background-color: #FE2E64;
-	border-bottom: 5px solid #165195;
-}
-
-.btn.pink:active {
-	border-bottom: 2px solid #165195;
-}
+ textarea {
+		width: 100%;
+		height: 150px;
+		font-size: 16px;
+		color: #6f6f6f;
+		padding-left: 20px;
+		margin-bottom: 24px;
+		border: 1px solid #ebebeb;
+		border-radius: 4px;
+		padding-top: 12px;
+		resize: none;
+		}
+		
+  input {
+  		font-size: 16px;
+		color: #6f6f6f;
+		padding-left: 20px;
+		margin-bottom: 24px;
+		border: 1px solid #ebebeb;
+		border-radius: 4px;
+		padding-top: 12px;
+		resize: none;
+ 	    }	
+ 	    a { color: #000; }
 </style>
 
 <script type="text/javascript">
@@ -74,6 +43,21 @@
 		if(${!empty focus}){
 			document.getElementById('recipe_insert').focus();
 		}
+		$.contextMenu({
+		    selector: '#user',
+		    trigger: 'left',
+		    callback: function(key, options) {
+		    	console.log($(this).data("member"));
+		    	location.href="/teamProject3/inqSellerId.do?member_id="+$(this).data("member");
+		        var m = key;
+		      
+		    },
+		    items: {
+		        "edit": {name: "1:1 문의하기"},
+		        "quit": {name: "Quit", icon: function($element, key, item){ return 'context-menu-icon context-menu-icon-quit'; }}
+		    }
+		});
+		
 		var favorite = "${favorite}";
 		if(favorite == "true"){
 			$("#bookmark").html("<img src='/teamProject3/images/즐겨찾기취소.jpg' style='width: 100px; height: 100px; margin-left: 30px;'>");
@@ -203,7 +187,7 @@
 	
 	      //레시피 삭제
 			$("#recipedele").on("click",function (){
-				var result = confirm('??지울라고???왜????');
+				var result = confirm('레시피를 삭제하시겠습니까??');
 				if (result) {
 				location.href="/teamProject3/recipeDelete.do?recipe_number=${recipe.recipe_number}"
 				}
@@ -257,16 +241,22 @@
 
 
 <body>
+<div class="container">
 	<div class="row">
-		<div class="col-sm-12" align="center">
+		<div class="col-sm-12" align="center">		
 			<h1>${ recipe.recipe_name }</h1>
 		</div>
+		<br>
 
-		<div>
-			<h3>작성자 : ${ recipe.member_id }</h3>
+		<div class="col-sm-12  fa fa-user" align="center">
+			<div class="header__top__right__auth">
+			<img class="userImage" src="/teamProject3/images/${recipe.member_image}"><br>
+			<h4><a style="font-size:30px;" href="javascript:void(0);" id="user" data-member="${ recipe.member_id }">${ recipe.member_id }</a></h4>
+			</div>
 			<input type="hidden" value="${recipe.seller_code}">
 		</div>
-
+		<br>
+		
 		<div class="col-sm-12" align="center">
 			<img src="/teamProject3/images/${ recipe.main_img }" height="400"
 				width="400">
@@ -274,28 +264,44 @@
 		<div class="col-sm-12" align="center">
 			<h3>${ recipe.recipe_content }</h3>
 		</div>
-		<div class="col-sm-6" align="center">레시피 시간 : ${ recipe.cooking_time }</div>
-		<div class="col-sm-6" align="center">레시피 레벨 : ${ recipe.cooking_level }</div>
+		<div class="col-sm-6 contact__widget" align="center">
+		<span class="icon_clock_alt"></span><br>레시피 시간 : ${ recipe.cooking_time }</div>
+		
+		<div class="col-sm-6 product__details__rating" align="center">
+			<i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i><br>
+          	  레시피 레벨 : ${ recipe.cooking_level }</div>
+		</div>
+		<br>
+		<br>	
+	<div align="right">
+		<a href="javascript:void(0);" id="bookmark"> 
+		<img src="/teamProject3/images/" style="width: 100px; height: 100px; margin-left: 30px;">
+		</a>
 	</div>
+		
 	<hr>
 	<div class="row">
 		<div class="col-sm-12" align="center">
-			<h1>재료</h1>
+			<h3 style = "color:#9ACD32;">레시피 재료</h3>
 		</div>
-		<div class="col-sm-6" align="left">
-			<h1>[재료]</h1>
+		<div class="col-sm-6" align="center">
+			<h3>[재료]</h3>
 			<c:forEach items="${ product }" var="mater">
 				<c:if test="${mater.product_code eq 'prod'}">				
 					<h3 class="material" data-mate="${ mater.product_number }">
-				    <a href="javascript:void(0);" class="product_recipe" data-product="${ mater.product_name }">${ mater.product_name }</a>
+				    <a style="font_color:black;" href="javascript:void(0);" class="product_recipe" data-product="${ mater.product_name }">${ mater.product_name }</a>
 					용량 : ${ mater.product_unit }
 					</h3>
 				</c:if>
 			</c:forEach>
 		</div>
-
-		<div class="col-sm-6" align="right">
-			<h1>[양념]</h1>
+	
+		<div class="col-sm-6" align="center">
+			<h3>[양념]</h3>
 			<c:forEach items="${ product }" var="mater">
 				<c:if test="${mater.product_code eq 'non_prod'}">
 					<h3 class="non_material" data-mate="${ mater.product_number }">${mater.product_name }
@@ -304,39 +310,42 @@
 			</c:forEach>
 		</div>
 	</div>
-	<hr>
+	<br>
+	<br>
+	<br>
 	<div class="row">
-		<c:forEach items="${ photo }" var="step">
-			<div class="col-sm-6">조리 내용 : ${ step.cooking_content }</div>
-			<div class="col-sm-6">
+		<div class="col-sm-12" align="center">
+			<button id="cart" class="site-btn">담기</button>
+		</div>
+	</div>
+	<hr>
+	
+	<h3 class="col-sm-12" align="center" style = "color:#6B8E23;">조리 순서</h3><br><br>
+	<div class="row" align="center">
+	  <div class="col-sm-12" align="center">
+		<c:forEach items="${ photo }" var="step"><br>
+			<div class="col-sm-9" align="left">조리 내용 : ${ step.cooking_content }</div>
+			<div class="col-sm-10" align="center">
 				<img src="/teamProject3/images/${ step.cooking_photo_name }"
-					height="200" width="200"> <br>
+					height="150" width="200"><hr style="visibility:hidden;"><br>
 			</div>
 		</c:forEach>
+	  </div>	
 	</div>
 
 	<hr>
+	<div class=".col-xs-6 .col-md-4">
 	<c:if test="${recipe.member_id eq sessionScope.id}">
 	<div align="center">
 		<a href="recipeViewUpdate.do?recipe_number=${recipe.recipe_number}">
-			<button type="button" class="btn green">레시피 수정</button>
+			<button type="button" class="site-btn">레시피 수정</button>
 		</a>
-		<button type="button" class="btn red" id="recipedele">레시피 삭제</button>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button type="button" class="site-btn" id="recipedele">레시피 삭제</button>
 	</div>
 	</c:if>
-
-	<div align="right">
-		<a href="javascript:void(0);" id="bookmark"> 
-		<img src="/teamProject3/images/" style="width: 100px; height: 100px; margin-left: 30px;">
-		</a>
 	</div>
 
-	<hr>
-	<div class="row">
-		<div class="col-sm-12" align="center">
-			<button id="cart">담기</button>
-		</div>
-	</div>
 	<hr>
 <form name="searchFrm">		
 	<input type="hidden" name="p" value="1">
@@ -348,36 +357,42 @@
 	<div class="row">
 		<div class="col" align="center">
 			<form action="/teamProject3/recipeReview.do" method="post"
-				enctype='multipart/form-data'>
+					enctype='multipart/form-data'>
 				<div class="col-sm-8" align="center">
 					<div class="imgs_wrap">
 						<img id="img" />
 					</div>
 				</div>
+				<div class="">
+				<h3  class="col-sm-6" align="left" style="color:green;">리뷰</h3>
+				</div>
 				<br><input value="${ recipe.recipe_number }" name="recipe_no"
 					hidden="hidden">
-				<textarea cols="100" rows="10" name="recipe_reivew_content"></textarea>
+				<textarea cols="100" rows="10" name="recipe_reivew_content"
+						style= "height:100px; width:610px;"></textarea>
 				
-				<div class="col-sm-8" align="center">
-					<div align="left">
+				<div class="col-sm-10" align="right">
+					<div>
 						<input type="file" id="input_imgs" name="recipe_review_file">
 					</div>
 				</div>
-
-				<button id="recipe_insert" style="vertical-align: top;">리뷰 쓰기</button>
+				<br>
+				<button id="recipe_insert" style="vertical-align: top;" class="site-btn">리뷰 쓰기</button>
 			</form>
 			<br><br><br>
 		</div>
 	</div>
-
+</div>
 
 	<c:forEach items="${ reviewlist }" var="list">
 		<div class="row" id="over"
 			style="border-top-width: 1px; border-top-style: solid; padding: 20px; border-top-color: #f0f0f5;">
 
 			<div class="col-sm-1">
-				작성자 위치 ${ list.member_id }<br>
+				<img class="userImage" src="/teamProject3/images/${list.member_image}"><br>
+				${ list.member_id }
 			</div>
+			
 			<div class="col-sm-10" align="left">
 				<small>${ list.recipe_review_date }</small><br> ${ list.recipe_review_content }<br>
 				<br>
@@ -387,9 +402,9 @@
 			<div class="col-sm-1" align="right">
 				<c:if test="${ list.member_id == sessionScope.id }">
 					<a class="reviewDel" href="javascript:void(0);"
-						data-no="${ list.recipe_review_no }"><img
-						src="/teamProject3/images/delBtn.png"
-						style="width: 25px; height: 25px;"></a>
+						data-no="${ list.recipe_review_no }">
+					<img src="/teamProject3/images/delBtn.png" style="width: 25px; height: 25px;">
+					</a>
 				</c:if>
 			</div>
 			
@@ -400,6 +415,7 @@
 			</div>
 		</div>
 	</c:forEach>
+	
 	<div align="center">
 
 

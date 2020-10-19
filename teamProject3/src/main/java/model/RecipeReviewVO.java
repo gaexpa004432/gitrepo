@@ -9,7 +9,14 @@ public class RecipeReviewVO {
 	private int recipe_number;
 	private Integer first;
 	private Integer last;
+	private String member_image;
 	
+	public String getMember_image() {
+		return member_image;
+	}
+	public void setMember_image(String member_image) {
+		this.member_image = member_image;
+	}
 	public Integer getFirst() {
 		return first;
 	}

@@ -1,6 +1,7 @@
 package member;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
 import model.MemberDAO;
 import model.MemberVO;
+import model.SearchDAO;
+import model.SearchVO;
+import model.SellDAO;
 import model.SellerDAO;
 import model.SellerVO;
 
@@ -24,7 +28,6 @@ public class MemberLoginController implements Controller {
 		//2. 서비스처리
 		//2-1 일반회원 정보 가져오기
 		MemberVO resultVO = MemberDAO.getInstance().selectOne(memberVO);
-		
 		
 		//request.setAttribute("resultVO", resultVO);
 		
@@ -63,7 +66,7 @@ public class MemberLoginController implements Controller {
 				System.out.println("생년월일 : " + resultVO.getMember_birth());
 				System.out.println("판매자 코드: " + resultVO.getSeller_code());				
 				
-				page = "/member/memberLoginOutput.jsp";
+				page = "/index.jsp";
 				if(memberVO.getMember_id().equals("vegan")) {
 					page = "/";
 				}
