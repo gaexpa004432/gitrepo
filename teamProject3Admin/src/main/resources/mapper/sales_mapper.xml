@@ -16,4 +16,11 @@ from member m, orderlist o
 where m.seller_code = o.seller_code  and m.seller_code is not null 
 group by m.seller_code ,m.member_id, m.member_tel, m.member_email
 	</select>
+	<insert id="insertChat" parameterType="order">
+	insert into chat values(chat_seq.nextval,#{member_id},#{member_name})
+	</insert>
+	<select id="selectChat" resultType="order">
+	select  member_id,chat_content as member_name from chat order by chat_number
+	</select>
+	
  </mapper>

@@ -10,12 +10,23 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
+<style>
+	.mileage {
+	border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    margin: 20px 10px;
+	}
+
+</style>
 <body>
 		<h3>마일리지 현황</h3>
 			<hr>
 	<form action="${pageContext.request.contextPath}/mileageController.do">
 	<div id="mileage-table">
-		<table>
+		<table border='1' class="mileage">
 		
 			<thead>
 				<tr>

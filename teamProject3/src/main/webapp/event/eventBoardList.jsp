@@ -9,50 +9,23 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 <style>
-.btn{  /* 새로운재료 추가 버튼 css */
-      text-decoration: none;
-      font-size:2rem;
-      color:white;
-      padding:10px 20px 10px 20px;
-      margin:20px;
-      display:inline-block;
-      border-radius: 10px;
-      transition:all 0.1s;
-      text-shadow: 0px -2px rgba(0, 0, 0, 0.44);
-      font-family: 'Lobster', cursive; <!-- google font -->
-    }
-    .btn:active{
-      transform: translateY(3px);
-    }
-    .btn.blue{
-      background-color: #1f75d9;
-      border-bottom:5px solid #165195;
-    }
-    .btn.blue:active{
-      border-bottom:2px solid #165195;
-    }
-    .btn.red{
-      background-color: #ff521e;
-      border-bottom:5px solid #c1370e;
-    }
-    .btn.red:active{
-      border-bottom:2px solid #c1370e;
-    }
-     .btn.green{
-      background-color: #298A08;
-      border-bottom:5px solid #165195;
-    }
-    .btn.green:active{
-      border-bottom:2px solid #165195;
-    }
-	.btn.pink{
-      background-color: #FE2E64;
-      border-bottom:5px solid #165195;
-    }
-    .btn.pink:active{
-      border-bottom:2px solid #165195;
-    }
+
+.site-btn {
+	font-family: 'Noto Sans KR';
+	font-size: 15px;
+	margin-bottom: 20px;
+	padding-left: 30px;
+}
+
+td {
+	font-size: 18px;
+	font-family: 'Noto Sans KR';
+	font color: "#000000";
+}
+
+
 </style>
 
 </head>
@@ -73,14 +46,15 @@
 				<c:if test="${!empty eventboard.board_file}">
 					<td>
 					<a href="eventView.do?board_no=${eventboard.board_no}">
-					<img src="/teamProject3/images/${ eventboard.member_name }" width="600" height="200">
+					<img src="/teamProject3/images/${ eventboard.member_name }" width="700" height="200">
 					</a>
 					</td>
 				</c:if>
 				
-		<%-- 	<td><a href="eventView.do?board_no=${eventboard.board_no}">${eventboard.board_sub}</a></td>
-			<!-- 제목 누르면 view페이지로 넘어감 --> --%>
-			<td>${eventboard.board_date}</td>
+			<td><a href="eventView.do?board_no=${eventboard.board_no}">${eventboard.board_sub}</a></td>
+			<!-- 제목 누르면 view페이지로 넘어감 --> 
+		
+			<%-- <td>${eventboard.board_date}</td> --%>
 		</tr>
 		</c:forEach>
 		</tbody>
@@ -88,7 +62,7 @@
 	
 	<hr/>
 	<c:if test="${sessionScope.id == 'vegan'}">
-	<a class = "btn red" href ="/teamProject3/event/eventInsert.jsp">이벤트 등록</a>
+	<a class = "btn site-btn" href ="/teamProject3/event/eventInsert.jsp" style="float: right;">등록</a>
 	</c:if>
 	<my:paging paging="${paging}" jsfunc="gopage" />
 	</div>
@@ -103,5 +77,6 @@
    console.log("${sessionScope.login}");
 </script>
 </div>
+&nbsp;&nbsp;
 </body>
 </html>

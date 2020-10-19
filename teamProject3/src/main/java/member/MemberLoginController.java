@@ -28,8 +28,8 @@ public class MemberLoginController implements Controller {
 		//2. 서비스처리
 		//2-1 일반회원 정보 가져오기
 		MemberVO resultVO = MemberDAO.getInstance().selectOne(memberVO);
-				
-		
+		//회원의 모든 즐겨찾기 갯수
+		int favCnt = MemberDAO.getInstance().favoriteCount(memberVO);
 		//request.setAttribute("resultVO", resultVO);
 		
 		//3. 결과저장
@@ -63,11 +63,12 @@ public class MemberLoginController implements Controller {
 				request.getSession().setAttribute("id", memberVO.getMember_id());//사용자의 id를 준다
 				request.getSession().setAttribute("pass", memberVO.getMember_pass());
 				request.getSession().setAttribute("birth", resultVO.getMember_birth().substring(0, 10));
+				request.getSession().setAttribute("favCnt", favCnt);
 				System.out.println("비번 담기 : " + memberVO.getMember_pass());
 				System.out.println("생년월일 : " + resultVO.getMember_birth());
 				System.out.println("판매자 코드: " + resultVO.getSeller_code());				
 				
-				page = "/member/memberLoginOutput.jsp";
+				page = "/index.jsp";
 				if(memberVO.getMember_id().equals("vegan")) {
 					page = "/";
 				}

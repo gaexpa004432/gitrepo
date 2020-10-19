@@ -121,8 +121,8 @@ public class SearchDAO {
 				resultVO = new SearchVO();
 				resultVO.setRecipe_number(rs.getInt(1));
 				resultVO.setRecipe_name(rs.getString(2));
-				resultVO.setRecipe_content(rs.getString(3));
-				resultVO.setRecipe_date(rs.getString(4));
+				resultVO.setRecipe_date(rs.getString(3));
+				resultVO.setRecipe_content(rs.getString(4));
 				resultVO.setMember_id(rs.getString(5));
 				list.add(resultVO);
 			} 
@@ -199,7 +199,7 @@ public class SearchDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = 
-					"select recipe_name from recipe where recipe_name like '%' || ? || '%'" ;
+					"select distinct recipe_name from recipe where recipe_name like '%' || ? || '%'" ;
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, keyWord);
 			rs = pstmt.executeQuery();
@@ -222,7 +222,30 @@ public class SearchDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = 
-					"select res_name from res where res_name like '%' || ? || '%'" ;
+					"select distinct res_name from res where res_name like '%' || ? || '%'" ;
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, keyWord);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				result = rs.getString(1);
+				list.add(result);
+			} 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);//rs를 try안에서 선언하면 지역 변수 이기 때문에 try안에서만 사용 됨 , 그러니까 변수를 try밖으로 빼주고 초기값 null을 주면 에러없이 사용 가능
+		}
+		return list;
+	}
+	
+	public ArrayList<String> productName(String keyWord) {
+		String result = null;
+		ResultSet rs = null;
+		ArrayList<String> list = new ArrayList<String>();
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = 
+					"select distinct product_name from product where product_name like '%' || ? || '%'" ;
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, keyWord);
 			rs = pstmt.executeQuery();

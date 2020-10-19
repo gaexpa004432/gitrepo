@@ -31,12 +31,6 @@ th {
 	min-width: 50px
 }
 
-div {
-	margin-top: 1px;
-	margin-right: 1px;
-	margin-bottom: 1px;
-	margin-left: 1px;
-}
 
 #review:hover {
 	background-color: #f2f2f2;
@@ -59,6 +53,10 @@ h1 {
 }
 
 
+
+
+
+
 </style>
 
 
@@ -78,7 +76,7 @@ $(function(){
 	con1.hide();
 	var btn1 =	$(this).parent();
 	btn1.hide();
-		$(this).parent().parent().append($("<div>").attr("class","col-sm-9").append($("<input>").css("width","850px").css("height","64px").val(content)));
+		$(this).parent().parent().append($("<div>").attr("class","col-sm-7").append($("<input>").css("width","100%").css("height","64px").val(content)));
 		$(this).parent().parent().append($("<div>").attr("class","col-sm-1").append($("<button>").text("등록").on("click",function(){
 			var update = $(this).parent().parent().children().eq(3).children().val();
 			console.log(update);
