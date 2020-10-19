@@ -116,40 +116,49 @@ $(function() {
 			location.href="/teamProject3/select.do";
 		}
 	});
+	//console.log($("#selectCat"))
+	//$("#selectCat").on("change", function() {
+	//	$(this).attr("selected","selected").val();
+	//})
+	
 	console.log($("#searchWord").val());
-});
-
-$("#searchWord").autocomplete({
+	
+	$("#searchWord").autocomplete({
 	//var keyword = $("#searchWord").val();
 	//console.log(keyword);
-	source:function(request, response) {
-		$.ajax({
-			url:"/teamProject3/ajaxAutocomplete.do",
-			method:"post",
-			dataType:"json",
-			data: {keyword : keyword},
-			success : function(data) {
-				response (
-					$.map(data, function(item){
-						return {
-							label:item.data,
-							value:item.data
-						}
-					})
-				);
-			}
-		});
-	},
-	minLength:1,
-	autoFocus:false,
-	select:function(evt, ui) {
-		console.log("전체 data: " + JSON.stringfy(ui));
-        console.log("검색 데이터 : " + ui.item.value);
-	},
-	focus:function(evt, ui) {
-		return false;
-	}
-})
+		source:function(request, response) {
+			$.ajax({
+				url:"/teamProject3/ajaxAutocomplete.do",
+				method:"get",
+				dataType:"json",
+				data: {keyword : $("#searchWord").val()},
+				success : function(data) {
+					response (
+						$.map(data, function(item){
+							return {
+								label:item.data,
+								value:item.data
+							}
+						})
+					); //response
+				}
+			});
+		},
+		minLength:1,
+		autoFocus:false,
+		select:function(evt, ui) {
+			//console.log("전체 data: " + JSON.stringfy(ui));
+	        //console.log("검색 데이터 : " + ui.item.value);
+		},
+		focus:function(evt, ui) {
+			return false;
+		}
+	})
+	
+	
+});
+
+
 </script>
 <decorator:head></decorator:head>
 </head>
@@ -251,16 +260,16 @@ $("#searchWord").autocomplete({
                     <div class="hero__search " >
                         <div class="hero__search__form">
                             <form action="/teamProject3/search.do">
-                                <div class="hero__search__categories">
-                               		<select name="categories" style="border-style:none;">
+                                <div class="hero__search__categories"> 
+                               		<select name="categories" id="selectCat" style="border-style:none; font-family: dotum; width:150px;">
                                     	<option value="">검색카테고리</option>
-									    <option value="rs">식당이름</option>
-									    <option value="rc">레시피이름</option>
-									    <option value="rsc">식당내용</option>
-									    <option value="rcc">레시피내용</option>
-									    <option value="p">재료</option>
-									    <option value="a">지역</option>
-                                    </select> 
+									    <option value="rs" <c:if test="${category == 'rs'}">selected='selected'</c:if>>식당이름</option>
+									    <option value="rc" <c:if test="${category == 'rc'}">selected='selected'</c:if>>레시피이름</option>
+									    <option value="rsc" <c:if test="${category == 'rsc'}">selected='selected'</c:if>>식당내용</option>
+									    <option value="rcc" <c:if test="${category == 'rcc'}">selected='selected'</c:if>>레시피내용</option>
+									    <option value="p" <c:if test="${category == 'p'}">selected='selected'</c:if>>재료</option>
+									    <option value="a" <c:if test="${category == 'a'}">selected='selected'</c:if>>지역</option>
+                                    </select>
                                     <!-- <span class="arrow_carrot-down"></span> --> 
                                 </div>
                                 <input type="text" name="searchWord" id="searchWord" placeholder="What do yo u need?">

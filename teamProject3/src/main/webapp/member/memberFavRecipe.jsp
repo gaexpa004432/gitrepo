@@ -129,10 +129,10 @@ img.a {
 		height : auto; */
 		overflow:hidden;
 		background-size : contain;
-		max-width: 200px;
-        min-width: 200px;
-        max-height:200px;
-        min-height:200px;
+		max-width: 220px;
+        min-width: 220px;
+        max-height:190px;
+        min-height:190px;
 	}
 </style>
 </head>

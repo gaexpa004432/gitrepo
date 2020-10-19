@@ -451,6 +451,25 @@ public class MemberDAO {
 			}
 			return cnt;
 		}
+		
+		//한 회원의 모든 즐겨찾기 개수
+		public int favoriteCount(MemberFavoriteVO mfVO) {
+			int cnt = 0;
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "select count(*) from favorites where member_id = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, mfVO.getMember_id());
+				ResultSet rs = pstmt.executeQuery();
+				rs.next();
+				cnt = rs.getInt(1);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				ConnectionManager.close(conn);
+			}
+			return cnt;
+		}
 
 }
 

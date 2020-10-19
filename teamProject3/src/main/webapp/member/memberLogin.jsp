@@ -1,155 +1,93 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" isELIgnored="false"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>memberLogin.jsp</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-$(function(){
-	if("${errormsg}" != "") {
-		alert("${errormsg}");
-	}; 
-	/* if("${errormsg}" != "") {
-  		$("#btnLogin").on("click", function() {
-  			alert("${errormsg}");
-  		});
-	}; */
-}); 
-</script>
-<style>
-*, *:before, *:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Nunito', sans-serif;
-  color: #384047;
-}
-
-#form {
-  max-width: 300px;
-  margin: 10px auto;
-  padding: 10px 20px;
-  background: #f4f7f8;
-  border-radius: 8px;
-}
-
-h1 {
-  margin: 0 0 30px 0;
-  text-align: center;
-}
-
-input[id="member_id"],
-input[id="member_pass"],
-input[type="date"],
-input[type="datetime"],
-input[type="email"],
-input[type="number"],
-input[type="search"],
-input[type="tel"],
-input[type="time"],
-input[type="url"],
-textarea,
-select {
-  background: rgba(255,255,255,0.1);
-  border: none;
-  font-size: 16px;
-  height: auto;
-  margin: 0;
-  outline: 0;
-  padding: 15px;
-  width: 100%;
-  background-color: #e8eeef;
-  color: #8a97a0;
-  box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-  margin-bottom: 30px;
-}
-
-input[type="radio"],
-input[type="checkbox"] {
-  margin: 0 4px 8px 0;
-}
-
-select {
-  padding: 6px;
-  height: 32px;
-  border-radius: 2px;
-}
-
-#btnLogin {
-  padding: 19px 39px 18px 39px;
-  color: #FFF;
-  background-color: #4bc970;
-  font-size: 18px;
-  text-align: center;
-  font-style: normal;
-  border-radius: 5px;
-  width: 100%;
-  border: 1px solid #3ac162;
-  border-width: 1px 1px 3px;
-  box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
-  margin-bottom: 10px;
-}
-
-fieldset {
-  margin-bottom: 30px;
-  border: none;
-}
-
-legend {
-  font-size: 1.4em;
-  margin-bottom: 10px;
-}
-
-label {
-  display: block;
-  margin-bottom: 8px;
-}
-
-label.light {
-  font-weight: 300;
-  display: inline;
-}
-
-.number {
-  background-color: #5fcf80;
-  color: #fff;
-  height: 30px;
-  width: 30px;
-  display: inline-block;
-  font-size: 0.8em;
-  margin-right: 4px;
-  line-height: 30px;
-  text-align: center;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.2);
-  border-radius: 100%;
-}
-
-@media screen and (min-width: 480px) {
-
-  #form {
-    max-width: 480px;
-  }
-
-}
-</style>
+	<title>Login V14</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+	<!-- <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css"> -->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
 </head>
 <body>
-<input type="hidden" value="${errormsg}">
-	<form id="form" method="post" action="/teamProject3/login.do">
-		<div>
-			<label for="member_id">ID</label>
-			<input type="text" id="member_id" name="member_id">
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
+				<form class="login100-form validate-form flex-sb flex-w" method="post" action="/teamProject3/login.do">
+					<span class="login100-form-title p-b-32">
+						Account Login
+					</span>
+
+					<span class="txt1 p-b-11">
+						ID
+					</span>
+					<div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
+						<input class="input100" type="text" name="member_id" >
+						<span class="focus-input100"></span>
+					</div>
+					
+					<span class="txt1 p-b-11">
+						Password
+					</span>
+					<div class="wrap-input100 validate-input m-b-12" data-validate = "Password is required">
+						<span class="btn-show-pass">
+							<i class="fa fa-eye"></i>
+						</span>
+						<input class="input100" type="password" name="member_pass" >
+						<span class="focus-input100"></span>
+					</div>
+					
+					<!-- <div class="flex-sb-m w-full p-b-48">
+						<div class="contact100-form-checkbox">
+							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+							<label class="label-checkbox100" for="ckb1">
+								Remember me
+							</label>
+						</div>
+
+						<div>
+							<a href="#" class="txt3">
+								Forgot Password?
+							</a>
+						</div>
+					</div> -->
+					
+
+					<div class="container-login100-form-btn" style="padding:20px;">
+						<button class="login100-form-btn">
+							Login
+						</button>
+					</div>
+
+				</form>
+			</div>
 		</div>
-		<div>
-			<label for="member_pass">PW</label>
-			<input type="password" id="member_pass" name="member_pass">
-		</div>
-		<button id="btnLogin">로그인</button>
-	</form>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+	
+	<!-- <script src="vendor/jquery/jquery-3.2.1.min.js"></script> -->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+	<!-- <script src="vendor/bootstrap/js/popper.js"></script> -->
+	<!-- <script src="vendor/bootstrap/js/bootstrap.min.js"></script> -->
+	<script src="vendor/select2/select2.min.js"></script>
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+	<script src="js/main.js"></script>
+
 </body>
 </html>

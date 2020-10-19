@@ -9,7 +9,23 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 <style>
+<<<<<<< HEAD
+.site-btn {
+	font-family: 'Noto Sans KR';
+	font-size: 15px;
+	margin-bottom: 20px;
+	padding-left: 30px;
+}
+
+td {
+	font-size: 18px;
+	font-family: 'Noto Sans KR';
+	font color: "#000000";
+}
+=======
+>>>>>>> branch 'master' of https://github.com/gaexpa004432/gitrepo.git
 
 </style>
 
@@ -31,14 +47,15 @@
 				<c:if test="${!empty eventboard.board_file}">
 					<td>
 					<a href="eventView.do?board_no=${eventboard.board_no}">
-					<img src="/teamProject3/images/${ eventboard.member_name }" width="600" height="200">
+					<img src="/teamProject3/images/${ eventboard.member_name }" width="700" height="200">
 					</a>
 					</td>
 				</c:if>
 				
-		<%-- 	<td><a href="eventView.do?board_no=${eventboard.board_no}">${eventboard.board_sub}</a></td>
-			<!-- 제목 누르면 view페이지로 넘어감 --> --%>
-			<td>${eventboard.board_date}</td>
+			<td><a href="eventView.do?board_no=${eventboard.board_no}">${eventboard.board_sub}</a></td>
+			<!-- 제목 누르면 view페이지로 넘어감 --> 
+		
+			<%-- <td>${eventboard.board_date}</td> --%>
 		</tr>
 		</c:forEach>
 		</tbody>
@@ -46,7 +63,7 @@
 	
 	<hr/>
 	<c:if test="${sessionScope.id == 'vegan'}">
-	<a class = "btn red" href ="/teamProject3/event/eventInsert.jsp">이벤트 등록</a>
+	<a class = "btn site-btn" href ="/teamProject3/event/eventInsert.jsp" style="float: right;">등록</a>
 	</c:if>
 	<my:paging paging="${paging}" jsfunc="gopage" />
 	</div>
@@ -61,5 +78,6 @@
    console.log("${sessionScope.login}");
 </script>
 </div>
+&nbsp;&nbsp;
 </body>
 </html>
