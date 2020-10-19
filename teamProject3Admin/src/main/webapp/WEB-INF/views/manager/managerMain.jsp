@@ -233,8 +233,14 @@
 <script>     
 
  
+$("#inputMessage").keyup(function(e){
+	if(e.keyCode == 13){ 
+		send();
+	} 
+	});
 
         $(document).ready(function() {
+        
         var date = new Date();
         var d = date.getDate();
         var m = date.getMonth();

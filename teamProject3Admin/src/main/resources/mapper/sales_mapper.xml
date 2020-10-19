@@ -8,7 +8,6 @@
 	group by TO_CHAR(order_date) 
 	having TO_CHAR(order_date) between sysdate - (interval '7' day) and sysdate  
 	order by TO_CHAR(order_date)
-
 	</select>
 	<select id="getOrderoutput" resultType="order" parameterType="order">
 	select m.seller_code ,m.member_id, m.member_tel, m.member_email,sum(o.order_total) as order_total
@@ -21,6 +20,16 @@ group by m.seller_code ,m.member_id, m.member_tel, m.member_email
 	</insert>
 	<select id="selectChat" resultType="order">
 	select  member_id,chat_content as member_name from chat order by chat_number
+	</select>
+	<select id="selectDay" resultType="order" parameterType="order">
+	select to_char(order_date,'yyyy-mm-dd') as order_date ,sum(order_total) as order_total
+	from orderlist 
+	where order_date between #{order_date} and #{order_total} group by to_char(order_date,'yyyy-mm-dd')
+	</select>
+	<select id="selectMonth" resultType="order" parameterType="order">
+	select to_char(order_date,'yyyy-mm') as order_date,sum(order_total) as order_total
+	from orderlist 
+	where order_date between #{order_date} and #{order_total} group by to_char(order_date,'yyyy-mm')
 	</select>
 	
  </mapper>
