@@ -9,64 +9,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-<style>
-.btn { /* 새로운재료 추가 버튼 css */
-	text-decoration: none;
-	font-size: 2rem;
-	color: white;
-	padding: 10px 20px 10px 20px;
-	margin: 20px;
-	display: inline-block;
-	border-radius: 10px;
-	transition: all 0.1s;
-	text-shadow: 0px -2px rgba(0, 0, 0, 0.44);
-	font-family: 'Lobster', cursive;
-	<!--
-	google
-	font
-	-->
-}
-
-.btn:active {
-	transform: translateY(3px);
-}
-
-.btn.blue {
-	background-color: #1f75d9;
-	border-bottom: 5px solid #165195;
-}
-
-.btn.blue:active {
-	border-bottom: 2px solid #165195;
-}
-
-.btn.red {
-	background-color: #ff521e;
-	border-bottom: 5px solid #c1370e;
-}
-
-.btn.red:active {
-	border-bottom: 2px solid #c1370e;
-}
-
-.btn.green {
-	background-color: #298A08;
-	border-bottom: 5px solid #165195;
-}
-
-.btn.green:active {
-	border-bottom: 2px solid #165195;
-}
-
-.btn.pink {
-	background-color: #FE2E64;
-	border-bottom: 5px solid #165195;
-}
-
-.btn.pink:active {
-	border-bottom: 2px solid #165195;
-}
-</style>
 
 <script>
 	
@@ -224,65 +166,106 @@ $(document).on("change",".step_img1",function () {
 })
 
 	</script>
+ <style>
+      .container {
+        text-align: center;
+        position: relative;
+  		z-index: 1;
+       }
+       
+       .container::after {
+ 		width: 100%;
+  		height: 100%;
+  		content: "";
+  		background: url("./images/sunrise.jpg");
+  		position: absolute;
+  		top: 0;
+  		left: 0;
+  		z-index: -1;
+  		opacity: 0.5;
+		}
+       
+       
+       textarea {
+		width: 100%;
+		height: 150px;
+		font-size: 16px;
+		color: #6f6f6f;
+		padding-left: 20px;
+		margin-bottom: 24px;
+		border: 1px solid #ebebeb;
+		border-radius: 4px;
+		padding-top: 12px;
+		resize: none;
+		}
 
+       
+       select {
+		width: 200px;
+		height: 30px;
+		padding-left: 10px;
+		font-size: 18px;
+		font-color : black;
+		border: 1px solid #4AB34A;
+		border-radius: 3px;
+		}
+		
+    </style>
 </head>
 <body>
-	<h1 align="center">레시피 수정</h1>
-
+	<h1 align="center">레시피 수정</h1><br><br>
 
 	<form action="/teamProject3/recipeUpdate.do" method="post" name="frm"
 		id="frm" enctype='multipart/form-data' onsubmit="return recipeCheck()">
-		<input type="hidden" name="recipe_number"
-			value="${recipe.recipe_number}"> <input type="hidden"
-			name="board_no" value="${board.board_no}">
-		<table>
-			<tr>
-				<th>레시피 제목</th>
-				<td>
-				<input type="text" name="recipe_name" value="${recipe.recipe_name}"></td>
-			</tr>
-
-			<tr>
-				<td>
-				<img id="main_img" src="/teamProject3/images/${ recipe.main_img }" width="100" alt="" />
-				<input type="file" name="main_img" class="step_img1">
-				</td>
-			</tr>
-
-			<tr>
-				<th>레시피 소개글</th>
-				<td>
-				<textarea cols="100" rows="20" name="recipe_content" placeholder = "간단한 소개글을 적어주세요">${recipe.recipe_content}</textarea></td>
-			</tr>
-		</table>
+		<input type="hidden" name="recipe_number" value="${recipe.recipe_number}"> 
+		<input type="hidden" name="board_no" value="${board.board_no}">
+	
+			<h2>레시피 제목</h2><br><br>	
+			<input type="text" name="recipe_name" value="${recipe.recipe_name}">
+			<hr>
+			
+			<h2>food photograph</h2><br><br>
+			<img id="main_img" src="/teamProject3/images/${ recipe.main_img }" width="100" alt="" />
+			<input type="file" name="main_img" class="step_img1">
+				
+			<hr>
+			<div class="row">
+			<div class="col-sm-12" align="center">
+			<h2>레시피 소개글</h2><br><br>
+			<textarea cols="100" rows="20" name="recipe_content" style= "height:100px; width:610px;"
+					placeholder = "간단한 소개글을 적어주세요">${recipe.recipe_content}</textarea>
+			</div>
+			</div>
 
 		<hr>
-		<h2>요리 정보</h2>
-		<div>
-			<span class="time">시간</span> <select name="cooking_time"
-				id="cooking_time">
-				<option value="">조리시간</option>
-				<option value="5분이내">5분이내</option>
-				<option value="10분이내">10분이내</option>
-				<option value="30분이내">30분이내</option>
-				<option value="1시간이내">1시간이내</option>
-				<option value="1시간30분이내">1시간30분이내</option>
-				<option value="2시간이내">2시간이내</option>
-				<option value="4시간이내">4시간이내</option>
-			</select> <span class="level">난이도</span> <select name="cooking_level"
-				id="cooking_level">
-				<option value="">난이도</option>
-				<option value="누구나">누구나</option>
-				<option value="하">하</option>
-				<option value="중">중</option>
-				<option value="상">상</option>
-				<option value="상상">상상</option>
+		<h2 class="container" style = "color:#6B8E23; font-family: Fantasy;">Cooking Information</h2><br>
+		<div class="container">
+			<span class="time">시간</span> 
+			<select name="cooking_time" id="cooking_time">
+				<option value="조리시간" style="background : #AAFA82;">조리시간(필수)</option>
+				<option value="5분이내" style="background : #A0FA78">5분이내</option>
+				<option value="10분이내" style="background : #9BFA73">10분이내</option>
+				<option value="30분이내" style="background : 	#96F56E">30분이내</option>
+				<option value="1시간이내" style="background : #82EB5A">1시간이내</option>
+				<option value="1시간30분이내" style="background : #78E150">1시간30분이내</option>
+				<option value="2시간이내" style="background : 	#6ED746">2시간이내</option>
+				<option value="4시간이내" style="background : #64CD3C">4시간이내</option>
+			</select> 
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<span class="level">난이도</span> 
+			<select name="cooking_level" id="cooking_level">
+				<option value="난이도" style="background : #AAFA82">난이도(필수)</option>
+				<option value="누구나" style="background : #9BFA73">누구나</option>
+				<option value="하" style="background : #82EB5A">하</option>
+				<option value="중" style="background : #78E150">중</option>
+				<option value="상" style="background : #6ED746">상</option>
+				<option value="상상" style="background : #64CD3C">상상</option>
 			</select>
 		</div>
 
 		<hr>
-		<h2>재료</h2>
-		<div class="matList">
+		<h2 class="container" style = "color:#6B8E23; font-family: Fantasy;">Material</h2><br>
+		<div class="matList container">
 
 			<c:forEach items="${product}" var="productList">
 				<c:if test="${productList.product_code eq 'prod'}">
@@ -299,7 +282,7 @@ $(document).on("change",".step_img1",function () {
 		<button type="button" class="matAdd">재료 추가</button>
 
 		<hr>
-		<h2>양념</h2>
+		<h2>양념</h2><br><br>
 		<div class="nonmatList">
 			<c:forEach items="${product}" var="non_productList">
 				<c:if test="${non_productList.product_code eq 'non_prod'}">
@@ -314,32 +297,32 @@ $(document).on("change",".step_img1",function () {
 		<button type="button" class="nonmatAdd">양념 추가</button>
 
 		<hr>
-		<h2>요리 순서</h2>
+		<h2>요리 순서</h2><br><br>
 		<div class="cooking_order">
 			<c:forEach items="${ photo }" var="step">
 
 				<div>
-					<input  value="${ step.cooking_content }">
+					<input size="40" style="height :100px" value="${ step.cooking_content }">
 					<img class="step_img"
 						 src="/teamProject3/images/${ step.cooking_photo_name }"
-						 width="100" alt=""> 
+						 width="150" height="100" alt=""> 
 					<input type="file" class="step_img1"  accept="image/*"> 
 					<input type="hidden" class="photo_number" value="${ step.photo_number }">
-					<button type="button" class="cooking_update">요리 순서 수정</button>
+					<button type="button" class="cooking_update site-btn">요리 순서 수정</button>
 					<br>
 				</div>
 
 			</c:forEach>
 
 		</div>
-		<button type="button" class="stepAdd">순서 추가</button>
+		<button type="button" class="stepAdd site-btn">순서 추가</button>
 
 		<br>
 		<hr>
 		<div align="center">
-			<button class="btn pink">수정완료</button>
+			<button class="site-btn">수정완료</button>
 		</div>
-
+		<br><br><br><br>
 	</form>
 </body>
 </html>

@@ -83,6 +83,7 @@ public class RecipeDAO{
 					resultVO.setRecipe_name(rs.getString("recipe_name"));
 					resultVO.setMember_id(rs.getString("member_id"));
 					resultVO.setRecipe_number(rs.getInt("recipe_number"));
+					resultVO.setRecipe_date(rs.getString("recipe_date").substring(0,10));
 					list.add(resultVO);
 				} 
 			 }catch(Exception e) {
