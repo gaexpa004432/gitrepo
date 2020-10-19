@@ -11,7 +11,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 <style>
-<<<<<<< HEAD
+
 .site-btn {
 	font-family: 'Noto Sans KR';
 	font-size: 15px;
@@ -24,8 +24,7 @@ td {
 	font-family: 'Noto Sans KR';
 	font color: "#000000";
 }
-=======
->>>>>>> branch 'master' of https://github.com/gaexpa004432/gitrepo.git
+
 
 </style>
 
