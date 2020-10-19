@@ -364,7 +364,7 @@ public class MemberDAO {
 			try {
 				conn = ConnectionManager.getConnnect();
 				String sql = "select a.* from( select b.* , rownum rn    from(" + 
-						"select r.recipe_number, r.recipe_name, r.recipe_content, r.main_img, f.favorite_code " + 
+						"select r.recipe_number, r.recipe_name, r.recipe_content, r.main_img, f.favorite_code, r.recipe_date " + 
 						"from recipe r, favorites f " + 
 						"where r.recipe_number = f.favorite_no " + 
 						"and f.member_id = ? " + 
@@ -383,6 +383,7 @@ public class MemberDAO {
 					resultVO.setRecipe_content(rs.getString(3));
 					resultVO.setMain_img(rs.getString(4));
 					resultVO.setFavorite_code(rs.getString(5));
+					resultVO.setRecipe_date(rs.getString(6));
 					list.add(resultVO);
 				}
 			} catch (Exception e) {
@@ -438,6 +439,25 @@ public class MemberDAO {
 						"where r.recipe_number = f.favorite_no " + 
 						"and f.member_id = ? " + 
 						"and f.favorite_code='fr')";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, mfVO.getMember_id());
+				ResultSet rs = pstmt.executeQuery();
+				rs.next();
+				cnt = rs.getInt(1);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				ConnectionManager.close(conn);
+			}
+			return cnt;
+		}
+		
+		//한 회원의 모든 즐겨찾기 개수
+		public int favoriteCount(MemberFavoriteVO mfVO) {
+			int cnt = 0;
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "select count(*) from favorites where member_id = ?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, mfVO.getMember_id());
 				ResultSet rs = pstmt.executeQuery();

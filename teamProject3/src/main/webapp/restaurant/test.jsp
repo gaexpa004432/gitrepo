@@ -21,6 +21,7 @@ $.contextMenu({
     trigger: 'left',
     callback: function(key, options) {
     	console.log($(this).data("member"));
+    	location.href="";/inqSellerId.do
         var m = key;
       
     },

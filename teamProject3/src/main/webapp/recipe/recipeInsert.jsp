@@ -13,53 +13,6 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
-<style>
-.btn{  /* 새로운재료 추가 버튼 css */
-      text-decoration: none;
-      font-size:2rem;
-      color:white;
-      padding:10px 20px 10px 20px;
-      margin:20px;
-      display:inline-block;
-      border-radius: 10px;
-      transition:all 0.1s;
-      text-shadow: 0px -2px rgba(0, 0, 0, 0.44);
-      font-family: 'Lobster', cursive; <!-- google font -->
-    }
-    .btn:active{
-      transform: translateY(3px);
-    }
-    .btn.blue{
-      background-color: #1f75d9;
-      border-bottom:5px solid #165195;
-    }
-    .btn.blue:active{
-      border-bottom:2px solid #165195;
-    }
-    .btn.red{
-      background-color: #ff521e;
-      border-bottom:5px solid #c1370e;
-    }
-    .btn.red:active{
-      border-bottom:2px solid #c1370e;
-    }
-     .btn.green{
-      background-color: #298A08;
-      border-bottom:5px solid #165195;
-    }
-    .btn.green:active{
-      border-bottom:2px solid #165195;
-    }
-	.btn.pink{
-      background-color: #FE2E64;
-      border-bottom:5px solid #165195;
-    }
-    .btn.pink:active{
-      border-bottom:2px solid #165195;
-    }
-
-</style>
-
 <script>
 	$(function(){           //조리 순서 추가
 	
@@ -76,14 +29,20 @@
 
 //====================================================================================================
 	
-	$(function(){           //상품이름 단위 가격 적는 곳 추가~!!!
+$(function(){           //상품이름 단위 가격 적는 곳 추가~!!!
 		
 		$(".matAdd").on("click",function(){
+			var seller = ""
+			console.log("${sessionScope.login.seller_code}")
+			if(${!empty sessionScope.login.seller_code}){
+				seller = $("<input>").attr("name","product_price").attr("placeholder", "예) 10000");				
+			}
 			$(".matList").append($("<div>")
-					.append($("<input>").attr("name","product_name"))
-					.append($("<input>").attr("name","product_unit"))
-					.append($("<input>").attr("name","product_price"))
-					.append($("<button>").attr("type","button").text("삭제").on("click",function(){
+					.append($("<input>").attr("name","product_name").attr("placeholder", "예) 오이"))
+					.append($("<input>").attr("name","product_unit").attr("placeholder", "예) 10kg"))
+					.append(seller)
+					.append($("<img>").attr("type","img").attr("src", "/teamProject3/images/휴지통.png")
+								  .attr("width", "30px").attr("height", "30px").on("click",function(){
 						$(this).parent().remove();
 					}))
 					.append($("<br>")));		
@@ -95,9 +54,10 @@
 		
 		$(".nonmatAdd").on("click",function(){
 			$(".nonmatList").append($("<div>")
-					.append($("<input>").attr("name","non_product_name"))
-					.append($("<input>").attr("name","non_product_unit"))
-					.append($("<button>").attr("type","button").text("삭제").on("click",function(){
+					.append($("<input>").attr("name","non_product_name").attr("placeholder", "예) 초장"))
+					.append($("<input>").attr("name","non_product_unit").attr("placeholder", "예) 1kg"))
+					.append($("<img>").attr("type","img").attr("src", "/teamProject3/images/휴지통.png")
+								  .attr("width", "30px").attr("height", "30px").on("click",function(){
 						$(this).parent().remove();
 					}))
 					.append($("<br>")));		
@@ -127,18 +87,61 @@
 	})	
 	 
 </script>
+ <style>
+      .container {
+        text-align: center;
+        position: relative;
+  		z-index: 1;
+       }
+       
+     textarea {
+		width: 100%;
+		height: 150px;
+		font-size: 16px;
+		color: #6f6f6f;
+		padding-left: 20px;
+		margin-bottom: 24px;
+		border: 1px solid #ebebeb;
+		border-radius: 4px;
+		padding-top: 12px;
+		resize: none;
+		}
+       
+		input {
+		font-size: 16px;
+		color: #6f6f6f;
+		padding-left: 20px;
+		margin-bottom: 24px;
+		border: 1px solid #ebebeb;
+		border-radius: 4px;
+		padding-top: 12px;
+		resize: none;
+		}     
 
+       select {
+		width: 200px;
+		height: 30px;
+		padding-left: 10px;
+		font-size: 18px;
+		font-color : black;
+		border: 1px solid #4AB34A;
+		border-radius: 3px;
+		}
+		
+    </style>
 </head>
 
 <body>
 <form name="frm1" action ="/teamProject3/recipeInsert.do" enctype='multipart/form-data' method = "post">
-	<h1>레시피 등록</h1>
-
-	<label>메뉴 이름</label>
+<div class="container">
+	<h2  align = "left" style = "color:green;">레시피 등록</h2><br>
+	<hr>
+	<h3 class="container" style = "color:#9ACD32; font-family: Fantasy;">메뉴 이름</h3><br>
 	<input  type="text" name="recipe_name" id="recipe_name">
 	<br>
+	<hr>
 	
-	
+	<h3 class="container" style = "color:#9ACD32; font-family: Fantasy;">완성 사진</h3><br>
 	<img id="main_img" src="" width="300" alt="">
 	<input type="file" id="getfile" name = "main_img" accept="image/*">
 
@@ -163,67 +166,83 @@
 }; 
 
 </script>
+</div>
 
 	<hr>
 	<br>
-	<h2>레시피 소개글</h2>
+	<h3 class="container" style = "color:#9ACD32; font-family: Fantasy;">레시피 소개글</h3>
 
-	<br>
-	<textarea name="recipe_content" style="width: 100% rows="10" id="recipe_content"
-			placeholder = "간단한 소개글을 적어주세요">
-	</textarea>
+	<div class="row">
+	<div class="col-sm-12" align="center">
+	<textarea name="recipe_content" placeholder="간단한 소개글을 적어주세요"
+			  style= "height:100px; width:610px;"></textarea>
+	</div>
+	</div>
 	<br>
 	<hr>
-	<h2>요리 정보</h2>
-	<div>
-	<span class = "time">시간</span>
-		<select name = "cooking_time" text = "조리시간">
-			<option value="">시간</option>
-			<option value="5분이내">5분이내</option>
-			<option value="10분이내">10분이내</option>
-			<option value="30분이내">30분이내</option>
-			<option value="1시간이내">1시간이내</option>
-			<option value="1시간30분이내">1시간30분이내</option>
-			<option value="2시간이내">2시간이내</option>
-			<option value="4시간이내">4시간이내</option>
+	
+	<h3 class="container" style = "color:#6B8E23; font-family: Fantasy;">요리 정보</h3><br>
+	<div class="container">
+	<span class = "time" >시간</span>
+		<select name = "cooking_time">
+			<option value="조리시간" style="background : #AAFA82;">조리시간(필수)</option>
+			<option value="5분이내" style="background : #A0FA78">5분이내</option>
+			<option value="10분이내" style="background : #9BFA73">10분이내</option>
+			<option value="30분이내" style="background : 	#96F56E">30분이내</option>
+			<option value="1시간이내" style="background : #82EB5A">1시간이내</option>
+			<option value="1시간30분이내" style="background : #78E150">1시간30분이내</option>
+			<option value="2시간이내" style="background : 	#6ED746">2시간이내</option>
+			<option value="4시간이내" style="background : #64CD3C">4시간이내</option>
 		</select>	
-		<span class = "level">난이도</span>
-		<select name = "cooking_level" text = "난이도">
-			<option value="">난이도</option>
-			<option value="누구나">누구나</option>
-			<option value="하">하</option>
-			<option value="중">중</option>
-			<option value="상">상</option>
-			<option value="상상">상상</option>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span class = "level" >난이도</span>
+		<select name = "cooking_level">
+			<option value="난이도" style="background : #AAFA82">난이도(필수)</option>
+			<option value="누구나" style="background : #9BFA73">누구나</option>
+			<option value="하" style="background : #82EB5A">하</option>
+			<option value="중" style="background : #78E150">중</option>
+			<option value="상" style="background : #6ED746">상</option>
+			<option value="상상" style="background : #64CD3C">상상</option>
 		</select>
 	</div>
 
 	<hr>
-	<h2>재료</h2>
-	<div class="matList">
+	<h3 class="container" style = "color:#6B8E23; font-family: Fantasy;">재료</h3><br>
+	<div class="matList container">
 	<input name="product_name" placeholder="예) 돼지고기">
 	<input name="product_unit" placeholder="예) 1KG">
-	<input class="product_price" name="product_price" placeholder="예) 10000원"><br>
-	
+	<input class="product_price" name="product_price" placeholder="예) 10000원">
+	<img style="visibility:hidden;" src="/teamProject3/images/휴지통.png" width="30px" height="30px" />
 	</div>
-	<button type="button" class="matAdd">재료 추가</button>
+	
+	<div class="row">
+	<div class="col-sm-12" align="center">
+	<button type="button" class="matAdd site-btn">재료 추가</button>
+	</div>
+	</div>
 
 	<hr>
-	<h2>양념</h2>
-	<div class="nonmatList">
+	<h3 class="container" style = "color:green; font-family: Fantasy;">양념</h3><br>
+	<div class="nonmatList container">
 	<input name="non_product_name" placeholder="예) 간장">
-	<input name="non_product_unit" placeholder="예) 500g"><br> 
+	<input name="non_product_unit" placeholder="예) 500g">
+	<img style="visibility:hidden;" src="/teamProject3/images/휴지통.png" width="30px" height="30px" />
 	</div>
-	<button type="button" class="nonmatAdd">양념 추가</button>
 	
+	<div class="row">
+	<div class="col-sm-12" align="center">
+	<button type="button" class="nonmatAdd site-btn"">양념 추가</button><br><br>
+	</div>
+	</div>
 
 	<hr>
-	<h2>요리 순서</h2>
-	<div class = "cooking_order">
+	<h3 class="container" style = "color:green; font-family: Fantasy;">조리 순서</h3><br>
+	<div class = "cooking_order, container">
 	<input name = "cooking_step">
 	
 	<img id="step_img" src="" width="100" alt="">
 	<input type="file" id="step_img1" name = "step_img" accept="image/*">
+	<div class="cooking_order"></div>
 	<script>  // 사진보이기
 	var file1 = document.querySelector('#step_img1');
 
@@ -242,12 +261,16 @@
 	</script>
 	
 	</div>
-	<button type="button" class="stepAdd">순서 추가</button>
-	
+	<div class="row">
+	<div class="col-sm-12" align="center">
+	<button type="button" class="stepAdd site-btn">순서 추가</button>
+	</div>
+	</div>
 	<hr>
-	<div class="blog__item__text">
-	<button class = "btn pink">등록</button>
-	<a class = "blog__btn" href="/teamProject3/recipeBoard.do" >레시피 목록</a>
+	<div class="blog__item__text, container">
+	<button class="site-btn">등록</button>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<a class="site-btn" href="/teamProject3/recipeBoard.do" >레시피 목록</a>
 	</div>
 	</form>
                                   
