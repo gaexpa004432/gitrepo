@@ -14,18 +14,18 @@ public class orderListDAO {
 	ResultSet rs;
 
 	// 싱글톤
-	static orderDAO dao = new orderDAO();
-	public static orderDAO getInstance() {
+	static orderListDAO dao = new orderListDAO();
+	public static orderListDAO getInstance() {
 		return dao;
 	}
 	
-	private final String SELECT_ORDER = "SELECT MEMBER_NAME, MEMBER_TEL, MEMBER_ADDRESS, MEMBER_EMAIL,"
-			+ " ORDER_NUMBER, RECIPE_NAME, PRODUCT_NAME, RECIPE_NAME, PRODUCT_NAME, PRODUCT_PRICE,"
-			+ " ORDER_DATE, ORDER_TOTAL"
-			+ " FROM ORDER3"
-			+ " WHERE MEMBER_ID = ?";
+	private final String SELECT_ORDER = "select o.order_number, o.order_date, o.member_id, o.order_status, o.member_postcode,"
+			+ " o.member_roadaddress, o.member_detailaddress, o.MEMBER_EXTRAADDRESS, p.product_name, p.product_price, p.product_quantity,"
+			+ " o.order_total"
+			+ " from orderList o, ORDER_DETAIL p"
+			+ " where o.order_number = p.order_number AND o.member_id = ?";
 	
-    public ArrayList<orderVO> getOrder(orderVO vo){
+    public ArrayList<orderVO> selectOrderOutput(orderVO vo){
     	ArrayList<orderVO> list = new ArrayList<orderVO>();
         try {
         	conn = ConnectionManager.getConnnect();
@@ -34,15 +34,16 @@ public class orderListDAO {
             rs = psmt.executeQuery();
             while(rs.next()){
             orderVO order = new orderVO();
-            order.setMember_name(rs.getString("member_name"));
-            order.setMember_tel(rs.getString("member_tel"));
-            order.setMember_address(rs.getString("member_address"));
-            order.setMember_email(rs.getString("member_email"));
-            order.setOrder_number(rs.getInt("order_number"));
-            order.setRecipe_name(rs.getString("recipe_name"));
+            order.setOrder_number(rs.getString("order_number"));
+            order.setOrder_date(rs.getString("order_date"));
+            order.setMember_id(rs.getString("member_id"));
+            order.setOrder_status(rs.getString("order_status"));
+            order.setMember_postcode(rs.getString("member_postcode"));
+            order.setMember_roadAddress(rs.getString("member_roadaddress"));
+            order.setMember_detailAddress(rs.getString("member_detailaddress"));
+            order.setMember_extraAddress(rs.getString("member_extraaddress"));
             order.setProduct_name(rs.getString("product_name"));
             order.setProduct_price(rs.getString("product_price"));
-            order.setOrder_date(rs.getString("order_date"));
             order.setOrder_total(rs.getString("order_total"));
             list.add(order);
             }

@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" src="/Temp/buy/addressApi.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/api/addressApi.js"></script>
   <!-- jQuery -->
   <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -74,6 +74,8 @@ h3 {
 </style>
 <script>
 $(function() {
+	
+	sum();
 	 $('#newbtn').on("click", function() {
 			var valuecheck = $('#newbtn:checked').val();
 			$('#sample4_postcode').val("");
@@ -92,22 +94,26 @@ $(function() {
 	 
 	//마일리지 구하기
 	$('#mileage_input').val($('#all_price_put').html() * 0.01);
-	
+	var allprice = $('#all_price_put').text();
+	var mileage = $('.mileage_have').val()
+	$(".all_price_last").text(allprice);
+;	$('.final').text(parseInt(allprice - mileage))
 	//삭제
 	$('.cart_delete').on("click", function(){
 		$(this).closest('tr').remove();
 	});
 	
 	//전액사용
-	$('#mileage_all_button').on("click", function() {
-		$('#mileage_have').val($('#mileage_use').html());
+	$('.mileage_all_button').on("click", function() {
+		$('.mileage_use').val($('.mileage_have').val());
 	});
+	
+	/*$('#payment_button').on("click", function() {
+	});*/
+	
+	
 	
 	$('#payment_button').on("click", function() {
-		frm.submit();
-	});
-	
-	/*$('#').on("click", function() {
 		
 		var IMP = window.IMP; // 생략가능
 		IMP.init('imp40069131'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
@@ -117,16 +123,15 @@ $(function() {
 		    pay_method : 'card',
 		    merchant_uid : 'merchant_' + new Date().getTime(),
 		    name : '주문명:결제테스트',
-		    amount : '$(#final-cart-price-mileage).html()',
+		    amount : 100,
 		    buyer_email : '${member_email}',
 		    buyer_name : '${member_name}',
 		    buyer_tel : '${member_tel}',
 		    buyer_addr : '${member_address}'
-		    //m_redirect_url : 'http://localhost/teamProject3/orderDetailController.do'
-		}),
-		
+		    //m_redirect_url : 'http://localhost/teamProject3/orderDetailController.do
+		},
 		function(rsp) {
-			console.log(rsp.success);
+			console.log(rsp);
 			//넘겨주는값
 			alert(rsp.success);
 		    if ( rsp.success ) {
@@ -136,16 +141,27 @@ $(function() {
 		        msg += '결제 금액 : ' + rsp.paid_amount;
 		        msg += '카드 승인번호 : ' + rsp.apply_num;
 		        alert(msg);
+				frm.submit();
 				location.href='${pageContext.request.contextPath}/orderOutput.do';
 		    } else {
 		        var msg = '결제에 실패하였습니다.';
 		        msg += '에러내용 : ' + rsp.error_msg;
 		    }
 		    alert(msg);
-	    }
-	})*/
-	
+ 	})
+	})
 });
+
+	function sum() {
+		var total =	$('.total');
+		var sum_all = 0;
+		for (var i=0; i<total.length; i++) {
+			var tr = $(total[i]).closest('tr')
+			sum_all += parseInt(tr.find('.total').text());
+		}
+		$('#all_price_put').text(sum_all);		
+	} 
+	
 </script>
 </head>
 <body>
@@ -170,7 +186,7 @@ $(function() {
 		</colgroup>
 		<thead class="">
 		<tr>
-		<th scope="col">선택</th>
+		<th scope="col">상품</th>
 		<th scope="col">상품명</th>
 		<th scope="col">재료명</th>
 		<th scope="col">가격</th>
@@ -182,27 +198,31 @@ $(function() {
 		<c:set var="all_price" value="0"/>
 		<c:forEach items="${array}" var="orderlist">
 		<tr>
-		<td><input type="checkbox"></td>
-		<td><input type="hidden" name="product_number" value="${orderlist.product_number}"></td>
+		<td><input type="hidden" name="product_number" value="${orderlist.product_number}">${orderlist.main_img}</td>
 		<td><input type="hidden" name="recipe_name" value="${orderlist.recipe_name}">${orderlist.recipe_name}</td>
 		<td><input type="hidden" name="product_name" value="${orderlist.product_name}">${orderlist.product_name}</td>
 		<td><input type="hidden" name="product_price" value="${orderlist.product_price}">${orderlist.product_price}</td>
 		<td>
 			<input type="hidden" name="product_quantity" value="${orderlist.product_quantity}">${orderlist.product_quantity}
-		<td>
-		<input type="hidden" name="recipe_number" value="${orderlist.recipe_number}">
+		</td>
+		<td class="total">
+			<c:set var="pay_total" value="0"/>
+			<c:set var="pay_total" value="${pay_total + (orderlist.product_price * orderlist.product_quantity)}" />
+			${pay_total}
+		</td>
 		</tr>
 		<c:set var="all_price" value="${all_price + orderlist.order_total}"/>
 		</c:forEach>
 		</tbody>
 		</table>
+		<input type="hidden" name="recipe_number" value="${list.recipe_number}">
 		<input type="hidden" name ="seller_code" value="${resultVO.seller_code}">
 		<input type="hidden" name="member_id" value="${vo.member_id}">
 		<div class="payment">
 		<strong>최종결제금액 : </strong>
 		<input type="hidden" value="${all_price}">
-		<h2 id="all_price_put">
-		${all_price}</h2>
+		<h2 id="all_price_put" data-allprice="${all_price}">
+		</h2>
 		</div>
 
 		<hr width=30%>
@@ -245,30 +265,29 @@ $(function() {
 		<div class="miliege-imformation">
 		<c:set  var="my_mileage" value="0" />
 			보유 마일리지 :
-			<input type="text" value="${mil.remaining}" id="mileage_have" readonly>
-			<input type="button" id="mileage_all_button" value="전액사용"> <br> <br> 적립 예상 마일리지 :
-		<input type="text" id="mileage_input" disabled> P <br>
+			<input type="text" value="${mil.remaining}" class="mileage_have" readonly>
+			<input type="button" class="mileage_all_button" value="전액사용" onclick="click()"> <br> <br> 적립 예상 마일리지 :
+		<input type="text" class="mileage_input" disabled> P <br>
 		<c:set var="my_mileage" value="${mil.remaining}"/>
-		사용할 마일리지: <input type="text" id="mileage_use">
+		사용할 마일리지: <input type="text" class="mileage_use">
 		</div> 
 		<hr width=30%>
 		
-		<div class="final_pay_imforamtion">
-			<h3>최종 결제 정보</h3>
-			<div>
-
-				<c:set var="fianl_order_price" value="0"/>
-				<span>${all_price}</span>
-				
-				<img src="${pageContext.request.contextPath}/buy/images/minus.png">
-				<span>${my_mileage}</span>
-				<img src="${pageContext.request.contextPath}/buy/images/equal.png">
-				<c:set var="final_order_price" value="${all_price - my_mileage}"/>
-				<input id="final-cart-price-mileage" name="order_total" value="${final_order_price}">${final_order_price}
-			</div>
-		</div>
+		 <div class="col-lg-4">
+                    <div class="shoping__checkout">
+                    <c:set var="fianl_order_price" value="0"/>
+                       <h5>Cart Total</h5>
+                       <hr>
+                        <ul>
+                       		<li> 상품 총 금액:<span class="all_price_last">${all_price}</span> </li>
+                            <li>사용 마일리지: ${my_mileage}</li>
+                            <c:set var="final_order_price" value="${all_price - my_mileage}"/>
+                            <li>구매 총 금액: <span class="final"></span><input type="hidden" name="order_total"></li>
+                        </ul>
+                    </div>
+               		 </div>
+		<button type="button" id="payment_button" >결제하기</button>
 		</form>
-		<button type="button" id="payment_button" onclick="click">결제하기</button>
 	</div>
 	
 </body>

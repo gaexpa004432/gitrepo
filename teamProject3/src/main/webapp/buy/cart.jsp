@@ -23,10 +23,15 @@ h3 {
 }
 
 .cartTable {
-	width: 898px;
+	width: 80%;
+	margin : auto;
 	border-top: 0;
 	border-collapse: collapse;
 	border-spacing: 0;
+	padding-left : 15px;
+	padding-right : 15px;
+	text-align : center;
+	
 }
 
 thead {
@@ -76,6 +81,12 @@ h2 {
 	display : inline-block;
 }
 
+.shoping__checkout {
+	
+	text-align : right;
+	padding-left : 65%;
+}
+
 </style>
 <script>
 	$(function() {	
@@ -110,28 +121,20 @@ h2 {
 			m_sum();
 		})
 		
-		$('.cart-delete').on("click", function(){
-				$(this).closest('tr').remove();
-				sum();
-		});
-		
 		$('#check_button').on('click', function() {
 			var arr = [];
 			$('.cart-check:checked').each(function (index, item) {
 				var tds = $(this).parent().parent().find('td')
-				var recipe_name = tds.get(3).innerText;
+				var recipe_name = tds.get(1).innerText;
 				var product_quantity =   $(this).parent().parent().find('.quantity-select').val();
-				var product_price = tds.get(4).innerText;
-				var product_name = tds.get(5).innerText;
+				var product_price = tds.get(3).innerText;
+				var product_name = tds.get(2).innerText;
                 arr.push({recipe_name:recipe_name, product_quantity:product_quantity, product_price:product_price, product_name:product_name});
 				
 			})
 			frm.arr.value = JSON.stringify(arr)
 			frm.submit();
 		})
-		
-		
-		
 	});
 		
 	//상품들의 총 가격 계산 function
@@ -162,10 +165,21 @@ h2 {
 </head>
 <body>
 
+ <section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>장바구니</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 <form action="${pageContext.request.contextPath}/orderDetailController.do" name="frm" id="frm">
 <input type="hidden" name="arr">
 </form>
-	<h3>장바구니</h3>
 	<hr width=70%>
 	<table class="cartTable">
 		<colgroup>
@@ -184,10 +198,10 @@ h2 {
 						type="checkbox" class="all-select-cart" checked> 
 						<span> &nbsp; 전체선택</span>
 				</label></th>
-				<th scope="col" class="th-recipe-number">레시피번호</th>
-				<th scope="col" class="th-product-box" colspan="2">상품정보</th>
+				<th scope="col" class="th-recipe-number">레시피 이름</th>
+				<th scope="col" class="th-product-box">재료 이름</th>
 				<th scope="col" class="th-price-box">단가</th>
-				<th scope="col" class="th-amount-box">재료</th>
+				<th scope="col" class="th-quantity-box">수량</th>
 				<th scope="col" class="th-product-total-box">상품금액</th>
 				<th scope="col" class="th-mileage-box">예상 적립금</th>
 			</tr>
@@ -198,13 +212,11 @@ h2 {
 	<c:forEach items="${list}" var="cart">
 		<tr class="cart-deal-items">
 			<td class="select-event">
-				<input type="checkbox" class="cart-check" value="${cart.product_number}" checked> 
+				<input type="checkbox" class="cart-check" value="${cart.product_number}" checked>  ${cart.main_img}
 			</td>
-			<td>${cart.main_img}</td>
-			<td>${cart.recipe_number}</td>
-			<td>${cart.recipe_name}</td>
+			<td> <input type="hidden" class="recipe_name" value="${cart.recipe_name}"> ${cart.recipe_name}</td>
+			<td> <input type="hidden" class="product_name" value="${cart.product_name}">${cart.product_name}</td>
 			<td class="cart_price">${cart.product_price}</td>
-			<td>${cart.product_name}</td>
 			<td>
 			<select class="quantity-select" name="product_quantity">
 			<option <c:if test="${cart.product_quantity == '1'}">selected </c:if> value="1">1</option>
@@ -214,31 +226,30 @@ h2 {
 			</select></td>
 			<td class="all-product-price">${cart.product_price}</td>
 			<td class="mileage-price">${cart.product_price * 0.01}</td>
-			<td class="seller-box"><input type="hidden" name="seller_code" value="${cart.seller_code}"></td>
-			<td><button type="button" class="cart-delete">삭제</button><td>
 		</tr>
 		<c:set var="gum" value="${cart.product_price}"/>
 		<c:set var="total" value="${total+gum}"/>
 	</c:forEach>
 	</tbody>
 	</table>
-	<div class="cart-total-price">
-		<div class="cart-total-price-inner">
-			<div class="price-area">
-				<span>총 상품가격: </span>
-				<em class="final-order-price"><input type="hidden" name="total">${total}</em>
-				<span>원</span>
-				<span>&nbsp; / &nbsp;</span>
-				<span>총 적립포인트: </span>
-				<strong class="all-mileage"></strong><span>P</span>
-			</div>
-		</div>
-	</div>
+	
 
-	<div>
-	<a href="${pageContext.request.contextPath}/recipeBoard.do" class="btn btn-primary">쇼핑 계속하기</a>
-	<input type="button" id="check_button" value="결제">
-	</div>
+	<a href="${pageContext.request.contextPath}/recipeBoard.do" class="primary-btn cart-btn">쇼핑 계속하기</a>
+	<input type="button" id="check_button" class="primary-btn cart-btn cart-btn-right" value="결제">
+
+	
+      <div class="col-lg-4">
+                    <div class="shoping__checkout">
+                       <h5>Cart Total</h5>
+                       <hr>
+                        <ul>
+                            <li>적립 마일리지: <span class="all-mileage">P</span></li>
+                            <li>구매 총 금액: <span><input type="hidden" name="total">${total}원</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+		<input type="hidden" name="seller_code" value="${resultVO.seller_code}">
 
 	
 </body>
