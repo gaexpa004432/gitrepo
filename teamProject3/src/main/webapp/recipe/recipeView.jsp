@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="/teamProject3/css/userImage.css">	
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
@@ -42,6 +43,21 @@
 		if(${!empty focus}){
 			document.getElementById('recipe_insert').focus();
 		}
+		$.contextMenu({
+		    selector: '#user',
+		    trigger: 'left',
+		    callback: function(key, options) {
+		    	console.log($(this).data("member"));
+		    	location.href="/teamProject3/inqSellerId.do?member_id="+$(this).data("member");
+		        var m = key;
+		      
+		    },
+		    items: {
+		        "edit": {name: "1:1 문의하기"},
+		        "quit": {name: "Quit", icon: function($element, key, item){ return 'context-menu-icon context-menu-icon-quit'; }}
+		    }
+		});
+		
 		var favorite = "${favorite}";
 		if(favorite == "true"){
 			$("#bookmark").html("<img src='/teamProject3/images/즐겨찾기취소.jpg' style='width: 100px; height: 100px; margin-left: 30px;'>");
@@ -171,7 +187,7 @@
 	
 	      //레시피 삭제
 			$("#recipedele").on("click",function (){
-				var result = confirm('??지울라고???왜????');
+				var result = confirm('레시피를 삭제하시겠습니까??');
 				if (result) {
 				location.href="/teamProject3/recipeDelete.do?recipe_number=${recipe.recipe_number}"
 				}
@@ -234,7 +250,8 @@
 
 		<div class="col-sm-12  fa fa-user" align="center">
 			<div class="header__top__right__auth">
-			<h4>${ recipe.member_id }</h4>
+			<img class="userImage" src="/teamProject3/images/${recipe.member_image}"><br>
+			<h4><a style="font-size:30px;" href="javascript:void(0);" id="user" data-member="${ recipe.member_id }">${ recipe.member_id }</a></h4>
 			</div>
 			<input type="hidden" value="${recipe.seller_code}">
 		</div>
@@ -372,8 +389,10 @@
 			style="border-top-width: 1px; border-top-style: solid; padding: 20px; border-top-color: #f0f0f5;">
 
 			<div class="col-sm-1">
-				작성자 위치 ${ list.member_id }<br>
+				<img class="userImage" src="/teamProject3/images/${list.member_image}"><br>
+				${ list.member_id }
 			</div>
+			
 			<div class="col-sm-10" align="left">
 				<small>${ list.recipe_review_date }</small><br> ${ list.recipe_review_content }<br>
 				<br>
@@ -383,9 +402,9 @@
 			<div class="col-sm-1" align="right">
 				<c:if test="${ list.member_id == sessionScope.id }">
 					<a class="reviewDel" href="javascript:void(0);"
-						data-no="${ list.recipe_review_no }"><img
-						src="/teamProject3/images/delBtn.png"
-						style="width: 25px; height: 25px;"></a>
+						data-no="${ list.recipe_review_no }">
+					<img src="/teamProject3/images/delBtn.png" style="width: 25px; height: 25px;">
+					</a>
 				</c:if>
 			</div>
 			

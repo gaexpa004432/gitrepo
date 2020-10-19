@@ -64,6 +64,16 @@
 	            frm.non_product_name.focus();
 	            return false;
 	        }
+	        if(frm.cooking_content.value == "") {
+	            window.alert("조리순서을 기입하세요");
+	            frm.cooking_content.focus();
+	            return false;
+	        }
+	        if(frm.cooking_photo_name.value == "" && frm.cooking_photo_name.value == null) {
+	            window.alert("조리순서 사진을 올리세요");
+	            frm.cooking_photo_name.focus();
+	            return false;
+	        }
 	        if(frm.non_product_unit.value == "") {
 	            window.alert("양념 용량을 기입하세요");
 	            frm.non_product_unit.focus();
