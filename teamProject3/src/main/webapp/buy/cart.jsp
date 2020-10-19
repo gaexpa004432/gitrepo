@@ -244,7 +244,7 @@ h2 {
                        <hr>
                         <ul>
                             <li>적립 마일리지: <span class="all-mileage">P</span></li>
-                            <li>구매 총 금액: <span><input type="hidden" name="total">${total}원</span></li>
+                            <li>구매 총 금액: <span class="final-order-price"><input type="hidden" name="total">${total}원</span></li>
                         </ul>
                     </div>
                 </div>
