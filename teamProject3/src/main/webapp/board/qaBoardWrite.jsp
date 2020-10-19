@@ -133,6 +133,19 @@ input[type="button"]:hover, button:hover {
     width: 30.9353%;
   }
 }
+
+.hero__search__form form button{
+width: 110px;
+font-size: 12px;
+    color: #ffffff;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 13px 30px 12px;
+    background: #7fad39;
+    border: none;
+}
+  
 	</style>
 	  <script type="text/javascript">
     $(function(){
@@ -151,7 +164,7 @@ input[type="button"]:hover, button:hover {
 	<br>
 		<input type="hidden" value="aqBoard_write" name="command"/>
 		<label><span>제목</span><input class="css" name="board_sub" type="text" placeholder="Sub" required/></label>
-    <label style="vertical-align:center"><span style="margin-left:-700px">비밀글여부</span><input style="margin-top:15px" name="board_passyn" type="checkbox"/></label>
+  <label style="vertical-align:center"><span style="margin-left:-700px">&nbsp;비밀글여부</span><input style="margin-top:15px" name="board_passyn" type="checkbox"/></label>
      <label><span>첨부파일</span><input class="css" name="board_file" type="file" placeholder="File"/></label>
     <label><span>내용</span><textarea class="css" name="board_content" placeholder="Content" required></textarea></label>
    

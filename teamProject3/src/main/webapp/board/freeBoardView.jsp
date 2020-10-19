@@ -31,12 +31,6 @@ th {
 	min-width: 50px
 }
 
-div {
-	margin-top: 1px;
-	margin-right: 1px;
-	margin-bottom: 1px;
-	margin-left: 1px;
-}
 
 #review:hover {
 	background-color: #f2f2f2;
@@ -114,7 +108,7 @@ $(function(){
 		}
 	})
 	
-	if (${id == board.member_id}){
+	if (${id == board.member_id || id == "vegan"}){
 		$(".btn").show();
 	}
 
@@ -321,10 +315,11 @@ $(function(){
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td>${board.board_content}<br> <C:if
+				<td><C:if
 						test="${ !empty board.board_file}">
 						<img src="/teamProject3/images/${ board.board_file }"
-							style="max-width: 500px">
+							style="max-width: 500px"><br>
+							<br>${board.board_content}<br> 
 					</C:if>
 
 				</td>
@@ -336,6 +331,7 @@ $(function(){
 		<!-- 게시물 목록이 안나옴 ?? -->
 		<button type="button" class="btn" style="display: none"
 			onclick="location.href='/teamProject3/freeBoardUpdate.do?board_no=${board.board_no}'">수정</button>
+		
 		<button type="button" class="btn" style="display: none" id="delbtn">삭제</button>
 		<a id="gg"></a> <br> <br> <br>
 		<!-- 댓글 리스트 -->
