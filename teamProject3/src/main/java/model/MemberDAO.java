@@ -453,7 +453,7 @@ public class MemberDAO {
 		}
 		
 		//한 회원의 모든 즐겨찾기 개수
-		public int favoriteCount(MemberFavoriteVO mfVO) {
+		public int favoriteCount(MemberVO mfVO) {
 			int cnt = 0;
 			try {
 				conn = ConnectionManager.getConnnect();

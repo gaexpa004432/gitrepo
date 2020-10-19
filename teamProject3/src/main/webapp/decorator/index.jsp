@@ -230,16 +230,18 @@ $(function() {
                     <div class="header__cart " style="vertical-align:top;">
                     <c:if test="${not empty sessionScope.login.member_id}">
                         <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span></span></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span></span></a></li>
+                            <li><a href="${pageContext.request.contextPath}/favList.do?fav=fs">
+                            	<i class="fa fa-heart"></i> <span>${favCnt}</span></a></li>
+                            <!-- <li><a href="#"><i class="fa fa-shopping-bag"></i> <span></span></a></li> -->
                		    </ul>
                		    <c:if test="${not empty sessionScope.login.member_image}">
 	                		<img id="faceIcon" src="${pageContext.request.contextPath}/img/${sessionScope.login.member_image}" 
 	                		     class="img-raised rounded-circle img-fluid" style="width:50px;vertical-align:top;">
+	                		<%-- <div>${sessionScope.login.member_id}님</div> --%>
 	                	</c:if>
 	                	<c:if test="${empty sessionScope.login.member_image}">
                		    	<img id="faceIcon" src="${pageContext.request.contextPath}/img/face_icon.png" 
-               		    	     class="img-raised rounded-circle img-fluid" style="vertical-align:top;">
+               		    	     class="img-raised rounded-circle img-fluid" style="vertical-align:top;">${sessionScope.login.member_id}
                		    </c:if>
 					</c:if>         
                     </div>

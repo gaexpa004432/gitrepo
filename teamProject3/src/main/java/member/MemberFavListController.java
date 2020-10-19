@@ -26,7 +26,7 @@ public class MemberFavListController implements Controller {
 		}
 		Paging paging = new Paging();
 		paging.setPageUnit(4);//한페이지에 보일 건수
-		paging.setPageSize(3);//페이지 번호수
+		paging.setPageSize(5);//페이지 번호수
 		paging.setPage(page);
 
 		MemberFavoriteVO mfVO = new MemberFavoriteVO();
@@ -48,10 +48,12 @@ public class MemberFavListController implements Controller {
 		if (fav.equals("fs")) {
 			ArrayList<MemberFavoriteVO> fs = MemberDAO.getInstance().selectFavoriteResAll(mfVO);
 			request.setAttribute("fs", fs);
+			request.setAttribute("fav", fav);
 			request.getRequestDispatcher("/member/memberFavRes.jsp").forward(request, response);
 		} else if (fav.equals("fr")){
 			ArrayList<MemberFavoriteVO> fr = MemberDAO.getInstance().selectFavoriteRecipeAll(mfVO);			
 			request.setAttribute("fr", fr);
+			request.setAttribute("fav", fav);
 			request.getRequestDispatcher("/member/memberFavRecipe.jsp").forward(request, response);
 		}
 		
