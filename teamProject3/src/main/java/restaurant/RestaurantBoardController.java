@@ -26,7 +26,7 @@ public class RestaurantBoardController implements Controller {
 
 		Paging paging = new Paging();
 		paging.setPageUnit(6); // 한페이지에 출력할 레코드 건수 설정
-		paging.setPageSize(10); // 페이지 번호 수 설정
+		paging.setPageSize(5); // 페이지 번호 수 설정
 		paging.setPage(page); // paging 반영되게 해주기
 
 		// VO에 담기
