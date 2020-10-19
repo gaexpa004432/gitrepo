@@ -95,8 +95,7 @@ public class RestaurantReviewDAO {
 			
 			
 			String sql = "select a.*  from ( select rownum rn, b.*  from (" + 
-					"select * from res_review where res_no= ?" + 
-					"	ORDER BY res_review_no desc" + 
+					"select res_review_no,res_review_content,member_id , res_no ,res_review_date ,(select member_image from member where member_id = r.member_id) as member_image from res_review r where res_no= ? ORDER BY res_review_no desc" + 
 					"	) b ) a where rn BETWEEN ? and ? ";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, restaurantVo.getRes_no());
@@ -110,6 +109,7 @@ public class RestaurantReviewDAO {
 			restaurant.setMember_id(rs1.getString("member_id"));
 			restaurant.setRes_review_date(rs1.getString("res_review_date"));
 			restaurant.setRes_review_no(rs1.getInt("res_review_no"));
+			restaurant.setMember_image(rs1.getString("member_image"));
 			
 			sql = "select * from res_review_img where res_review_no= ?";
 			pstmt = conn.prepareStatement(sql); 
