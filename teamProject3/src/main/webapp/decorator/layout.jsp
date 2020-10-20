@@ -20,9 +20,8 @@
     <script src="${pageContext.request.contextPath}/js/jquery.nice-select.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
+    
 
-    
-    
     <title>Ogani | Template</title>
 
     <!-- Google Font -->

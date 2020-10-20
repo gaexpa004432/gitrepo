@@ -7,9 +7,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>레시피 추천</title>
+<link rel="stylesheet" href="/teamProject3/css/userImage.css">	
 <style>
 	textarea {
 		width: 100%;
@@ -48,11 +48,32 @@
         text-align:center;
 }
 </style>
+<script type="text/javascript">
+$(function () {
+	$.contextMenu({
+	    selector: '#user',
+	    trigger: 'left',
+	    callback: function(key, options) {
+	    	console.log($(this).data("member"));
+	    	location.href="/teamProject3/inqSellerId.do?member_id="+$(this).data("member");
+	        var m = key;
+	      
+	    },
+	    items: {
+	        "edit": {name: "1:1 문의하기"},
+	        "quit": {name: "Quit", icon: function($element, key, item){ return 'context-menu-icon context-menu-icon-quit'; }}
+	    }
+	});
+})
+</script>
+
 </head>
-<body >
+
+<body>
+<%@include  file="/common/recipe.jsp" %>
 <div class="container">
 <div>
-<h1 style = "color:#FA8C8C;">레시피 추천</h1>
+<h1 style = "color:	#8B6331;">레시피 추천</h1>
 </div>
 <hr>
 <c:set var="i" value="0" />
@@ -78,13 +99,22 @@
      			<i>${recipelist.recipe_date}</i>
      		</div><br>
      				${recipelist.recipe_name}<br>
-     				${recipelist.member_id}
+     				<div class="header__top__right__auth">
+     				<div class="row" >
+     				<div class="col-sm-6" align="right">
+     				<img class="userImage" src="/teamProject3/images/${recipelist.member_image}" style="width:30px;">
+     				</div>
+     				<div class="col-sm-6" align="left" style="padding:0px">
+     				<a style="font-size:18px;" href="javascript:void(0);" id="user" data-member="${ recipelist.member_id }" >${ recipelist.member_id }</a>
+     				</div>
+     				</div>
+     				</div>
      	</div>
      </td>
      
      
     <c:if test="${i%j == j-1}">
-    </c:if> 
+    </c:if>
    <c:set var="i" value="${i+1}" />
     </c:forEach>
    </c:when>
@@ -110,13 +140,13 @@
 <br> 
 <br>
  
- <div  class="col-sm-10" align="center">
+ <!-- <div  class="col-sm-10" align="center">
   <form name="searchFrm">		
 	<input type="hidden" name="p" value="1">
 	<input  name="recipe_search" size="50px" style="height :47px">
 	<button class="site-btn">검색</button>	
   </form>
- </div>	
+ </div>	 -->
 
 <br> 
 <br>
