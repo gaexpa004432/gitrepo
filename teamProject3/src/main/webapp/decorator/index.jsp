@@ -44,9 +44,10 @@
 
 <style>
 .img-fluid {
-  max-width: 30px;
+  /* max-width: 30px;
   height: auto;
-  object-fit:cover;
+  object-fit:cover; */
+  
 }
 
 .rounded-circle {
@@ -231,7 +232,7 @@ $(function() {
 					                	<div>  My Page & LogOut  </div>
 					                	<span class="arrow_carrot-down"></span>
 							                <ul>
-							                	<li><a href="${pageContext.request.contextPath}/member/myPageMenu.jsp">My Page</a></li>
+							                	<li><a href="${pageContext.request.contextPath}/member/myPageMain.jsp">My Page</a></li>
 							                    <li><a href="${pageContext.request.contextPath}/logout.do">LogOut</a></li>
 							                </ul>
 				                	</c:when>
@@ -246,7 +247,7 @@ $(function() {
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="${pageContext.request.contextPath}/images/로고.png" alt="" 
+                        <a href="/teamProject3/index.jsp"><img src="${pageContext.request.contextPath}/images/로고.png" alt="" 
                         style="width:200px; height:110px;"></a>
                     </div>
                 </div>
@@ -275,13 +276,13 @@ $(function() {
                             	<i class="fa fa-heart"></i> <span>${favCnt}</span></a></li>
                             <!-- <li><a href="#"><i class="fa fa-shopping-bag"></i> <span></span></a></li> -->
                		    </ul>
-               		    <c:if test="${not empty sessionScope.login.member_image}">
-	                		<img id="faceIcon" src="/teamProject3/img/${sessionScope.login.member_image}" 
+               		    <c:if test="${sessionScope.login.member_image!='images1'}">
+	                		<img id="faceIcon" src="/teamProject3/images/${sessionScope.login.member_image}" 
 	                		     class="img-raised rounded-circle img-fluid" style="width:50px;vertical-align:top;">
-	                		<%-- <div>${sessionScope.login.member_id}님</div> --%>
+	                		     <p style="font-weight:bold">${sessionScope.login.member_id}님</p>
 	                	</c:if>
-	                	<c:if test="${empty sessionScope.login.member_image || sessionScope.login.member_image=='images1'}">
-               		    	<img id="faceIcon" src="${pageContext.request.contextPath}/img/face_icon.png" 
+	                	<c:if test="${sessionScope.login.member_image=='images1'}">
+               		    	<img id="faceIcon" src="${pageContext.request.contextPath}/images/face_icon.png" 
                		    	     class="img-raised rounded-circle img-fluid" style="vertical-align:top;">
                		    	     <p style="font-weight:bold">${sessionScope.login.member_id}님</p>
                		    </c:if>

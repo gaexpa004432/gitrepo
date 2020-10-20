@@ -7,6 +7,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<!-- 데이터테이블 -->
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
 <title>inqList.jsp</title>
 <script>
 /* $(function() {
@@ -14,54 +19,107 @@
 		location.href = "inqSellerId.do";
 	});
 }); */
+$(function(){
+	
+	   $("#task-table").DataTable({
+		   "language": {
+		        "emptyTable": "검색결과가 없습니다.",
+		        "lengthMenu": "페이지당 _MENU_ 개씩 보기",
+		        "info": "현재 _START_ - _END_ / _TOTAL_건",
+		        "infoEmpty": "",
+		        "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
+		        "search": " 검색: ",
+		        "zeroRecords": "일치하는 데이터가 없어요.",
+		        "loadingRecords": "로딩중...",
+		        "processing":     "잠시만 기다려 주세요...",
+		        "paginate": {
+		            "next": "다음",
+		            "previous": "이전"
+		        }
+		    }, searching: false
+		}); 
+	   
+});
 </script>
 </head>
 <body>
-	<h1>1:1문의 목록</h1>
-	<hr> <!-- 기능 다 구현 할때까지 문의하기 버튼 일단 살려두기 -->
+<section class="breadcrumb-section set-bg" data-setbg="/teamProject3/img/KakaoTalk_20201015_173926849.jpg" style="background-image:url('/teamProject3/img/sd.jpg')"> <!-- 여기있는 이미지 경로를 바꾸시면 됩니다. -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2 >1:1문의 내역</h2>
+                        <div class="breadcrumb__option">
+                            <a href="/teamProject3/">마이페이지</a>
+                            <span >1:1문의</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+<br><br>
+<div class="container">
+   	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-success">
+				<table class="table table-hover" id="task-table" style="text-align:center;">
+					<thead>
+						<tr>
+							<th>제목</th>
+							<th>날짜</th>
+							<th>판매자</th>
+							<th>답변여부</th>
+						</tr>
+					</thead>
+					<tbody id="task-tbody">
+					<c:forEach items="${list}" var="inq">
+						<tr>
+							<td style="width:300px; height:50px;">
+								<a href="${pageContext.request.contextPath}/inqSelect.do?inq_no=${inq.inq_no}">
+								${inq.inq_title}</a>
+							</td>
+							<td style="width:200px; height:50px;">
+								<fmt:parseDate value="${inq.inq_regdate}" pattern="yyyy-MM-dd HH:mm:ss" var="parseDate"/>
+								<fmt:formatDate value="${parseDate}" pattern="yyyy-MM-dd HH:mm"/>
+							</td>
+							<td style="width:200px; height:50px; text-align:left;">${inq.seller_id}</td>
+							<td style="width:200px; height:50px;">
+								<c:choose>
+									<c:when test="${not empty inq.inq_answer}">
+										<a href="${pageContext.request.contextPath}/inqSelect.do?inq_no=${inq.inq_no}">답변완료</a>
+									</c:when>
+									<c:when test="${empty inq.inq_answer}">
+										처리중
+									</c:when>
+								</c:choose>
+							</td>
+						</tr>
+					</c:forEach> 
+					</tbody>
+				</table>
+			</div>
+			<div style="text-align:center">
+            	<button type="button" id="btnBack" class="site-btn" style="margin : 0 20px;">뒤로가기</button>
+           	</div>
+		</div>
+	</div>
+</div>
+<script>
+	btnBack.addEventListener("click", goBack);
+	function goBack() {
+		location.assign("/teamProject3/member/myPageMain.jsp");
+	}
+</script>
+		
+		
+	<!-- <hr> 
 	<form action="/teamProject3/inqSellerId.do" method="post">
 		<button id="btnInq">1:1문의하기</button>
-		<input type="text" name="member_id" value="user5"><!-- 테스트용으로 이 아이디로 보내기  -->
+		<input type="text" name="member_id" value="user5"> 
 	</form>
-	<hr>
+	<hr> --> <!-- 기능 다 구현 할때까지 문의하기 버튼 일단 살려두기, 테스트용으로 이 아이디로 보내기 -->
 	
-	<table border="1" id="inqList">
-		<thead>
-			<tr>
-				<th>제목</th>
-				<th>날짜</th>
-				<th>판매자</th>
-				<th>답변여부</th>
-			</tr>
-		</thead>
-		<tbody>
-		<c:forEach items="${list}" var="inq"> 
-			<tr>
-				<td><a href="${pageContext.request.contextPath}/inqSelect.do?inq_no=${inq.inq_no}">${inq.inq_title}</a></td>
-				<td>
-					<fmt:parseDate value="${inq.inq_regdate}" pattern="yyyy-MM-dd HH:mm:ss" var="parseDate"/>
-					<fmt:formatDate value="${parseDate}" pattern="yyyy-MM-dd HH:mm"/>
-				</td>
-				<td>${inq.seller_id}
-				<%-- <sql:query var="rs" dataSource="jdbc/oracle" ><!-- 집에서는 server, 학원에서는 oracle -->
-					select member_id from member where seller_code=${inq.seller_code}
-				</sql:query>
-				<c:out value="${rs.rows[0].member_id}"/> --%> <!-- 행이 몇줄이나 나올줄은 사람인 나는 알지만, 컴퓨터는 모른다 그래서 몇번째의 행이 필요한지 알려주기 위해서 rows[0]을 사용 -->
-				</td>
-				<td>
-				<c:choose>
-					<c:when test="${not empty inq.inq_answer}">
-						<a href="${pageContext.request.contextPath}/inqSelect.do?inq_no=${inq.inq_no}">답변완료</a>
-					</c:when>
-					<c:when test="${empty inq.inq_answer}">
-						처리중
-					</c:when>
-				</c:choose>
-				</td>
-			</tr>
-		</c:forEach>
-		</tbody>
-	</table>
-		
+	
 </body>
 </html>
