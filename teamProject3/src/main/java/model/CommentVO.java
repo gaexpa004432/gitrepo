@@ -6,7 +6,15 @@ public class CommentVO {
 	private String comment_content;
 	private String comment_date;
 	private Integer post_no;
+	private String member_image;
 	
+	
+	public String getMember_image() {
+		return member_image;
+	}
+	public void setMember_image(String member_image) {
+		this.member_image = member_image;
+	}
 	public String getMember_id() {
 		return member_id;
 	}
