@@ -40,41 +40,7 @@
             <!-- /widget-content --> 
           </div>
           <!-- /widget -->
-          <div class="widget widget-nopad">
-            <div class="widget-header"> <i class="icon-list-alt"></i>
-              <h3> Recent News</h3>
-            </div>
-            <!-- /widget-header -->
-            <div class="widget-content">
-              <ul class="news-items">
-                <li>
-                  
-                  <div class="news-item-date"> <span class="news-item-day">29</span> <span class="news-item-month">Aug</span> </div>
-                  <div class="news-item-detail"> <a href="http://www.egrappler.com/thursday-roundup-40/" class="news-item-title" target="_blank">Thursday Roundup # 40</a>
-                    <p class="news-item-preview"> This is our web design and development news series where we share our favorite design/development related articles, resources, tutorials and awesome freebies. </p>
-                  </div>
-                  
-                </li>
-                <li>
-                  
-                  <div class="news-item-date"> <span class="news-item-day">15</span> <span class="news-item-month">Jun</span> </div>
-                  <div class="news-item-detail"> <a href="http://www.egrappler.com/retina-ready-responsive-app-landing-page-website-template-app-landing/" class="news-item-title" target="_blank">Retina Ready Responsive App Landing Page Website Template – App Landing</a>
-                    <p class="news-item-preview"> App Landing is a retina ready responsive app landing page website template perfect for software and application developers and small business owners looking to promote their iPhone, iPad, Android Apps and software products.</p>
-                  </div>
-                  
-                </li>
-                <li>
-                  
-                  <div class="news-item-date"> <span class="news-item-day">29</span> <span class="news-item-month">Oct</span> </div>
-                  <div class="news-item-detail"> <a href="http://www.egrappler.com/open-source-jquery-php-ajax-contact-form-templates-with-captcha-formify/" class="news-item-title" target="_blank">Open Source jQuery PHP Ajax Contact Form Templates With Captcha: Formify</a>
-                    <p class="news-item-preview"> Formify is a contribution to lessen the pain of creating contact forms. The collection contains six different forms that are commonly used. These open source contact forms can be customized as well to suit the need for your website/application.</p>
-                  </div>
-                  
-                </li>
-              </ul>
-            </div>
-            <!-- /widget-content --> 
-          </div>
+         
           <!-- /widget --> 
         </div>
         <!-- /span6 -->
@@ -82,8 +48,8 @@
           
           <!-- /widget -->
           <div class="widget">
-            <div class="widget-header"> <i class="icon-signal"></i>
-              <h3> Area Chart Example</h3>
+            <div class="widget-header"> <i class="icon-comment"></i>
+              <h3> Manager Chatting </h3>
             </div>
             <!-- /widget-header -->
             <div class="widget-content" id="scroll" style="min-height:500px;max-height:500px;overflow:auto">
@@ -135,8 +101,8 @@
     
           <!-- /widget --> 
  
- <input id="inputMessage" type="text" style="width:85%"/>
-        <input type="submit" value="send" onclick="send()" />
+ <input id="inputMessage" type="text" style="width:85%;height:50px"/>
+        <input type="submit" value="send" onclick="send()" style="width:60px;height:60px"/>
  
         
             </div>
@@ -272,48 +238,32 @@ $("#inputMessage").keyup(function(e){
           editable: true,
           events: [
             {
-              title: 'All Day Event',
+              title: '장바구니 이벤트',
               start: new Date(y, m, 1)
             },
             {
-              title: 'Long Event',
-              start: new Date(y, m, d+5),
-              end: new Date(y, m, d+7)
-            },
+                title: '비건로드 Open 이벤트',
+                start: new Date(y, m, d),
+                end: new Date(y, m, d+7)
+              },
             {
               id: 999,
-              title: 'Repeating Event',
+              title: '정기 점검',
               start: new Date(y, m, d-3, 16, 0),
               allDay: false
             },
             {
               id: 999,
-              title: 'Repeating Event',
+              title: '정기 점검',
               start: new Date(y, m, d+4, 16, 0),
               allDay: false
             },
+
+            
             {
-              title: 'Meeting',
-              start: new Date(y, m, 10, 10, 30),
-              allDay: false
-            },
-            {
-              title: 'Lunch',
-              start: new Date(y, m, d, 12, 0),
-              end: new Date(y, m, d, 14, 0),
-              allDay: false
-            },
-            {
-              title: 'Birthday Party',
-              start: new Date(y, m, d+1, 19, 0),
-              end: new Date(y, m, d+1, 22, 30),
-              allDay: false
-            },
-            {
-              title: 'EGrappler.com',
+              title: '최종 결재',
               start: new Date(y, m, 28),
               end: new Date(y, m, 29),
-              url: 'http://EGrappler.com/'
             }
           ]
         });
@@ -323,7 +273,7 @@ $("#inputMessage").keyup(function(e){
         
       
         var textarea = document.getElementById("messageWindow");
-        var webSocket = new WebSocket('ws://localhost:80/broadcasting');
+        var webSocket = new WebSocket('ws://192.168.0.56:80/broadcasting');
         var inputMessage = document.getElementById('inputMessage');
     webSocket.onerror = function(event) {
       onError(event)

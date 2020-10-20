@@ -5,17 +5,28 @@
 <head>
 <meta charset="UTF-8">
 <title>inqInsertOutput.jsp</title>
+<script>
+$(function() {
+	$("#btnInq").on("click", function() {
+		location.href='/teamProject3/inqList.do';
+	});	
+});
+</script>
 </head>
 <body>
-	문의 ${cnt}건이 등록 되었습니다.
-<button type="button" id="btnMypage">마이페이지</button>
-	
-<script>
-btnMypage.addEventListener("click", goMypage);
-
-function goMypage() {
-	location.assign("/teamProject3/member/myPage.jsp");
-}
-</script>
+<div class="contact-form spad">
+	<div class="container">
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="contact__form__title">
+	                <h2>문의를 등록하셨습니다!${cnt}!</h2>
+	            </div>
+	        </div>
+	        <div class="col-lg-12 text-center">
+	                <button type="submit" id="btnInq" class="site-btn">문의내역</button>
+           	</div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

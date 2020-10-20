@@ -35,9 +35,10 @@ public class orderVO {
 	Integer mileage_no;
 	String mileage_contents;
 	String mileage_date;
-	Integer mileage_cost;
+	String mileage_cost;
 	String group_code;
 	Integer remaining;
+	String mileage_use;
 	
 	//recipe
 	String recipe_number;
@@ -65,4 +66,5 @@ public class orderVO {
 	public orderVO() {
 		
 	}
+
 }

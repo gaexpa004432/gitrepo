@@ -4,6 +4,9 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,9 +21,9 @@ public class MainContorller {
 	@Autowired OrderService orderService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET) //servlet mapping
-	public String home(Model model) {
+	public String home(Model model,HttpServletRequest request,HttpServletResponse response) {
 	
-		
+		request.getSession().setAttribute("id", "vegan");
 		model.addAttribute("chatList",orderService.selectChat());
 		model.addAttribute("index", "1" );
 		

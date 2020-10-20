@@ -156,7 +156,7 @@ function inputCheck() {
                     <div class="breadcrumb__text">
                         <h2 >내 정보 조회 및 수정</h2>
                         <div class="breadcrumb__option">
-                            <a href="/teamProject3/">My Page</a>
+                            <a href="/teamProject3/">마이페이지</a>
                             <span >내 정보 조회 및 수정</span>
                         </div>
                     </div>
@@ -210,7 +210,7 @@ function inputCheck() {
                         	<div>
                         		<c:if test="${empty sessionScope.login.member_image}">
 									<div class="photo image_wrap" class="col-lg-12" style="text-align:center;">
-										<img src="/teamProject3/img/face_icon.png" id="image_preview" style="width:500px" 
+										<img src="/teamProject3/images/face_icon.png" id="image_preview" style="width:500px" 
 											 name="image_preview" class="img-fluid1 rounded-circle1 img"/>
 									</div>
 									<br><br>
@@ -225,7 +225,7 @@ function inputCheck() {
 								
 								<c:if test="${not empty sessionScope.login.member_image}">
 									<div class="photo" class="col-lg-12" style="text-align:center;">
-										<img src="/teamProject3/img/${sessionScope.login.member_image}" id="image_preview" style="width:500px" 
+										<img src="/teamProject3/images/${sessionScope.login.member_image}" id="image_preview" style="width:500px" 
 											 name="image_preview" class="img-fluid1 rounded-circle1"/>
 									</div>
 									<br><br>

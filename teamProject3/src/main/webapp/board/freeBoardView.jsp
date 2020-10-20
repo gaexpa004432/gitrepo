@@ -64,6 +64,9 @@ h1 {
 $(function(){
 	commentList();
 	
+console.log("${sessionScope.id}");
+console.log("${sessionScope.login}");
+	
 	function updateOne(){
 		var content = $(this).data("comment_content");
 		var no = $(this).parent().children().eq(3).data("comment_no");
