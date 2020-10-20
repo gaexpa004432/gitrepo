@@ -73,7 +73,6 @@ ul.inline {
 }
 
 li.inline {
-	width: 100%;
 	background-color: #f8f8f8;
 	height: 340px;
 	color: #444;
@@ -139,10 +138,10 @@ img.inimg {
 		
 		
 		var settings = {
-				slideWidth : 377,
+				slideWidth : 420,
 				slideMargin : 5,
 				minSlides : 1,
-				maxSlides : 5,
+				maxSlides : 10,
 				infiniteLoop : true,
 				responsive : true,
 				controls : true,
@@ -356,13 +355,13 @@ img.inimg {
 </head>
 <body>
 <%@include  file="/common/restaurant.jsp" %>
-		<ul class="bxslider" style="width:100%">
+		<ul class="bxslider" >
 			<c:forEach items="${res.res_picture}" var="res_pic">
 				<li class="inline"><img class="inimg"
 					src="/teamProject3/images/${res_pic }"></li>
 			</c:forEach>
 		</ul>
-	<div class="container" align="center">
+<div class="container" align="center">
 
 
 

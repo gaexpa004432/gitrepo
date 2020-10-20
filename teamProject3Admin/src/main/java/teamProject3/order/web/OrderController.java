@@ -20,14 +20,18 @@ public class OrderController {
 	
 	@RequestMapping("/ajaxDay")
 	public ArrayList<OrderVO> Daily(OrderVO orderVO ,HttpServletRequest request,HttpServletResponse response) {
-			
+		System.out.println(orderVO.getOrder_date());
+		System.out.println(orderVO.getOrder_total());
 			return orderService.selectDay(orderVO);
 		}
 	
 	@RequestMapping("/ajaxMonth")
 	public ArrayList<OrderVO> Month(OrderVO orderVO ,HttpServletRequest request,HttpServletResponse response) {
 			
+		System.out.println(orderVO.getOrder_date());
+		System.out.println(orderVO.getOrder_total());
 			return orderService.selectMonth(orderVO);
 		}
 }
+
 
