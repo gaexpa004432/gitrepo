@@ -34,7 +34,8 @@ if(${sessionScope.id eq 'vegan'}){
 $(document).ready(function(){ 
 	$('.bxslider').bxSlider({
 		auto: true,
-		autoControls: true
+		autoControls: true,
+		hideControlOnEnd: true
 	});
 	});
 </script>
