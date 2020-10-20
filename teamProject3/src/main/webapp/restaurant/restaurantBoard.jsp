@@ -61,8 +61,6 @@ $(function(){
 <div style="margin:100px"></div>
 <div class="container">
 <div>
-<h1>
-Vegan Restaurant </h1>
 </div>
 
 <hr>
@@ -85,7 +83,7 @@ Vegan Restaurant </h1>
          <li><i class="fa fa-comment-o"></i> ${restaurantlist.res_si }</li>
      </ul>
      <div align="left">
-     <h5>
+     <h5 style="color:#333333">
      ${restaurantlist.res_gu }
      </h5>
      </div>
@@ -124,7 +122,7 @@ Vegan Restaurant </h1>
  <my:paging paging="${paging}" jsfunc="gopage" />
 </div>
 	<div class="col-sm-2">
-<a href="/teamProject3/restaurant/restaurantWrite.jsp"> <button class="site-btn" > 글쓰기</button></a>
+<a href="/teamProject3/restaurant/restaurantWrite.jsp"> <button class="site-btn" style="margin-bottom:50px"> 글쓰기</button></a>
 	</div>
  </div>
 

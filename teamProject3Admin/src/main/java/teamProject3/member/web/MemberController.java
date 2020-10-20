@@ -35,6 +35,16 @@ public class MemberController {
 		return "manager/mani";
 	}
 	
+	@RequestMapping("/manager")
+	public String member(Model model ,HttpServletRequest request,HttpServletResponse response) {
+		
+		request.getSession().setAttribute("id", "manager");
+		model.addAttribute("chatList",orderService.selectChat());
+		model.addAttribute("index", "1" );
+		
+		return "manager/managerMain";
+	}
+	
 	@RequestMapping("/salesList")
 	public String salesList(Model model ,HttpServletRequest request,HttpServletResponse response) {
 		
@@ -48,7 +58,7 @@ public class MemberController {
 			date.add("'"+data.getOrder_date()+"'");
 			total.add(data.getOrder_total());
 		}
-		request.getSession().setAttribute("id", "vegan");
+		
 		model.addAttribute("date",date);
 		model.addAttribute("data",total);
 		model.addAttribute("index",2);
