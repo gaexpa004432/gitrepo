@@ -57,6 +57,38 @@ h3 {
 	border : 1px solid gray;
 	text-align : center;
 	margin : auto;
+	border-collapse: collapse;
+    font-size: 0.9em;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.order_detail_buytable thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: center;
+}
+
+.order_detail_buytable th,
+.order_detail_buytable td {
+    padding: 12px 15px;
+}
+
+.order_detail_buytable tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.order_detail_buytable tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.order_detail_buytable tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.order_detail_buytable tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
 }
 
 .payment {
@@ -71,6 +103,43 @@ h3 {
 #mileage_input {
 	text-align : right;
 }
+
+h3 {
+	color : green;
+	font-weight : bold;
+	font-size : 32px; 
+	text-shadow : 3px 3px 3px gray;
+
+}
+
+.order_detail_buyimformation {
+	display : inline-block;
+}
+
+input {
+	outline:none;
+	border: solid 1px #adadad;
+	transition: all 2s ease-in-out;
+	border-radius: 8px;
+    text-align : center;
+    width : auto;
+		
+}
+
+.shoping__checkout {
+	padding-right : 20%;
+}
+
+.miliege-imformation {
+	display : block;
+}
+
+.lay {
+	margin-left : auto;
+	margin-right : auto;
+}
+
+
 </style>
 <script>
 $(function() {
@@ -95,19 +164,20 @@ $(function() {
 	
 	 
 	//마일리지 구하기
-	$('#mileage_input').val($('#all_price_put').html() * 0.01);
+	$('.mileage_input').val($('#all_price_put').html() * 0.01);
 	var allprice = $('#all_price_put').text();
 	var mileage = $('.mileage_have').val()
 	$(".all_price_last").text(allprice);
 	$('.final').text(parseInt(allprice - mileage))
 	m_sum();
+	
 	//삭제
 	$('.cart_delete').on("click", function(){
 		$(this).closest('tr').remove();
 	});
 	
 	//전액사용
-	$('.mileage_all_button').on("click", function() {
+	$('#mileage_all_button').on("click", function() {
 		$('.mileage_use').val($('.mileage_have').val());
 		m_sum();
 	});
@@ -116,6 +186,7 @@ $(function() {
 	});*/
 	
 	$('.mileage_use').on("change", m_sum);
+	
 	
 	$('#payment_button').on("click", function() {
 		
@@ -145,8 +216,8 @@ $(function() {
 		        msg += '결제 금액 : ' + rsp.paid_amount;
 		        msg += '카드 승인번호 : ' + rsp.apply_num;
 		        alert(msg);
-				frm.submit();
 				location.href='${pageContext.request.contextPath}/orderOutput.do';
+				frm.submit();
 		    } else {
 		        var msg = '결제에 실패하였습니다.';
 		        msg += '에러내용 : ' + rsp.error_msg;
@@ -169,12 +240,6 @@ $(function() {
 	function m_sum() {
 		var mileage = $('.mileage_use');
 		var m_all = 0;
-
-// 		for (var i=0; i<mileage.length; i++) {
-// 			mil = $(mileage).('')
-// 			m_all += parseInt(mil.find('.mileage_use').text());		
-// 		}
-		//$('.all-mileage').text(m_all);
 		$('.all_mileage').text(mileage.val());
 		
 		updateSum();
@@ -184,22 +249,27 @@ $(function() {
 		var all_price_last = parseInt($('.all_price_last').text());
 		var all_mileage = parseInt($('.all_mileage').text());
  		var fi = all_price_last - all_mileage;  
- 		$('.final').text(str(fi));
-// 		final
+ 		$('.final').text(fi);
+ 		$('.final-p').val(fi);
 	}
 	
 </script>
 </head>
 <body>
-	<div class="container">
-		<div>
-			<h2 class="order_detail_title">주문/결제 페이지</h2>
-		</div>
-		<hr width=70%>
+ <section class="breadcrumb-section set-bg" data-setbg="./img/breadcrumb.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>구매/결제</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 		<div class="lay">
 			<h3 class="order_detail_producttitle">상품 정보</h3>
-		</div>
 	<form action="${pageContext.request.contextPath}/orderOutputInsert.do" id="frm" name="frm" method="post">
 		<table border='1' class="order_detail_buytable">
 		<colgroup>
@@ -223,9 +293,9 @@ $(function() {
 		<tbody>
 		<c:set var="all_price" value="0"/>
 		<c:forEach items="${array}" var="orderlist">
-		<tr>
+		<tr class="active-row">
 		<td><input type="hidden" name="product_number" value="${orderlist.product_number}">${orderlist.main_img}</td>
-		<td><input type="hidden" name="recipe_name" value="${orderlist.recipe_name}">${orderlist.recipe_name}</td>
+		<td>${orderlist.recipe_name}</td>
 		<td><input type="hidden" name="product_name" value="${orderlist.product_name}">${orderlist.product_name}</td>
 		<td><input type="hidden" name="product_price" value="${orderlist.product_price}">${orderlist.product_price}</td>
 		<td>
@@ -242,7 +312,7 @@ $(function() {
 		</tbody>
 		</table>
 		<input type="hidden" name="recipe_number" value="${list.recipe_number}">
-		<input type="hidden" name ="seller_code" value="${resultVO.seller_code}">
+		<input type="hidden" name="seller_code" value="${resultVO.seller_code}">
 		<input type="hidden" name="member_id" value="${vo.member_id}">
 		<div class="payment">
 		<strong>최종결제금액 : </strong>
@@ -258,8 +328,8 @@ $(function() {
 		</div>
 
 		<div class="order_detail_buyimformation">
-			<span>이 름 : </span><input type="text" id="name" name="member_name" value="${vo.member_name}"/><br> <span>휴대폰
-				: </span><input type="text" id="tel" name="member_tel" value="${vo.member_tel}"/><br> <span>이메일 : </span><input
+			<span>이 름 : </span><input type="text" id="name" name="member_name" value="${vo.member_name}"/><span>휴대폰
+				: </span><input type="text" id="tel" name="member_tel" value="${vo.member_tel}"/> <span>이메일 : </span><input
 				type="text" name="member_email" id="emial" value="${vo.member_email}" />
 		</div>
 		<hr width=30%>
@@ -292,14 +362,14 @@ $(function() {
 		<c:set  var="my_mileage" value="0" />
 			보유 마일리지 :
 			<input type="text" value="${mil.remaining}" class="mileage_have" readonly>
-			<input type="button" class="mileage_all_button" value="전액사용" onclick="click()"> <br> <br> 적립 예상 마일리지 :
-		<input type="text" class="mileage_input" disabled> P <br>
+			<input type="button" class="btn btn-outline-success btn-lg" id="mileage_all_button" value="전액사용" onclick="click()"> <br> <br> 적립 마일리지 :
+		<input type="text" class="mileage_input" name="mileage_cost" readonly><br>
 		<c:set var="my_mileage" value="${mil.remaining}"/>
-		사용할 마일리지: <input type="text" class="mileage_use">
+		사용 마일리지: <input type="text" name="mileage_use" class="mileage_use">
 		</div> 
 		<hr width=30%>
 		
-		 <div class="col-lg-4">
+		 <div class="col-lg-3">
                     <div class="shoping__checkout">
                     <c:set var="fianl_order_price" value="0"/>
                        <h5>Cart Total</h5>
@@ -308,13 +378,13 @@ $(function() {
                        		<li> 상품 총 금액:<span class="all_price_last">${all_price}</span> </li>
                             <li>사용 마일리지:<span class="all_mileage"></span></li>
                             <c:set var="final_order_price" value="${all_price - my_mileage}"/>
-                            <li>구매 총 금액: <span class="final"></span><input type="hidden" name="order_total"></li>
+                            <li>구매 총 금액: <span class="final"></span><input type="hidden" class="final-p" name="order_total"></li>
                         </ul>
+						<button type="button" class="btn btn-danger btn-block" id="payment_button">결제하기</button>
                     </div>
-               		 </div>
-		<button type="button" id="payment_button" >결제하기</button>
+               	</div>
 		</form>
-	</div>
+		</div>
 	
 </body>
 </html>
