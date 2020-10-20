@@ -35,7 +35,7 @@
                             class="icon-cog"></i> 계정 관리 <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li><a href="javascript:;">Profile</a></li>
-              <li><a href="javascript:;">Logout</a></li>
+              <li><a href="/manager">Logout</a></li>
             </ul>
         </ul>
         <form class="navbar-search pull-right">

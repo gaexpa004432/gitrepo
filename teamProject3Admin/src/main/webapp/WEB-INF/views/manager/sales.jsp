@@ -29,25 +29,25 @@ var canvas = document.getElementById("myChart");
 	} );
 	
 	$(".start").change(function(){
-		var group = $(".group").val();
-		var sy = $(".start").eq(0).val().substring(0,4);
-		var sm = $(".start").eq(0).val().substring(5,7);
-		var sd = $(".start").eq(0).val().substring(8,10);
-		var ey = $(".start").eq(1).val().substring(0,4);
-		var em = $(".start").eq(1).val().substring(5,7);
-		var ed = $(".start").eq(1).val().substring(8,10);
+		var group = $(".start").eq(0).val();
+		var sy = $(".start").eq(1).val().substring(0,4);
+		var sm = $(".start").eq(1).val().substring(5,7);
+		var sd = $(".start").eq(1).val().substring(8,10);
+		var ey = $(".start").eq(2).val().substring(0,4);
+		var em = $(".start").eq(2).val().substring(5,7);
+		var ed = $(".start").eq(2).val().substring(8,10);
 		
 		var start = new Date(sy,sm,sd);
 		var end = new Date(ey,em,ed);
 		console.log(group)
-	if(start > end){
+	if(start > end || $(".start").eq(1).val() == ''){
 		console.log("제대로 입력해라잉")
 	}else{
 		
 		if(group == 0){
 		$.ajax({
 			 url: "/ajaxDay", 
-			    data: {order_date:$(".start").eq(0).val(),order_total:$(".start").eq(1).val()},
+			    data: {order_date:$(".start").eq(1).val(),order_total:$(".start").eq(2).val()},
 			    method : "POST",
 		    success: function(data) {
 		    	for(i = 0 ; i < data.length;i++){
@@ -67,7 +67,7 @@ var canvas = document.getElementById("myChart");
 		if(group == 1){
 			$.ajax({
 				 url: "/ajaxMonth", 
-				    data: {order_date:$(".start").eq(0).val(),order_total:$(".start").eq(1).val()},
+				    data: {order_date:$(".start").eq(1).val(),order_total:$(".start").eq(2).val()},
 				    method : "POST",
 			    success: function(data) {
 			    		console.log(data)
@@ -167,7 +167,7 @@ myBarChart = new Chart(ctx, {
                         
                         <!-- /widget -->
                     </div>
-                    구분 <select class="group">
+                    구분 <select class="start">
                	<option value="0">일별 </option>
                	<option value="1">월별 </option>    
                </select>

@@ -369,13 +369,14 @@ img.inimg {
 
 		<div class="row">
 			<div class="col-sm-6" align="left" >
-				<h1>${res.res_name }</h1>
+			<br>
+				<h2><b style="color:#003300">${res.res_name }</b></h2>
 
 			</div>
 			<div class="col-sm-6" align="right">
 				<Small style="vertical-align: bottom;"> 마지막 업데이트 ${ res.res_date }
 				</Small> <a href="javascript:void(0);" id="bookmark"><img src="/teamProject3/images/"
-					style="width: 100px; height: 100px; margin-left: 30px;">
+					style="width: 100px; height: 60px; margin-left: 30px;">
 					</a>
 
 			</div>

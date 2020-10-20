@@ -338,7 +338,9 @@ $(function(){
 		<button type="button" class="btn" style="display: none" id="delbtn">삭제</button>
 		<a id="gg"></a> <br> <br> <br>
 		<!-- 댓글 리스트 -->
+		<div class="checkout__input">
 		<div class="re"></div>
+		</div>
 		<br>
 		<textarea cols="100" rows="3" id="commentcontent"></textarea>
 		<button type="button" id="btnInsert"
