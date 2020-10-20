@@ -69,10 +69,11 @@ $(function(){
 							<tbody id="task-tbody">
 							<c:forEach items="${listRsc}" var="list">
 								<tr>
-									<td>${list.res_no}</td>
-									<td>${list.res_name}</td>
-									<td>${list.res_content}</td>
-									<td>${list.res_date}</td>
+									<td style="width:100px; height:100px;">${list.res_no}</td>
+									<td style="width:200px; height:100px;"><a href="${pageContext.request.contextPath}/restaurantView.do?res_no=${list.res_no}">
+																			${list.res_name}</a></td>
+									<td style="width:500px; height:100px; text-align:left;">${list.res_content}</td>
+									<td style="width:300px; height:100px;">${list.res_date}</td>
 								</tr>
 							</c:forEach> 
 							</tbody>
@@ -91,10 +92,10 @@ $(function(){
 							<tbody id="task-tbody">
 							<c:forEach items="${listRsc}" var="list">
 								<tr>
-									<td>${list.res_no}</td>
-									<td>${list.res_name}</td>
-									<td>${list.res_content}</td>
-									<td>${list.res_date}</td>
+									<td style="width:100px; height:100px;">${list.res_no}</td>
+									<td style="width:200px; height:100px;">${list.res_name}</a></td>
+									<td style="width:500px; height:100px; text-align:left;">${list.res_content}</td>
+									<td style="width:300px; height:100px;">${list.res_date}</td>
 								</tr>
 							</c:forEach> 
 							</tbody>

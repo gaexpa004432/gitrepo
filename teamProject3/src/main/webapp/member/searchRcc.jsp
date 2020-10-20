@@ -70,11 +70,12 @@ $(function(){
 							<tbody id="task-tbody">
 							<c:forEach items="${listRcc}" var="list">
 								<tr>
-									<td>${list.recipe_number}</td>
-									<td>${list.recipe_name}</td>
-									<td>${list.recipe_content}</td>
-									<td>${list.recipe_date}</td>
-									<td>${list.member_id}</td>
+									<td style="width:100px; height:100px;">${list.recipe_number}</td>
+									<td style="width:200px; height:100px;"><a href="${pageContext.request.contextPath}/recipeView.do?recipe_number=${list.recipe_number}">
+																			${list.recipe_name}</a></td>
+									<td style="width:500px; height:100px; text-align:left;">${list.recipe_content}</td>
+									<td style="width:300px; height:100px;">${list.recipe_date}</td>
+									<td style="width:100px; height:100px;">${list.member_id}</td>
 								</tr>
 							</c:forEach> 
 							</tbody>

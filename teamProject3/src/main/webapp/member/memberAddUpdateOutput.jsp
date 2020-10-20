@@ -7,13 +7,25 @@
 <title>memberAddUpdateOutput.jsp</title>
 </head>
 <body>
-	${cnt}건이 수정되었습니다.
+<div class="contact-form spad">
+	<div class="container">
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="contact__form__title">
+	                <h2>정보수정이 정상적으로 처리 됐습니다!${cnt}!</h2>
+	            </div>
+	        </div>
+	        <div class="col-lg-12 text-center">
+	                <button type="submit" id="btnMypage" class="site-btn">mypage</button>
+           	</div>
+        </div>
+    </div>
+</div>
 	
-<button type="button" id="btnMypage">마이페이지</button>
 <script>
 	btnMypage.addEventListener("click", goMypage);
 	function goMypage() {
-		location.assign("/teamProject3/member/myPage.jsp");
+		location.assign("/teamProject3/member/myPageMenu.jsp");
 	}
 </script>
 </body>

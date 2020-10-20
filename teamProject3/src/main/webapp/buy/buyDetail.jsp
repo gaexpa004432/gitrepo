@@ -92,12 +92,15 @@ $(function() {
 			$('#sample4_extraAddress').val("${vo.member_extraAddress}");
 	 });
 	 
+	
+	 
 	//마일리지 구하기
 	$('#mileage_input').val($('#all_price_put').html() * 0.01);
 	var allprice = $('#all_price_put').text();
 	var mileage = $('.mileage_have').val()
 	$(".all_price_last").text(allprice);
-;	$('.final').text(parseInt(allprice - mileage))
+	$('.final').text(parseInt(allprice - mileage))
+	m_sum();
 	//삭제
 	$('.cart_delete').on("click", function(){
 		$(this).closest('tr').remove();
@@ -106,12 +109,13 @@ $(function() {
 	//전액사용
 	$('.mileage_all_button').on("click", function() {
 		$('.mileage_use').val($('.mileage_have').val());
+		m_sum();
 	});
 	
 	/*$('#payment_button').on("click", function() {
 	});*/
 	
-	
+	$('.mileage_use').on("change", m_sum);
 	
 	$('#payment_button').on("click", function() {
 		
@@ -161,6 +165,28 @@ $(function() {
 		}
 		$('#all_price_put').text(sum_all);		
 	} 
+	
+	function m_sum() {
+		var mileage = $('.mileage_use');
+		var m_all = 0;
+
+// 		for (var i=0; i<mileage.length; i++) {
+// 			mil = $(mileage).('')
+// 			m_all += parseInt(mil.find('.mileage_use').text());		
+// 		}
+		//$('.all-mileage').text(m_all);
+		$('.all_mileage').text(mileage.val());
+		
+		updateSum();
+	}
+	
+	function updateSum(){
+		var all_price_last = parseInt($('.all_price_last').text());
+		var all_mileage = parseInt($('.all_mileage').text());
+ 		var fi = all_price_last - all_mileage;  
+ 		$('.final').text(str(fi));
+// 		final
+	}
 	
 </script>
 </head>
@@ -280,7 +306,7 @@ $(function() {
                        <hr>
                         <ul>
                        		<li> 상품 총 금액:<span class="all_price_last">${all_price}</span> </li>
-                            <li>사용 마일리지: ${my_mileage}</li>
+                            <li>사용 마일리지:<span class="all_mileage"></span></li>
                             <c:set var="final_order_price" value="${all_price - my_mileage}"/>
                             <li>구매 총 금액: <span class="final"></span><input type="hidden" name="order_total"></li>
                         </ul>
