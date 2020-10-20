@@ -24,12 +24,12 @@ if(${sessionScope.id eq 'vegan'}){
 </script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
   <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-<<<<<<< HEAD
+
  
 <!-- <style>
 .bxslider li { width:500px; }
 </style> -->
-=======
+
 
 <style>
 .bxslider li { 
@@ -37,7 +37,7 @@ if(${sessionScope.id eq 'vegan'}){
 	height:305px;
 }
 </style>
->>>>>>> branch 'master' of https://github.com/gaexpa004432/gitrepo.git
+
 </head>
 <body>
 <div class="container">
@@ -51,7 +51,7 @@ if(${sessionScope.id eq 'vegan'}){
 $(document).ready(function(){ 
 	$('.bxslider').bxSlider({
 		auto: true,
-		autoControls: true
+		autoControls: true,
 	});
 	});
 </script>

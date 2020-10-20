@@ -330,6 +330,7 @@ function handleImgFileSelect(e) {
 		                        <div class="col-lg-4">  
 		                            <div class="checkout__input">
 		                                <input type="hidden" name="member_jibunAddress" id="sample4_jibunAddress" placeholder="지번주소" readonly>
+		                                <span id="guide" style="color:#999;display:none"></span>
 		                                <input type="text" name="member_detailAddress" id="sample4_detailAddress" placeholder="상세주소">
 		                            </div>
 	                        	</div>
