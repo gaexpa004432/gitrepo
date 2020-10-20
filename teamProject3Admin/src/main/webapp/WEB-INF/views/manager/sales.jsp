@@ -14,6 +14,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
   <script>
 $(function(){
+	var myBarChart;
+	var arrayDate = new Array();
+	var arraytotal = new Array();
+var ctx = document.getElementById("myChart").getContext('2d');
+var canvas = document.getElementById("myChart");  
+	chart();
 	$(document).ready( function () {
 	    $('#tb').DataTable({
 	    	info: false,
@@ -22,6 +28,115 @@ $(function(){
 	    });
 	} );
 	
+	$(".start").change(function(){
+		var group = $(".group").val();
+		var sy = $(".start").eq(0).val().substring(0,4);
+		var sm = $(".start").eq(0).val().substring(5,7);
+		var sd = $(".start").eq(0).val().substring(8,10);
+		var ey = $(".start").eq(1).val().substring(0,4);
+		var em = $(".start").eq(1).val().substring(5,7);
+		var ed = $(".start").eq(1).val().substring(8,10);
+		
+		var start = new Date(sy,sm,sd);
+		var end = new Date(ey,em,ed);
+		console.log(group)
+	if(start > end){
+		console.log("제대로 입력해라잉")
+	}else{
+		
+		if(group == 0){
+		$.ajax({
+			 url: "/ajaxDay", 
+			    data: {order_date:$(".start").eq(0).val(),order_total:$(".start").eq(1).val()},
+			    method : "POST",
+		    success: function(data) {
+		    	for(i = 0 ; i < data.length;i++){
+		    		arrayDate[i] = data[i].order_date;
+		    		arraytotal[i] =  data[i].order_total;
+		    	}
+		    	myBarChart.destroy();
+		    	chart()
+		    },
+		    error:function(xhr, status, message) { 
+		    }
+		   
+	})
+		
+		}
+		
+		if(group == 1){
+			$.ajax({
+				 url: "/ajaxMonth", 
+				    data: {order_date:$(".start").eq(0).val(),order_total:$(".start").eq(1).val()},
+				    method : "POST",
+			    success: function(data) {
+			    		console.log(data)
+			    	for(i = 0 ; i < data.length;i++){
+			    		arrayDate = new Array();
+			    		arraytotal = new Array();
+			    		arrayDate[i] = data[i].order_date;
+			    		arraytotal[i] =  data[i].order_total;
+			    		console.log(arrayDate)
+			    		console.log(arraytotal)
+			    	}
+			    		myBarChart.destroy();
+			    	chart()
+			    },
+			    error:function(xhr, status, message) { 
+			    }
+			   
+		})
+		
+		}
+	}
+	
+	
+	
+	})
+	
+function chart(){
+	  var data = {
+	    labels:arrayDate,
+	    datasets: [
+	        {
+	            label: ['first'],
+	            data:arraytotal,
+	            backgroundColor: [
+	                'rgba(255, 99, 132, 0.2)',
+	               
+	            ],
+	            borderColor: [
+	                'rgba(255,99,132,1)',
+	        
+	            ],
+	            borderWidth: 1
+	        }
+	    ]
+	};
+
+var options = {
+	    animation: {
+	        animateScale: true
+	    },
+	    responsive: true,
+	    scales: {
+	        yAxes: [
+	            {
+	                ticks: {
+	                    beginAtZero: true                                                                    
+	                }
+	            }
+	        ]
+	    }
+	};
+
+
+myBarChart = new Chart(ctx, {
+    type: 'bar',
+    data: data,
+    options: options
+});
+	}
 	
 })
 </script>
@@ -33,7 +148,7 @@ $(function(){
         <div class="main-inner">
             <div class="container">
                 <div class="row">
-                    <div class="span6">
+                    <div class="span12">
                         <div class="widget">
                             <div class="widget-header">
                                 <i class="icon-bar-chart"></i>
@@ -52,39 +167,14 @@ $(function(){
                         
                         <!-- /widget -->
                     </div>
-                    
+                    구분 <select class="group">
+               	<option value="0">일별 </option>
+               	<option value="1">월별 </option>    
+               </select>
+                    시작 날짜: <input type="date" class="start"> 종료 날짜 : <input type="date" class="start" value="2020-10-23">
                       
                       
-                    <!-- /span6 -->
-                    <div class="span6">
-                        <div class="widget">
-                            <div class="widget-header">
-                                <i class="icon-bar-chart"></i>
-                                <h3>
-                                    Donut Chart</h3>
-                            </div>
-                            <!-- /widget-header -->
-                            <div class="widget-content">
-                                <canvas id="donut-chart" class="chart-holder" width="538" height="250">
-                                </canvas>
-                                <!-- /bar-chart -->
-                            </div>
-                            <!-- /widget-content -->
-                        </div>
-                        <!-- /widget -->
-                        
-                           
-                            <!-- /widget-header -->
-                           
-                              
-                              
-                            
-                            <!-- /widget-content -->
-                        
-                        <!-- /widget -->
-                    </div>
-                    <!-- /span6 -->
-                </div>
+                   
                 
                 	<table id="tb" class="table table-striped table-bordered">
 		<thead><tr><th>소상공인 번호</th><th>소상공인 아이디</th><th>전화번호</th><th>이메일</th><th>판매총액</th></tr></thead>
@@ -182,176 +272,6 @@ $(function(){
 ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
  
-    <script>
 
-    var data = {
-    	    labels:${date},
-    	    datasets: [
-    	        {
-    	            label: ['일별 데이터 '],
-    	            data:${data},
-    	            backgroundColor: [
-    	                'rgba(255, 99, 132, 0.2)',
-    	                'rgba(54, 162, 235, 0.2)',
-    	                'rgba(255, 206, 86, 0.2)',
-    	                'rgba(75, 192, 192, 0.2)',
-    	                'rgba(153, 102, 255, 0.2)',                                                               
-    	                'rgba(255, 159, 64, 0.2)'
-    	            ],
-    	            borderColor: [
-    	                'rgba(255,99,132,1)',
-    	                'rgba(54, 162, 235, 1)',
-    	                'rgba(255, 206, 86, 1)',
-    	                'rgba(75, 192, 192, 1)',
-    	                'rgba(153, 102, 255, 1)',
-    	                'rgba(255, 159, 64, 1)'
-    	            ],
-    	            borderWidth: 1
-    	        }
-    	    ]
-    	};
-    
-    var options = {
-    	    animation: {
-    	        animateScale: true
-    	    },
-    	    responsive: false,
-    	    scales: {
-    	        yAxes: [
-    	            {
-    	                ticks: {
-    	                    beginAtZero: true                                                                    
-    	                }
-    	            }
-    	        ]
-    	    }
-    	};
-
-    
-    var ctx = document.getElementById("myChart").getContext('2d');                                           
-    var myBarChart = new Chart(ctx, {
-        type: 'bar',
-        data: data,
-        options: options
-    });
-
-    
-
-        var doughnutData = [
-				{
-				    value: 30,
-				    color: "#F7464A"
-				},
-				{
-				    value: 50,
-				    color: "#46BFBD"
-				},
-				{
-				    value: 100,
-				    color: "#FDB45C"
-				},
-				{
-				    value: 40,
-				    color: "#949FB1"
-				},
-				{
-				    value: 120,
-				    color: "#4D5360"
-				}
-
-			];
-
-        var myDoughnut = new Chart(document.getElementById("donut-chart").getContext("2d")).Doughnut(doughnutData);
-
-
-        var lineChartData = {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
-            datasets: [
-				{
-				    fillColor: "rgba(220,220,220,0.5)",
-				    strokeColor: "rgba(220,220,220,1)",
-				    pointColor: "rgba(220,220,220,1)",
-				    pointStrokeColor: "#fff",
-				    data: [65, 59, 90, 81, 56, 55, 40]
-				},
-				{
-				    fillColor: "rgba(151,187,205,0.5)",
-				    strokeColor: "rgba(151,187,205,1)",
-				    pointColor: "rgba(151,187,205,1)",
-				    pointStrokeColor: "#fff",
-				    data: [28, 48, 40, 19, 96, 27, 100]
-				}
-			]
-
-        }
-
-        var myLine = new Chart(document.getElementById("area-chart").getContext("2d")).Line(lineChartData);
-
-
-        var barChartData = {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
-            datasets: [
-				{
-				    fillColor: "rgba(220,220,220,0.5)",
-				    strokeColor: "rgba(220,220,220,1)",
-				    data: [65, 59, 90, 81, 56, 55, 40]
-				},
-				{
-				    fillColor: "rgba(151,187,205,0.5)",
-				    strokeColor: "rgba(151,187,205,1)",
-				    data: [28, 48, 40, 19, 96, 27, 100]
-				}
-			]
-
-        }
-
-var myLine = new Chart(document.getElementById("bar-chart").getContext("2d")).Bar(barChartData);
-
-var pieData = [
-				{
-				    value: 30,
-				    color: "#F38630"
-				},
-				{
-				    value: 50,
-				    color: "#E0E4CC"
-				},
-				{
-				    value: 100,
-				    color: "#69D2E7"
-				}
-
-			];
-
-				var myPie = new Chart(document.getElementById("pie-chart").getContext("2d")).Pie(pieData);
-
-				var chartData = [
-			{
-			    value: Math.random(),
-			    color: "#D97041"
-			},
-			{
-			    value: Math.random(),
-			    color: "#C7604C"
-			},
-			{
-			    value: Math.random(),
-			    color: "#21323D"
-			},
-			{
-			    value: Math.random(),
-			    color: "#9D9B7F"
-			},
-			{
-			    value: Math.random(),
-			    color: "#7D4F6D"
-			},
-			{
-			    value: Math.random(),
-			    color: "#584A5E"
-			}
-		];
-				var myPolarArea = new Chart(document.getElementById("line-chart").getContext("2d")).PolarArea(chartData);
-	</script>
 </body>
 </html>

@@ -17,4 +17,9 @@ public interface OrderService {
 	void insertChat(OrderVO vo);
 	
 	ArrayList<OrderVO> selectChat();
+	
+	ArrayList<OrderVO> selectDay(OrderVO vo);
+	
+	ArrayList<OrderVO> selectMonth(OrderVO vo);
+	
 }
