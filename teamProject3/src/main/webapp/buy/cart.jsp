@@ -82,9 +82,28 @@ h2 {
 }
 
 .shoping__checkout {
-	
-	text-align : right;
-	padding-left : 65%;
+	margin-left : auto;
+	margin-right : auto;
+}
+
+.cartdiv {
+	margin-left : auto;
+	margin-right : auto;
+	width : 1400px;
+}
+
+#checkout {
+	margin-left : auto;
+	margin-right : auto;
+	display : block;
+	float : right;
+	margin-right: 9%;
+
+}
+
+#resume {
+	margin-top : 3%;
+	margin-left : 11%;
 }
 
 </style>
@@ -176,7 +195,8 @@ h2 {
             </div>
         </div>
     </section>
-
+   
+<div class="cartdiv">
 <form action="${pageContext.request.contextPath}/orderDetailController.do" name="frm" id="frm">
 <input type="hidden" name="arr">
 </form>
@@ -234,11 +254,10 @@ h2 {
 	</table>
 	
 
-	<a href="${pageContext.request.contextPath}/recipeBoard.do" class="primary-btn cart-btn">쇼핑 계속하기</a>
-	<input type="button" id="check_button" class="primary-btn cart-btn cart-btn-right" value="결제">
+	<a href="${pageContext.request.contextPath}/recipeBoard.do" id="resume"class="btn btn-danger btn-lg-3 btn-radius">쇼핑 계속하기</a>
 
 	
-      <div class="col-lg-4">
+      <div class="col-lg-4" id="checkout">
                     <div class="shoping__checkout">
                        <h5>Cart Total</h5>
                        <hr>
@@ -246,11 +265,13 @@ h2 {
                             <li>적립 마일리지: <span class="all-mileage">P</span></li>
                             <li>구매 총 금액: <span class="final-order-price"><input type="hidden" name="total">${total}원</span></li>
                         </ul>
+	<input type="button" id="check_button" class="btn btn-danger btn-block" value="구매">
                     </div>
                 </div>
 
 		<input type="hidden" name="seller_code" value="${resultVO.seller_code}">
 
+</div>
 	
 </body>
 </html>
