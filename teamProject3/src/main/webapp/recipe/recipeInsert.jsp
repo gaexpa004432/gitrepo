@@ -18,8 +18,10 @@
 	
 	$(".stepAdd").on("click",function(){
 		$(".cooking_order").append($("<div>")
-				.append($("<input>").attr("name","cooking_step"))
-				.append($("<input>").attr("type","file").attr("name","step_img"))		
+				.append($("<input>").attr("name","cooking_step").css("width","300px").css("height","100px"))
+				.append($("<img>").css("width","150px").css("height","100px").attr("class","step_img"))
+				.append($("<input>").attr("type","file").attr("name","step_img1").attr("class","step_img1"))
+				.append($("<span>"))
 				.append($("<img>").attr("type","img").attr("src", "/teamProject3/images/휴지통.png")
 								  .attr("width", "30px").attr("height", "30px").on("click",function(){
 					$(this).parent().remove();
@@ -85,6 +87,33 @@ $(function(){           //상품이름 단위 가격 적는 곳 추가~!!!
 		} else {
 			$(".product_price").hide(); 
 		}
+ 	
+ 		$(document).on("change",".step_img1",function () { 
+ 			
+ 		    var fileList1 = this.files ;
+ 		   
+ 		    // 읽기
+ 		    var reader1 = new FileReader();
+ 		   
+ 		    reader1.readAsDataURL(fileList1 [0]);
+ 			
+
+ 		    //로드 한 후
+ 		    	/* $(reader1).onload(function(){
+ 		    		console.log($(this).parent().children().eq(1));
+ 		        $(this).parent().children().eq(1).src(reader1.result); 
+ 		    	})*/
+ 		    var start = this;
+ 		    console.log(this.parentNode.childNodes[0])
+ 		    reader1.onload = function () {
+ 		    	start.parentNode.childNodes[1].src = reader1.result ;
+ 		    	start.parentNode.childNodes[3].src = reader1.result ;
+ 		    	
+ 		       // this.parentNode.childNodes.src = reader1.result ;
+ 		       
+ 		    	}; 
+ 		    		
+ 			}); 
 	})	
 	 
 </script>
@@ -133,6 +162,7 @@ $(function(){           //상품이름 단위 가격 적는 곳 추가~!!!
 </head>
 
 <body>
+<%@include  file="/common/recipe.jsp" %>
 <form name="frm1" action ="/teamProject3/recipeInsert.do" enctype='multipart/form-data' method = "post">
 <div class="container">
 	<h2  align = "left" style = "color:green;">레시피 등록</h2><br>
@@ -239,28 +269,13 @@ $(function(){           //상품이름 단위 가격 적는 곳 추가~!!!
 	<hr>
 	<h3 class="container" style = "color:green; font-family: Fantasy;">조리 순서</h3><br>
 	<div class = "cooking_order, container">
-	<input name = "cooking_step">
-	
-	<img id="step_img" src="" width="100" alt="">
-	<input type="file" id="step_img1" name = "step_img" accept="image/*">
+	<div>
+	<input style="width:300px;height:100px" name = "cooking_step">
+	<img id="step_img"  alt="" style="width:150px;height:100px">
+	<input type="file" id="step_img1" class="step_img1" name = "step_img" accept="image/*">
 	<img style="visibility:hidden;" src="/teamProject3/images/휴지통.png" width="30px" height="30px" />
 	<div class="cooking_order"></div>
-	<script>  // 사진보이기
-	var file1 = document.querySelector('#step_img1');
-
-	file1.onchange = function () { 
-    var fileList1 = file1.files ;
-    
-    // 읽기
-    var reader1 = new FileReader();
-    reader1.readAsDataURL(fileList1 [0]);
-
-    //로드 한 후
-    reader1.onload = function () {
-    document.querySelector('#step_img').src = reader1.result ;
-    	}; 
-	}; 
-	</script>
+	</div>
 	
 	</div>
 	<div class="row">

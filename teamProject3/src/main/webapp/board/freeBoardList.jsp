@@ -27,12 +27,19 @@
 
 form {
 	text-align:center;
+	
 }
+
+ .table-striped {
+	margin-top: 50px;
+} 
+
 
 </style>
 </head>
 <body>
 <%@include  file="/common/header.jsp" %>
+
 <div class="container">
 	<table class="table table-striped" >
 		<thead>
@@ -67,8 +74,9 @@ form {
    <input name="board_search">
    <button>검색</button>
 </form>
-	<hr>
-	<a class="btn btn-default pull-right" onclick="checklogin()">글쓰기</a>
+	<hr/>
+	<a class="btn btn-default pull-right" onclick="checklogin()"
+	style="margin-bottom:50px;">글쓰기</a>
 	<my:paging paging="${paging}" jsfunc="gopage" />
 <script>
    function gopage(p) {         // 검색 function
@@ -91,7 +99,7 @@ form {
    }
     
 </script>
-</div>
+
 <!-- 		<c:forEach items="${list}" var="board">
 			<!-- 컨트롤러에서 보내준 리스트가 board로 이름만 바뀜 -->
 			<!--db에서 들고온 리스트를 컨트롤러를 거쳐서 jsp페이지로 받아옴 -->
@@ -113,7 +121,7 @@ form {
 <<form id="frm" action="${pageContext.request.contextPath}/freeBoardUpdate.do" align="center">
 </form>
 </div>--%>
-
+</div>
 </body>
 
 </html>

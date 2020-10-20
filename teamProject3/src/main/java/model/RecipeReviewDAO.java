@@ -55,14 +55,15 @@ public class RecipeReviewDAO {
 	public List<RecipeReviewVO> selectAllReview(RecipeReviewVO recipe) { //게시판 목록 이미지 뿌려주기
 		RecipeReviewVO recipevo = null;
 		List<RecipeReviewVO> recipeList = new ArrayList<RecipeReviewVO>();
+		conn = ConnectionManager.getConnnect();
 		
 		try {
-			conn = ConnectionManager.getConnnect();
-			
-			
+			String where = "";
+	         if(recipe.getRecipe_number() != 0) {
+	            where += " and Recipe_number like '%' || ? || '%'";
+	         }
 			String sql = "select a.*  from ( select rownum rn, b.*  from (" + 
-					"select * from recipe_review where recipe_number= ?" + 
-					"	ORDER BY recipe_review_no desc" + 
+					"select r.recipe_review_no,r.recipe_review_content,r.recipe_review_file,r.recipe_review_date,r.MEMBER_ID,r.recipe_number, (select member_image from member where member_id = r.member_id) as member_image from recipe_review r where not exists(select * from product p where p.recipe_number = r.recipe_number and PRODUCT_STATUS = 'N')"+where+" order by recipe_number desc" +  
 					"	) b ) a where rn BETWEEN ? and ? ";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, recipe.getRecipe_number());
@@ -77,6 +78,7 @@ public class RecipeReviewDAO {
 				recipevo.setRecipe_review_date(rs1.getString("recipe_review_date"));
 				recipevo.setMember_id(rs1.getString("member_id"));
 				recipevo.setRecipe_number(rs1.getInt("recipe_number"));
+				recipevo.setMember_image(rs1.getString("member_image"));
 				recipeList.add(recipevo);
 			
 			}

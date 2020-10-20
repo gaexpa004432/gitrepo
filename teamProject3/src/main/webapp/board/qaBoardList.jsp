@@ -30,6 +30,10 @@ form {
 	text-align: center;
 }
 
+ .table-striped {
+	margin-top: 50px;
+} 
+
 </style>
 <script type="text/javascript">
 $(function(){
@@ -49,6 +53,7 @@ $(function(){
 </script>
 </head>
 <body>
+<%@include  file="/common/qa.jsp" %>
 <div class="container">
 	<table class="table table-striped" >
 		<thead>

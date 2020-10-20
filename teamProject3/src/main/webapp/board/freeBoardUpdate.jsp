@@ -12,10 +12,10 @@ div, button {
 	font-family: 'Noto Sans KR';
 }
 
-form { 
+.updateFrm { 
         max-width: 1208px;
   		max-width: 75.5rem;
-  		margin-left: 26.3736%;
+  		margin-left: 30.3736%;
     }    
 
 .hero__search__form form button{
@@ -41,7 +41,7 @@ font-size: 12px;
  </script>
 </head>
 <body>
-<form name="contact" id="contact" action="freeBoardUpdate2.do" method="post"
+<form name="contact" id="contact" action="freeBoardUpdate2.do" method="post" class="updateFrm"
 		enctype="multipart/form-data">
 		<input type="hidden" name="board_no" value="${content.board_no}"/>
 		<div>

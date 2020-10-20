@@ -187,6 +187,7 @@ $(document).on("change",".step_img1",function () {
    	
 })
 
+
 	</script>
  <style>
       .container {
@@ -232,6 +233,7 @@ $(document).on("change",".step_img1",function () {
     </style>
 </head>
 <body>
+<%@include  file="/common/recipe.jsp" %>
 	<div class="container">
 	<h1 align="center">레시피 수정</h1><br><br>
 
