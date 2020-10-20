@@ -236,13 +236,13 @@ function handleImgFileSelect(e) {
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
-                                        <p>아이디</p>
+                                        <p>아이디<span>*</span></p>
                                         <input type="text" id="member_id" name="member_id" placeholder="아이디">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                             		<div class="checkout__input">
-                                		<p>이름</p>
+                                		<p>이름<span>*</span></p>
                                 		<input type="text" id="member_name" name="member_name" placeholder="이름">
 	                            	</div>
                                 </div>

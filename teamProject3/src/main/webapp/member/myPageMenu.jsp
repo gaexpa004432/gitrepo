@@ -21,8 +21,12 @@
                         <div class="blog__sidebar__item">
                             <h4>마이페이지 메뉴</h4>
                             <ul>
+<<<<<<< HEAD
+                                <li><a href="${pageContext.request.contextPath}/select.do">내 정보 조회 및 수정</a></li>
+=======
                                 <li><a href="${pageContext.request.contextPath}/select.do">내 정보조회 및 수정</a></li>
                                 <li><a href="${pageContext.request.contextPath}/orderList.do">내 정보조회 및 수정</a></li>
+>>>>>>> branch 'master' of https://github.com/gaexpa004432/gitrepo.git
                                 <li><a href="${pageContext.request.contextPath}/favList.do?fav=fs">나의 즐겨찾기</a></li>
                                 <li><a href="#">내 주문내역</a>
                                 <c:choose>
@@ -36,7 +40,7 @@
                                 <li><a href="${pageContext.request.contextPath}/mileageController.do">마일리지조회</a></li>
                                 <c:choose>
 									<c:when test="${sessionScope.login.seller_code != 0}">
-                                		<li><a href="${pageContext.request.contextPath}/member/memberAddUpdate.jsp">소상공인 정보 수정 및 조회</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/member/memberAddUpdate.jsp">판매자 정보 수정 및 조회</a></li>
 		                                <li><a href="${pageContext.request.contextPath}/sellList.do">판매내역</a></li>
                                 	</c:when>
                                 	<c:when test="${sessionScope.login.seller_code == 0}">
