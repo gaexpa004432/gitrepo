@@ -34,15 +34,16 @@
 		padding-top: 12px;
 		resize: none;
  	    }	
- 	    a { color: #000; }
+ 	    
+ 	    a { color: #000; }  
+ 	    a:hover { color : black; }	/* 마우스 클릭전 색깔변화 */
+		a:link { color : black; }  /* 클릭후 이동전 색깔변화 */ 
+		
 </style>
 
 <script type="text/javascript">
 
 	$(function() {
-		if(${!empty focus}){
-			document.getElementById('recipe_insert').focus();
-		}
 		$.contextMenu({
 		    selector: '#user',
 		    trigger: 'left',
@@ -65,7 +66,6 @@
 		} else {
 			$("#bookmark").html("<img src='/teamProject3/images/즐겨찾기.jpg'style='width: 100px; height: 100px; margin-left: 30px;'>");
 		}
-		$("#input_imgs").on("change", handleImgFileSelect);
 //======================================================================================================
 		$("#cart").on(
 				"click",
@@ -87,7 +87,6 @@
 					}
 				})
 //=========== ====================================================================================			
-	$("#input_imgs").on("change", handleImgFileSelect);
 		$(".reviewDel").on("click",function(){
 			var result = confirm("정말 삭제 하시겠습니까?");
 			if(result){
@@ -97,92 +96,39 @@
 		})
 	
 //==================================================================================================
-	function fileUploadAction() {
-		console.log("fileUploadAction");
-		$("#input_imgs").trigger('click');
-	}
+	$(document).on("change",".step_img1",function () { 
 		
+    var fileList1 = this.files ;
+   
+    // 읽기
+    var reader1 = new FileReader();
+   
+    reader1.readAsDataURL(fileList1 [0]);
+	
+
+    //로드 한 후
+    	/* $(reader1).onload(function(){
+    		console.log($(this).parent().children().eq(1));
+        $(this).parent().children().eq(1).src(reader1.result); 
+    	})*/
+    	
+    	document.get
+    reader1.onload = function () {
+    		document.getElementById("img").src = reader1.result ;
+    	
+       // this.parentNode.childNodes.src = reader1.result ;
+       document.getElementById("img")
+    	}; 
+    		
+	}); 
 //====================================================================================================
-	function handleImgFileSelect(e) {
 
-		// 이미지 정보들을 초기화
-		sel_files = [];
-		$(".imgs_wrap").empty();
-
-		var files = e.target.files;
-		var filesArr = Array.prototype.slice.call(files);
-
-		var index = 0;
-		filesArr
-				.forEach(function(f) {
-					if (!f.type.match("image.*")) {
-						alert("확장자는 이미지 확장자만 가능합니다.");
-						return;
-					}
-
-					sel_files.push(f);
-
-					var reader = new FileReader();
-					reader.onload = function(e) {
-						var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("
-								+ index
-								+ ")\" id=\"img_id_"
-								+ index
-								+ "\"><img src=\"" + e.target.result + "\" data-file='"+f.name+"' class='selProductFile' title='Click to remove' style='width:100px; height:100px;'></a>";
-						$(".imgs_wrap").append(html);
-						index++;
-
-					}
-					reader.readAsDataURL(f);
-			});
-	}
 //====================================================================================================
-	function deleteImageAction(index) {
-		console.log("index : " + index);
-		console.log("sel length : " + sel_files.length);
-		var a = $("#input_imgs");
-		console.log(a);
-		sel_files.splice(index, 1);
-
-		var img_id = "#img_id_" + index;
-		$(img_id).remove();
-	}
+	
 //==================================================================================================
-	function fileUploadAction() {
-		console.log("fileUploadAction");
-		$("#input_imgs").trigger('click');
-	}
+	
 //==================================================================================================
-	function submitAction() {
-		console.log("업로드 파일 갯수 : " + sel_files.length);
-		var data = new FormData();
-
-		for (var i = 0, len = sel_files.length; i < len; i++) {
-			var name = "image_" + i;
-			data.append(name, sel_files[i]);
-		}
-		data.append("image_count", sel_files.length);
-
-		if (sel_files.length < 1) {
-			alert("한개이상의 파일을 선택해주세요.");
-			return;
-		}
-
-		var xhr = new XMLHttpRequest();
-		xhr.open("POST", "./study01_af.php");
-		xhr.onload = function(e) {
-			if (this.status == 200) {
-				console.log("Result : " + e.currentTarget.responseText);
-			}
-		}
-		
-		xhr.send(data);
-
-	}
-	function itemActive($el) {
-		$el.siblings().removeClass('active');
-
-	}
+	
 //====================================================================================================
 	
 	      //레시피 삭제
@@ -241,9 +187,21 @@
 
 
 <body>
+<%@include  file="/common/recipe.jsp" %>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <div class="container">
 	<div class="row">
-		<div class="col-sm-12" align="center">		
+		<div class="col-sm-12" align="center">
+			<img src="/teamProject3/images/${ recipe.main_img }" height="400"
+				width="400">
+		</div>
+		
+			<div class="col-sm-12" align="center">		
 			<h1>${ recipe.recipe_name }</h1>
 		</div>
 		<br>
@@ -254,20 +212,19 @@
 			<h4><a style="font-size:30px;" href="javascript:void(0);" id="user" data-member="${ recipe.member_id }">${ recipe.member_id }</a></h4>
 			</div>
 			<input type="hidden" value="${recipe.seller_code}">
+			<br>
+			<br>
+			<br>
+			<br>
 		</div>
-		<br>
 		
-		<div class="col-sm-12" align="center">
-			<img src="/teamProject3/images/${ recipe.main_img }" height="400"
-				width="400">
-		</div>
 		<div class="col-sm-12" align="center">
 			<h3>${ recipe.recipe_content }</h3>
 		</div>
-		<div class="col-sm-6 contact__widget" align="center">
+		<div class="col-sm-6 contact__widget" align="center" style="font-size:25px;">
 		<span class="icon_clock_alt"></span><br>레시피 시간 : ${ recipe.cooking_time }</div>
 		
-		<div class="col-sm-6 product__details__rating" align="center">
+		<div class="col-sm-6 product__details__rating" align="center" style="font-size:25px;">
 			<i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
@@ -288,6 +245,7 @@
 		<div class="col-sm-12" align="center">
 			<h3 style = "color:#9ACD32;">레시피 재료</h3>
 		</div>
+
 		<div class="col-sm-6" align="center">
 			<h3>[재료]</h3>
 			<c:forEach items="${ product }" var="mater">
@@ -358,13 +316,13 @@
 		<div class="col" align="center">
 			<form action="/teamProject3/recipeReview.do" method="post"
 					enctype='multipart/form-data'>
+				<h3  class="col-sm-6" align="left" style="color:green;">리뷰</h3>
 				<div class="col-sm-8" align="center">
 					<div class="imgs_wrap">
-						<img id="img" />
+						<img id="img" style="width:250px;height:200px" />
 					</div>
 				</div>
 				<div class="">
-				<h3  class="col-sm-6" align="left" style="color:green;">리뷰</h3>
 				</div>
 				<br><input value="${ recipe.recipe_number }" name="recipe_no"
 					hidden="hidden">
@@ -373,7 +331,7 @@
 				
 				<div class="col-sm-10" align="right">
 					<div>
-						<input type="file" id="input_imgs" name="recipe_review_file">
+						<input type="file" id="input_imgs" class="step_img1" name="recipe_review_file">
 					</div>
 				</div>
 				<br>
@@ -383,14 +341,14 @@
 		</div>
 	</div>
 </div>
-
+	<div class="container">
 	<c:forEach items="${ reviewlist }" var="list">
 		<div class="row" id="over"
 			style="border-top-width: 1px; border-top-style: solid; padding: 20px; border-top-color: #f0f0f5;">
 
 			<div class="col-sm-1">
 				<img class="userImage" src="/teamProject3/images/${list.member_image}"><br>
-				${ list.member_id }
+				<h4><a style="font-size:30px;" href="javascript:void(0);" id="user" data-member="${ recipe.member_id }">${ recipe.member_id }</a></h4>
 			</div>
 			
 			<div class="col-sm-10" align="left">
@@ -403,24 +361,25 @@
 				<c:if test="${ list.member_id == sessionScope.id }">
 					<a class="reviewDel" href="javascript:void(0);"
 						data-no="${ list.recipe_review_no }">
-					<img src="/teamProject3/images/delBtn.png" style="width: 25px; height: 25px;">
+					<img src="/teamProject3/images/휴지통.png" style="width: 25px; height: 25px;">
 					</a>
 				</c:if>
 			</div>
 			
 			<div class="col-sm-1" align="right">
 				 	<c:if test="${ list.member_id == sessionScope.id }"> 
-						<a class="reviewDel" href="javascript:void(0);" data-no="${ list.recipe_review_no }"><img src="/teamProject3/images/delBtn.png" style="width: 25px; height: 25px;"></a>
+						<a class="reviewDel" href="javascript:void(0);" 
+							data-no="${ list.recipe_review_no }">
+						<!-- <img src="/teamProject3/images/delBtn.png" style="width: 25px; height: 25px;"> -->
+						</a>
 					</c:if>
 			</div>
 		</div>
 	</c:forEach>
-	
+	</div>
 	<div align="center">
-
-
- <my:paging paging="${paging}" jsfunc="gopage" />
-</div>
+ 		<my:paging paging="${paging}" jsfunc="gopage" />
+	</div>
 
 </body>
 </html>
