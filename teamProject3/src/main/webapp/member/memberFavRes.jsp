@@ -145,6 +145,21 @@ img.a {
 </head>
 <body>
 <input type="hidden" name="fav" value="fs">
+<section class="breadcrumb-section set-bg" data-setbg="/teamProject3/img/KakaoTalk_20201015_173926849.jpg" style="background-image:url('/teamProject3/img/sd.jpg')"> <!-- ì¬ê¸°ìë ì´ë¯¸ì§ ê²½ë¡ë¥¼ ë°ê¾¸ìë©´ ë©ëë¤. -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2 >즐겨찾기</h2>
+                        <div class="breadcrumb__option">
+                            <a href="/teamProject3/">마이페이지</a>
+                            <span>식당</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
 <section class="blog spad">
 <%@include file="/member/myPageMenu.jsp" %>
 	<div class="col-lg-8 col-md-9">
@@ -168,11 +183,11 @@ img.a {
 	                                </div>
 	                                <div class="blog__item__text">
 	                                    <ul>
-	                                       <li><i class="fa fa-calendar-o"></i>${fr.recipe_date}</li>
+	                                       <%-- <li><i class="fa fa-calendar-o"></i>${fr.res_date}</li> --%>
 	                                       <!--  <li><i class="fa fa-comment-o"></i> 5</li> -->
 	                                    </ul>
 	                                    <h5><a href="${pageContext.request.contextPath}/restaurantView.do?res_no=${fs.res_no}">${fs.res_name}</a></h5>
-	                                    <p>${fs.res_content}</p>
+	                                    <%-- <p>${fs.res_content}</p> --%>
 	                                    <a href="${pageContext.request.contextPath}/restaurantView.do?res_no=${fs.res_no}" class="blog__btn">자세히보기<span class="arrow_right"></span></a>
 	                                </div>
 	                            </div>

@@ -54,6 +54,21 @@ $(function(){
 </script>	
 </head>
 <body>
+<section class="breadcrumb-section set-bg" data-setbg="/teamProject3/img/KakaoTalk_20201015_173926849.jpg" style="background-image:url('/teamProject3/img/sd.jpg')"> <!-- ì¬ê¸°ìë ì´ë¯¸ì§ ê²½ë¡ë¥¼ ë°ê¾¸ìë©´ ë©ëë¤. -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2 >판매 상세 내역</h2>
+                        <div class="breadcrumb__option">
+                            <a href="/teamProject3/">My Page</a>
+                            <span >판매내역</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
 	<div class="container">
     <h1>주문  ${orderOne.order_number}의 ${orderOne.recipe_name} 레시피</h1>
     	<div class="row">

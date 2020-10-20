@@ -141,25 +141,43 @@ $(function(){
 </script>
 </head>
 <body>
-<div class="container">
-    <h1>판매내역</h1>
-    	<div class="row">
-			<div class="col-md-12">
-				<div class="panel panel-success">
-					<table class="table table-hover" id="task-table">
-						<thead>
-							<tr>
-								<th>주문번호</th>
-								<th>레시피</th>
-								<th>가격</th>
-								<th>주문하신분</th>
-								<th>날짜</th>
-								<th>승인여부</th>
-								<th>거절사유</th>
-							</tr>
-						</thead>
-						<tbody id="task-tbody">
-						<c:forEach items="${list}" var="list">
+<section class="breadcrumb-section set-bg" data-setbg="/teamProject3/img/KakaoTalk_20201015_173926849.jpg" style="background-image:url('/teamProject3/img/sd.jpg')"> <!-- ì¬ê¸°ìë ì´ë¯¸ì§ ê²½ë¡ë¥¼ ë°ê¾¸ìë©´ ë©ëë¤. -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>판매내역</h2>
+                        <div class="breadcrumb__option">
+                            <a href="/teamProject3/">My Page</a>
+                            <span >판매내역</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+<%-- <section class="checkout spad">
+	<%@include file="/member/myPageMenu.jsp" %>
+	<div class="col-lg-8 col-md-7"> --%> 
+		<div class="container">
+		    <h1>판매내역</h1>
+		    	<div class="row">
+					<div class="col-md-12">
+						<div class="panel panel-success">
+							<table class="table table-hover" id="task-table">
+								<thead>
+									<tr>
+										<th>주문번호</th>
+										<th>레시피</th>
+										<th>가격</th>
+										<th>주문하신분</th>
+										<th>날짜</th>
+										<th>승인여부</th>
+										<th>거절사유</th>
+									</tr>
+								</thead>
+								<tbody id="task-tbody">
+								<c:forEach items="${list}" var="list">
 							<tr class="select_order" data-order_number="${list.order_number}"><!-- data에 이름 주고 값을 넣으려면 왼쪽과 같이 하면 된다. -->
 								<td>${list.order_number}</td>
 								<td>${list.recipe_name}</td>
@@ -180,11 +198,13 @@ $(function(){
 								<td>${list.order_reason}</td>
 							</tr>
 						</c:forEach> 
-						</tbody>
-					</table> 
+							</tbody>
+						</table> 
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+<!-- 	</div>
+</section> -->			
 </body>
 </html>

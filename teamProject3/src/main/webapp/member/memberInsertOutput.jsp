@@ -9,8 +9,20 @@
 <body>
 	
 <form action="${pageContext.request.contextPath}/member/memberLogin.jsp">
-	${memberOne.member_name}님 회원 가입을 축하합니다!!<br>
-	로그인페이지로 이동 <button>로그인이동</button>
+<div class="contact-form spad">
+	<div class="container">
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="contact__form__title">
+	                <h2>${memberOne.member_name}님 회원 가입을 축하합니다!!</h2>
+	            </div>
+	        </div>
+	        <div class="col-lg-12 text-center">
+	                <button type="submit" class="site-btn">Login</button>
+           	</div>
+        </div>
+    </div>
+</div>
 </form>
 </body>
 </html>
