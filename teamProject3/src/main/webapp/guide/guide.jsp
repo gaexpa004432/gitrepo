@@ -33,7 +33,7 @@
 <body>
 	<div style="border:0px solid; padding:20px; border-color:rgba( 255, 255, 255, 0.5 ); background-color: #ffffff;
         background-color: rgba( 255, 255, 255, 0.5 ); ">
-	<h2 style = "font-size: 40px">guide</h2>
+	<h2 style = "font-size: 40px"></h2>
 	<br><br>
 	<div>
 	<br>

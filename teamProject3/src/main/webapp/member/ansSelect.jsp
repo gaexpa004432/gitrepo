@@ -27,7 +27,79 @@
 
 
 <body>
-	<div class="container">
+<section class="breadcrumb-section set-bg" data-setbg="/teamProject3/img/KakaoTalk_20201015_173926849.jpg" style="background-image:url('/teamProject3/img/sd.jpg')"> <!-- ì¬ê¸°ìë ì´ë¯¸ì§ ê²½ë¡ë¥¼ ë°ê¾¸ìë©´ ë©ëë¤. -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2 >1:1문의 답변</h2>
+                        <div class="breadcrumb__option">
+                            <a href="/teamProject3/">마이페이지</a>
+                            <span>1:1문의</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+	
+	
+	
+	<div class="contact-form spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="contact__form__title">
+                        <h2>답변등록</h2>
+                    </div>
+                </div>
+            </div>
+            <form method="post" action="/teamProject3/ansUpdate.do">
+            <input type="hidden" name="inq_no" value="${inqOne.inq_no}">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3">
+                    	<label>문의회원</label>
+                        <input type="text" id="member_id" name="member_id" placeholder="${inqOne.member_id}" readonly>
+                        <input type="hidden" name="seller_code" value="${inqOne.seller_code}">
+                    </div>
+                    <div class="col-lg-9 col-md-9">
+                    	<label>제목</label>
+                        <input type="text" id="inq_title" name="inq_title" placeholder="${inqOne.inq_title}" readonly>
+                    </div>
+                    <div class="col-lg-12">
+                    	<label>문의 온 내용</label>
+                        <textarea placeholder="문의 온 내용" id="inq_content" name="inq_content" readonly>${inqOne.inq_content}</textarea>
+                        <label>답변</label>
+                        <c:choose>
+	                        <c:when test="${not empty inqOne.inq_answer}">
+		                        <textarea id="inq_answer" name="inq_answer" readonly>${inqOne.inq_answer}</textarea>
+	                        </c:when>
+                        	<c:when test="${empty inqOne.inq_answer}">
+                        		<textarea id="inq_answer" name="inq_answer" placeholder="답변이 없습니다"></textarea>
+                        	</c:when>
+                        </c:choose>
+                       	<div style="text-align:center">
+                   			<c:if test="${empty inqOne.inq_answer}">
+                       			<button type="submit" class="site-btn" style="margin : 0 20px;">답변등록</button>
+                       		</c:if>
+	                        <button type="button" id="btnBack" class="site-btn" style="margin : 0 20px;">뒤로가기</button>
+                       	</div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Contact Form End -->
+	
+<script>
+	btnBack.addEventListener("click", goBack);
+	function goBack() {
+		location.assign("/teamProject3/ansList.do");
+	}
+</script>
+
+
+<%-- <div class="container">
 	
 		<form method="post" action="/teamProject3/ansUpdate.do" >
 		<h1 >1:1 문의</h1>
@@ -64,13 +136,6 @@
 		</form>
 		<button type="button" id="btnBack">뒤로가기</button>
 		
-	</div>
-	
-<script>
-	btnBack.addEventListener("click", goBack);
-	function goBack() {
-		location.assign("/teamProject3/ansList.do");
-	}
-</script>
+	</div> --%>
 </body>
 </html>

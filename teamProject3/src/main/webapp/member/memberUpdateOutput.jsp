@@ -5,9 +5,28 @@
 <head>
 <meta charset="UTF-8">
 <title>memberUpdateOutput.jsp</title>
+<script>
+$(function() {
+	$("#btnMypage").on("click", function() {
+		location.href='/teamProject3/member/myPageMenu.jsp';
+	});	
+});
+</script>
 </head>
 <body>
-	${cnt}이 수정됨
-	<a href="${pageContext.request.contextPath}/member/myPage.jsp">마이페이지</a>
+<div class="contact-form spad">
+	<div class="container">
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="contact__form__title">
+	                <h2>정보수정이 정상적으로 처리 됐습니다!${cnt}!</h2>
+	            </div>
+	        </div>
+	        <div class="col-lg-12 text-center">
+	                <button type="submit" id="btnMypage" class="site-btn">mypage</button>
+           	</div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

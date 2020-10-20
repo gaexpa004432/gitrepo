@@ -12,16 +12,36 @@ div, button {
 	font-family: 'Noto Sans KR';
 }
 
-form { 
+.updateFrm { 
+        max-width: 1208px;
+  		max-width: 75.5rem;
+  		margin-left: 30.3736%;
+    }    
+
+/* form { 
         max-width: 1208px;
   		max-width: 75.5rem;
   		margin-left: 26.3736%;
     }    
+ */
+.hero__search__form form button{
+width: 115px;
+font-size: 12px;
+    color: #ffffff;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 13px 30px 12px;
+    background: #7fad39;
+    border: none;}
+
+ 
+
 
  </style>
 </head>
 <body>
-<form name="contact" id="contact" action="qaBoardUpdate2.do" method="post"
+<form name="contact" id="contact" action="qaBoardUpdate2.do" method="post" class="updateFrm"
 		enctype="multipart/form-data">
 		<input type="hidden" name="board_no" value="${content.board_no}"/>
 		<div>

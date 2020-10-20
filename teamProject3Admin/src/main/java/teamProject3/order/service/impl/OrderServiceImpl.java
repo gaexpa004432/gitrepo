@@ -49,4 +49,15 @@ public class OrderServiceImpl implements OrderService{
 		return orderDAO.selectChat();
 	}
 
+	@Override
+	public ArrayList<OrderVO> selectDay(OrderVO vo) {
+		return orderDAO.selectDay(vo);
+	}
+
+	@Override
+	public ArrayList<OrderVO> selectMonth(OrderVO vo) {
+		// TODO Auto-generated method stub
+		return orderDAO.selectMonth(vo);
+	}
+
 }

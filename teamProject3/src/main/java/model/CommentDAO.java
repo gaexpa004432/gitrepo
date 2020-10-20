@@ -70,11 +70,11 @@ public class CommentDAO {
 			
 			 try {
 				 conn = ConnectionManager.getConnnect();
-				 String sql = "select * from boardcomment where post_no =?";
+				 String sql = "select COMMENT_NO,COMMENT_CONTENT,COMMENT_DATE,POST_NO,b.MEMBER_ID,(select member_image from member where member_id = b.MEMBER_ID ) as member_image from boardcomment b where post_no = ?";
 				 pstmt = conn.prepareStatement(sql);
 			     pstmt.setInt(1, commentVO.getPost_no());
+			     rs = pstmt.executeQuery();
 			      
-				rs = pstmt.executeQuery();
 				while (rs.next()) {
 				resultVO = new CommentVO();	
 				resultVO.setMember_id(rs.getString("member_id"));
@@ -82,6 +82,7 @@ public class CommentDAO {
 				resultVO.setComment_content(rs.getString("comment_content"));
 				resultVO.setComment_date(rs.getString("comment_date"));
 				resultVO.setPost_no(rs.getInt("post_no"));
+				resultVO.setMember_image(rs.getString("member_image"));
 				list.add(resultVO);
 				}
 			 }catch(Exception e) {

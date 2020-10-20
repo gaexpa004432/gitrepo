@@ -14,7 +14,7 @@
 </head>
 <body> --%>
 <!-- <section class="blog spad"> -->
-        <div class="container" id="divContainer">
+        <div class="container" id="divContainer"><!-- include로 쓰기 위해서 div를 완전히 닫으면 가로로 div를 쓸수 없다. -->
             <div class="row">
                 <div class="col-lg-4 col-md-5">
                     <div class="blog__sidebar"> 
@@ -24,6 +24,7 @@
                                 <li><a href="${pageContext.request.contextPath}/select.do">내 정보조회 및 수정</a></li>
                                 <li><a href="${pageContext.request.contextPath}/orderList.do">내 정보조회 및 수정</a></li>
                                 <li><a href="${pageContext.request.contextPath}/favList.do?fav=fs">나의 즐겨찾기</a></li>
+                                <li><a href="#">내 주문내역</a>
                                 <c:choose>
 									<c:when test="${sessionScope.login.seller_code != 0}">
                                 		<li><a href="${pageContext.request.contextPath}/ansList.do">1:1 문의</a></li>

@@ -116,16 +116,10 @@ $(function() {
 			location.href="/teamProject3/select.do";
 		}
 	});
-	//console.log($("#selectCat"))
-	//$("#selectCat").on("change", function() {
-	//	$(this).attr("selected","selected").val();
-	//})
 	
 	console.log($("#searchWord").val());
 	
 	$("#searchWord").autocomplete({
-	//var keyword = $("#searchWord").val();
-	//console.log(keyword);
 		source:function(request, response) {
 			$.ajax({
 				url:"/teamProject3/ajaxAutocomplete.do",
@@ -144,6 +138,11 @@ $(function() {
 				}
 			});
 		},
+		open: function(evt, ui) {
+            $(this).autocomplete("widget").css({
+                "width": 315
+            });
+        },
 		minLength:1,
 		autoFocus:false,
 		select:function(evt, ui) {
@@ -153,12 +152,54 @@ $(function() {
 		focus:function(evt, ui) {
 			return false;
 		}
-	})
+	});
+	
+	
+	
+	$("#testInput").autocomplete({
+	      source : function(request, response) {
+	         $.ajax({
+	            url : "${pageContext.request.contextPath}/ajax/hashtagAutoSearch.do",
+	            type : "GET",
+	            dataType : "json",
+	            data : {hashtag_name : $("#testInput").val()},    // 검색 키워드
+	            success : function(data) { // 성공
+	               response($.map(data, function(item) {
+	                     return {
+	                        label : item.hashtag_name, //목록에 표시되는 값
+	                        value : item.hashtag_name, //선택 시 input창에 표시되는 값   
+	                        idx : item.testIdx};
+	               })); //response
+	            },//success
+	            error : function() { //실패
+	               //alert("통신에 실패했습니다."); 
+	            }
+	         });
+	      },
+	      open: function(evt, ui) {
+	            $(this).autocomplete("widget").css({
+	                "width": 1000
+	            });
+	        },
+	      minLength : 1,
+	      autoFocus : false,
+	      select : function(evt, ui) {
+	         
+	         $("#tag-list").append("<li class='tag-item'><span class='hashtext'>"+ui.item.value+"</span><span class='del-btn' idx='"+ui.item.idx+"'>x</span></li>");
+	         console.log("전체 data: " + JSON.stringify(ui));
+	         console.log("db Index : " + ui.item.idx);
+	         console.log("검색 데이터 : " + ui.item.value);
+	      },
+	      focus : function(evt, ui) {
+	      return false;
+	      },
+	      close : function(evt) {
+	         
+	      }
+	   });
 	
 	
 });
-
-
 </script>
 <decorator:head></decorator:head>
 </head>
@@ -230,16 +271,19 @@ $(function() {
                     <div class="header__cart " style="vertical-align:top;">
                     <c:if test="${not empty sessionScope.login.member_id}">
                         <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span></span></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span></span></a></li>
+                            <li><a href="${pageContext.request.contextPath}/favList.do?fav=fs">
+                            	<i class="fa fa-heart"></i> <span>${favCnt}</span></a></li>
+                            <!-- <li><a href="#"><i class="fa fa-shopping-bag"></i> <span></span></a></li> -->
                		    </ul>
                		    <c:if test="${not empty sessionScope.login.member_image}">
-	                		<img id="faceIcon" src="${pageContext.request.contextPath}/img/${sessionScope.login.member_image}" 
+	                		<img id="faceIcon" src="/teamProject3/img/${sessionScope.login.member_image}" 
 	                		     class="img-raised rounded-circle img-fluid" style="width:50px;vertical-align:top;">
+	                		<%-- <div>${sessionScope.login.member_id}님</div> --%>
 	                	</c:if>
-	                	<c:if test="${empty sessionScope.login.member_image}">
+	                	<c:if test="${empty sessionScope.login.member_image || sessionScope.login.member_image=='images1'}">
                		    	<img id="faceIcon" src="${pageContext.request.contextPath}/img/face_icon.png" 
                		    	     class="img-raised rounded-circle img-fluid" style="vertical-align:top;">
+               		    	     <p style="font-weight:bold">${sessionScope.login.member_id}님</p>
                		    </c:if>
 					</c:if>         
                     </div>
