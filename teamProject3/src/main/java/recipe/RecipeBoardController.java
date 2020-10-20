@@ -14,8 +14,8 @@ import model.RecipeVO;
 public class RecipeBoardController implements Controller {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RecipeVO recipe = new RecipeVO();
-		
+		  RecipeVO recipe = new RecipeVO();
+	      
 		 	String p = request.getParameter("p");
 			String search = request.getParameter("recipe_search");
 			
@@ -33,7 +33,6 @@ public class RecipeBoardController implements Controller {
 			paging.setTotalRecord(RecipeDAO.getInstance().count(recipe));
 			recipe.setFirst(paging.getFirst());
 			recipe.setLast(paging.getLast());
-			
 			
 		request.setAttribute("paging", paging);
 		request.setAttribute("list", RecipeDAO.getInstance().selectAll(recipe));
