@@ -43,8 +43,7 @@ public class orderOutputInsertController implements Controller {
 		String[] product_number = request.getParameterValues("product_number");
 		String[] product_quantity = request.getParameterValues("product_quantity");
 		String[] product_name = request.getParameterValues("product_name");
-		
-	
+
 		List<orderVO> ord = new ArrayList<orderVO>();
 		vo.setOrder_total(order_total);
 		vo.setSeller_code(seller_code);
@@ -68,11 +67,10 @@ public class orderOutputInsertController implements Controller {
 			orderDAO.getInstance().InsertDetail(vo);
 			ord.add(vo);
 		}
-		System.out.println(vo);
 		int r = orderDAO.getInstance().Insertmileage(vo);
 		System.out.println(r + "건이 들어갔다.");
 		
-		if(mileage_use != null && !mileage_use.equals("")) {
+		if(mileage_use != null && !mileage_use.equals("") && !mileage_use.equals("0")) {
 			vo.setMileage_use(mileage_use);
 			orderDAO.getInstance().Usemileage(vo);
 		}

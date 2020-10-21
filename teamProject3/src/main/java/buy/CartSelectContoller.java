@@ -21,6 +21,9 @@ public class CartSelectContoller implements Controller {
 		String recipe_number = (String) request.getParameter("recipe_number");	
 		vo.setRecipe_number(recipe_number);
 		
+		String product_number = (String) request.getParameter("product_number");
+		vo.setProduct_number(product_number);
+		
 		String member_id = (String) request.getSession().getAttribute("id");//request.getParameter("member_id");
 		vo.setMember_id(member_id);
 		

@@ -509,7 +509,7 @@ img.inimg {
 				</div>
 				<div class="col-sm-1" align="right">
 				 	<c:if test="${ list.member_id == sessionScope.id }"> 
-						<a class="reviewDel" href="javascript:void(0);" data-no="${ list.res_review_no }"><img src="/teamProject3/images/delBtn.png" style="width: 25px; height: 25px;"></a>
+						<a class="reviewDel" href="javascript:void(0);" data-no="${ list.res_review_no }"><img src="/teamProject3/images/clear.png" style="width: 25px; height: 25px;"></a>
 					</c:if>
 				</div>
 

@@ -323,8 +323,8 @@ console.log("${sessionScope.login}");
 						test="${ !empty board.board_file}">
 						<img src="/teamProject3/images/${ board.board_file }"
 							style="max-width: 500px"><br>
-							<br>${board.board_content}<br> 
 					</C:if>
+							<br>${board.board_content}<br> 
 
 				</td>
 			</tr>
