@@ -38,6 +38,8 @@ public class SellDAO {
 					"group by o.order_number, o.order_date, o.member_id, " + 
 					"p.seller_code, o.order_status, o.order_reason, r.recipe_name " + 
 					"order by order_date desc" ;
+			
+		
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, sellVO.getSeller_code());
 			rs = pstmt.executeQuery();

@@ -133,14 +133,6 @@ img.a {
         max-height:190px;
         min-height:190px;
 	}
-/*figure {
-	width: 300px;
-    height: 250px;
-    margin: 0;
-    padding: 0;
-    background: #fff;
-    overflow: hidden;
-}*/
 </style>
 </head>
 <body>

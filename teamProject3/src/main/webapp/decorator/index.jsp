@@ -47,7 +47,6 @@
    max-width: 50px;
   height: auto;
   object-fit:cover;
-  
 }
 
 .rounded-circle {
@@ -228,7 +227,7 @@ $(function() {
 							                </ul>
 					                </c:when>
 					                <c:when test="${not empty sessionScope.login.member_id}">
-					                <img style ="width:20px" src="${pageContext.request.contextPath}/img/logout_icon.png" alt="">
+					                <img style ="width:20px" src="${pageContext.request.contextPath}/images/logout_icon.png" alt="">
 					                	<div>  My Page & LogOut  </div>
 					                	<span class="arrow_carrot-down"></span>
 							                <ul>
@@ -282,7 +281,7 @@ $(function() {
 	                		     <p style="font-weight:bold">${sessionScope.login.member_id}님</p>
 	                	</c:if>
 	                	<c:if test="${sessionScope.login.member_image=='images1'}">
-               		    	<img id="faceIcon" src="${pageContext.request.contextPath}/images/face_icon.png" 
+               		    	<img id="faceIcon" src="${pageContext.request.contextPath}/images/apple-1.png" 
                		    	     class="img-raised rounded-circle img-fluid" style="vertical-align:top;">
                		    	     <p style="font-weight:bold">${sessionScope.login.member_id}님</p>
                		    </c:if>
