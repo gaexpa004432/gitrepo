@@ -24,10 +24,6 @@
 	$('#go-list').on("click", function() {
 		location.href = "${pageContext.request.contextPath}/orderList.do?member_id=" + ${vo.member_id};
 	});
-	
-	function golist() {
-		location.href = "${pageContext.request.contextPath}/orderList.do?member_id=" + ${vo.member_id};
-	}
 </script>
 </head>
 <body>
@@ -36,8 +32,7 @@
 <h1 align="center" class="end">구매가 완료되었습니다.</h1>
 <h3 align="center" class="end1">더 나은 서비스와 질로 보답하겠습니다.</h3>
 <hr>
-	${vo.member_id}
-	<button id="go-list"  onclick='golist()'>주문상세 페이지로!</button>
+	<button id="go-list" onclick="golist()">주문상세 페이지로!</button>
 	
 </body>
 </html>
