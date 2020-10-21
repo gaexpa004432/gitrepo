@@ -72,9 +72,7 @@ $(function () {
 <body>
 <%@include  file="/common/recipe.jsp" %>
 <div class="container">
-<div>
-<h1 style = "color:	#8B6331;">레시피 추천</h1>
-</div>
+
 <hr>
 <c:set var="i" value="0" />
  <c:set var="j" value="4" />

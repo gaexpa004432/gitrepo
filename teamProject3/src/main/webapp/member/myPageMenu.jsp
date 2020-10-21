@@ -25,8 +25,11 @@
 
                                 <li><a href="${pageContext.request.contextPath}/select.do">내 정보조회 및 수정</a></li>
                                 <li><a href="${pageContext.request.contextPath}/orderList.do">주문내역</a></li>
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> branch 'master' of https://github.com/gaexpa004432/gitrepo.git
                                 <li><a href="${pageContext.request.contextPath}/favList.do?fav=fs">나의 즐겨찾기</a></li>
                                 <c:choose>
 									<c:when test="${sessionScope.login.seller_code != 0}">
