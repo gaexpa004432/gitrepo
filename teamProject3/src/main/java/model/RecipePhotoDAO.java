@@ -27,7 +27,7 @@ public class RecipePhotoDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "INSERT INTO recipe_photo (photo_number, recipe_number,"
-					+ " PHOTO_NAME, COOKING_CONTENT)"
+					+ " COOKING_PHOTO_NAME, COOKING_CONTENT)"
 					+ " VALUES (recipe_photo_no.NEXTVAL, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, recipephotoVO.getRecipe_number());
