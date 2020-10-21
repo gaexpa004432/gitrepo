@@ -156,7 +156,7 @@ function inputCheck() {
                     <div class="breadcrumb__text">
                         <h2 >내 정보 조회 및 수정</h2>
                         <div class="breadcrumb__option">
-                            <a href="/teamProject3/">마이페이지</a>
+                            <a href="/teamProject3/member/myPageMain.jsp">마이페이지</a>
                             <span >내 정보 조회 및 수정</span>
                         </div>
                     </div>
@@ -208,7 +208,7 @@ function inputCheck() {
                         </div>
                         <div class="col-lg-4 col-md-6">
                         	<div>
-                        		<c:if test="${empty sessionScope.login.member_image}">
+                        		<c:if test="${sessionScope.login.member_image == 'images1'}">
 									<div class="photo image_wrap" class="col-lg-12" style="text-align:center;">
 										<img src="/teamProject3/images/face_icon.png" id="image_preview" style="width:500px" 
 											 name="image_preview" class="img-fluid1 rounded-circle1 img"/>
@@ -223,7 +223,7 @@ function inputCheck() {
 									</div>
 								</c:if>
 								
-								<c:if test="${not empty sessionScope.login.member_image}">
+								<c:if test="${sessionScope.login.member_image != 'images1'}">
 									<div class="photo" class="col-lg-12" style="text-align:center;">
 										<img src="/teamProject3/images/${sessionScope.login.member_image}" id="image_preview" style="width:500px" 
 											 name="image_preview" class="img-fluid1 rounded-circle1"/>
@@ -295,6 +295,7 @@ function inputCheck() {
 		                        <div class="col-lg-6">  
 		                            <div class="checkout__input">
 		                                <input type="hidden" name="member_jibunAddress" id="sample4_jibunAddress" placeholder="지번주소" readonly>
+		                                <span id="guide" style="color:#999;display:none"></span>
 		                                <input type="text" name="member_detailAddress" id="sample4_detailAddress" placeholder="상세주소" 
 						   					   value="${sessionScope.login.member_detailAddress}">
 		                            </div>

@@ -106,6 +106,11 @@ h2 {
 	margin-left : 11%;
 }
 
+.cartdiv {
+	margin-left : auto;
+	margin-right : auto;
+}
+
 </style>
 <script>
 	$(function() {	

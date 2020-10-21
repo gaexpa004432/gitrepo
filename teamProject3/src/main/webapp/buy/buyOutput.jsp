@@ -32,7 +32,7 @@
 <h1 align="center" class="end">구매가 완료되었습니다.</h1>
 <h3 align="center" class="end1">더 나은 서비스와 질로 보답하겠습니다.</h3>
 <hr>
-	<button id="go-list" onclick='golist()'>주문상세 페이지로!</button>
+	<button id="go-list" onclick="golist()">주문상세 페이지로!</button>
 	
 </body>
 </html>

@@ -69,7 +69,7 @@ input[type="button"]:active {
                     <div class="breadcrumb__text">
                         <h2>판매자로 등록</h2>
                         <div class="breadcrumb__option">
-                            <a href="/teamProject3/">My Page</a>
+                            <a href="/teamProject3/member/myPageMain.jsp">My Page</a>
                             <span >판매자로 등록</span>
                         </div>
                     </div>
