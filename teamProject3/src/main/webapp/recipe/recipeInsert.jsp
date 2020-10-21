@@ -164,13 +164,14 @@ $(function(){           //상품이름 단위 가격 적는 곳 추가~!!!
 <div class="container">
 <form name="frm1" action ="/teamProject3/recipeInsert.do" enctype='multipart/form-data' method = "post">
 <div class="container" align="left">
-
+	
 	<h2  align = "left" style = "margin-top:50px" >레시피 등록</h2><br>
 	<hr>
 	<div class="row">
 	<div class="col-sm-6">
 	<br>
 	<h3  style = "color:#9ACD32; font-family: Fantasy;">레시피 이름</h3><br>
+	<br>
 	<input  type="text" name="recipe_name" id="recipe_name" style="width:50%">
 	<br>
 	</div>
