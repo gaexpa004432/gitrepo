@@ -50,7 +50,7 @@ $(function(){
                     <div class="breadcrumb__text">
                         <h2 >1:1문의 내역</h2>
                         <div class="breadcrumb__option">
-                            <a href="/teamProject3/">마이페이지</a>
+                            <a href="/teamProject3/member/myPageMain.jsp">마이페이지</a>
                             <span >1:1문의</span>
                         </div>
                     </div>

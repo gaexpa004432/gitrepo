@@ -69,7 +69,7 @@ input[type="button"]:active {
                     <div class="breadcrumb__text">
                         <h2>판매자 정보 조회 및 수정</h2>
                         <div class="breadcrumb__option">
-                            <a href="/teamProject3/">My Page</a>
+                            <a href="/teamProject3/member/myPageMain.jsp">마이페이지</a>
                             <span >판매자 정보 조회 및 수정</span>
                         </div>
                     </div>
@@ -82,7 +82,7 @@ input[type="button"]:active {
    <div class="col-lg-8 col-md-7"> 
         <div class="container">
             <div class="checkout__form">
-                <h4>판매자로 등록</h4>
+                <h4>판매자 정보 조회 및 수정 </h4>
                 <form method="post" name="frm" id="frm" 
 		  			  action="/teamProject3/addUpdate.do" 
 		 			  onsubmit="return inputCheck()">

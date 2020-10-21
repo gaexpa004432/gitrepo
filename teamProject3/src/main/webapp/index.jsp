@@ -25,7 +25,6 @@ if(${sessionScope.id eq 'vegan'}){
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
   <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 
- 
 <!-- <style>
 .bxslider li { width:500px; }
 </style> -->
@@ -51,7 +50,7 @@ if(${sessionScope.id eq 'vegan'}){
 $(document).ready(function(){ 
 	$('.bxslider').bxSlider({
 		auto: true,
-		autoControls: true,
+		autoControls: true
 	});
 	});
 </script>

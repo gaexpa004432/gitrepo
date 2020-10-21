@@ -1,6 +1,6 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +21,9 @@
                         <div class="blog__sidebar__item">
                             <h4>마이페이지 메뉴</h4>
                             <ul>
-                                <li><a href="${pageContext.request.contextPath}/select.do">내 정보 조회 및 수정</a></li>
+
+                                <li><a href="${pageContext.request.contextPath}/select.do">내 정보조회 및 수정</a></li>
+                                <li><a href="${pageContext.request.contextPath}/orderList.do">주문내역</a></li>
                                 <li><a href="${pageContext.request.contextPath}/favList.do?fav=fs">나의 즐겨찾기</a></li>
                                 <c:choose>
 									<c:when test="${sessionScope.login.seller_code != 0}">
@@ -40,9 +42,8 @@
                                 	<c:when test="${sessionScope.login.seller_code == 0}">
 		                                <li><a href="${pageContext.request.contextPath}/member/memberAddInsert.jsp">판매자로 등록</a></li>
 		                            </c:when>
-		                        <li><a href="${pageContext.request.contextPath}/orderList.do">주문내역</a></li>    
 		                        </c:choose>
-                                <li><a href="/teamproject3/member/memberDelete.jsp">회원탈퇴</a></li>
+                                <li><a href="/teamProject3/member/memberDelete.jsp">회원탈퇴</a></li>
                             </ul>
                         </div>
                     </div>

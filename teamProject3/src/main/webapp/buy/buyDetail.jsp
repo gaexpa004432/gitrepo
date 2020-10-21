@@ -113,7 +113,8 @@ h3 {
 }
 
 .order_detail_buyimformation {
-	display : inline-block;
+	display : block;
+	margin-top : 3%;
 }
 
 input {
@@ -127,18 +128,48 @@ input {
 }
 
 .shoping__checkout {
-	padding-right : 20%;
+	margin-left : auto;
+	margin-right : auto;
 }
 
 .miliege-imformation {
 	display : block;
 }
 
+.order_detail_buytitle {
+	margin-top : 3%;
+}
+
+
+#checkout {
+	margin-left : auto;
+	margin-right : auto;
+	display : block;
+	float : right;
+	margin-right: 3%;
+}
+
 .lay {
 	margin-left : auto;
 	margin-right : auto;
+	width : 1400px;
 }
 
+#memtel {
+	padding-left : 3%;
+}
+
+#mememail {
+	padding-left : 3%;
+}
+
+.order_detail_producttitle {
+	margin-top : 3%;
+}
+
+.payment {
+	float : right;
+}
 
 </style>
 <script>
@@ -268,7 +299,7 @@ $(function() {
         </div>
     </section>
 
-		<div class="lay">
+	<div class="lay">
 			<h3 class="order_detail_producttitle">상품 정보</h3>
 	<form action="${pageContext.request.contextPath}/orderOutputInsert.do" id="frm" name="frm" method="post">
 		<table border='1' class="order_detail_buytable">
@@ -315,10 +346,9 @@ $(function() {
 		<input type="hidden" name="seller_code" value="${resultVO.seller_code}">
 		<input type="hidden" name="member_id" value="${vo.member_id}">
 		<div class="payment">
-		<strong>최종결제금액 : </strong>
+		<strong id="last-product">최종결제금액 : <span id="all_price_put" data-allprice="${all_price}">
+		</span> </strong>
 		<input type="hidden" value="${all_price}">
-		<h2 id="all_price_put" data-allprice="${all_price}">
-		</h2>
 		</div>
 
 		<hr width=30%>
@@ -328,8 +358,8 @@ $(function() {
 		</div>
 
 		<div class="order_detail_buyimformation">
-			<span>이 름 : </span><input type="text" id="name" name="member_name" value="${vo.member_name}"/><span>휴대폰
-				: </span><input type="text" id="tel" name="member_tel" value="${vo.member_tel}"/> <span>이메일 : </span><input
+			<span>이 름 : </span><input type="text" id="name" name="member_name" value="${vo.member_name}"/><span id="memtel">휴대폰
+				: </span><input type="text" id="tel" name="member_tel" value="${vo.member_tel}"/> <span id="mememail">이메일 : </span><input
 				type="text" name="member_email" id="emial" value="${vo.member_email}" />
 		</div>
 		<hr width=30%>
@@ -362,14 +392,14 @@ $(function() {
 		<c:set  var="my_mileage" value="0" />
 			보유 마일리지 :
 			<input type="text" value="${mil.remaining}" class="mileage_have" readonly>
-			<input type="button" class="btn btn-outline-success btn-lg" id="mileage_all_button" value="전액사용" onclick="click()"> <br> <br> 적립 마일리지 :
+			<input type="button" class="btn btn-outline-success btn-sm" id="mileage_all_button" value="전액사용" onclick="click()"> <br> <br> 적립 마일리지 :
 		<input type="text" class="mileage_input" name="mileage_cost" readonly><br>
 		<c:set var="my_mileage" value="${mil.remaining}"/>
-		사용 마일리지: <input type="text" name="mileage_use" class="mileage_use">
+		사용 마일리지 : <input type="text" name="mileage_use" class="mileage_use">
 		</div> 
 		<hr width=30%>
 		
-		 <div class="col-lg-3">
+		 <div class="col-lg-4" id="checkout">
                     <div class="shoping__checkout">
                     <c:set var="fianl_order_price" value="0"/>
                        <h5>Cart Total</h5>

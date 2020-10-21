@@ -87,6 +87,11 @@ h2 {
 	padding-left : 65%;
 }
 
+.cartdiv {
+	margin-left : auto;
+	margin-right : auto;
+}
+
 </style>
 <script>
 	$(function() {	
@@ -176,7 +181,8 @@ h2 {
             </div>
         </div>
     </section>
-
+   
+<div class="cartdiv">
 <form action="${pageContext.request.contextPath}/orderDetailController.do" name="frm" id="frm">
 <input type="hidden" name="arr">
 </form>
@@ -251,6 +257,7 @@ h2 {
 
 		<input type="hidden" name="seller_code" value="${resultVO.seller_code}">
 
+</div>
 	
 </body>
 </html>
