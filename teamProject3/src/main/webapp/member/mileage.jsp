@@ -10,9 +10,14 @@
       <script src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 <script>
 
-$(document).ready(function () {
-    $('#Mildata').DataTable();
-});
+$(document).ready(function() {
+	   $("#Mildata").DataTable({
+	      lengthMenu: [ 5, 10, 20, 30, 50 ],
+	   
+	         // 기본 표시 건수를 50건으로 설정
+	         displayLength: 5, 
+	      });
+	});
 
 </script>
 </head>
@@ -28,13 +33,14 @@ $(document).ready(function () {
 </style>
 
 <body>
-		<h3>마일리지 현황</h3>
+<%@include file="/common/mileage.jsp" %>
+
 			<hr>
 	<div id="mileage-table">
 		<table id="Mildata" >
 		
 			<thead align="center" >
-				<tr id="tr_font" bgcolor="E0FFFF">
+				<tr id="tr_font" bgcolor="#99FFCC">
 					<th>구분</th>
 					<th>내용</th>
 					<th>금액</th>

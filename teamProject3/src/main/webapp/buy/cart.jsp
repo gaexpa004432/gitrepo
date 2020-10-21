@@ -183,19 +183,11 @@ h2 {
 </script>
 </head>
 <body>
+<%@include file="/common/buy.jsp" %>
+<br>
+<br>
+<br>
 
- <section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="breadcrumb__text">
-                        <h2>장바구니</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-   
 <div class="cartdiv">
 <form action="${pageContext.request.contextPath}/orderDetailController.do" name="frm" id="frm">
 <input type="hidden" name="arr">
@@ -232,7 +224,8 @@ h2 {
 	<c:forEach items="${list}" var="cart">
 		<tr class="cart-deal-items">
 			<td class="select-event">
-				<input type="checkbox" class="cart-check" value="${cart.product_number}" checked>  ${cart.main_img}
+				<input type="checkbox" class="cart-check" value="${cart.product_number}" checked>
+				<img src="${pageContext.request.contextPath}/images/${cart.main_img}"> ${cart.main_img}
 			</td>
 			<td> <input type="hidden" class="recipe_name" value="${cart.recipe_name}"> ${cart.recipe_name}</td>
 			<td> <input type="hidden" class="product_name" value="${cart.product_name}">${cart.product_name}</td>

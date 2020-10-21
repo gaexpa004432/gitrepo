@@ -120,7 +120,7 @@
 		                        </a>
 	                        </div>
 	                        <div class="col-4 ">
-	                        	<a class="portfolio-box" href="/teamproject3/orderList.do">
+	                        	<a class="portfolio-box" href="${pageContext.request.contextPath}/orderList.do">
 		                            <img class="img-fluid1" src="/teamProject3/images/6.jpg" alt="" />
 		                            <div class="portfolio-box-caption p-3">
 	                                <!-- <div class="project-category text-white-50">Category</div> -->

@@ -72,7 +72,7 @@ public class orderOutputInsertController implements Controller {
 		int r = orderDAO.getInstance().Insertmileage(vo);
 		System.out.println(r + "건이 들어갔다.");
 		
-		if(mileage_use != null && !mileage_use.equals("")) {
+		if(mileage_use != null && !mileage_use.equals("") && !mileage_use.equals("0")) {
 			vo.setMileage_use(mileage_use);
 			orderDAO.getInstance().Usemileage(vo);
 		}

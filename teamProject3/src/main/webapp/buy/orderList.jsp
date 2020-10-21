@@ -10,41 +10,68 @@
       <script src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 <script>
 
-$(document).ready(function () {
-    $('#orderlist').DataTable();
-});
+$(document).ready(function() {
+	   $("#orderlist").DataTable({
+	      lengthMenu: [ 5, 10, 20, 30, 50 ],
+	   
+	         // 기본 표시 건수를 50건으로 설정
+	         displayLength: 5, 
+	      });
+	});
 
 </script>
+<style>
+	#orderid {
+		text-align : center;
+		font-weight : bold;
+		font-size : 20px;
+	}
+	
+	#spanid {
+		margin-left : auto;
+		margin-right : auto;
+	}
+</style>
 </head>
 <body>
-	<h3>주문자 정보</h3>
-					<div>
-							<span>${VO.member_name}</span>
-							<span>${VO.member_tel}</span>
-							<span>${VO.member_email}</span>
+<%@include file="/common/buy.jsp" %>
+<br>
+
+					<div id="spanid">
+							<span id="orderid">${VO.member_name}님의 주문내역입니다.</span>
+							<br>
+							<br>
+
 					</div>
 					
-	<h3>주문 정보</h3>
 					<table id="orderlist">
-						<thead>
-							<tr>
-							<td>주문번호</td>
-							<td>주문일시</td>
-							<td>재료 이름</td>
-							<td>주문상태</td>
-							<td>총 가격</td>
+						<thead align="center">
+							<tr bgcolor="#99FFCC">
+							<th>주문번호</th>
+							<th>주문일시</th>
+							<th>재료 이름</th>
+							<th>주문상태</th>
+							<th>가격</th>
 							</tr>
 						</thead>
 					
 					
-						<tbody>
+						<tbody align="center">
 						<c:forEach items="${list}" var="order">
 							<tr>
 							<td>${order.order_number}</td>
 							<td>${order.order_date}</td>
 							<td>${order.product_name}</td>
-							<td>${order.order_status}</td>
-							<td>${order.order_total}</td>
+							<c:if test="${order.order_status == 'ow'}">
+							<td>처리 중</td>
+							</c:if>
+							<c:if test="${order.order_status == 'oa'}">
+							<td>주문 완료</td>
+							</c:if>
+							<c:if test="${order.order_status == 'or'}">
+							<td>주문 거절</td>
+							</c:if>
+							<td>${order.product_price}</td>
 							</tr>
 						</c:forEach>
 						</tbody>

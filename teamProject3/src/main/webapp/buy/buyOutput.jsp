@@ -14,25 +14,69 @@
 	
 	.end {
 		font-size : 60px;
+		font-weight : bold;
+	}
+	
+	.end1 {
+		font-weight : bold;
 	}
 
 	.order-list-table {
 		align : center;
 	}
+	
+	
+	#orderout {
+	margin-left : auto;
+	margin-right : auto;
+	width : 1400px;
+	}
+	
+	#go-list {
+	margin-left : auto;
+	margin-right : auto;
+	}
+	
+	#btns {
+		align : center;
+	}
+	
+	#cartimg {
+	margin-top : 5%;
+	}
+	
 </style>
 <script>
+$(function() {
 	$('#go-list').on("click", function() {
-		location.href = "${pageContext.request.contextPath}/orderList.do?member_id=" + ${vo.member_id};
+		location.href = '${pageContext.request.contextPath}/orderList.do';
 	});
+	
+	$('#go-main').on("click", function() {
+		location.href = '${pageContext.request.contextPath}/index.jsp';
+	});
+	
+})
 </script>
 </head>
 <body>
-
-<img src="">
-<h1 align="center" class="end">구매가 완료되었습니다.</h1>
-<h3 align="center" class="end1">더 나은 서비스와 질로 보답하겠습니다.</h3>
+<%@include file="/common/buy.jsp" %>
+<br>
+<br>
+<br>
+<div id="orderout">
+<div id="inline">
+<img src="${pageContext.request.contextPath}/img/cart.png" id="cartimg">
+<h1 align="center" class="end">주문이 완료되었습니다.</h1>
+</div>
+<h3 align="center" class="end1">${vo.member_id}님의 주문내역은 다음과 같습니다.</h3>
 <hr>
-	<button id="go-list" onclick="golist()">주문상세 페이지로!</button>
-	
+
+
+<div id="btns">
+	<button type="button" id="go-list" class="btn btn-warning btn-lg btn-radius">주문내역 확인</button>
+	<button type="button" id="go-main" class="btn btn-warning btn-lg btn-radius">메인페이지</button>
+</div>
+</div>
 </body>
 </html>
