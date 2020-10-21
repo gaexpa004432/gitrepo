@@ -33,11 +33,10 @@
 //====================================================================================================
 	
 $(function(){           //상품이름 단위 가격 적는 곳 추가~!!!
-		
 		$(".matAdd").on("click",function(){
+			
 			var seller = ""
-			console.log("${sessionScope.login.seller_code}")
-			if(${!empty sessionScope.login.seller_code}){
+			if(${sessionScope.login.seller_code != 0}){
 				seller = $("<input>").attr("name","product_price").attr("placeholder", "예) 10000");				
 			}
 			$(".matList").append($("<div>")

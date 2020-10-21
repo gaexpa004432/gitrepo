@@ -29,6 +29,8 @@ var canvas = document.getElementById("myChart");
 	} );
 	
 	$(".start").change(function(){
+		console.log($(".start").eq(1).val());
+		console.log($(".start").eq(2).val());
 		var group = $(".start").eq(0).val();
 		var sy = $(".start").eq(1).val().substring(0,4);
 		var sm = $(".start").eq(1).val().substring(5,7);
@@ -70,14 +72,11 @@ var canvas = document.getElementById("myChart");
 				    data: {order_date:$(".start").eq(1).val(),order_total:$(".start").eq(2).val()},
 				    method : "POST",
 			    success: function(data) {
-			    		console.log(data)
-			    	for(i = 0 ; i < data.length;i++){
 			    		arrayDate = new Array();
 			    		arraytotal = new Array();
+			    	for(i = 0 ; i < data.length;i++){
 			    		arrayDate[i] = data[i].order_date;
 			    		arraytotal[i] =  data[i].order_total;
-			    		console.log(arrayDate)
-			    		console.log(arraytotal)
 			    	}
 			    		myBarChart.destroy();
 			    	chart()
