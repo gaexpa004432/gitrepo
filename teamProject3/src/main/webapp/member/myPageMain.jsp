@@ -122,7 +122,7 @@
 	                        </a>
 	                    </c:when>
 	                    <c:when test="${sessionScope.login.seller_code == 0}">
-	                    	<a class="portfolio-box" href="/teamproject3/orderList.do">
+	                    	<a class="portfolio-box" href="/teamProject3/orderList.do">
 	                            <img class="img-fluid1" src="/teamProject3/images/lemon.png" alt="" />
 	                            <div class="portfolio-box-caption p-3">
 	                                <!-- <div class="project-category text-white-50">Category</div> -->

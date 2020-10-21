@@ -254,7 +254,7 @@ $(function() {
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="/teamProject3/">Home</a></li>
+                            <li><a href="/teamProject3/">Home</a></li>
                             <li><a href="/teamProject3/guide/guide.jsp">Guide</a></li>
                             <li><a href="/teamProject3/recipeBoard.do">Recipe</a></li>
                             <li><a href="/teamProject3/restaurantBoard.do">Restaurant</a></li>

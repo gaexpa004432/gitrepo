@@ -199,9 +199,11 @@
 			<img src="/teamProject3/images/${ recipe.main_img }" height="400"
 				width="400">
 		</div>
-		
-			<div class="col-sm-12" align="center">		
-			<h1>${ recipe.recipe_name }</h1>
+			
+			<div class="col-sm-12" align="center">
+			<div style="margin-top:50px;">		
+			<b style="font-size:30px;">${ recipe.recipe_name }</b>
+			</div>
 		</div>
 		<br>
 
@@ -218,7 +220,7 @@
 		</div>
 		
 		<div class="col-sm-12" align="center">
-			<h3>${ recipe.recipe_content }</h3>
+			<h3 style="color:#777777">${ recipe.recipe_content }</h3>
 		</div>
 		<div class="col-sm-6 contact__widget" align="center" style="font-size:25px;">
 		<span class="icon_clock_alt"></span><br>레시피 시간 : ${ recipe.cooking_time }</div>
@@ -298,11 +300,14 @@
 	<br>
 	<br>
 	<br>
+	
+	<c:if test="${!empty recipe.seller_code }" >
 	<div class="row">
 		<div class="col-sm-12" align="center">
 			<button id="cart" class="site-btn">담기</button>
 		</div>
 	</div>
+	</c:if>
 	<hr>
 	
 	<h3 class="col-sm-12" align="center" style = "color:#6B8E23;">조리 순서</h3><br><br>
