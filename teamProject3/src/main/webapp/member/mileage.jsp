@@ -1,5 +1,3 @@
-<%@page import="model.orderVO"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -8,42 +6,49 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css ">
+      <script src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script>
+
+$(document).ready(function () {
+    $('#Mildata').DataTable();
+});
+
+</script>
 </head>
 <style>
-	.mileage {
-	border-collapse: collapse;
-    text-align: left;
-    line-height: 1.5;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    margin: 20px 10px;
+	#Mildata {
+		text-align : center;
 	}
+	
+	#tr_font h5{
+		color : blue;
+	}	
 
 </style>
+
 <body>
 		<h3>마일리지 현황</h3>
 			<hr>
-	<form action="${pageContext.request.contextPath}/mileageController.do">
 	<div id="mileage-table">
-		<table border='1' class="mileage">
+		<table id="Mildata" >
 		
-			<thead>
-				<tr>
+			<thead align="center" >
+				<tr id="tr_font" bgcolor="E0FFFF">
 					<th>구분</th>
 					<th>내용</th>
 					<th>금액</th>
-					<th>날짜</th>
-					<th>잔여</th>
+					<th>등록일</th>
+					<th>잔여금액</th>
 				</tr>
 			</thead>
 			
-			<tbody>
+			<tbody align="center">
 			<c:forEach items="${mil_list}" var="mil">
-				<tr>
+				<tr class="active-row">
 					<td class="group_code">${mil.group_code}</td>
 					<td class="mileage_contents">${mil.mileage_contents}</td>
-					<td class="mileage_cost">${mil.mileage_cost}</td>
+					<td class="mileage_cost">${mil.mileage_cost}P</td>
 					<td>${mil.mileage_date}</td>
 					<td class="remaining">${mil.remaining}</td>
 				</tr>
@@ -51,6 +56,5 @@
 			</tbody>
 		</table>	
 	</div>	
-	</form>
-</body>
+	</body>
 </html>

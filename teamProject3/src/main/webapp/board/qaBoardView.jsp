@@ -9,6 +9,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
 	rel="stylesheet">
+	<link rel="stylesheet" href="/teamProject3/css/userImage.css">	
 <style>
 
 
@@ -188,7 +189,7 @@ $(function(){
 			    success: function(datas) {
 			    	$(".re").append($("<div>").attr("class","row").attr("id","review").css("border-top-width","1px").css("border-top-style","solid")
 							.css("padding","20px").css("border-top-color","#f0f0f5")
-							.append($("<div>").attr("class","col-sm-3").text(datas.member_id))
+							.append($("<div>").attr("class","col-sm-3").append($("<img>").attr("src","/teamProject3/images/${sessionScope.login.member_image}").attr("class","userImage")).append($("<br>")).append($("<div>").text(datas.member_id)))
 							.append($("<div>").attr("class","col-sm-5").attr("align","left").html("<small style='vertical-align:top'>"+datas.comment_date +"</small>"+"<br><div>"+datas.comment_content+"</div>"))
 							.append($("<div>").attr("class","col-sm-3")
 							.append($("<button>").text("수정").attr("class","update").on("click",updateOne).data("comment_content",datas.comment_content))
@@ -275,7 +276,7 @@ $(function(){
 						$("<div>")
 							.attr("class","row").attr("id","review").css("border-top-width","1px").css("border-top-style","solid")
 						    .css("padding","20px").css("border-top-color","#f0f0f5")
-						    .append($("<div>").attr("class","col-sm-3").text(datas[i].member_id))
+						    .append($("<div>").attr("class","col-sm-3").append($("<img>").attr("src","/teamProject3/images/"+datas[i].member_image).attr("class","userImage")).append($("<br>")).append($("<div>").text(datas[i].member_id)))
 							.append($("<div>").attr("class","col-sm-5").attr("align","left").html("<small style='vertical-align:top'>"+datas[i].comment_date +"</small>"+"<br><div>"+datas[i].comment_content+"</div>"))
 							.append(btn) // div append 끝
 						)  //  .re append 끝
@@ -337,7 +338,9 @@ $(function(){
 		<button type="button" class="btn" style="display: none" id="delbtn">삭제</button>
 		<a id="gg"></a> <br> <br> <br>
 		<!-- 댓글 리스트 -->
+		<div class="checkout__input">
 		<div class="re"></div>
+		</div>
 		<br>
 		<textarea cols="100" rows="3" id="commentcontent"></textarea>
 		<button type="button" id="btnInsert"

@@ -8,7 +8,7 @@
 <script>
 $(function() {
 	$("#btnMypage").on("click", function() {
-		location.href='/teamProject3/member/myPageMenu.jsp';
+		location.href='/teamProject3/member/myPageMain.jsp';
 	});	
 });
 </script>

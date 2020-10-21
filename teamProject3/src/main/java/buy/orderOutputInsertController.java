@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
+import model.MemberVO;
 import model.orderDAO;
 import model.orderVO;
 
@@ -17,10 +18,12 @@ public class orderOutputInsertController implements Controller {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		orderVO vo = new orderVO();
 		
+		
 		String member_id = (String) request.getSession().getAttribute("id");//request.getParameter("member_id");
 		vo.setMember_id(member_id);
 		
 		String order_total = request.getParameter("order_total");
+		System.out.println(order_total);
 		String seller_code = request.getParameter("seller_code");
 		String member_postcode = request.getParameter("member_postcode");
 		String member_roadAddress = request.getParameter("member_roadAddress");
@@ -29,6 +32,10 @@ public class orderOutputInsertController implements Controller {
 		String member_tel = request.getParameter("member_tel");
 		String member_name = request.getParameter("member_name");
 		String member_email = request.getParameter("member_email");
+		String mileage_cost =request.getParameter("mileage_cost");
+		String mileage_use = request.getParameter("mileage_use");
+		System.out.println(mileage_cost);
+		System.out.println(member_id);
 		
 		//디테일 인서트
 		
@@ -36,7 +43,8 @@ public class orderOutputInsertController implements Controller {
 		String[] product_number = request.getParameterValues("product_number");
 		String[] product_quantity = request.getParameterValues("product_quantity");
 		String[] product_name = request.getParameterValues("product_name");
-
+		
+	
 		List<orderVO> ord = new ArrayList<orderVO>();
 		vo.setOrder_total(order_total);
 		vo.setSeller_code(seller_code);
@@ -47,6 +55,8 @@ public class orderOutputInsertController implements Controller {
 		vo.setMember_tel(member_tel);
 		vo.setMember_name(member_name);
 		vo.setMember_email(member_email);
+		vo.setMileage_cost(mileage_cost);
+		vo.setMileage_use(mileage_use);
 		
 		vo.setLast(orderDAO.getInstance().Insertoutput(vo));
 		
@@ -58,8 +68,16 @@ public class orderOutputInsertController implements Controller {
 			orderDAO.getInstance().InsertDetail(vo);
 			ord.add(vo);
 		}
-		request.setAttribute("ord", ord);
+		System.out.println(vo);
+		int r = orderDAO.getInstance().Insertmileage(vo);
+		System.out.println(r + "건이 들어갔다.");
 		
+		if(mileage_use != null && !mileage_use.equals("")) {
+			vo.setMileage_use(mileage_use);
+			orderDAO.getInstance().Usemileage(vo);
+		}
+		
+		request.setAttribute("ord", ord);
 		request.getSession().setAttribute("ord", "ord");
 		
 		request.getRequestDispatcher("/buy/buyOutput.jsp").forward(request, response);

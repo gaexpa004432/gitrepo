@@ -6,6 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css ">
+      <script src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script>
+
+$(document).ready(function () {
+    $('#orderlist').DataTable();
+});
+
+</script>
 </head>
 <body>
 	<h3>주문자 정보</h3>
@@ -16,7 +25,7 @@
 					</div>
 					
 	<h3>주문 정보</h3>
-					<table border='1'>
+					<table id="orderlist">
 						<thead>
 							<tr>
 							<td>주문번호</td>

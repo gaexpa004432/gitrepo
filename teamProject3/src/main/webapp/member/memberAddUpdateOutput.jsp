@@ -25,7 +25,7 @@
 <script>
 	btnMypage.addEventListener("click", goMypage);
 	function goMypage() {
-		location.assign("/teamProject3/member/myPageMenu.jsp");
+		location.assign("/teamProject3/member/myPageMain.jsp");
 	}
 </script>
 </body>

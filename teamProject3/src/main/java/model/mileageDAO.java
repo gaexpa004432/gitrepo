@@ -39,7 +39,7 @@ public class mileageDAO {
 	            ord.setMileage_no(rs.getInt("mileage_no"));
 	            ord.setMileage_contents(rs.getString("mileage_contents"));
 	            ord.setMileage_date(rs.getString("mileage_date"));
-	            ord.setMileage_cost(rs.getInt("mileage_cost"));
+	            ord.setMileage_cost(rs.getString("mileage_cost"));
 	            ord.setRemaining(rs.getInt("remaining"));
 	            mil_list.add(ord);
 	            }

@@ -35,6 +35,15 @@ public class orderDAO {
 			+ " FROM orderList l, order_detail d"
 			+ " WHERE l.order_number = d.order_number AND l.order_number = ?";
 	
+	String INSERT_USE_MILEAGE = "INSERT INTO mileage(MILEAGE_NO, MILEAGE_CONTENTS, MILEAGE_DATE, MILEAGE_COST,"
+			+ " GROUP_CODE, MEMBER_ID) "
+			+ " VALUES (order_mileage_seq.nextval, '마일리지사용', SYSDATE, ?, '사용', ?)";
+	
+	String INSERT_ORDER_MILEAGE = "INSERT INTO mileage(MILEAGE_NO, MILEAGE_CONTENTS, MILEAGE_DATE, MILEAGE_COST,"
+			+ " GROUP_CODE, MEMBER_ID) "
+			+ " VALUES (order_mileage_seq.nextval, '상품구매', SYSDATE, ?, '적립', ?)";
+	
+	
 	    public ArrayList<orderVO> getOrderoutput(orderVO vo){
 	    	ArrayList<orderVO> list = new ArrayList<orderVO>();
 	        try {
@@ -110,4 +119,34 @@ public class orderDAO {
 			}
 	    	return r;
 	    }
+	    
+	    public int Usemileage(orderVO vo) {
+	    	int r=0;
+	    	try {
+	    		conn = ConnectionManager.getConnnect();
+	    		psmt = conn.prepareStatement(INSERT_USE_MILEAGE);
+	    		psmt.setString(1, vo.getMileage_use());
+	    		psmt.setString(2, vo.getMember_id());
+	    		r = psmt.executeUpdate();
+	    	} catch(Exception e) {
+	    		e.printStackTrace();
+	    	}
+	    	return r;
+	    	
+	    }
+	    public int Insertmileage(orderVO vo) {
+	    	int r=0;
+	    	try {
+	    		conn = ConnectionManager.getConnnect();
+				psmt = conn.prepareStatement(INSERT_ORDER_MILEAGE);
+				psmt.setString(1, vo.getMileage_cost());
+				psmt.setString(2, vo.getMember_id());
+				r = psmt.executeUpdate();
+	    	} catch(Exception e) {
+	    		e.printStackTrace();
+	    	}
+			return r;
+	    	
+	    }
 }
+	    
