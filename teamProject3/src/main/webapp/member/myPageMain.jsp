@@ -80,13 +80,26 @@
 	                </c:choose>
                     </div>
                     <div class="col-4 ">
-                        <a class="portfolio-box" href="${pageContext.request.contextPath}/mileageController.do">
-                            <img class="img-fluid1" src="/teamProject3/images/grapes.png" alt="" />
-                            <div class="portfolio-box-caption">
-                                <!-- <div class="project-category text-white-50">Category</div> -->
-                                <div class="project-name">마일리지조회</div>
-                            </div>
-                        </a>
+                    	<c:choose>
+							<c:when test="${sessionScope.login.seller_code != 0}">
+	                        	<a class="portfolio-box" href="/teamproject3/orderList.do">
+		                            <img class="img-fluid1" src="/teamProject3/images/lemon.png" alt="" />
+		                            <div class="portfolio-box-caption p-3">
+		                                <!-- <div class="project-category text-white-50">Category</div> -->
+		                                <div class="project-name">주문내역</div>
+		                            </div>
+		                        </a>
+                    		</c:when>
+		                    <c:when test="${sessionScope.login.seller_code == 0}">
+		                    	<a class="portfolio-box" href="${pageContext.request.contextPath}/mileageController.do">
+		                            <img class="img-fluid1" src="/teamProject3/images/grapes.png" alt="" />
+		                            <div class="portfolio-box-caption">
+		                                <!-- <div class="project-category text-white-50">Category</div> -->
+		                                <div class="project-name">마일리지조회</div>
+		                            </div>
+		                        </a>
+                   			</c:when>
+	                	</c:choose>
                     </div>
                     <div class="col-4 ">
                     <c:choose>
