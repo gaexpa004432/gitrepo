@@ -245,7 +245,9 @@
 		<div class="col-sm-12" align="center">
 			<h3 style = "color:#9ACD32;">레시피 재료</h3>
 		</div>
-
+		<br>
+		<br>
+		<br>		
 		<div class="col-sm-6" align="left">
 			<h3 align="left">[재료]</h3>
 			<br>
@@ -270,19 +272,28 @@
 			</div>
 		</div>
 	
-		<div class="col-sm-6" align="center">
-			<h3>[양념]</h3>
+	
+		<div class="col-sm-6" align="left">
+			<h3 align="left">[양념]</h3>
 			<br>
 			<br>
-			<div class="col-md-7" align="right" style="text-align:left; font-size:10px;">
+			<br>
+			<div class="row" align="center">
 			<c:forEach items="${ product }" var="mater">
 				<c:if test="${mater.product_code eq 'non_prod'}">
-					<h3 class="non_material" data-mate="${ mater.product_number }">${mater.product_name }
-						용량 :${ mater.product_unit }</h3>
+				<div class="col-sm-6" style="text-align:left;">
+					<label class="non_material" data-mate="${ mater.product_number }">
+						<span>${mater.product_name }</span>
+					</label>
+				</div>	
+					<div class="col-sm-3" style="text-align:right;">
+				<label style="color:#333333;font-size:15px;"> 용량 :${ mater.product_unit }</label>
+				</div>
 				</c:if>
 			</c:forEach>
 			</div>
 		</div>
+		
 	</div>
 	<br>
 	<br>
