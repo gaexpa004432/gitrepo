@@ -67,25 +67,24 @@
 			$("#bookmark").html("<img src='/teamProject3/images/즐겨찾기.jpg'style='width: 100px; height: 100px; margin-left: 30px;'>");
 		}
 //======================================================================================================
-		$("#cart").on(
-				"click",
-				function() {
-					var result = confirm("담으시겟습니까?");
-					if (result == true) {
-						var material = $(".material");
-						if (material != null) {
-							var param = "?";
-							for (i = 0; i <= material.length - 1; i++) {
-								param += "recipe_number="
-										+ $(".material").eq(i).data("mate");
-								if (material.length - 1 != i) {
-									param += "&";
-								}
+	$("#cart").on( "click", function() {  //레시피 재료 담기
+			var result = confirm("담으시겠습니까?");
+				if (result == true) {
+					var material = $(".material");
+					if (material != null) {
+						var param = "?";
+						for (i = 0; i <= material.length - 1; i++) {
+							param += "recipe_number="
+								+ $(".material").eq(i).data("mate");
+							if (material.length - 1 != i) {
+								param += "&";
 							}
-							location.href = "${pageContext.request.contextPath}/CartSelectContoroller.do?recipe_number=" + ${ recipe.recipe_number} + "&seller_code=" + ${recipe.seller_code};
 						}
+		location.href = "${pageContext.request.contextPath}/CartSelectContoroller.do?recipe_number=" 
+						+ ${ recipe.recipe_number} + "&seller_code=" + ${recipe.seller_code};
 					}
-				})
+				}
+			})
 //=========== ====================================================================================			
 		$(".reviewDel").on("click",function(){
 			var result = confirm("정말 삭제 하시겠습니까?");
@@ -242,30 +241,47 @@
 		
 	<hr>
 	<div class="row">
+	
 		<div class="col-sm-12" align="center">
 			<h3 style = "color:#9ACD32;">레시피 재료</h3>
 		</div>
 
-		<div class="col-sm-6" align="center">
-			<h3>[재료]</h3>
+		<div class="col-sm-6" align="left">
+			<h3 align="left">[재료]</h3>
+			<br>
+			<br>
+			<br>
+			<div class="row" align="center">
+			
 			<c:forEach items="${ product }" var="mater">
 				<c:if test="${mater.product_code eq 'prod'}">				
-					<h3 class="material" data-mate="${ mater.product_number }">
-				    <a style="font_color:black;" href="javascript:void(0);" class="product_recipe" data-product="${ mater.product_name }">${ mater.product_name }</a>
-					용량 : ${ mater.product_unit }
-					</h3>
+			<div class="col-sm-6" style="text-align:left;">
+					<label class="material" data-mate="${ mater.product_number }">
+				    <a style="color:#333333;font-size:15px;"  href="javascript:void(0);" class="product_recipe" data-product="${ mater.product_name }">${ mater.product_name }</a>
+					</label>
+			</div>
+			<div class="col-sm-3" style="text-align:right;">	
+					<label style="color:#333333;font-size:15px;"> 용량 : ${mater.product_unit}</label>
+				
+				</div>
 				</c:if>
 			</c:forEach>
+			
+			</div>
 		</div>
 	
 		<div class="col-sm-6" align="center">
 			<h3>[양념]</h3>
+			<br>
+			<br>
+			<div class="col-md-7" align="right" style="text-align:left; font-size:10px;">
 			<c:forEach items="${ product }" var="mater">
 				<c:if test="${mater.product_code eq 'non_prod'}">
 					<h3 class="non_material" data-mate="${ mater.product_number }">${mater.product_name }
 						용량 :${ mater.product_unit }</h3>
 				</c:if>
 			</c:forEach>
+			</div>
 		</div>
 	</div>
 	<br>
@@ -280,15 +296,15 @@
 	
 	<h3 class="col-sm-12" align="center" style = "color:#6B8E23;">조리 순서</h3><br><br>
 	<div class="row" align="center">
-	  <div class="col-sm-12" align="center">
+	  
 		<c:forEach items="${ photo }" var="step"><br>
-			<div class="col-sm-9" align="left">조리 내용 : ${ step.cooking_content }</div>
-			<div class="col-sm-10" align="center">
+			<div class="col-sm-8" align="left">조리 내용 : ${ step.cooking_content }</div>
+			<div class="col-sm-4" align="center">
 				<img src="/teamProject3/images/${ step.cooking_photo_name }"
 					height="150" width="200"><hr style="visibility:hidden;"><br>
 			</div>
 		</c:forEach>
-	  </div>	
+	 	
 	</div>
 
 	<hr>
