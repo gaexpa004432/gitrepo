@@ -169,7 +169,7 @@ img.a {
 				</div>
                     <div class="row">
                     	<c:forEach items="${fr}" var="fr">
-	                        <div class="col-lg-6 col-md-6 col-sm-6">
+	                        <div class="col-lg-6 ">
 	                            <div class="blog__item">
 	                                <div class="blog__item__pic">
 	                                    <img class="a" src="images/${fr.main_img}" alt="">

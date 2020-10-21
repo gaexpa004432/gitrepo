@@ -118,7 +118,6 @@ $(function(){           //상품이름 단위 가격 적는 곳 추가~!!!
 </script>
  <style>
       .container {
-        text-align: center;
         position: relative;
   		z-index: 1;
        }
@@ -162,20 +161,27 @@ $(function(){           //상품이름 단위 가격 적는 곳 추가~!!!
 
 <body>
 <%@include  file="/common/recipe.jsp" %>
-<form name="frm1" action ="/teamProject3/recipeInsert.do" enctype='multipart/form-data' method = "post">
 <div class="container">
-	<h2  align = "left" style = "color:green;">레시피 등록</h2><br>
-	<hr>
-	<h3 class="container" style = "color:#9ACD32; font-family: Fantasy;">메뉴 이름</h3><br>
-	<input  type="text" name="recipe_name" id="recipe_name">
-	<br>
-	<hr>
+<form name="frm1" action ="/teamProject3/recipeInsert.do" enctype='multipart/form-data' method = "post">
+<div class="container" align="left">
 	
-	<h3 class="container" style = "color:#9ACD32; font-family: Fantasy;">완성 사진</h3><br>
-	<img id="main_img" src="" width="300" alt="">
-	<input type="file" id="getfile" name = "main_img" accept="image/*">
-
-
+	<h2  align = "left" style = "margin-top:50px" >레시피 등록</h2><br>
+	<hr>
+	<div class="row">
+	<div class="col-sm-6">
+	<br>
+	<h3  style = "color:#9ACD32; font-family: Fantasy;">레시피 이름</h3><br>
+	<br>
+	<input  type="text" name="recipe_name" id="recipe_name" style="width:50%">
+	<br>
+	</div>
+	<div class="col-sm-6">
+	<br>
+	<h3  style = "color:#9ACD32; font-family: Fantasy;">레시피 사진</h3><br>
+	<img id="main_img" width="200" alt="">
+	<input type="file" id="getfile" name = "main_img" accept="image/*" style="padding:8px;width:80%">
+</div>
+</div>
 <script>  // 사진보이기
 	var file = document.querySelector('#getfile');
 
@@ -200,7 +206,8 @@ $(function(){           //상품이름 단위 가격 적는 곳 추가~!!!
 
 	<hr>
 	<br>
-	<h3 class="container" style = "color:#9ACD32; font-family: Fantasy;">레시피 소개글</h3>
+	<h3 class="container" style = "color:#9ACD32; font-family: Fantasy;" align="center">레시피 소개글</h3>
+	<br>
 
 	<div class="row">
 	<div class="col-sm-12" align="center">
@@ -271,7 +278,7 @@ $(function(){           //상품이름 단위 가격 적는 곳 추가~!!!
 	<div>
 	<input style="width:300px;height:100px" name = "cooking_step">
 	<img id="step_img"  alt="" style="width:150px;height:100px">
-	<input type="file" id="step_img1" class="step_img1" name = "step_img" accept="image/*">
+	<input type="file" id="step_img1" class="step_img1" name = "step_img" accept="image/*" style="padding:8px;width:250px">
 	<img style="visibility:hidden;" src="/teamProject3/images/휴지통.png" width="30px" height="30px" />
 	<div class="cooking_order"></div>
 	</div>
@@ -289,6 +296,6 @@ $(function(){           //상품이름 단위 가격 적는 곳 추가~!!!
 	<a class="site-btn" href="/teamProject3/recipeBoard.do" >레시피 목록</a>
 	</div>
 	</form>
-                                  
+              </div>                    
 </body>
 </html>

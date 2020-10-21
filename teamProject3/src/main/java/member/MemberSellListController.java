@@ -58,7 +58,7 @@ public class MemberSellListController implements Controller {
 //				status = "승인";
 //			}
 //		}
-
+			
 //		request.setAttribute("status", status);
 		request.setAttribute("list", list);
 		
