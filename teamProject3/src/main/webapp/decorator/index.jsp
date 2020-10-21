@@ -44,9 +44,9 @@
 
 <style>
 .img-fluid {
-  /* max-width: 30px;
+   max-width: 50px;
   height: auto;
-  object-fit:cover; */
+  object-fit:cover;
   
 }
 
@@ -157,7 +157,7 @@ $(function() {
 	
 	
 	
-	$("#testInput").autocomplete({
+	/* $("#testInput").autocomplete({
 	      source : function(request, response) {
 	         $.ajax({
 	            url : "${pageContext.request.contextPath}/ajax/hashtagAutoSearch.do",
@@ -197,7 +197,7 @@ $(function() {
 	      close : function(evt) {
 	         
 	      }
-	   });
+	   }); */
 	
 	
 });

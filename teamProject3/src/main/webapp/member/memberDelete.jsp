@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>memberDelete.jsp</title>
 <style>
 
 p {font-size: 13px;}

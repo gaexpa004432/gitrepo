@@ -148,7 +148,7 @@ $(function(){
                     <div class="breadcrumb__text">
                         <h2>판매내역</h2>
                         <div class="breadcrumb__option">
-                            <a href="/teamProject3/">My Page</a>
+                            <a href="/teamProject3/member/myPageMain.jsp">마이페이지</a>
                             <span >판매내역</span>
                         </div>
                     </div>

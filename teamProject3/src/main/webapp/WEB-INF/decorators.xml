@@ -15,6 +15,7 @@
 		<!-- <pattern>/member/memberInsert.jsp</pattern>
 		<pattern>/member/memberLogin.jsp</pattern> -->
 		<pattern>/ajax*</pattern>
+		<pattern>memberFavRes.jsp</pattern>
 	<!-- 	<pattern>/board/freeBoardView.jsp</pattern> -->
 	</excludes> 
 	

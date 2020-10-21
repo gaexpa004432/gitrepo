@@ -33,28 +33,38 @@ public class MemberUpdateController implements Controller {
 		String page = "";
 		System.out.println(request.getSession().getAttribute("pass"));
 		
+		//현재비밀번호 입력시(비밀번호를 수정하겠다는 의미)
 		if(passVal.equals("")) {
 			//수정페이지에서 담긴 value들을 VO에 담기
-				
+			
 			try {//컬럼이 몇개가 됐던 파라미터를 읽어서 vo에 담아 준다.
 				BeanUtils.copyProperties(memberVO, request.getParameterMap());
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
 			
+			
 			memberVO.setMember_pass((String)request.getSession().getAttribute("pass"));
 			memberVO.setMember_roadAddress(request.getParameter("member_roadAddress"));
 			memberVO.setMember_birth(request.getParameter("member_birth").substring(0,10));
 			
+			
 			//첨부파일 처리
 			Part part = request.getPart("member_image");
 			String fileName = getFileName(part);//원래 파일이름을 가져옴
-			String path = request.getServletContext().getRealPath("/images");
-			System.out.println(path);
-			//파일명 중복체크
-			File renameFile = FileRenamePolicy.rename(new File(path, fileName));
-			part.write(path + "/" + renameFile.getName());
-			memberVO.setMember_image(renameFile.getName());
+			
+			//사진만 수정하거나 사진과 내용 둘다 수정할때
+			if(!fileName.equals("")) {
+				String path = request.getServletContext().getRealPath("/images");
+				System.out.println(path);
+				//파일명 중복체크
+				File renameFile = FileRenamePolicy.rename(new File(path, fileName));
+				part.write(path + "/" + renameFile.getName());
+				memberVO.setMember_image(renameFile.getName());
+			} else { //사진 수정하지 않고 내용만 수정할때
+				String curImage = memberVO.getMember_image();
+				memberVO.setMember_image(curImage);
+			}
 			
 			
 			//새로운 VO를 가지고 update문 실행
@@ -85,7 +95,6 @@ public class MemberUpdateController implements Controller {
 				} catch(Exception e) {
 					e.printStackTrace();
 				}
-				memberVO = (MemberVO) request.getSession().getAttribute("login");
 				
 				//memberVO.setMember_pass((String)request.getSession().getAttribute("pass"));
 				memberVO.setMember_pass(request.getParameter("member_newPass"));
@@ -95,13 +104,18 @@ public class MemberUpdateController implements Controller {
 				//첨부파일 처리
 				Part part = request.getPart("member_image");
 				String fileName = getFileName(part);//원래 파일이름을 가져옴
-				String path = request.getServletContext().getRealPath("/face_icon");
-				System.out.println(path);
-				//파일명 중복체크
-				File renameFile = FileRenamePolicy.rename(new File(path, fileName));
-				part.write(path + "/" + renameFile.getName());
-				memberVO.setMember_image(renameFile.getName());
-
+				//사진만 수정하거나 사진과 내용 둘다 수정할때
+				if(!fileName.equals("")) {
+					String path = request.getServletContext().getRealPath("/images");
+					System.out.println(path);
+					//파일명 중복체크
+					File renameFile = FileRenamePolicy.rename(new File(path, fileName));
+					part.write(path + "/" + renameFile.getName());
+					memberVO.setMember_image(renameFile.getName());
+				} else { //사진 수정하지 않고 내용만 수정할떄
+					String curImage = memberVO.getMember_image();
+					memberVO.setMember_image(curImage);
+				}
 				
 				int cnt = MemberDAO.getInstance().update(memberVO);
 				request.setAttribute("cnt", cnt);

@@ -43,6 +43,7 @@ orderVO VO = new orderVO();
                 vo.setProduct_price((String) json.get("product_price"));
                 vo.setProduct_name((String) json.get("product_name"));
                 vo.setRecipe_name((String) json.get("recipe_name"));
+                vo.setMain_img((String) json.get("main_img"));
                 list.add(vo);
             }
         } catch (JSONException e) {

@@ -152,7 +152,7 @@ img.a {
                     <div class="breadcrumb__text">
                         <h2 >즐겨찾기</h2>
                         <div class="breadcrumb__option">
-                            <a href="/teamProject3/">마이페이지</a>
+                            <a href="/teamProject3/member/myPageMain.jsp">마이페이지</a>
                             <span>식당</span>
                         </div>
                     </div>

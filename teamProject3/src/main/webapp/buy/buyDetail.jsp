@@ -184,6 +184,11 @@ input {
 	font-weight : bold;
 }
 
+.ctimg {
+	width : 90px;
+	height : 90px;
+}
+
 </style>
 <script>
 $(function() {
@@ -319,7 +324,6 @@ $(function() {
 		</colgroup>
 		<thead class="">
 		<tr>
-		<th scope="col">상품</th>
 		<th scope="col">상품명</th>
 		<th scope="col">재료명</th>
 		<th scope="col">가격</th>
@@ -331,7 +335,6 @@ $(function() {
 		<c:set var="all_price" value="0"/>
 		<c:forEach items="${array}" var="orderlist">
 		<tr class="active-row">
-		<td><input type="hidden" name="product_number" value="${orderlist.product_number}">${orderlist.main_img}</td>
 		<td>${orderlist.recipe_name}</td>
 		<td><input type="hidden" name="product_name" value="${orderlist.product_name}">${orderlist.product_name}</td>
 		<td><input type="hidden" name="product_price" value="${orderlist.product_price}">${orderlist.product_price}</td>
