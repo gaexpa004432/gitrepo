@@ -168,7 +168,25 @@ input {
 }
 
 .payment {
+	visibility : hidden;
 	float : right;
+
+}
+
+#all_price_put {
+	color : red;
+	font-size : 30px;
+	font-weight : bold;
+}
+
+#last-product {
+	font-size : 20px;
+	font-weight : bold;
+}
+
+.ctimg {
+	width : 90px;
+	height : 90px;
 }
 
 </style>
@@ -287,17 +305,10 @@ $(function() {
 </script>
 </head>
 <body>
- <section class="breadcrumb-section set-bg" data-setbg="./img/breadcrumb.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="breadcrumb__text">
-                        <h2>구매/결제</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<%@include file="/common/buy.jsp" %>
+<br>
+<br>
+<br>
 
 	<div class="lay">
 			<h3 class="order_detail_producttitle">상품 정보</h3>
@@ -313,7 +324,6 @@ $(function() {
 		</colgroup>
 		<thead class="">
 		<tr>
-		<th scope="col">상품</th>
 		<th scope="col">상품명</th>
 		<th scope="col">재료명</th>
 		<th scope="col">가격</th>
@@ -325,7 +335,6 @@ $(function() {
 		<c:set var="all_price" value="0"/>
 		<c:forEach items="${array}" var="orderlist">
 		<tr class="active-row">
-		<td><input type="hidden" name="product_number" value="${orderlist.product_number}">${orderlist.main_img}</td>
 		<td>${orderlist.recipe_name}</td>
 		<td><input type="hidden" name="product_name" value="${orderlist.product_name}">${orderlist.product_name}</td>
 		<td><input type="hidden" name="product_price" value="${orderlist.product_price}">${orderlist.product_price}</td>
@@ -346,7 +355,7 @@ $(function() {
 		<input type="hidden" name="seller_code" value="${resultVO.seller_code}">
 		<input type="hidden" name="member_id" value="${vo.member_id}">
 		<div class="payment">
-		<strong id="last-product">최종결제금액 : <span id="all_price_put" data-allprice="${all_price}">
+		<strong id="last-product">결제금액 : <span id="all_price_put" data-allprice="${all_price}">
 		</span> </strong>
 		<input type="hidden" value="${all_price}">
 		</div>
@@ -395,7 +404,7 @@ $(function() {
 			<input type="button" class="btn btn-outline-success btn-sm" id="mileage_all_button" value="전액사용" onclick="click()"> <br> <br> 적립 마일리지 :
 		<input type="text" class="mileage_input" name="mileage_cost" readonly><br>
 		<c:set var="my_mileage" value="${mil.remaining}"/>
-		사용 마일리지 : <input type="text" name="mileage_use" class="mileage_use">
+		사용 마일리지 : <input type="text" name="mileage_use" class="mileage_use" value="0">
 		</div> 
 		<hr width=30%>
 		
@@ -405,7 +414,7 @@ $(function() {
                        <h5>Cart Total</h5>
                        <hr>
                         <ul>
-                       		<li> 상품 총 금액:<span class="all_price_last">${all_price}</span> </li>
+                       		<li>상품 총 금액:<span class="all_price_last">${all_price}</span> </li>
                             <li>사용 마일리지:<span class="all_mileage"></span></li>
                             <c:set var="final_order_price" value="${all_price - my_mileage}"/>
                             <li>구매 총 금액: <span class="final"></span><input type="hidden" class="final-p" name="order_total"></li>

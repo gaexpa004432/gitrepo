@@ -111,6 +111,11 @@ h2 {
 	margin-right : auto;
 }
 
+.ctimg {
+	width : 90px;
+	height : 90px;
+}
+
 </style>
 <script>
 	$(function() {	
@@ -153,7 +158,8 @@ h2 {
 				var product_quantity =   $(this).parent().parent().find('.quantity-select').val();
 				var product_price = tds.get(3).innerText;
 				var product_name = tds.get(2).innerText;
-                arr.push({recipe_name:recipe_name, product_quantity:product_quantity, product_price:product_price, product_name:product_name});
+                arr.push({recipe_name:recipe_name, product_quantity:product_quantity, product_price:product_price, 
+                	product_name:product_name});
 				
 			})
 			frm.arr.value = JSON.stringify(arr)
@@ -188,19 +194,11 @@ h2 {
 </script>
 </head>
 <body>
+<%@include file="/common/buy.jsp" %>
+<br>
+<br>
+<br>
 
- <section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="breadcrumb__text">
-                        <h2>장바구니</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-   
 <div class="cartdiv">
 <form action="${pageContext.request.contextPath}/orderDetailController.do" name="frm" id="frm">
 <input type="hidden" name="arr">
@@ -234,10 +232,12 @@ h2 {
 		
 	<tbody class="cartTable-body">		
 	<c:set var="gum" value="0" />
+	<c:set var="gum1" value="0" />
 	<c:forEach items="${list}" var="cart">
 		<tr class="cart-deal-items">
 			<td class="select-event">
-				<input type="checkbox" class="cart-check" value="${cart.product_number}" checked>  ${cart.main_img}
+				<input type="checkbox" class="cart-check" value="${cart.product_number}" checked>
+				<img src="${pageContext.request.contextPath}/images/${cart.main_img}" class="ctimg">
 			</td>
 			<td> <input type="hidden" class="recipe_name" value="${cart.recipe_name}"> ${cart.recipe_name}</td>
 			<td> <input type="hidden" class="product_name" value="${cart.product_name}">${cart.product_name}</td>
@@ -250,10 +250,13 @@ h2 {
 			<option <c:if test="${cart.product_quantity == '4'}">selected </c:if> value="4">4</option>
 			</select></td>
 			<td class="all-product-price">${cart.product_price}</td>
+			<c:set var="milt" value="${cart.product_price * 0.01}"/>
 			<td class="mileage-price">${cart.product_price * 0.01}</td>
+			<td><input class="product_number" name="product_number" type="hidden"></td>
 		</tr>
 		<c:set var="gum" value="${cart.product_price}"/>
 		<c:set var="total" value="${total+gum}"/>
+		<c:set var="mil_total" value="${(cart.product_price * 0.01) + gum1}" />
 	</c:forEach>
 	</tbody>
 	</table>
@@ -267,7 +270,7 @@ h2 {
                        <h5>Cart Total</h5>
                        <hr>
                         <ul>
-                            <li>적립 마일리지: <span class="all-mileage">P</span></li>
+                            <li>적립 마일리지: <span class="all-mileage"></span></li>
                             <li>구매 총 금액: <span class="final-order-price"><input type="hidden" name="total">${total}원</span></li>
                         </ul>
 	<input type="button" id="check_button" class="btn btn-danger btn-block" value="구매">
