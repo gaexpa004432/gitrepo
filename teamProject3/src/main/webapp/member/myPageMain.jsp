@@ -34,6 +34,9 @@
         </div>
 </section>
 <!-- Portfolio-->
+<%@include file="/member/myPageMenu.jsp" %>
+<div class="col-lg-8 col-md-7">
+            	
 	<div class="container">
 	<hr>
         <div id="portfolio">
@@ -164,6 +167,7 @@
                 </div>
             </div>
         </div>
+     </div>
      </div>
 </body>
 </html>

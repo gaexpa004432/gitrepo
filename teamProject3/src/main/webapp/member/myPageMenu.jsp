@@ -14,6 +14,7 @@
 </head>
 <body> --%>
 <!-- <section class="blog spad"> -->
+
         <div class="container" id="divContainer"><!-- include로 쓰기 위해서 div를 완전히 닫으면 가로로 div를 쓸수 없다. -->
             <div class="row">
                 <div class="col-lg-4 col-md-5">

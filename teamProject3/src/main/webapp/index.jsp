@@ -56,12 +56,12 @@ $(document).ready(function(){
 </script>
 <!-- Portfolio-->
 	<div class="container">
-        <div id="portfolio">
+        <div id="portfolio" style="margin-bottom:200px">
             <div class="container-fluid p-0">
                 <div class="row no-gutters">
                     <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/img/portfolio/fullsize/1.jpg">
-                            <img class="img-fluid1" src="images/4_1.jpg" alt="" />
+                        <a class="portfolio-box" href="/teamProject3/images/비건새송이버섯 바질오일구이 메인.png">
+                            <img class="img-fluid1" src="/teamProject3/images/비건새송이버섯 바질오일구이 메인.png" alt="" />
                             <div class="portfolio-box-caption">
                                 <div class="project-category text-white-50">Category</div>
                                 <div class="project-name">Project Name</div>
@@ -69,8 +69,8 @@ $(document).ready(function(){
                         </a>
                     </div>
                     <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/img/portfolio/fullsize/.jpg">
-                            <img class="img-fluid1" src="images/로고.png" alt="" />
+                        <a class="portfolio-box" href="/teamProject3/images/비건새우바질볶음밥 메인.png">
+                            <img class="img-fluid1" src="/teamProject3/images/비건새우바질볶음밥 메인.png" alt="" />
                             <div class="portfolio-box-caption">
                                 <div class="project-category text-white-50">Category</div>
                                 <div class="project-name">Project Name</div>
@@ -78,8 +78,8 @@ $(document).ready(function(){
                         </a>
                     </div>
                     <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/img/portfolio/fullsize/3.jpg">
-                            <img class="img-fluid1" src="images/tomatoes.jpg" alt="" />
+                        <a class="portfolio-box" href="/teamProject3/images/비건 오이소박이 메인.png">
+                            <img class="img-fluid1" src="/teamProject3/images/비건 오이소박이 메인.png" alt="" />
                             <div class="portfolio-box-caption">
                                 <div class="project-category text-white-50">Category</div>
                                 <div class="project-name">Project Name</div>
@@ -87,8 +87,8 @@ $(document).ready(function(){
                         </a>
                     </div>
                     <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/img/portfolio/fullsize/4.jpg">
-                            <img class="img-fluid1" src="images/greenpeas.jpg" alt="" />
+                        <a class="portfolio-box" href="/teamProject3/images/비건 카레 메인.png">
+                            <img class="img-fluid1" src="/teamProject3/images/비건 카레 메인.png" alt="" />
                             <div class="portfolio-box-caption">
                                 <div class="project-category text-white-50">Category</div>
                                 <div class="project-name">Project Name</div>
@@ -96,8 +96,8 @@ $(document).ready(function(){
                         </a>
                     </div>
                     <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/img/portfolio/fullsize/5.jpg">
-                            <img class="img-fluid1" src="images/grapes.jpg" alt="" />
+                        <a class="portfolio-box" href="/teamProject3/images/머시룸 타코 메인.png">
+                            <img class="img-fluid1" src="/teamProject3/images/머시룸 타코 메인.png" alt="" />
                             <div class="portfolio-box-caption">
                                 <div class="project-category text-white-50">Category</div>
                                 <div class="project-name">Project Name</div>
@@ -105,8 +105,8 @@ $(document).ready(function(){
                         </a>
                     </div>
                     <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/img/portfolio/fullsize/6.jpg">
-                            <img class="img-fluid1" src="images/Mushrooms.jpg" alt="" />
+                        <a class="portfolio-box" href="/teamProject3/images/비건쿠키 메인.png">
+                            <img class="img-fluid1" src="/teamProject3/images/비건쿠키 메인.png" alt="" />
                             <div class="portfolio-box-caption p-3">
                                 <div class="project-category text-white-50">Category</div>
                                 <div class="project-name">Project Name</div>

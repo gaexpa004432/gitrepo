@@ -323,7 +323,6 @@
 	 	
 	</div>
 
-	<hr>
 	<div class=".col-xs-6 .col-md-4">
 	<c:if test="${recipe.member_id eq sessionScope.id}">
 	<div align="center">
@@ -336,42 +335,13 @@
 	</c:if>
 	</div>
 
-	<hr>
 <form name="searchFrm">		
 	<input type="hidden" name="p" value="1">
 	<input type="hidden" name="res_no" class="recipe_no" value="${ recipe.recipe_number }">
 	
 </form>
 
-	<hr>
-	<div class="row">
-		<div class="col" align="center">
-			<form action="/teamProject3/recipeReview.do" method="post"
-					enctype='multipart/form-data'>
-				<h3  class="col-sm-6" align="left" style="color:green;">리뷰</h3>
-				<div class="col-sm-8" align="center">
-					<div class="imgs_wrap">
-						<img id="img" style="width:250px;height:200px" />
-					</div>
-				</div>
-				<div class="">
-				</div>
-				<br><input value="${ recipe.recipe_number }" name="recipe_no"
-					hidden="hidden">
-				<textarea cols="100" rows="10" name="recipe_reivew_content"
-						style= "height:100px; width:610px;"></textarea>
-				
-				<div class="col-sm-10" align="right">
-					<div>
-						<input type="file" id="input_imgs" class="step_img1" name="recipe_review_file">
-					</div>
-				</div>
-				<br>
-				<button id="recipe_insert" style="vertical-align: top;" class="site-btn">리뷰 쓰기</button>
-			</form>
-			<br><br><br>
-		</div>
-	</div>
+	
 </div>
 	<div class="container">
 	<c:forEach items="${ reviewlist }" var="list">
@@ -412,6 +382,36 @@
 	<div align="center">
  		<my:paging paging="${paging}" jsfunc="gopage" />
 	</div>
-
+	
+	<hr>
+	<div class="row">
+		<div class="col" align="center">
+			<form action="/teamProject3/recipeReview.do" method="post"
+					enctype='multipart/form-data'>
+				<h3  class="col-sm-6" align="left" style="color:green;">리뷰</h3>
+				<div class="col-sm-8" align="center">
+					<div class="imgs_wrap">
+						<img id="img" style="width:250px;height:200px" />
+					</div>
+				</div>
+				<div class="">
+				</div>
+				<br><input value="${ recipe.recipe_number }" name="recipe_no"
+					hidden="hidden">
+				<textarea cols="100" rows="10" name="recipe_reivew_content"
+						style= "height:100px; width:610px;"></textarea>
+				
+				<div class="col-sm-10" align="right">
+					<div>
+						<input type="file" id="input_imgs" class="step_img1" name="recipe_review_file">
+					</div>
+				</div>
+				<br>
+				<button id="recipe_insert" style="vertical-align: top;" class="site-btn">리뷰 쓰기</button>
+			</form>
+			<br><br><br>
+		</div>
+	</div>
+	
 </body>
 </html>
