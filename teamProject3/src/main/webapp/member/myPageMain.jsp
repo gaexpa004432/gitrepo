@@ -113,7 +113,7 @@
 	                        </a>
 	                    </c:when>
 	                    <c:when test="${sessionScope.login.seller_code == 0}">
-<<<<<<< HEAD
+<%-- <<<<<<< HEAD
 		                    <div class="col-4 ">
 		                    	<a class="portfolio-box" href="${pageContext.request.contextPath}/member/memberAddInsert.jsp">
 		                            <img class="img-fluid1" src="/teamProject3/images/5.jpg" alt="" />
@@ -127,11 +127,11 @@
 	                        	<a class="portfolio-box" href="${pageContext.request.contextPath}/orderList.do">
 		                            <img class="img-fluid1" src="/teamProject3/images/6.jpg" alt="" />
 		                            <div class="portfolio-box-caption p-3">
-=======
+======= --%>
 	                    	<a class="portfolio-box" href="${pageContext.request.contextPath}/member/memberAddInsert.jsp">
 	                            <img class="img-fluid1" src="/teamProject3/images/carrot.png" alt="" />
 	                            <div class="portfolio-box-caption">
->>>>>>> branch 'master' of https://github.com/gaexpa004432/gitrepo.git
+<!-- >>>>>>> branch 'master' of https://github.com/gaexpa004432/gitrepo.git -->
 	                                <!-- <div class="project-category text-white-50">Category</div> -->
 	                                <div class="project-name">판매자로 등록</div>
 	                            </div>
