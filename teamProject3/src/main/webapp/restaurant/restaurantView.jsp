@@ -138,7 +138,7 @@ img.inimg {
 		
 		
 		var settings = {
-				slideWidth : 420,
+				slideWidth : 380,
 				slideMargin : 5,
 				minSlides : 1,
 				maxSlides : 10,
@@ -187,7 +187,7 @@ img.inimg {
 			var no = "${res.res_no}";
 			var code = "fs";
 			if(favorite === "false"){
-					$("#bookmark").html("<img src='/teamProject3/images/bookmark (1).png' style='width: 100px; height: 100px; margin-left: 30px;'>");
+					$("#bookmark").html("<img src='/teamProject3/images/bookmark.png' style='width: 100px; height: 100px; margin-left: 30px;'>");
 					favorite = "true";
 			$.ajax("bookMark.do", {
 				method : "get",
@@ -197,7 +197,7 @@ img.inimg {
 				}
 			});
 			}else{
-						$("#bookmark").html("<img src='/teamProject3/images/bookmark.png' style='width: 100px; height: 100px; margin-left: 30px;'>");
+						$("#bookmark").html("<img src='/teamProject3/images/bookmark (1).png' style='width: 100px; height: 100px; margin-left: 30px;'>");
 						favorite = "false";
 				$.ajax("bookMark.do", {
 					method : "get",

@@ -175,7 +175,7 @@
 		$(".product_recipe").on("click",function(){    //재료 클릭시  재료가 포함된 레시피로 이동
 			var result = confirm("관련 레시피창으로 이동 합니다.")
 			if(result){
-				location.href="/teamProject3/recipeChoiceBoard.do?product_name="+$(this).data("product")
+				location.href="/teamProject3/recipeChoiceBoard.do?product_name="+$(this).data("product");
 			}
 		})
 	})
@@ -350,7 +350,7 @@
 
 			<div class="col-sm-1">
 				<img class="userImage" src="/teamProject3/images/${list.member_image}"><br>
-				<h4><a style="font-size:30px;" href="javascript:void(0);" id="user" data-member="${ recipe.member_id }">${ recipe.member_id }</a></h4>
+				<h4><a style="font-size:30px;" href="javascript:void(0);" id="user" data-member="${ list.member_id }">${ list.member_id }</a></h4>
 			</div>
 			
 			<div class="col-sm-10" align="left">

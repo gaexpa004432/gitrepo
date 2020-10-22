@@ -179,9 +179,9 @@ img.a {
 	                                       <%-- <li><i class="fa fa-calendar-o"></i>${fr.recipe_date}</li> --%>
 	                                       <!--  <li><i class="fa fa-comment-o"></i> 5</li> -->
 	                                    </ul>
-	                                    <h5><a href="${pageContext.request.contextPath}/restaurantView.do?res_no=${fr.recipe_number}">${fr.recipe_name}</a></h5>
+	                                    <h5><a href="${pageContext.request.contextPath}/recipeView.do?recipe_number=${fr.recipe_number}">${fr.recipe_name}</a></h5>
 	                                    <%-- <p>${fr.recipe_content}</p> --%>
-	                                    <a href="${pageContext.request.contextPath}/restaurantView.do?res_no=${fr.recipe_number}" class="blog__btn">자세히보기<span class="arrow_right"></span></a>
+	                                    <a href="${pageContext.request.contextPath}/recipeView.do?recipe_number=${fr.recipe_number}" class="blog__btn">자세히보기<span class="arrow_right"></span></a>
 	                                </div>
 	                            </div>
 	                        </div>

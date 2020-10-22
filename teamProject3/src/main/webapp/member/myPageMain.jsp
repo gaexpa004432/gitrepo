@@ -36,15 +36,15 @@
 <!-- Portfolio-->
 <%@include file="/member/myPageMenu.jsp" %>
 <div class="col-lg-8 col-md-7">
-            	
-	<div class="container">
-	<hr>
+               
+   <div class="container">
+   <hr>
         <div id="portfolio">
             <div class="container-fluid p-0">
                 <div class="row no-gutters">
                     <div class="col-4">
                         <a class="portfolio-box" href="${pageContext.request.contextPath}/select.do">
-                            <img class="img-fluid1" src="/teamProject3/images/apple-1.png" alt="" />
+                            <img class="img-fluid1" src="/teamProject3/images2/avocado.jpg" alt="" style="width:100%; height:200px"/>
                             <div class="portfolio-box-caption">
                                 <!-- <div class="project-category text-white-50">마이페이지</div> -->
                                 <div class="project-name">내 정보 조회 및 수정</div>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="col-4 ">
                         <a class="portfolio-box" href="${pageContext.request.contextPath}/favList.do?fav=fs">
-                            <img class="img-fluid1" src="/teamProject3/images/avocado.png" alt="" />
+                            <img class="img-fluid1" src="/teamProject3/images2/berries.jpg" alt="" style="width:100%; height:200px"/>
                             <div class="portfolio-box-caption">
                                 <!-- <div class="project-category text-white-50">Category</div> -->
                                 <div class="project-name">나의 즐겨찾기</div>
@@ -62,107 +62,90 @@
                     </div>
                     <div class="col-4">
                     <c:choose>
-						<c:when test="${sessionScope.login.seller_code != 0}">
-	                        <a class="portfolio-box" href="${pageContext.request.contextPath}/ansList.do">
-	                            <img class="img-fluid1" src="/teamProject3/images/peach.png" alt="" />
-	                            <div class="portfolio-box-caption">
-	                                <!-- <div class="project-category text-white-50">Category</div> -->
-	                                <div class="project-name">1:1 문의</div>
-	                            </div>
-	                        </a>
-	                    </c:when>
-	                    <c:when test="${sessionScope.login.seller_code == 0}">
-	                    	<a class="portfolio-box" href="${pageContext.request.contextPath}/inqList.do">
-	                            <img class="img-fluid1" src="/teamProject3/images/groceries.png" alt="" />
-	                            <div class="portfolio-box-caption">
-	                                <!-- <div class="project-category text-white-50">Category</div> -->
-	                                <div class="project-name">1:1 문의</div>
-	                            </div>
-	                        </a>
-	                    </c:when>
-	                </c:choose>
+                  <c:when test="${sessionScope.login.seller_code != 0}">
+                           <a class="portfolio-box" href="${pageContext.request.contextPath}/ansList.do">
+                               <img class="img-fluid1" src="/teamProject3/images2/무화과.jpg" alt="" style="width:100%; height:200px"/>
+                               <div class="portfolio-box-caption">
+                                   <!-- <div class="project-category text-white-50">Category</div> -->
+                                   <div class="project-name">1:1 문의</div>
+                               </div>
+                           </a>
+                       </c:when>
+                       <c:when test="${sessionScope.login.seller_code == 0}">
+                          <a class="portfolio-box" href="${pageContext.request.contextPath}/inqList.do">
+                               <img class="img-fluid1" src="/teamProject3/images2/무화과.jpg" alt="" style="width:100%; height:200px"/>
+                               <div class="portfolio-box-caption">
+                                   <!-- <div class="project-category text-white-50">Category</div> -->
+                                   <div class="project-name">1:1 문의</div>
+                               </div>
+                           </a>
+                       </c:when>
+                   </c:choose>
                     </div>
                     <div class="col-4 ">
-                    	<c:choose>
-							<c:when test="${sessionScope.login.seller_code != 0}">
-	                        	<a class="portfolio-box" href="/teamProject3/orderList.do">
-		                            <img class="img-fluid1" src="/teamProject3/images/lemon.png" alt="" />
-		                            <div class="portfolio-box-caption p-3">
-		                                <!-- <div class="project-category text-white-50">Category</div> -->
-		                                <div class="project-name">주문내역</div>
-		                            </div>
-		                        </a>
-                    		</c:when>
-		                    <c:when test="${sessionScope.login.seller_code == 0}">
-		                    	<a class="portfolio-box" href="${pageContext.request.contextPath}/mileageController.do">
-		                            <img class="img-fluid1" src="/teamProject3/images/grapes.png" alt="" />
-		                            <div class="portfolio-box-caption">
-		                                <!-- <div class="project-category text-white-50">Category</div> -->
-		                                <div class="project-name">마일리지조회</div>
-		                            </div>
-		                        </a>
-                   			</c:when>
-	                	</c:choose>
-                    </div>
-                    <div class="col-4 ">
-                    <c:choose>
-						<c:when test="${sessionScope.login.seller_code != 0}">
-	                        <a class="portfolio-box" href="${pageContext.request.contextPath}/member/memberAddUpdate.jsp">
-	                            <img class="img-fluid1" src="/teamProject3/images/banana.png" alt="" />
-	                            <div class="portfolio-box-caption">
-	                                <!-- <div class="project-category text-white-50">Category</div> -->
-	                                <div class="project-name">판매자 정보 수정 및 조회</div>
-	                            </div>
-	                        </a>
-	                    </c:when>
-	                    <c:when test="${sessionScope.login.seller_code == 0}">
-<%-- <<<<<<< HEAD
-		                    <div class="col-4 ">
-		                    	<a class="portfolio-box" href="${pageContext.request.contextPath}/member/memberAddInsert.jsp">
-		                            <img class="img-fluid1" src="/teamProject3/images/5.jpg" alt="" />
-		                            <div class="portfolio-box-caption">
-		                                <!-- <div class="project-category text-white-50">Category</div> -->
-		                                <div class="project-name">판매자로 등록</div>
-		                            </div>
-		                        </a>
-	                        </div>
-	                        <div class="col-4 ">
-	                        	<a class="portfolio-box" href="${pageContext.request.contextPath}/orderList.do">
-		                            <img class="img-fluid1" src="/teamProject3/images/6.jpg" alt="" />
-		                            <div class="portfolio-box-caption p-3">
-======= --%>
-	                    	<a class="portfolio-box" href="${pageContext.request.contextPath}/member/memberAddInsert.jsp">
-	                            <img class="img-fluid1" src="/teamProject3/images/carrot.png" alt="" />
-	                            <div class="portfolio-box-caption">
-<!-- >>>>>>> branch 'master' of https://github.com/gaexpa004432/gitrepo.git -->
-	                                <!-- <div class="project-category text-white-50">Category</div> -->
-	                                <div class="project-name">판매자로 등록</div>
-	                            </div>
-	                        </a>
-	                    </c:when>
-	                </c:choose>
+                       <c:choose>
+                     <c:when test="${sessionScope.login.seller_code != 0}">
+                              <a class="portfolio-box" href="/teamProject3/orderList.do">
+                                  <img class="img-fluid1" src="/teamProject3/images2/lemons.jpg" alt="" style="width:100%; height:200px"/>
+                                  <div class="portfolio-box-caption p-3">
+                                      <!-- <div class="project-category text-white-50">Category</div> -->
+                                      <div class="project-name">주문내역</div>
+                                  </div>
+                              </a>
+                          </c:when>
+                          <c:when test="${sessionScope.login.seller_code == 0}">
+                             <a class="portfolio-box" href="${pageContext.request.contextPath}/mileageController.do">
+                                  <img class="img-fluid1" src="/teamProject3/images2/딸기.jpg" alt="" style="width:100%; height:200px"/>
+                                  <div class="portfolio-box-caption">
+                                      <!-- <div class="project-category text-white-50">Category</div> -->
+                                      <div class="project-name">마일리지조회</div>
+                                  </div>
+                              </a>
+                            </c:when>
+                      </c:choose>
                     </div>
                     <div class="col-4 ">
                     <c:choose>
-						<c:when test="${sessionScope.login.seller_code != 0}">
-	                        <a class="portfolio-box" href="${pageContext.request.contextPath}/sellList.do">
-	                            <img class="img-fluid1" src="/teamProject3/images/broccoli.png" alt="" />
-	                            <div class="portfolio-box-caption p-3">
-	                                <!-- <div class="project-category text-white-50">Category</div> -->
-	                                <div class="project-name">판매내역</div>
-	                            </div>
-	                        </a>
-	                    </c:when>
-	                    <c:when test="${sessionScope.login.seller_code == 0}">
-	                    	<a class="portfolio-box" href="/teamProject3/orderList.do">
-	                            <img class="img-fluid1" src="/teamProject3/images/lemon.png" alt="" />
-	                            <div class="portfolio-box-caption p-3">
-	                                <!-- <div class="project-category text-white-50">Category</div> -->
-	                                <div class="project-name">주문내역</div>
-	                            </div>
-	                        </a>
-	                    </c:when>
-	                </c:choose>
+                  		<c:when test="${sessionScope.login.seller_code != 0}">
+                           <a class="portfolio-box" href="${pageContext.request.contextPath}/member/memberAddUpdate.jsp">
+                               <img class="img-fluid1" src="/teamProject3/images2/딸기.jpg" alt="" style="width:100%; height:200px"/>
+                               <div class="portfolio-box-caption">
+                                   <!-- <div class="project-category text-white-50">Category</div> -->
+                                   <div class="project-name">판매자 정보 수정 및 조회</div>
+                               </div>
+                           </a>
+                       </c:when>
+                       <c:when test="${sessionScope.login.seller_code == 0}">
+                          <a class="portfolio-box" href="${pageContext.request.contextPath}/member/memberAddInsert.jsp">
+                               <img class="img-fluid1" src="/teamProject3/images2/브로콜리.jpg" alt="" style="width:100%; height:200px"/>
+                               <div class="portfolio-box-caption">
+                                   <div class="project-name">판매자로 등록</div>
+                               </div>
+                          </a>
+                       </c:when>
+                   </c:choose>
+                    </div>
+                    <div class="col-4 ">
+                    <c:choose>
+                  <c:when test="${sessionScope.login.seller_code != 0}">
+                           <a class="portfolio-box" href="${pageContext.request.contextPath}/sellList.do">
+                               <img class="img-fluid1" src="/teamProject3/images2/브로콜리.jpg" alt="" style="width:100%; height:200px"/>
+                               <div class="portfolio-box-caption p-3">
+                                   <!-- <div class="project-category text-white-50">Category</div> -->
+                                   <div class="project-name">판매내역</div>
+                               </div>
+                           </a>
+                       </c:when>
+                       <c:when test="${sessionScope.login.seller_code == 0}">
+                          <a class="portfolio-box" href="/teamProject3/orderList.do">
+                               <img class="img-fluid1" src="/teamProject3/images2/lemons.jpg" alt="" style="width:100%; height:200px"/>
+                               <div class="portfolio-box-caption p-3">
+                                   <!-- <div class="project-category text-white-50">Category</div> -->
+                                   <div class="project-name">주문내역</div>
+                               </div>
+                           </a>
+                       </c:when>
+                   </c:choose>
                     </div>
                 </div>
             </div>
@@ -171,3 +154,21 @@
      </div>
 </body>
 </html>
+
+<%-- <<<<<<< HEAD
+                          <div class="col-4 ">
+                             <a class="portfolio-box" href="${pageContext.request.contextPath}/member/memberAddInsert.jsp">
+                                  <img class="img-fluid1" src="/teamProject3/images/5.jpg" alt="" />
+                                  <div class="portfolio-box-caption">
+                                      <!-- <div class="project-category text-white-50">Category</div> -->
+                                      <div class="project-name">판매자로 등록</div>
+                                  </div>
+                              </a>
+                           </div>
+                           <div class="col-4 ">
+                              <a class="portfolio-box" href="${pageContext.request.contextPath}/orderList.do">
+                                  <img class="img-fluid1" src="/teamProject3/images/6.jpg" alt="" />
+                                  <div class="portfolio-box-caption p-3">
+======= --%>
+<!-- >>>>>>> branch 'master' of https://github.com/gaexpa004432/gitrepo.git -->
+                                   <!-- <div class="project-category text-white-50">Category</div> -->

@@ -210,7 +210,7 @@ function inputCheck() {
                         	<div>
                         		<c:if test="${sessionScope.login.member_image == 'images1'}">
 									<div class="photo image_wrap" class="col-lg-12" style="text-align:center;">
-										<img src="/teamProject3/images/face_icon.png" id="image_preview" style="width:500px" 
+										<img src="/teamProject3/images/apple-1.png" id="image_preview" style="width:500px" 
 											 name="image_preview" class="img-fluid1 rounded-circle1 img"/>
 									</div>
 									<br><br>

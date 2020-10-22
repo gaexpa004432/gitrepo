@@ -41,7 +41,7 @@ $(function(){
 	console.log("${sessionScope.login}" )
 	$(".secret").on("click",function(){
 	var member = $(this).data("member")
-		if(member == "${sessionScope.id}" || "${sessionScope.id == 'vegan'}" ){
+		if($(this).data("member") == "${sessionScope.id}" ){
 			var no =  $(this).data('no');
 			location.href="qaBoardView.do?board_no="+no; 
 		}else{

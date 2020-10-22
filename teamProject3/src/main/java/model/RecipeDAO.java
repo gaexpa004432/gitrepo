@@ -208,7 +208,7 @@ public class RecipeDAO{
 			try { 
 				 String sql = "select a.* from (select rownum rn,b.* from ( " 
 						 + "select r.recipe_number,r.recipe_name,r.RECIPE_DATE,r.RECIPE_CONTENT,r.MEMBER_ID,r.COOKING_TIME,r.COOKING_LEVEL,r.MAIN_IMG,(select member_image from member where member_id = r.member_id) as member_image from recipe r  JOIN product prod "
-						 + "ON r.recipe_number = prod.recipe_number AND prod.product_name = ?" 
+						 + "ON r.recipe_number = prod.recipe_number AND prod.product_name = ? and not exists(select * from product p where p.recipe_number = r.recipe_number and PRODUCT_STATUS = 'N')" 
 						 + "  order by product_name desc" 
 						 + "  ) b) a where rn between ? and ?";
 				 pstmt = conn.prepareStatement(sql); // 미리 sql 구문이 준비가 되어야한다

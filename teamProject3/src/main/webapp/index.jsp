@@ -63,17 +63,17 @@ $(document).ready(function(){
                         <a class="portfolio-box" href="/teamProject3/images/비건새송이버섯 바질오일구이 메인.png">
                             <img class="img-fluid1" src="/teamProject3/images/비건새송이버섯 바질오일구이 메인.png" alt="" />
                             <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
-                            </div>
+                                <!-- <div class="project-category text-white-50">Category</div>
+                                <div class="project-name">Project Name</div> -->   
+                         </div>
                         </a>
                     </div>
                     <div class="col-lg-4 col-sm-6">
                         <a class="portfolio-box" href="/teamProject3/images/비건새우바질볶음밥 메인.png">
                             <img class="img-fluid1" src="/teamProject3/images/비건새우바질볶음밥 메인.png" alt="" />
                             <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
+                                <!-- <div class="project-category text-white-50">Category</div>
+                                <div class="project-name">Project Name</div> -->
                             </div>
                         </a>
                     </div>
@@ -81,8 +81,8 @@ $(document).ready(function(){
                         <a class="portfolio-box" href="/teamProject3/images/비건 오이소박이 메인.png">
                             <img class="img-fluid1" src="/teamProject3/images/비건 오이소박이 메인.png" alt="" />
                             <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
+                               <!--  <div class="project-category text-white-50">Category</div>
+                                <div class="project-name">Project Name</div> -->
                             </div>
                         </a>
                     </div>
@@ -90,8 +90,8 @@ $(document).ready(function(){
                         <a class="portfolio-box" href="/teamProject3/images/비건 카레 메인.png">
                             <img class="img-fluid1" src="/teamProject3/images/비건 카레 메인.png" alt="" />
                             <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
+                                <!-- <div class="project-category text-white-50">Category</div>
+                                <div class="project-name">Project Name</div> -->
                             </div>
                         </a>
                     </div>
@@ -99,8 +99,8 @@ $(document).ready(function(){
                         <a class="portfolio-box" href="/teamProject3/images/머시룸 타코 메인.png">
                             <img class="img-fluid1" src="/teamProject3/images/머시룸 타코 메인.png" alt="" />
                             <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
+                                <!-- <div class="project-category text-white-50">Category</div>
+                                <div class="project-name">Project Name</div> -->
                             </div>
                         </a>
                     </div>
@@ -108,8 +108,8 @@ $(document).ready(function(){
                         <a class="portfolio-box" href="/teamProject3/images/비건쿠키 메인.png">
                             <img class="img-fluid1" src="/teamProject3/images/비건쿠키 메인.png" alt="" />
                             <div class="portfolio-box-caption p-3">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
+                                <!-- <div class="project-category text-white-50">Category</div>
+                                <div class="project-name">Project Name</div> -->
                             </div>
                         </a>
                     </div>

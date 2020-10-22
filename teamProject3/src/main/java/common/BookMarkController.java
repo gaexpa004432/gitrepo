@@ -23,8 +23,8 @@ public class BookMarkController implements Controller {
 		favorite.setFavorite_no(Integer.parseInt(res_no));
 		favorite.setFavorite_code(favorite_code);
 		
-		
 		if(bookmark.equals("insert")) {
+			
 		FavoriteDAO.getInstance().insert(favorite);
 		}else{
 		FavoriteDAO.getInstance().delete(favorite);

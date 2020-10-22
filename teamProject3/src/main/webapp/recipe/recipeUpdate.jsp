@@ -245,11 +245,11 @@ $(document).on("change",".step_img1",function () {
 			<h2 style = "color:#9ACD32;">레시피 제목</h2><br><br>	
 			<input type="text" name="recipe_name" value="${recipe.recipe_name}">
 			<hr>
-			
 			<h2 style = "color:#9ACD32;">완성 사진</h2><br><br>
+			<div>
 			<img id="main_img" src="/teamProject3/images/${ recipe.main_img }" width="300" height="300" alt="" />
 			<input type="file" name="main_img" class="step_img1">
-				
+				</div>
 			<hr>
 			<div class="row">
 			<div class="col-sm-12" align="center">
